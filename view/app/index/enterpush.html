@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+</head>
+<body>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var lastHref = 'http://pm.droibank.tt286.com',newHref = 'http://pm.yz314.com',locationHref='',currentHost=window.location.host;
+    if(currentHost.indexOf('61.152.66.114') >= 0){
+        lastHref = 'http://61.152.66.114:8089/auc';
+        newHref = 'http://61.152.66.114:8089/auc';
+    }
+    var enterPushEvent = {
+        redirecturl:fnBase.getUrlPar("redirecturl"),
+        init:function(){
+            this.addEnterPushEvent()
+        },
+        addEnterPushEvent:function(){
+            if(this.redirecturl){
+                if(fnBase.mobileType == "android"){
+                    if(fnBase.VersionCode >= '113'){
+                        locationHref = newHref + this.redirecturl
+                    }else {
+                        locationHref = lastHref + this.redirecturl
+                    }
+                }else {
+                    if(fnBase.ChannelId == 'IosQmzk' || fnBase.ChannelId == 'Ios2'){
+                        locationHref = newHref + this.redirecturl
+                    }else {
+                        if(fnBase.VersionCode >= '113'){
+                            locationHref = newHref + this.redirecturl
+                        }else {
+                            locationHref = lastHref + this.redirecturl
+                        }
+                    }
+                }
+                fnBase.addLocationHref(locationHref)
+            }
+        }
+    };
+    enterPushEvent.init();
+</script>
+</body>
+</html>

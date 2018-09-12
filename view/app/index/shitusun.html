@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/css/shitusun.css"/>
+    <link rel="stylesheet" href="../../../static/css/zan.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+    <style>
+        .is-sdk{
+            display: none;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="back_arrow sun-rule">晒单规则</div>
+    <h2>师徒晒单</h2>
+    <div class="back_arrow share-btn head-share-page is-sdk" data-showid="" data-goodsId="">分享有奖</div>
+</header>
+<div class="container">
+    <div class="shitu">
+        <!--<div class="income">师徒收益<span>1039.10拍币</span></div>-->
+        <!--<div class="shitu-details">-->
+        <!--<div class="prev_earning shitu-details-item">昨日收益<div class="prevMoney">108拍币</div></div>-->
+        <!--<div class="friend_num shitu-details-item">徒弟数<div class="friendNum ng-binding">24</div></div>-->
+        <!--<div class="shifu shitu-details-item">您的师傅<div class="shifuName ng-binding">您就是祖师爷</div></div>-->
+        <!--</div>-->
+    </div>
+    <div class="strategy-enter" style="display: none">拍卖大神榜，攻略教你怎么拍<span></span></div>
+    <div class="sun-list">
+        <div class="sun-list-title" style="display: block">
+            <span class="sun-list-title-l">晒单列表</span>
+        </div>
+        <div class="sun-list-wrapper">
+            <ul>
+                <!--<li class="sun-list-item">-->
+                <!--<div class="sun-list-item-top">-->
+                <!--<span class="goods-winter">许卡通潇洒擦嘻嘻嘻</span>-->
+                <!--<span class="goods-qi">2017081898975465</span>-->
+                <!--<span class="goods-price">￥381.60</span>-->
+                <!--</div>-->
+                <!--<div class="sun-list-item-center">-->
+                <!--<div class="goods-img">-->
+                <!--<div class="corner">-->
+                <!--<img class="corner-icon" src="../../../static/img/creamUrl.png">-->
+                <!--<img class="corner-icon" src="../../../static/img/stickUrl.png">-->
+                <!--</div>-->
+                <!--<img src="http://egoures.tt286.com/market/indiana/goods2017/06/30/bzhlodqam3/1498806562925.jpg">-->
+                <!--<img src="http://egoures.tt286.com/market/indiana/goods2017/06/30/bzhlodqam3/1498806562925.jpg">-->
+                <!--<img src="http://egoures.tt286.com/market/indiana/goods2017/06/30/bzhlodqam3/1498806562925.jpg">-->
+                <!--</div>-->
+                <!--<div class="goods-info">-->
+                <!--<div class="goods-name">苹果7阿萨德传到发错地方</div>-->
+                <!--<div class="goods-qi">第65874658768654期数</div>-->
+                <!--</div>-->
+                <!--<p class="goods-des">用了快俩月了，用的硅胶壳，后边有那种亮点，可能是脏东西磨的，另外，屏幕不太亮，家里哥用的6s和6sp ，相对来说7的屏幕暗黄相对来说7的屏幕暗黄相对来...屏幕暗黄相对来说7的屏幕暗黄</p>-->
+                <!--</div>-->
+                <!--<div class="sun-list-item-bottom">-->
+                <!--<div class="sun-goods-zan">-->
+                <!--<span class="zan-icon"><img src="../../../static/img/zan.png"/></span>-->
+                <!--<span class="zan-num">1</span>-->
+                <!--<span class="add-num"><em>+1</em></span>-->
+                <!--</div>-->
+                <!--<div class="get-bi">获赠拍币：<span>333.00</span></div>-->
+                <!--<div class="sun-goods-share go-share-page is-sdk">分享有奖</div>-->
+                <!--</div>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </div>
+</div>
+
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/dropload.min.js"></script>
+<script type="text/javascript" src="../../../static/js/AppHelper.js"></script>
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+ <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+    var myObject=myObject;
+    myObject.init();
+    myObject.isNew();
+
+    var shiTuSunEvent={
+        isSDK:fnBase.getUrlPar("isSDK"),
+        init:function(){
+            this.addHeaderEvent();
+            this.addMainClickEvent();
+            this.getShiTuSunEvent()
+        },
+        addHeaderEvent:function(){
+            $(document).on("click",".sun-rule",function(){
+                //统计——师徒晒单页点击晒单规则
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100110",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"师徒晒单页点击晒单规则"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+                window.Auction.openUrl(fnBase.source_url+"/front/view/app/index/shareorderRule.html")
+            });
+            $(document).on("click",".go-share-page",function(){
+                if(store.get('openid')){
+                    window.Auction.openUrl(fnBase.source_url+"/front/view/app/index/sharepage.html?showid="+$(this).attr("data-showid")+"&goodsId="+$(this).attr("data-goodsId") + "&gid=" + $(this).attr("data-gid"))
+                }else {
+                    window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index.html?from=homesun")
+                }
+                //统计——师徒晒单页点击分享有礼
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100114",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"师徒晒单页点击分享有礼"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+            });
+            $(document).on("click",".head-share-page",function(){
+                if(store.get('openid')){
+                    window.Auction.openUrl(fnBase.source_url+"/front/view/app/index/sharepage.html?showid="+$(this).attr("data-showid")+"&goodsId="+$(this).attr("data-goodsId") + "&gid=" + $(this).attr("data-gid"))
+                }else {
+                    window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index.html?from=homesun")
+                }
+            })
+        },
+        addMainClickEvent:function(){
+            $(document).on("click",".shitu",function(){
+                //统计——师徒晒单页点击师徒收益
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100112",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"师徒晒单页点击师徒收益"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+                if(store.get('openid')){
+                    window.Auction.openUrl(fnBase.source_url+"/front/view/app/index/sharegets.html")
+                }else {
+                    window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index.html?from=homesun")
+                }
+            });
+
+            $(document).on("click",".sun-list-item-center",function(){
+                //统计——师徒晒单页晒单列表点击晒单详情
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100115",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"师徒晒单页晒单列表点击晒单详情"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+
+                window.Auction.openUrl(fnBase.source_url+"/front/view/app/index/sundetails.html?goodsId="+$(this).attr("data-goodsId")+"&kindId="+$(this).attr("data-kindId")+"&isSDK="+shiTuSunEvent.isSDK  + "&gid=" + $(this).attr("data-gid"))
+            });
+
+            $(document).on("touchstart",".zan-icon",function(){
+                var zanThis = $(this);
+                if(zanThis.attr("data-like") == "true"){
+                    fnBase.alert("你已经点赞过了！不能取消喽！")
+                }else {
+                    fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/Index/Ordershow/doHits",{
+                        "openid":store.get('openid'),
+                        "goodsId":zanThis.attr("data-goodsId"),
+                        "chanel":fnBase.ChannelId,
+                        "verCode":fnBase.VersionCode
+                    },function(res){
+                        if(res.state == 1){
+                            zanThis.attr("data-like","true");
+                            zanThis.html("<img src='../../../static/img/yizan.png' class='animation' />");
+                            zanThis.next().text(res.likeNum);
+//                            zanThis.next().next().show().html("<em class='add-animation'>+1</em>");
+                            //统计——师徒晒单页晒单列表点赞
+                            var Op = "",clickJson = "";
+                            Op={
+                                "ot":"3"
+                            };
+                            clickJson={
+                                "actionId":5,
+                                "uuid":fnBase.UUID,
+                                "openId":store.get('openid'),
+                                "ident":"100113",
+                                "date":parseInt(new Date().getTime() / 1000),
+                                "name":"师徒晒单页晒单列表点赞"
+                            };
+                            fnBase.addStatisticsEvent(Op,clickJson);
+                        }else {
+                            fnBase.alert(res.cause?res.cause:res.msg)
+                        }
+                    })
+                }
+            });
+            $(document).on("click",".strategy-enter",function(){
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100259",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"师徒晒单页点击大神攻略",
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+                window.Auction.openUrl(fnBase.source_url+"/front/view/app/index/bigstrategy.html")
+            });
+        },
+        getShiTuSunEvent:function(){
+            var that = this;
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Share/Rebate",{
+
+            },function(res){
+                that.addShiTuHtml(res)
+            })
+        },
+        addShiTuHtml:function(res){
+            var shiTuHtml='',data='',parent_name='';
+            if(res.state == 1){
+                data = res.data;
+                if(data.parent_name){
+                    parent_name = data.parent_name
+                }else {
+                    parent_name = '你就是祖师爷'
+                }
+                shiTuHtml = '<div class="income">师徒收益<span>'+data.total_rebate+'拍币</span></div>'
+                    + '<div class="shitu-details">'
+                    +       '<div class="prev_earning shitu-details-item">昨日收益<div class="prevMoney">'+data.yestoday_rebate+'拍币</div></div>'
+                    +       '<div class="friend_num shitu-details-item">徒子徒孙数(人)<div class="friendNum ng-binding">'+data.child_count+'</div></div>'
+                    +       '<div class="shifu shitu-details-item">您的师傅<div class="shifuName ng-binding">'+parent_name+'</div></div>'
+                    +'</div>';
+            }else {
+                shiTuHtml = '<div class="income">师徒收益<span>'+'登录后查看</span></div>'
+                    + '<div class="shitu-details">'
+                    +       '<div class="prev_earning shitu-details-item">昨日收益<div class="prevMoney">'+'-'+'</div></div>'
+                    +       '<div class="friend_num shitu-details-item">徒子徒孙数(人)<div class="friendNum ng-binding">'+'-'+'</div></div>'
+                    +       '<div class="shifu shitu-details-item">您的师傅<div class="shifuName ng-binding">'+'-'+'</div></div>'
+                    +'</div>';
+            }
+            $(".shitu").empty();
+            $(".shitu").html(shiTuHtml);
+            this.addGetInfoHtml()
+        },
+        isEnd:false,
+        lastId:0,
+        addGetInfoHtml:function(){
+            $(".strategy-enter").show();
+            $(".sun-list-title").show();
+            $('.container').dropload({
+                scrollArea : window,
+                domDown : {
+                    domClass   : 'dropload-down',
+                    domRefresh : '<div class="dropload-refresh">↑继续上拉显示下一条</div>',
+                    domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+                    domNoData  : '<div class="dropload-noData">无更多数据了</div>'
+                },
+                loadDownFn : function(me){
+                    // 拼接HTML
+                    var result = '',that = this;
+                    fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/Index/Ordershowlist/showDetailLists",{
+                        "openid":store.get('openid'),
+                        "chanel":fnBase.ChannelId,
+                        "verCode":fnBase.VersionCode,
+                        "lastId":shiTuSunEvent.lastId,
+                        "size":3
+                    },function(res){
+                        if(shiTuSunEvent.isEnd){
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData();
+                        }else {
+                            shiTuSunEvent.isEnd = res.end;
+                            shiTuSunEvent.lastId = res.lastId;
+                            var data = res.shareList;
+                            for(var i= 0,len=data.length; i<len; i++){
+                                var getBi='',cornerImg='';
+                                if(data[i].showMoney){
+                                    getBi = '<div class="get-bi">获赠拍币：<span>'+data[i].showMoney+'</span></div>'
+                                }
+                                if(data[i].creamUrl){
+                                    cornerImg+='<img class="corner-icon creamUrl" src="'+data[i].creamUrl+'">'
+                                }
+                                if(data[i].stickUrl){
+                                    cornerImg+='<img class="corner-icon stickUrl" src="'+data[i].stickUrl+'">'
+                                }
+                                result += '<li class="sun-list-item">'
+                                    +       '<div class="sun-list-item-top">'
+                                    +           '<span class="goods-winter">'+data[i].nickName+'</span>'
+                                    +           '<span class="goods-time">'+data[i].time+'</span>'
+                                    +           '<span class="goods-price">'+'￥'+data[i].dealPrice+'</span>'
+                                    +       '</div>'
+                                    +       '<div class="sun-list-item-center" data-goodsId="'+data[i].goodsId+'" data-gid="' + data[i].kindId +'" data-kindId="'+data[i].kindId+'">'
+                                    +           '<div class="goods-img">'
+                                    +               '<div class="corner">'
+                                    +                   cornerImg
+                                    +               '</div>'
+                                    +               getGoodsImg(data[i].imgUrls)
+                                    +           '</div>'
+                                    +           '<div class="goods-info">'
+                                    +               '<div class="goods-name">'+data[i].goodsName+'</div>'
+                                    +               '<div class="goods-qi">第'+data[i].periodNum+'期</div>'
+                                    +           '</div>'
+                                    +           '<p class="goods-des">'+data[i].goodsDes+'</p>'
+                                    +       '</div>'
+                                    +       '<div class="sun-list-item-bottom">'
+                                    +           '<div class="sun-goods-zan">'
+                                    +               '<span class="zan-icon" data-like="'+data[i].hasLike+'" data-gid="' + data[i].kindId +'" data-goodsId="'+data[i].goodsId+'"><img src="'+getZanImg(data[i].hasLike)+'"/></span>'
+                                    +               '<span class="zan-num">'+data[i].likeNum+'</span>'
+                                    +               '<span class="add-num"><em>+1</em></span>'
+                                    +           '</div>'
+                                    +           getBi
+                                    +           '<div class="sun-goods-share go-share-page is-sdk" data-gid="' + data[i].kindId +'" data-goodsId="'+data[i].goodsId+'" data-showid="'+data[i].showid+'">分享有奖</div>'
+                                    +       '</div>'
+                                    +  '</li>'
+                            }
+                        }
+                        // 为了测试，延迟1秒加载
+                        setTimeout(function(){
+                            // 插入数据到页面，放到最后面
+                            $('.sun-list-wrapper ul').append(result);
+                            if(shiTuSunEvent.isSDK == "true"){
+
+                            }else {
+                                $(".is-sdk").show()
+                            }
+                            // 每次数据插入，必须重置
+                            me.resetload();
+                        },300);
+                    })
+                }
+            });
+        }
+    };
+    shiTuSunEvent.init();
+
+    function getZanImg(hasLike){
+        if(hasLike){
+            return "../../../static/img/yizan.png"
+        }else {
+            return "../../../static/img/zan.png"
+        }
+    }
+    function getGoodsImg(dataImgUrls){
+        var imgHtml = "";
+        for(var i = 0,len = dataImgUrls.length;i<dataImgUrls.length;i++){
+            imgHtml += '<img class="lazyload" src="'+dataImgUrls[i]+'">'
+        }
+        return imgHtml
+    }
+
+    $(document).on("click",".head-share-page",function(){
+        //统计——晒单头部点击分享有礼
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":5,
+            "uuid":fnBase.UUID,
+            "openId":store.get('openid'),
+            "ident":"100111",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"晒单头部点击分享有礼"
+        };
+        fnBase.addStatisticsEvent(Op,clickJson);
+    })
+    var Op = "",clickJson = "";
+    Op={
+        "ot":"3"
+    };
+    clickJson={
+        "actionId":3,
+        "uuid":fnBase.UUID,
+        "openId":store.get('openid'),
+        "ident":"100084",
+        "date":parseInt(new Date().getTime() / 1000),
+        "name":"晒单师徒页到达"
+    };
+    fnBase.addStatisticsEvent(Op,clickJson);
+
+</script>
+</body>
+</html>

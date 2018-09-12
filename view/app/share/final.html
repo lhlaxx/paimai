@@ -1,0 +1,218 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimun-scale=1.0,user-scalable=yes">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>有奖分享</title>
+    <meta name="description">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+    <style>
+        body{            
+            font-family: "微软雅黑";
+            background: url(../../../static/img/share/body_bg.jpg) no-repeat;
+            background-size:100%;
+        }
+        div {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);/* 点击无阴影 */
+        }
+        .scroll{
+          overflow-y:hidden;
+        }
+        .newbar{
+            background: #fd4141;
+            height: 40px;
+            line-height: 40px;
+            color: #fff;
+            font-size: 20px;
+            overflow: hidden;
+            text-align: center;
+            padding-left: 10px;
+            position: fixed;
+            width:100%;
+            z-index: 999;
+        }
+        .newbar a{
+            float:left;
+
+        }
+        .newbar a img{
+            width:10px;
+
+        }
+        ul,li{list-style:none;display:block;}
+        #scrollBox{position:absolute; width:100%; height:30px; margin:10px auto; overflow:hidden; bottom:12px;}
+        #scrollBox #con1,#con2{text-align: center;}
+        #scrollBox li{height:15px;line-height:15px;text-align:center;}
+        #scrollBox{position:absolute; width:80%; height:30px; margin:10px auto; overflow:hidden; bottom:12px; left:10%;}
+        #scrollBox #con1,#con2{text-align: center;}
+        #scrollBox li{height:15px;line-height:15px;text-align:center; margin-top:10px;}
+        .cover{
+            background: rgba(0,0,0,0.8);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            display: none;
+        }
+        .cover img{
+            position: absolute;
+            width: 3.69rem;
+            top: 0.08rem;
+            right: 1.15rem;
+        }
+        .cover>div {
+            margin-top: 4.31rem;
+        }
+        .cover p {
+            font-size: 1.48rem;
+            line-height: 2;
+            text-align: center;
+            color: #fefefe;
+        }
+        .cover .close{
+            margin-top: 0.2rem;
+        }
+        #selector{
+            -webkit-user-select: text;
+        }
+        .load-btn{
+            -webkit-user-select: text;
+        }
+    </style>
+</head>
+
+<body  class="share">
+
+
+<div class="newbar">
+    <a class="back_arrow"><img src="../../../static/img/back.png"/></a>
+    好友邀请您领取礼包
+</div>
+<div class="mode01" style="padding-top:40px;">
+    <p>已累计<span class="his-num">3657</span>人成功领取现金红包</p>
+    <img src="../../../static/img/share/banner02.jpg"/>
+</div>
+<div class="mode02">
+    <img src="../../../static/img/share/banner03.jpg"/>
+   <!--  <div class="demo">
+        <p>九尾猫花了<span>0.58</span>抢到了<span>20元话费</span></p>
+    </div> -->
+    <div id="scrollBox" class="demo">
+        <ul id="con1">
+        </ul>
+        <ul id="con2"></ul>
+    </div>
+    
+</div>
+<div class="mode03 width90">
+    <a class="btn1 load-btn">查看现金红包</a>
+    <p>仅在2018年8月29号之后的新注册用户才有参与本次活动的权利请知悉。</p>
+</div>
+
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/ua-parser.min.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script type="text/javascript">
+    var area =document.getElementById('scrollBox');
+    var con1 = document.getElementById('con1');
+    var con2 = document.getElementById('con2');
+    con2.innerHTML=con1.innerHTML;
+    function scrollUp(){
+    if(area.scrollTop>=con1.offsetHeight){
+        area.scrollTop=0;
+    }else{
+        area.scrollTop++
+    }
+    }                
+    var time = 50;
+    var mytimer=setInterval(scrollUp,time);
+    area.onmouseover=function(){
+        clearInterval(mytimer);
+    }
+    area.onmouseout=function(){
+        mytimer=setInterval(scrollUp,time);
+    }
+
+
+
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var openid="";
+    var uuid="";
+    try {
+        openid=store.get('openid');
+        if(openid==undefined){
+            openid="";
+        }
+        uuid=window.Auction.getUUID();
+    }catch (err){
+
+
+    }
+    var sharesuccEvent = {
+        source:fnBase.getUrlPar("source"),
+        shareCode:fnBase.getUrlPar("shareCode"),
+        showid:fnBase.getUrlPar("showid"),
+        goodsId:fnBase.getUrlPar("goodsId"),
+        gid:fnBase.getUrlPar("gid"),
+        shareData:fnBase.getUrlPar("shareData"),
+        ChannelId:fnBase.getUrlPar("ChannelId"),
+        init:function(){
+            this.addGetData();
+            fnBase.addCopyEvent("#copy","selector");
+        },
+        addGetData:function(){
+            $(".back_arrow").click(function(){
+                if(sharesuccEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back()
+                }
+            });
+
+            fnBase.loadShow();
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Frame/shareState",{}, function(res){
+                var data = res.data;
+                var html = '';
+                if(data.length > 0){
+                    for (var i= 0,len = data.length; i<len;i++){
+                        html+= '<li>'+ data[i].win_name +'花了<span>'+data[i].now_price+'元</span>抢到了<span>'+data[i].name+'</span><li>';
+                    }
+                    $("#con1").append(html);
+                    $('.his-num').html(res.count)
+                }
+            })
+
+            $(document).on("click",".load-btn",function(){
+//                $(".select-cash-bg").show();
+                if(store.get('openid')){
+                    window.Auction.openUrl(fnBase.source_url+'/front/view/app/index/account.html');
+                }else{
+                    window.Auction.openUrl(fnBase.source_url+'/front/view/app/login/index.html');
+                }
+
+
+            });
+        },
+    };
+    sharesuccEvent.init();
+
+
+</script>
+</body>
+</html>

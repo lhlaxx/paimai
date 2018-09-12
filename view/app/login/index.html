@@ -1,0 +1,393 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script type="text/javascript" src="../../../static/js/flexible.js"></script>
+    <script type="text/javascript" src="../../../static/js/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css?0.102">
+</head>
+<body class="logPage">
+<div class="logoLog" style="padding-bottom: 0.7rem!important;">
+    <a ><img style="height: 0.5rem !important;" src="../../../static/img/close.png"/></a>
+    <img src="../../../static/img/logPage_logo.png" style="width:2rem!important;height: 2rem;" class="logoImg"/>
+</div>
+<div class="logContent">
+    <ul style="">
+        <li class="info"><input class="name-input" type="tel" required="required" placeholder="输入手机号" maxlength="11" autocomplete="off" onkeyup="if (this.value != this.value.replace(/\D/g,'')) this.value=this.value.replace(/\D/g,'')" id="username" oninput="if(value.length>11)value=value.slice(0,11)" />
+            <a href="javascript:;" class="clear-input">
+                <img src="../../../static/img/delete-icon.png" class="clear-input-img" alt="" style="width:0.4rem"/>
+            </a>
+        </li>
+        <li class="info"><input class="name-input" type="password" required="required" placeholder="输入密码" maxlength="16" id="password" autocomplete="off" />
+            <a href="javascript:;" class="clear-input">
+                <img src="../../../static/img/delete-icon.png" class="clear-input-img" alt="" style="width:0.4rem"/>
+            </a>
+        </li>
+        <li><a href=""></a><button type="button" class="logButton" style="padding: 0.3rem!important;">登录</button></li>
+        <li style="display:flex!important;justify-content: space-between;margin-top:0!important;"><a class="forgetPass pull-left">忘记密码</a><a class="regNow pull-right">立即注册</a></li>
+    </ul>
+
+    <!--对下面加高度 显示注册按钮 待web前端修改后可 详细修改 -->
+    <div class="loginInner" style="display:none;padding: 0!important;">
+        <div>
+            <span class="line_" style="display:inline-block;"></span><span style="width:50%;display:inline-block">&nbsp;登录后可进行后续操作&nbsp;</span><span class="line_" style="display:inline-block;"></span>
+        </div>
+        <div class="box">
+            <div class="loginButton loginWechat" data-type="WX">
+                <img src="../../../static/img/wechat.png"/><br/>
+                <span>微信</span>
+            </div>
+
+            <div class="loginButton loginQQ" data-type="QQ">
+                <img src="../../../static/img/qq.png"/><br/>
+                <span>QQ</span>
+            </div>
+
+            <div class="loginButton loginWeibo" data-type="WB">
+                <img src="../../../static/img/weibo.png"/><br/>
+                <span>微博</span>
+            </div>
+
+            <div class="loginButton loginTour" data-type="TOUR" style="display:none">
+                <img src="../../../static/img/tourist.png"/><br/>
+                <span>游客</span>
+            </div>
+
+        </div>
+    </div>
+
+</div>
+<div class="tipBox">
+    <div class="tipBox_inner">
+        <p>您已有账号，是否继续使用游客模式?</p>
+        <div>
+            <a class="go">继续</a>
+            <a class="accountLog">账号登录</a>
+        </div>
+    </div>
+</div>
+<script type="text/javascript" src="../../../static/js/jquery-1.12.3.min.js"></script>
+<script type="text/javascript" src="../../../static/js/store-json2.min.js"></script>
+<script type="text/javascript" src="../../../static/js/AppHelper.js?0.102"></script>
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+<script type="text/javascript">
+    var host=wxObject.host;
+    myObject.init();
+    var openid=store.get('openid');
+    var loc=window.location.href;
+    var r = window.location.search;
+    r = r.substring(r.indexOf("?"),r.length);
+
+    var verCode=AppHelper.YzAppGetVerCode();
+    var channelid=AppHelper.YzAppGetChannel();
+
+    var chanel=AppHelper.YzAppGetChannel();
+    var verCode=AppHelper.YzAppGetVerCode();
+    var isSDK=myObject.GetQueryString("isSDK");
+    /*if(isSDK){*/
+    $(".loginTour").show();
+    /*}*/
+    console.log(chanel);
+
+    //动态计算屏幕长宽比
+    var sc_h = $(window).height();//浏览器高度1196
+    var sc_w = $(window).width(); //浏览器宽度 750
+
+
+
+//    var ll = $(".loginInner").height();//308
+
+//    alert(ll);
+
+
+
+
+    var packageName=AppHelper.YzAppGetPackageName();
+    if(browser.versions.android){
+        if(packageName=="com.uzi.xyjp"||packageName=="com.uzi.hlpm"){
+            $(".loginQQ").css("display","none");
+        }
+    }
+
+    if(chanel=="Ios1"){
+        if(verCode>=113){
+            $(".logoImg").attr("src","../../../static/img/logPage_logo_Ios_jspp.png");
+        }else{
+            $(".logoImg").attr("src","../../../static/img/logPage_logo.png");
+        }
+        if(verCode==115){
+            $('.loginInner').remove();
+        }
+    }else if(chanel=="Ios2"){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_Ios2_.png");
+    }else if(chanel=="IosJsjx"){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_Ios_jisu1.png");
+    }else if(chanel=="IosXyjp"){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_IosXyjp.png");
+    }else if(chanel=="Iosxypm"){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_ios_blue.png");
+
+    }else if(chanel=="IosQmzk"){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_ios_zk.png");
+    }else if(chanel=="IosSdpp"){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_IosSdpp.png");
+    }else if(chanel=="AXyjp1"){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_IosXyjp.png");
+    }else if(chanel=="AXyjp1_yyhl2"){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_IosXyjp.png");
+    }else if(chanel=="AXyjp1_yyhl3"){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_qmpm.png");
+    }else if(chanel=="AXyjp1_yyhl4"){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_qmpm.png");
+    }else if(chanel=="AXyjp1_yyhl5"){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_ttpm.png");
+    }else if(chanel.indexOf("AHlpm")>=0){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_Ios2.png");
+    }else if(chanel.indexOf("AXyjp1_yyhl6")>=0){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_kxjp.png");
+    }else if(chanel.indexOf("AXyjp_Bose")>=0){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_IosXyjp.png");
+    }else if(chanel.indexOf("AXyjp_Zycp")>=0){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_IosXyjp.png");
+    }
+    else if(chanel.indexOf("AXyjp_Dsztc")>=0){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_IosXyjp.png");
+    }
+    else if(chanel.indexOf("AXyjp_Fenxiang")>=0){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_IosXyjp.png");
+    }
+    else if(chanel.indexOf("AXyjp_Ly")>=0){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_IosXyjp.png");
+    }
+    else if(chanel.indexOf("AXyjp_Zh")>=0){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_IosXyjp.png");
+    }
+    else if(chanel.indexOf("AXyjp_Ly1")>=0){
+        $(".logoImg").attr("src","../../../static/img/logPage_logo_IosXyjp.png");
+    }
+    else{
+        $(".logoImg").attr("src","../../../static/img/logPage_logo.png");
+    }
+    //myObject.loadShow();
+    myObject.commonJsonpAjax(host+'/index.php/Index/Frame/getDisableCh',{
+        'chanel':chanel,
+        'verCode':verCode,
+    }, function(data){
+        console.log(data.state);
+        if(data.state=="1"){
+            var ifdisable=data.ifdisable;
+
+            store.set('ifdisable',ifdisable);
+        }else if(data.state=="0"){
+            myObject.alert(data.msg);
+            var ifdisable=data.ifdisable;
+            store.set('ifdisable',ifdisable);
+        }
+        if(ifdisable){
+            $(".loginInner").hide();
+        }else{
+            if(isSDK){
+                $(".loginInner").hide();
+            }else{
+                $(".loginInner").show();
+            }
+
+        }
+    },function(){
+
+    });
+
+
+
+
+
+    if(verCode==108){
+        $(".logoImg").hide();
+        $(".logPage .logoLog").css("padding-top","0");
+        $(".loginInner").css("position","relative");
+        $(".loginInner").css("margin-top","0.8rem");
+        $(".logContent").css("margin-top","-0.5rem");
+    }
+
+    var pageUrl;
+    /*if(loc.indexOf("from=startpage")>=0){
+     if(openid!=undefined){
+     setTimeout(function(){
+     myObject.alert("老朋友，10块钱是给新用户的哟~");
+     },1000)
+     setTimeout(function(){
+     window.Auction.back();
+     },2000)
+     }
+     }*/
+    if(loc.indexOf("hasClose=false")>=0){
+        $(".logoLog a").hide();
+    }
+
+    $(".logoLog a").click(function(){
+        //统计——登录页点击返回
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":5,
+            "uuid":AppHelper.YzAppGetUUID(),
+            "openId":openid,
+            "ident":"100047",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"登录页点击返回"
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+        window.Auction.back();
+        //window.history.go(-1);
+    })
+
+    if(loc.indexOf("from=homeRecharge")>=0){
+        //统计——充值登录中转页到达
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":3,
+            "uuid":AppHelper.YzAppGetUUID(),
+            "openId":openid,
+            "ident":"100041",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"充值登录中转页到达"
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+    }else if((loc.indexOf("from=refund"))>=0&&(loc.indexOf("from=refundbtn")<0)){
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":3,
+            "uuid":AppHelper.YzAppGetUUID(),
+            "openId":openid,
+            "ident":"100208",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"必返详情页登录页到达"
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+    }
+
+    $(".logButton").click(function(){
+        var phone=$("#username").val();
+        var password=$("#password").val();
+        var isNewUser=false;
+        myObject.OnLogin(phone,password,isNewUser);
+
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":5,
+            "uuid":AppHelper.YzAppGetUUID(),
+            "openId":openid,
+            "ident":"100100",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"登录页点击登录数"
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+    })
+    $(".regNow").click(function(){
+        //统计——登录页点击去注册
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":5,
+            "uuid":AppHelper.YzAppGetUUID(),
+            "openId":openid,
+            "ident":"100101",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"登录页点击去注册"
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+    })
+
+    $(".forgetPass").click(function(){
+        if(loc.indexOf("hasClose=false")>=0){
+            // var pageUrl=host+'/front/view/app/login/forgetPass.html';
+            var pageUrl=host+'/front/view/app/user/feedback.html'
+            window.Auction.openUrl(pageUrl);
+        }else{
+            window.location.href=host+'/front/view/app/user/feedback.html';
+        }
+    })
+    $(".regNow").click(function(){
+        if(loc.indexOf("hasClose=false")>=0){
+            var pageUrl=host+'/front/view/app/login/reg.html'+r;
+            window.Auction.openUrl(pageUrl);
+        }else{
+            window.location.href=host+'/front/view/app/login/reg.html'+r+'?source=web';
+        }
+
+    })
+
+    $(".accountLog").click(function(){
+        $(".tipBox").hide();
+    })
+
+    $(".go").click(function(){
+        $(".tipBox").hide();
+        myObject.YKLogin(1);
+    })
+
+
+
+    if (window.history && window.history.pushState)
+    {
+        $(window).on('popstate', function() {
+            var hashLocation = location.hash;
+            var hashSplit = hashLocation.split("#!/");
+            var hashName = hashSplit[1];
+            if (hashName !== '') {
+                var hash = window.location.hash;
+                if (hash === '') {
+                    //统计——登录页点击硬件返回
+
+                    var Op = "",clickJson = "";
+                    Op={
+                        "ot":"3"
+                    };
+                    clickJson={
+                        "actionId":5,
+                        "uuid":AppHelper.YzAppGetUUID(),
+                        "openId":openid,
+                        "ident":"100048",
+                        "date":parseInt(new Date().getTime() / 1000),
+                        "name":"登录页点击硬件返回"
+                    };
+                    myObject.addStatisticsEvent(Op,clickJson);
+                }
+            }
+        });
+        //window.history.pushState('forward', null, './#forward');
+    }
+</script>
+</body>
+</html>
+
+    

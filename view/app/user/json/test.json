@@ -1,0 +1,58 @@
+{
+    "lists":[
+        {
+            "picUrl":"http://localhost/auction_front/static/img/goods/goods_id1.png",
+            "goodsId":"100001",
+            "kindId":"100001",
+            "corner":"",
+            "bidPrice":"99.90",
+            "realPrice":"199.90",
+            "nickName":"小明",
+            "count":5,
+            "haveNew":true,
+            "state":1
+
+        },
+        {
+            "picUrl":"http://localhost/auction_front/static/img/goods/goods_id1.png",
+            "goodsId":"100001",
+            "kindId":"100001",
+            "corner":"",
+            "bidPrice":"99.90",
+            "realPrice":"199.90",
+            "nickName":"小明",
+            "count":5,
+            "haveNew":true,
+            "state":1
+
+        },
+        {
+            "picUrl":"http://localhost/auction_front/static/img/goods/goods_id2.png",
+            "goodsId":"100001",
+            "kindId":"100001",
+            "corner":"",
+            "bidPrice":"99.90",
+            "realPrice":"199.90",
+            "nickName":"小明",
+            "count":5,
+            "haveNew":true,
+            "state":1
+
+        },
+        {
+            "picUrl":"http://localhost/auction_front/static/img/goods/goods_id2.png",
+            "goodsId":"100001",
+            "kindId":"100001",
+            "corner":"",
+            "bidPrice":"99.90",
+            "realPrice":"199.90",
+            "nickName":"小明",
+            "count":5,
+            "haveNew":true,
+            "state":1
+
+        }
+        
+        
+    ]
+}

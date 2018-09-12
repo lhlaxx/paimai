@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script type="text/javascript" src="../../../static/js/flexible.js"></script>
+    <script type="text/javascript" src="../../../static/js/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/dropload.css">
+</head>
+<body>
+<div class="navbar">
+    <h1>最新成交</h1>
+</div>
+<div style="font-size:0.3rem;color:#999;text-align:center;line-height:0.8rem;display:none;position: relative;
+    top: 1.2rem;" class="hints">本平台抢购活动均与苹果公司（Apple Inc.）无关</div>
+<div class="mainContent">
+    <div class="dealContent">
+        <div class="lists">
+        </div>
+    </div>
+</div>
+<!--<script type="text/javascript" src="../../../static/js/jquery-1.12.3.min.js"></script>-->
+<script type="text/javascript" src="../../../static/js/zepto.min.js"></script>
+<script src="../../../static/js/dropload.min.js"></script>
+<script type="text/javascript" src="../../../static/js/store-json2.min.js"></script>
+<script type="text/javascript" src="../../../static/js/AppHelper.js"></script>
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+<script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+    
+<script type="text/javascript">
+    var myObject=myObject;
+    var fnBase=fnBase;
+    fnBase.init();
+    var host=fnBase.source_url;
+    var channel=store.get('channel');
+    var verCode=store.get('verCode');
+    var openid=store.get('openid');
+    var marginTop=0.5*($(window).height()-$(".navbar").height()-$(window).width()*0.3);
+    // 页数
+    var page = 0;
+    // 每页展示10个
+    var size = 20;
+    //store.set('lastId',1);
+    var namelabel;
+
+    if(browser.versions.ios){
+        $(".hints").show();
+        namelabel="买主";
+    }else{
+        namelabel="中标人";
+    }
+
+    $('.dealContent').dropload({
+        scrollArea : window,
+        domUp : {
+            domClass   : 'dropload-up',
+            domRefresh : '<div class="dropload-refresh">↓下拉刷新</div>',
+            domUpdate  : '<div class="dropload-update">↑释放更新</div>',
+            domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>'
+        },
+        domDown : {
+            domClass   : 'dropload-down',
+            domRefresh : '<div class="dropload-refresh">↑上拉加载更多</div>',
+            domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+            domNoData  : '<div class="dropload-noData">哇塞,你好厉害终于看完了</div>'
+        },
+        loadUpFn : function(me){
+            myObject.loadShow();
+            myObject.commonJsonpAjax(host+'/index.php/index/Frame/onDeal',{
+                'chanel':channel,
+                'verCode':verCode,
+                'lastId':1
+            }, function(data){
+                console.log(data);
+                var count=data.goods.length;
+                if(count==0){
+                    $('.mainContent').css({"width":"100%","height":"100%","position":"fixed"});
+                    $('.mainContent').html('<div class="emptyBox"><img src="../../../static/img/emptyBox.png"><p class="emptyContent">暂无商品</p></div>');
+                    $('.emptyBox').css("marginTop",marginTop);
+                    return;
+                }
+
+                var result = '';
+                for(var i = 0; i < data.goods.length; i++){
+                    ratio=((data.goods[i].ratio.toFixed(3))*100).toFixed(1);
+                    if(data.goods[i].haveNew!=false){
+                        var href_=data.goods[i].nextUrl;
+                        var nextUrl;
+                        nextUrl=href_;
+                    }else{
+                        var nextUrl="";
+                    }
+                    if(data.goods[i].isShot==true){
+                        var joinNextContent="去支付";
+                        var payUrl=host+"/front/view/app/index/order.html?order_id="+data.goods[i].order_id;
+                        nextUrl=payUrl;
+                    }else{
+                        var joinNextContent="参与下一期";
+                    }
+                    result +=   '<div class="dealRecord"><div class="goods pull-left"><a class="" data-href="'+data.goods[i].goods_url+'"><dl><dd><span class="datetime colorGrey">'+data.goods[i].bidTime+'</span></dd><dd><div class="pull-left dealImg"><span>'+'<img src="'+data.goods[i].picUrl+'" alt=""></span><img src="../../../static/img/goods/traded.png" class="traded"/></div><div class="pull-left dealInformation"><dl><dd><span class="colorBlack">'+namelabel+':&nbsp;</span><span class="colorBlack">'+data.goods[i].nickName+'</span></dd><dd><span class="colorBlack">市场价:&nbsp;</span><span class="colorBlack">'+'￥'+data.goods[i].realPrice+'</span></dd><dd><span class="colorBlack">成交价:&nbsp;</span><span class="colorBlack colorRed">'+'￥'+data.goods[i].bidPrice+'</span></dd></dl></div><div class="clear"></div></dd></dl></a></div><div class="discount pull-right"><dl><dd><span class="colorGrey">节省</span></dd><dd><span class="discountRate">'+ratio+'%'+'</span></dd><dd><a class="joinNext" data-href="'+nextUrl+'">'+joinNextContent+'</a></dd></dl></div></div>';
+                }
+                $('.dealContent .lists').html(result);
+                me.resetload();
+                // 重置页数，重新获取loadDownFn的数据
+                page = 1;
+                // 解锁loadDownFn里锁定的情况
+                me.unlock();
+                me.noData(false);
+            },function(){
+                // 即使加载出错，也得重置
+                myObject.alert('请求失败!');
+                me.resetload();
+            });
+        },
+        loadDownFn : function(me){
+            page++;
+            var result = '';
+
+            myObject.loadShow();
+            myObject.commonJsonpAjax(host+'/index.php/index/Frame/onDeal',{
+                'chanel':channel,
+                'verCode':verCode,
+                'lastId':page
+            },function(data){
+                var count=data.goods.length;
+                console.log(data);
+                if(count>0){
+                    if(data.end==true){
+                        //无数据
+                        for(var i = 0; i < count; i++){
+                            console.log(data.goods[i].ratio);
+                            ratio=((data.goods[i].ratio.toFixed(3))*100).toFixed(1);
+                            if(data.goods[i].haveNew!=false){
+                                var href_=data.goods[i].nextUrl;
+                                var nextUrl;
+                                nextUrl=href_;
+                            }else{
+                                var nextUrl="";
+                            }
+                            if(data.goods[i].isShot==true){
+                                var joinNextContent="去支付";
+                                var payUrl=host+"/front/view/app/index/order.html?order_id="+data.goods[i].order_id;
+                                nextUrl=payUrl;
+                            }else{
+                                var joinNextContent="参与下一期";
+                            }
+                            result +=   '<div class="dealRecord"><div class="goods pull-left"><a class="" data-href="'+data.goods[i].goods_url+'"><dl><dd><span class="datetime colorGrey">'+data.goods[i].bidTime
+                                +'</span></dd><dd><div class="pull-left dealImg"><span>'+'<img src="'+data.goods[i].picUrl+'" alt=""></span><img src="../../../static/img/goods/traded.png" class="traded"/></div><div class="pull-left dealInformation"><dl><dd><span class="colorBlack">'+namelabel+':&nbsp;</span><span class="colorBlack">'+data.goods[i].nickName+'</span></dd><dd><span class="colorBlack">市场价:&nbsp;</span><span class="colorBlack">'+'￥'+data.goods[i].realPrice+'</span></dd><dd><span class="colorBlack ">成交价:&nbsp;</span><span class="colorBlack colorRed">'+'￥'+data.goods[i].bidPrice+'</span></dd></dl></div><div class="clear"></div></dd></dl></a></div><div class="discount pull-right"><dl><dd><span class="colorGrey">节省</span></dd><dd><span class="discountRate">'+ratio+'%'+'</span></dd><dd><a class="joinNext" data-href="'+nextUrl+'">'+joinNextContent+'</a></dd></dl></div></div>';
+                        }
+                    }else{
+                        for(var i = 0; i < 20; i++){
+                            ratio=((data.goods[i].ratio.toFixed(3))*100).toFixed(1);
+                            if(data.goods[i].haveNew!=false){
+                                var href_=data.goods[i].nextUrl;
+                                var nextUrl;
+                                nextUrl=href_;
+                            }else{
+                                var nextUrl="";
+                            }
+                            if(data.goods[i].isShot==true){
+                                var joinNextContent="去支付";
+                                var payUrl=host+"/front/view/app/index/order.html?order_id="+data.goods[i].order_id;
+                                nextUrl=payUrl;
+                            }else{
+                                var joinNextContent="参与下一期";
+                            }
+                            result +=   '<div class="dealRecord"><div class="goods pull-left"><a class="" data-href="'+data.goods[i].goods_url+'"><dl><dd><span class="datetime colorGrey">'+data.goods[i].bidTime
+                                +'</span></dd><dd><div class="pull-left dealImg"><span>'+'<img src="'+data.goods[i].picUrl+'" alt=""></span><img src="../../../static/img/goods/traded.png" class="traded"/></div><div class="pull-left dealInformation"><dl><dd><span class="colorBlack">'+namelabel+':&nbsp;</span><span class="colorBlack">'+data.goods[i].nickName+'</span></dd><dd><span class="colorBlack">市场价:&nbsp;</span><span class="colorBlack">'+'￥'+data.goods[i].realPrice+'</span></dd><dd><span class="colorBlack ">成交价:&nbsp;</span><span class="colorBlack colorRed">'+'￥'+data.goods[i].bidPrice+'</span></dd></dl></div><div class="clear"></div></dd></dl></a></div><div class="discount pull-right"><dl><dd><span class="colorGrey">节省</span></dd><dd><span class="discountRate">'+ratio+'%'+'</span></dd><dd><a class="joinNext" data-href="'+nextUrl+'">'+joinNextContent+'</a></dd></dl></div></div>';
+                        }
+                    }
+                }else{
+                    if(page==1){
+                        $('.mainContent').css({"width":"100%","height":"100%","position":"fixed"});
+                        $('.mainContent').html('<div class="emptyBox"><img src="../../../static/img/emptyBox.png"><p class="emptyContent">暂无商品</p></div>');
+                        $('.emptyBox').css("marginTop",marginTop);
+
+                    }
+                    //锁定
+                    me.lock();
+                    //无数据
+                    me.noData();
+                }
+                $('.dealContent .lists').append(result);
+                // 每次数据加载完，必须重置
+                me.resetload();
+            },function(){
+                // 即使加载出错，也得重置
+                myObject.alert('请求失败!');
+                me.resetload();
+            })
+        },
+        autoLoad:true,
+        threshold : 50
+    });
+
+    $(".lists").on('click','.dealRecord>.goods>a',function(){
+        var pageUrl=$(this).attr("data-href");
+        window.Auction.openUrl(pageUrl);
+
+    })
+
+    $(".lists").on('click','.joinNext',function(){
+        var pageUrl=$(this).attr("data-href");
+        if(pageUrl==""||pageUrl==undefined){
+            myObject.alert("还没有下一期哦，敬请关注更多同类商品");
+        }else{
+            window.Auction.openUrl(pageUrl);
+        }
+        //统计——最新成交点击参与下一次数
+
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":5,
+            "uuid":AppHelper.YzAppGetUUID(),
+            "openId":openid,
+            "ident":"100015",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"最新成交点击参与下一次数"
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+    })
+
+
+</script>
+</body>
+</html>
+
+    

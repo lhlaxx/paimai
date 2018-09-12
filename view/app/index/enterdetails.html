@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+</head>
+<body>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var enterDetailsEvent = {
+        Baseid:fnBase.getUrlPar("Baseid"),
+        source:fnBase.getUrlPar("source"),
+        init:function(){
+            this.getNewGoodsId()
+        },
+        getNewGoodsId:function(){
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Goods/jumpGoods",{
+                Baseid:enterDetailsEvent.Baseid
+            },function(res){
+                if(res.state == 1){
+                    if(fnBase.mobileType == 'ios'){
+                        if(enterDetailsEvent.source == 'web'){
+                            fnBase.addLocationHref(fnBase.source_url+'/front/view/app/index/details.html?goodsid='+res.goodsId)
+                        }else {
+                            fnBase.addLocationHref(fnBase.source_url+'/front/view/app/index/details.html?goodsid='+res.goodsId+'&pushIos=true')
+                        }
+                    }else {
+                        fnBase.addLocationHref(fnBase.source_url+'/front/view/app/index/details.html?goodsid='+res.goodsId)
+                    }
+
+                }else {
+                    fnBase.alert("获取商品信息失败")
+                }
+            })
+        }
+    };
+    enterDetailsEvent.init()
+</script>
+</body>
+</html>

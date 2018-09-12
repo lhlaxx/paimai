@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimun-scale=1.0,user-scalable=yes">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>有奖分享</title>
+    <meta name="description">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+    <style>
+        body{            
+            font-family: "微软雅黑";
+            background: url(../../../static/img/share/body_bg.jpg) no-repeat;
+            background-size:100%;
+        }
+        div {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);/* 点击无阴影 */
+        }
+        .scroll{
+          overflow-y:hidden;
+        }
+        .newbar{
+            background: #fd4141;
+            height: 40px;
+            line-height: 40px;
+            color: #fff;
+            font-size: 20px;
+            overflow: hidden;
+            text-align: center;
+            padding-left: 10px;
+            position: fixed;
+            width:100%;
+            z-index: 999;
+        }
+        .newbar a{
+            float:left;
+
+        }
+        .newbar a img{
+            width:10px;
+
+        }
+        ul,li{list-style:none;display:block;}
+        #scrollBox{position:absolute; width:100%; height:30px; margin:10px auto; overflow:hidden; bottom:12px;}
+        #scrollBox #con1,#con2{text-align: center;}
+        #scrollBox li{height:15px;line-height:15px;text-align:center;}
+        #scrollBox{position:absolute; width:80%; height:30px; margin:10px auto; overflow:hidden; bottom:12px; left:10%;}
+        #scrollBox #con1,#con2{text-align: center;}
+        #scrollBox li{height:15px;line-height:15px;text-align:center; margin-top:10px;}
+        .cover{
+            background: rgba(0,0,0,0.8);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            display: none;
+        }
+        .cover img{
+            position: absolute;
+            width: 3.69rem;
+            top: 0.08rem;
+            right: 1.15rem;
+        }
+        .cover>div {
+            margin-top: 4.31rem;
+        }
+        .cover p {
+            font-size: 1.48rem;
+            line-height: 2;
+            text-align: center;
+            color: #fefefe;
+        }
+        .cover .close{
+            margin-top: 0.2rem;
+        }
+        #selector{
+            -webkit-user-select: text;
+        }
+        .load-btn{
+            -webkit-user-select: text;
+        }
+    </style>
+</head>
+
+<body  class="share">
+
+
+<!--<div class="newbar">-->
+    <!--<a class="back"><img src="../../../static/img/back.png"/></a>-->
+    <!--好友邀请您领取礼包-->
+<!--</div>-->
+<!--<div class="mode01" style="padding-top:40px;">-->
+<div class="mode01">
+    <p>已累计<span class="his-num">3657</span>人成功领取现金红包</p>
+    <img src="../../../static/img/share/banner02.jpg"/>
+</div>
+<div class="mode02">
+    <img src="../../../static/img/share/banner03.jpg"/>
+   <!--  <div class="demo">
+        <p>九尾猫花了<span>0.58</span>抢到了<span>20元话费</span></p>
+    </div> -->
+    <div id="scrollBox" class="demo">
+        <ul id="con1">
+        </ul>
+        <ul id="con2"></ul>
+    </div>
+    
+</div>
+<div class="mode03 width90">
+    <a class="btn1 load-btn">立即下载领取</a>
+    <p>没有您想要的奖品？下载app看看有没有有心仪的～</p>
+</div>
+<div class="cover">
+    <img src="../../../static/img/open-browser.png"/>
+    <div>
+        <p>点击右上角，选择在浏览器中打开
+        <p>即可正常下载</p>
+        <p class="close">点击关闭</p>
+    </div>
+</div>
+
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/ua-parser.min.js"></script>
+<script src="../../../static/js/iscroll-probe.js"></script>
+<script type="text/javascript" src="../../../static/js/AppHelper.js"></script>
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script type="text/javascript">
+    var area =document.getElementById('scrollBox');
+    var con1 = document.getElementById('con1');
+    var con2 = document.getElementById('con2');
+    con2.innerHTML=con1.innerHTML;
+    function scrollUp(){
+    if(area.scrollTop>=con1.offsetHeight){
+        area.scrollTop=0;
+    }else{
+        area.scrollTop++
+    }
+    }                
+    var time = 50;
+    var mytimer=setInterval(scrollUp,time);
+    area.onmouseover=function(){
+        clearInterval(mytimer);
+    }
+    area.onmouseout=function(){
+        mytimer=setInterval(scrollUp,time);
+    }
+
+
+
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var openid="";
+    var uuid="";
+    try {
+        openid=store.get('openid');
+        if(openid==undefined){
+            openid="";
+        }
+        uuid=window.Auction.getUUID();
+    }catch (err){
+
+
+    }
+    var sharesuccEvent = {
+        shareCode:fnBase.getUrlPar("shareCode"),
+        showid:fnBase.getUrlPar("showid"),
+        goodsId:fnBase.getUrlPar("goodsId"),
+        gid:fnBase.getUrlPar("gid"),
+        shareData:fnBase.getUrlPar("shareData"),
+        ChannelId:fnBase.getUrlPar("ChannelId"),
+        init:function(){
+            this.addGetShareEvent();
+            this.addLoadBtn();
+            this.addGetData();
+            fnBase.addCopyEvent("#copy","selector");
+        },
+        addGetShareEvent:function(){
+            var that = this;
+            that.setShareHtml()
+        },
+        addGetData:function(){
+            fnBase.loadShow();
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Frame/shareState",{}, function(res){
+                var data = res.data;
+                var html = '';
+                if(data.length > 0){
+                    for (var i= 0,len = data.length; i<len;i++){
+                        html+= '<li>'+ data[i].win_name +'花了<span>'+data[i].now_price+'元</span>抢到了<span>'+data[i].name+'</span><li>';
+                    }
+                    $("#con1").append(html);
+                    $('.his-num').html(res.count)
+                }
+            })
+        },
+//        addEnterCopyEvent:function(selectorHtml){
+//
+//            var u = navigator.userAgent;
+//            if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+//                var aux = document.createElement("input");
+//                aux.setAttribute("value", document.getElementById(selectorHtml).innerHTML);
+//                document.body.appendChild(aux);
+//                aux.select();
+//                var successful = document.execCommand("copy");
+//                try {
+//                    console.log('Oops, unable to copy');
+//                    var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+////                    fnBase.alert(msg);
+//                    console.log(msg);
+//                } catch(err) {
+//                    console.log(err);
+//                }
+//                document.body.removeChild(aux);
+//            } else if (u.indexOf('iPhone') > -1) {
+//                var copyDOM = document.querySelector('#'+selectorHtml);
+//                var range = document.createRange();
+//                range.selectNode(copyDOM);
+//                window.getSelection().addRange(range);
+//                var successful = document.execCommand('copy');
+//                try {
+//                    var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+//                    console.log('Oops, unable to copy');
+//                    console.log('Copy email command was ' + msg);
+////                    fnBase.alert(msg);
+//
+//                } catch(err) {
+//                    console.log('Oops, unable to copy');
+//                }
+//                window.getSelection().removeAllRanges();
+//            }
+//        },
+        setShareHtml:function(){
+
+
+        },
+        addLoadBtn:function(){
+            $(document).on("click",".load-btn",function(){
+                console.log("点击下载");
+
+                var u = navigator.userAgent;
+                if(fnBase.mobileType=="WeChat"&&u.indexOf('iPhone') == -1) {
+                    $(".cover").css("display","block");
+                }
+
+                //统计——分享接收页点击下载
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":uuid,
+                    "openId":openid,
+                    "ident":"100143",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"分享接收页点击下载"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+//                sharesuccEvent.addEnterCopyEvent("selector");
+                fnBase.addDownLoadAppEvent(sharesuccEvent.ChannelId)//跳转链接
+            })
+            $(".close").click(function(){
+                $(".cover").css("display","none");
+            })
+        },
+        addPostDeviceInfo:function(){
+            var parser = new UAParser();
+            var us = navigator.userAgent;
+            parser.setUA(us);
+            var r = parser.getResult();
+            var type = r.os.name;
+            var pt = '';
+            if(type.indexOf("iOS")>-1){
+                pt = 'I'
+            }else if(type.indexOf("Android")>-1){
+                pt = 'A'
+            }
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/Index/Frame/bindDevice",{
+                "pt":pt,
+                "sys":r.os.version,
+                "screenWidth":screen.width,
+                "sharecode":sharesuccEvent.shareCode
+            },function(res){
+                console.log(res)
+            })
+        }
+    };
+    sharesuccEvent.init();
+    sharesuccEvent.addPostDeviceInfo();
+
+    $(document).on("click","#copy",function(){
+        //统计——分享接收页点击复制
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":5,
+            "uuid":uuid,
+            "openId":openid,
+            "ident":"100142",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"分享接收页点复制"
+        };
+        fnBase.addStatisticsEvent(Op,clickJson);
+    })
+    $(document).on("click",".share-des",function(){
+        //统计——分享接收页点击复制
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":5,
+            "uuid":uuid,
+            "openId":openid,
+            "ident":"100144",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"分享接收页点商品"
+        };
+        fnBase.addStatisticsEvent(Op,clickJson);
+        fnBase.addDownLoadAppEvent(sharesuccEvent.ChannelId)
+    })
+
+    var Op = "",clickJson = "";
+    Op={
+        "ot":"3"
+    };
+    clickJson={
+        "actionId":3,
+        "uuid":uuid,
+        "openId":openid,
+        "ident":"100213",
+        "date":parseInt(new Date().getTime() / 1000),
+        "name":"分享接收页到达"
+    };
+    fnBase.addStatisticsEvent(Op,clickJson);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script type="text/javascript" src="../../../static/js/flexible.js"></script>
+    <script type="text/javascript" src="../../../static/js/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+    <script type="text/javascript" src="../../../static/js/jquery-1.12.3.min.js"></script>
+    <style>
+        .iconcar{
+            width:4.226667rem;
+            margin:1.44rem auto;
+            display: block;
+        }
+        .cgl{
+            font-size: 0.48rem;
+            color:#333;
+            font-weight: bold;
+            text-align: center;
+            display: block;
+            line-height: 0.96rem;
+        }
+        .f1{
+            font-size:0.4rem;
+            color:#333;
+            text-align: center;
+            line-height: 0.8rem;
+        }
+        .f2{
+           font-size: 0.48rem;
+           color:#ff4242;
+           font-weight: bold;
+           text-align: center;
+           line-height: 0.8rem;
+        }
+        .cgl img{
+            width:0.546667rem;
+        }
+    </style>
+</head>
+<body class="ruleBg">
+    <div class="navbar">
+        <a class="back"><img src="../../../static/img/back.png"/></a>
+        <h1>物流提示</h1>
+    </div>
+    <div class="mainContent">
+        <img src="../../../static/img/car-icon.png" class="iconcar"/>
+        <p class="cgl">恭喜您已经成功购买了一件商品</p>
+        <p class="f1">查询物流信息请加官方客服</p>
+        <p class="f2">QQ:2738587201</p>
+        <p class="cgl"><img src="../../../static/img/rmb-icon.png"/>&nbsp;收到商品后晒单还能额外获得拍币哦！</p>   
+    </div>
+    <script type="text/javascript" src="../../../static/js/jquery-1.12.3.min.js"></script>  
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.200"></script>
+    <script type="text/javascript">
+        var loc=window.location.href;
+        $(".back").click(function(){
+            if(loc.indexOf("source=web")>=0){
+                window.history.go(-1);
+            }else{
+                window.Auction.back();
+            }
+        })
+    </script>
+</body>
+</html>
+
+    

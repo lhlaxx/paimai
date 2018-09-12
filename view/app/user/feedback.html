@@ -1,0 +1,120 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta content="width=device-width, initial-scale=1.0, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no" name="viewport" />
+
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script type="text/javascript" src="../../../static/js/flexible.js"></script>
+    <script type="text/javascript" src="../../../static/js/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css?0.100">
+    <style>
+        html,body{
+            color:#666;
+        }
+        header{
+            width:100%;
+            height:40px;
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box;
+            /*background:#fff;*/
+            box-shadow:0px 0px 10px 1px  #bbb;
+        }
+        
+        .tucao button{
+            background: #4d9fff;
+            margin: 0 auto;
+            width:60%;
+            height:40px;
+            border-radius:20px;
+            padding: 0;
+            margin: 0;
+            border: 0;
+            font-size:16px;
+            color:#fff;
+            display: block;
+            margin:0 auto ;
+        }
+        .tucao{
+            width:100%;
+            height: 40px;
+            padding: 17.5px 0;
+            line-height: 40px;
+            background: #fff;
+            margin-top: 10px;
+            -webkit-box-sizing: content-box;
+            -moz-box-sizing: content-box;
+            box-sizing: content-box;
+        }
+        .content{
+            background: #fff;
+            margin-top: 10px;
+            padding: 0 15px ;
+        }
+        .contentHeader{
+            border-bottom:1px solid #cdcdcd;
+            height:38px;
+            line-height: 38px;
+            color:rgb(153,153,153);
+        }
+        .content ul li{
+            line-height: 32px;
+            line-height: 32px;
+            font-size: 15px;
+            font-family: "PingFang SC";
+        }
+        a{
+            color:#666;
+        }
+    </style>
+</head>
+<body>
+<header style="padding: 11.5px;display: flex;justify-content: space-between;align-items: center">
+    <img class="back"  src="../../../static/img/back1.png"  style="width:17px;height: 17px;"/>
+    <div style="font-size: 17px;line-height: 17px!important;display:inline-block;float: left;">
+        极速竞拍 <span style="font-size:19px;margin-top:-1px;">|</span> 吐个槽
+    </div>
+    <img   src="../../../static/img/back1.png"  style="width:17px;height: 17px;opacity:0;"/>
+</header>
+    <div class="tucao">
+        <a href="https://support.qq.com/embed/phone/35302/new-post" style=""><button>我来说一下</button></a>
+    </div>
+    <div class="content">
+        <div class="contentHeader">
+            <span>常见问题</span>
+            <a href="https://support.qq.com/embed/phone/35302/faqs-more"><span style="float: right;color:rgb(153,153,153);">更多</span></a>
+        </div>
+        <ul>
+            <li><a href="https://support.qq.com/embed/phone/35302/faqs/35198">商品相关问题</a></li>
+            <li><a href="https://support.qq.com/embed/phone/35302/faqs/35204">物流相关问题</a></li>
+            <li><a href="https://support.qq.com/embed/phone/35302/faqs/35206">客服相关问题</a></li>
+            <li><a href="https://support.qq.com/embed/phone/35302/faqs/35208">拍币相关问题</a></li>
+            <li><a href="https://support.qq.com/embed/phone/35302/faqs/35210">拍卖过程中会遇到的一些疑问</a></li>
+        </ul>
+    </div>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+    $(function () {
+        $('header .back').click(function(){
+            window.Auction.back();
+        })
+    })
+
+</script>
+</body>
+</html>

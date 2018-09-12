@@ -1,0 +1,634 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>新年礼物大派发</title>
+    <meta name="description" content="拍卖">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.2/jquery.fullPage.css">
+    <style>
+        body{
+            font-family: 'microsoft yahei'
+        }
+        .slide{
+            text-align: center;
+        }
+        /*#fullpageMenu{
+            position: fixed;
+            top: 0;
+            z-index: 999;
+        }*/
+        .pic{
+            width:100%;
+        }
+        .section3{
+            background:url(../../../static/img/activity/christmas2.png);
+            background-size:contain;
+            height: 100%;
+        }
+        .fp-tableCell{
+            vertical-align: top
+        }
+        #fp-nav .right{
+            right:0.133333rem;
+        }
+        #fp-nav ul li a span{
+            background: #fff;
+        }
+        .section2 .fp-tableCell{
+            vertical-align: middle;
+        }
+        .pic2 {
+            width: 40%;
+            display: block;
+            margin:0.3rem auto;
+        }
+        .pic3{
+            width: 100%;
+            display: block;
+            margin:0.5rem auto;
+        }
+        .hide{
+            display: none;
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top:0;
+            background:rgba(0,0,0,0.5);
+            z-index:99;
+        }
+        .giftBox{
+            width: 9rem;
+            margin: 0 auto;
+            top: 50%;
+            position: relative;
+            margin-top: -5rem;
+            display: block;
+        }
+        .ruleBox-close{
+            width: 0.88rem;
+            right: 0.573333rem;
+            position: absolute;
+            top: 50%;
+            margin-top: -5.7rem;
+        }
+        .ruleBox-close img{
+            width:100%;
+        }
+        .regbutton{
+            position: relative;
+            margin: 0 auto;
+            display: block;
+            width: 3.853333rem;
+            top: 50%;
+            margin-top: -3.2rem;
+        }
+        .hand
+        {
+            animation:mymove 1s infinite;
+            -webkit-animation:mymove 1s infinite; /*Safari and Chrome*/
+        }
+
+        @keyframes mymove
+        {
+            from {left:4.0rem;}
+            to {left:4.1rem;}
+        }
+
+        @-webkit-keyframes mymove /*Safari and Chrome*/
+        {
+            from {left:4.0rem;}
+            to {left:4.1rem;}
+        }
+        #selector{
+            -webkit-user-select: text;
+            position: absolute;
+            top:0;
+            z-index:-1;
+
+        }
+        #selector1{
+            -webkit-user-select: text;
+            position: absolute;
+            position: absolute;
+            top:0;
+            z-index:-1;
+        }
+        .button{
+            -webkit-user-select: text;
+            border: none;
+            background: transparent;
+        }
+        .button img{
+            width: 100%
+        }
+        .cover{
+            background: rgba(0,0,0,0.8);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            display: none;
+            z-index: 99999999
+        }
+        .cover img{
+            position: absolute;
+            width: 3.69rem;
+            top: 0.08rem;
+            right: 1.15rem;
+        }
+        .cover>div {
+            margin-top: 4.31rem;
+        }
+        .cover p {
+            font-size: .48rem;
+            line-height: 2;
+            text-align: center;
+            color: #fefefe;
+        }
+        .cover .close{
+            margin-top: 0.2rem;
+        }
+        .boxContent{
+            background: #1b463b;
+            margin:0 0.6rem;
+            border:0.133333rem solid #fbf7f7;
+            margin-top: -0.5rem;
+            min-height: 1.5rem;
+            padding-top: 0.4rem;
+            box-sizing:border-box;
+            padding-bottom: 0.4rem;
+        }
+        .boxContent .title{
+            font-size: 0.373333rem;
+            color: #fff;
+            text-align: center;
+        }
+        .bigtitle{
+            font-size: 0.48rem;
+            color:#fff;
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top:0.5rem;
+
+        }
+        .boxContent .p_left{
+            display:inline-block;
+            text-align: left;
+            float:left;
+        }
+        .boxContent .p_right{
+            display:inline-block;
+            text-align: left;
+            float:right;
+        }
+        .txt{
+            clear: both;
+            padding:0.2rem 0.4rem;
+            font-size: 0.373333rem;
+            color: #fff; 
+        }
+        .p_1{
+            position: absolute;
+            display: inline-block;
+        }
+        .p_2{
+            position: relative;
+            margin-left: 2.3rem;
+            display: inline-block;
+        }
+        #regNow{
+            width: 90%;
+            margin: 0 auto;
+            display: block; 
+        }
+        .gotorule{
+            font-size: 0.4rem;
+            color: #fff;
+            position: absolute;
+            right:0.4rem;
+            top:5rem;
+            text-decoration: underline;
+        }
+        .regbutton p{
+            font-size: 0.25rem;
+            text-align: center;
+            color: #bdb9b9;
+            padding:0.15rem;
+        }
+    </style>
+</head>
+<body>
+    <!--<div id="fullpage">-->
+        <div class="section section3">
+            <a class="gotorule" href="http://pm.yz314.com/front/view/app/user/rule.html">如何购买?</a>
+            <img src="../../../static/img/activity/hand.png" style="position:absolute;width:1.64rem;top:7rem;z-index:1" class="hand"/>
+            <img src="../../../static/img/activity/christmas.png" class="pic"/>
+            <div style="margin-top:1rem;position:relative">
+                <img src="../../../static/img/activity/christmas3_3.png" class="pic" />
+                <p class="bigtitle">参与方式</p>
+                <div class="boxContent">
+                    <p class="title">点击你想要的新年袜，领取新年大礼</p>
+                </div>
+            </div>
+            <img src="../../../static/img/activity/socket.png"  style="position: absolute;top: 6rem;right: 5.2rem;width:1.28rem" class="gifts"/>
+            <img src="../../../static/img/activity/socket2.png" style="position: absolute;top: 8.8rem;right: 5.7rem;width:2rem" class="gifts"/>
+            <img src="../../../static/img/activity/socket3.png" style="position: absolute;top: 6.2rem;right: 3.2rem;width:1.266667rem" class="gifts"/>
+            <img src="../../../static/img/activity/socket4.png" style="position: absolute;top: 9.5rem;right: 3.9rem;width:1.666667rem" class="gifts"/>
+            <img src="../../../static/img/activity/socket5.png" style="position: absolute;top: 11rem;right: 6.5rem;width:1.853333rem" class="gifts"/>
+            <img src="../../../static/img/activity/socket6.png" style="position: absolute;top: 8.5rem;right: 2.5rem;width:1.386667rem" class="gifts"/>
+            <img src="../../../static/img/activity/socket7.png" style="position: absolute;top: 11rem;right: 1.5rem;width:1.533333rem" class="gifts"/>
+            <!--<img src="../../../static/img/activity/christmas1.png" class="pic" id="rule"/>-->
+            <div style="margin-top:1rem;position:relative">
+                <img src="../../../static/img/activity/christmas3_3.png" class="pic" />
+                <p class="bigtitle">活动规则</p>
+                <div class="boxContent">
+                    <p class="txt"><span class="p_1">1.活动玩法：</span><span class="p_2">凡登录此页面的用户均可获得1次抽奖机会；</span></p> 
+                    <p class="txt"><span class="p_1">2.活动时间：</span><span class="p_2">2017年12月15日至2018年1月2日；</span></p>
+                    <p class="txt"><span class="p_1">3.面向用户：</span><span class="p_2">未注册过小易竞拍的手机用户；</span></p>
+                    <p class="txt"><span class="p_1">4.活动奖品：</span><span class="p_2">1元购买商品的机会、5元新手红包、15%分享收益</span></p>
+                    <p class="txt">5.如对活动规则有任何疑问，或遇到任何问题，请联系客服热线：021-64043221；</p>
+                    <p class="txt">6.本活动由小易竞拍组织，与苹果、谷歌及其他第三方平台无关，活动最终解释权归小易竞拍所有。</p>
+                </div>
+            </div>
+            <img src="../../../static/img/activity/zhengshi.png" class="pic2"/>
+            <button id="regNow" class="button"><img src="../../../static/img/activity/chrisbutton.png" class="pic3" /></button>
+        </div>
+        <div class="hide">
+            <div class="ruleBox-close">
+                <img src="../../../static/img/activity/close.png"/>
+            </div>
+            <img src="../../../static/img/activity/s2.png" class="giftBox"/>
+
+            <button class="regbutton button">
+
+                <img src="../../../static/img/activity/regbutton.png"/>
+                <p>您将有机会以1折的价格获得该商品，具体请参考拍卖规则</p>
+            </button>
+
+        </div>
+    <!--</div>-->
+    <span id="selector">3ET45CD</span>
+    <span id="selector1">F55MDBA</span>
+    <div class="cover">
+        <img src="../../../static/img/open-browser.png"/>
+        <div>
+            <p>点击右上角，选择在浏览器中打开
+            <p>即可正常下载</p>
+            <p class="close">点击关闭</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script> 
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../static/js/ua-parser.min.js"></script>
+    <script type="text/javascript" src="../../../static/js/jsized.snow.min.js"></script>
+    
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+    <script>
+        createSnow('../../../static/img/activity/', 10);
+        var myObject=myObject;
+        var fnBase = fnBase;
+        fnBase.init();
+        var u = navigator.userAgent;
+        var openid="";
+        var uuid="";
+        try {
+            openid=store.get('openid');
+            if(openid==undefined){
+                openid="";
+            }
+            uuid=window.Auction.getUUID();
+        }catch (err){
+           
+
+        }
+        var channel=myObject.GetQueryString("channel_id");
+        if(channel=="SDXiaomi1"){
+            $(".pic2").attr("src","../../../static/img/activity/zhengshiSDXiaomi1.png");
+            //$("#rule").attr("src","../../../static/img/activity/christmas1_1.png");
+        }else if(channel=="ATengxun01"){
+            $(".pic2").attr("src","../../../static/img/activity/zhengshiATengxun01.png");
+            //$("#rule").attr("src","../../../static/img/activity/christmas1_1.png");
+        }else if(channel=="DSPMengju1"){
+            $(".pic2").attr("src","../../../static/img/activity/zhengshiDSPMengju1.png");
+            //$("#rule").attr("src","../../../static/img/activity/christmas1_1.png");
+        }else if(channel=="SDQutoutiao1"){
+            $(".pic2").attr("src","../../../static/img/activity/zhengshiSDQutoutiao1.png");
+            //$("#rule").attr("src","../../../static/img/activity/christmas1_1.png");
+        }else if(channel=="SDTuia1"){
+            $(".pic2").attr("src","../../../static/img/activity/zhengshiSDTuia1.png");
+            //$("#rule").attr("src","../../../static/img/activity/christmas1_1.png");
+        }else if(channel=="SDYidianzixun1"){
+            $(".pic2").attr("src","../../../static/img/activity/zhengshiSDYidianzixun1.png");
+            //$("#rule").attr("src","../../../static/img/activity/christmas1_1.png");
+        }else if(channel=="Afenxiang1"){
+            $(".pic2").attr("src","../../../static/img/activity/zhengshiAfenxiang1.png");
+            //$("#rule").attr("src","../../../static/img/activity/christmas1_1.png");
+        }else if(channel=="AXyjp_Zycp"){
+            $(".pic2").attr("src","../../../static/img/activity/zhengshiAXyjp_Zycp.png");
+           //$("#rule").attr("src","../../../static/img/activity/christmas1_1.png");
+        }else if(channel=="AXyjp_Dsztc"){
+            $(".pic2").attr("src","../../../static/img/activity/zhengshiAXyjp_Dsztc.png");
+            //$("#rule").attr("src","../../../static/img/activity/christmas1_1.png");
+        }
+        else{
+
+        }
+        $("#regNow").click(function(){
+            //页面到达
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"4"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":"",
+                "openId":"",
+                "ident":"100313",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":channel+"点击立即下载按钮"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+
+
+            
+            if(browser.versions.ios){
+                if(channel=="AXyjp_Zycp"){
+                    sharesuccEvent.addEnterCopyEvent("selector");
+                }else{
+                    sharesuccEvent.addEnterCopyEvent("selector1");
+                }
+                window.location.href="https://itunes.apple.com/cn/app/%E5%B0%8F%E6%98%93%E7%AB%9E%E6%8B%8D-%E4%B8%80%E7%AB%99%E5%BC%8F%E5%A8%B1%E4%B9%90%E4%BA%92%E8%81%94%E7%BD%91%E8%B4%AD%E7%89%A9%E5%B9%B3%E5%8F%B0/id1300440000?mt=8"
+            }else if(browser.versions.android){
+                if(u.indexOf('MicroMessenger') > -1){
+                    $(".cover").css("display","block");
+                }else{
+                    if(channel=="SDXiaomi1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/11/28/jspm_mi/JiSuPaiMai_SDXiaomi1.apk";
+                    }else if(channel=="ATengxun01"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_atengxun01/JiSuPaiMai_V10.2.1_113__ATengxun01.apk";
+                    }else if(channel=="DSPMengju1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_dspmengju1/JiSuPaiMai_V10.2.1_113__DSPMengju1.apk";
+                    }else if(channel=="SDQutoutiao1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_sdqutoutiao1/JiSuPaiMai_V10.2.1_113__SDQutoutiao1.apk";
+                    }else if(channel=="SDTuia1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_sdtuia1/JiSuPaiMai_V10.2.1_113__SDTuia1.apk";
+                    }else if(channel=="SDYidianzixun1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_sdyidianzixun1/JiSuPaiMai_V10.2.1_113__SDYidianzixun1.apk";
+                    }else if(channel=="Afenxiang1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/09/28/jspm_fx/JiSuPaiMai_Afenxiang1.apk"
+                    }else if(channel=="AXyjp_Zycp"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/22/xyjp_axyjp_zycp/XiaoYiJingPai_V10.2.1_113__AXyjp_Zycp.apk";
+                    }else if(channel=="AXyjp_Dsztc"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/26/xyjp_axyjp_dsztc/XiaoYiJingPai_V10.2.1_113__AXyjp_Dsztc.apk";
+                    }
+                    else{
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/14/xyjp_aXyjp_bose/XiaoYiJingPai.apk";
+                        
+                    }
+                }  
+            } 
+        })
+
+        $(".close").click(function(){
+            $(".cover").css("display","none");
+        })
+
+        $(".regbutton").click(function(){
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"4"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":"",
+                "openId":"",
+                "ident":"100312",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":channel+"点击下载并领取"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+            
+
+            
+            if(browser.versions.ios){
+                if(channel=="AXyjp_Zycp"){
+                    sharesuccEvent.addEnterCopyEvent("selector");
+                }else{
+                    sharesuccEvent.addEnterCopyEvent("selector1");
+                }
+                window.location.href="https://itunes.apple.com/cn/app/%E5%B0%8F%E6%98%93%E7%AB%9E%E6%8B%8D-%E4%B8%80%E7%AB%99%E5%BC%8F%E5%A8%B1%E4%B9%90%E4%BA%92%E8%81%94%E7%BD%91%E8%B4%AD%E7%89%A9%E5%B9%B3%E5%8F%B0/id1300440000?mt=8"
+            }else if(browser.versions.android){
+                if(u.indexOf('MicroMessenger') > -1){
+                    $(".cover").css("display","block");
+                }else{
+                    if(channel=="SDXiaomi1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/11/28/jspm_mi/JiSuPaiMai_SDXiaomi1.apk";
+                    }else if(channel=="ATengxun01"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_atengxun01/JiSuPaiMai_V10.2.1_113__ATengxun01.apk";
+                    }else if(channel=="DSPMengju1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_dspmengju1/JiSuPaiMai_V10.2.1_113__DSPMengju1.apk";
+                    }else if(channel=="SDQutoutiao1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_sdqutoutiao1/JiSuPaiMai_V10.2.1_113__SDQutoutiao1.apk";
+                    }else if(channel=="SDTuia1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_sdtuia1/JiSuPaiMai_V10.2.1_113__SDTuia1.apk";
+                    }else if(channel=="SDYidianzixun1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_sdyidianzixun1/JiSuPaiMai_V10.2.1_113__SDYidianzixun1.apk";
+                    }else if(channel=="Afenxiang1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/09/28/jspm_fx/JiSuPaiMai_Afenxiang1.apk"
+                    }else if(channel=="AXyjp_Zycp"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/22/xyjp_axyjp_zycp/XiaoYiJingPai_V10.2.1_113__AXyjp_Zycp.apk";
+                    }else if(channel=="AXyjp_Dsztc"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/26/xyjp_axyjp_dsztc/XiaoYiJingPai_V10.2.1_113__AXyjp_Dsztc.apk";
+                    }
+                    else{
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/14/xyjp_aXyjp_bose/XiaoYiJingPai.apk";
+                    }
+                }
+                
+            }
+            
+            
+        })
+        
+        $(".gifts").click(function(){
+            $(".hide").show();
+            var random=Math.round(Math.random()*11+1);
+            var srcpath="../../../static/img/activity/s"+random+".png";
+            if(random==5){
+                $(".regbutton p").hide();
+            }else{
+                $(".regbutton p").show();
+            }
+            $(".giftBox").attr("src",srcpath);
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"4"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":"",
+                "openId":"",
+                "ident":"100310",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":channel+"点击抽奖次数(圣诞树礼品盒)"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+            var goodsName;
+            if(random==1){
+                goodsName="华为荣耀V10";
+            }else if(random==2){
+                goodsName="佳能70D";
+            }else if(random==3){
+                goodsName="美的暖风机";
+            }else if(random==4){
+                goodsName="水星家纺鹅绒被";
+            }else if(random==5){
+                goodsName="登录送5元";
+            }else if(random==6){
+                goodsName="荣事达鸳鸯火锅";
+            }else if(random==7){
+                goodsName="江中猴菇早餐米稀";
+            }else if(random==8){
+                goodsName="捷安特公路自行车";
+            }else if(random==9){
+                goodsName="iphone8 PLUS";
+            }else if(random==10){
+                goodsName="iPad mini4";
+            }else if(random==11){
+                goodsName="MacBook pro";
+            }else if(random==12){
+                goodsName="MacBook pro";
+            }
+            var extra={
+                "btnName":goodsName,
+            }
+            var Op1 = "",clickJson1 = "";
+            Op1={
+                "ot":"4"
+            };
+            clickJson1={
+                "actionId":3,
+                "uuid":"",
+                "openId":"",
+                "ident":"100311",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":channel+"中奖页结果",
+                "extra":JSON.stringify(extra)
+            };
+            myObject.addStatisticsEvent(Op1,clickJson1);
+        })    
+        $(".ruleBox-close").click(function(){
+            $(".hide").hide();
+            
+        })
+        //页面到达
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"4"
+        };
+        clickJson={
+            "actionId":3,
+            "uuid":"",
+            "openId":"",
+            "ident":"100309",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":channel+"双旦活动页到达"
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+
+
+
+        
+
+        var sharesuccEvent = {
+            addEnterCopyEvent:function(selectorHtml){
+
+                var u = navigator.userAgent;
+                if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+                    var aux = document.createElement("input");
+                    aux.setAttribute("value", document.getElementById(selectorHtml).innerHTML);
+                    document.body.appendChild(aux);
+                    aux.select();
+                    var successful = document.execCommand("copy");
+                    try {
+                        console.log('Oops, unable to copy');
+                        var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+    //                    fnBase.alert(msg);
+                        console.log(msg);
+                    } catch(err) {
+                        console.log(err);
+                    }
+                    document.body.removeChild(aux);
+                } else if (u.indexOf('iPhone') > -1) {
+                    var copyDOM = document.querySelector('#'+selectorHtml);
+                    var range = document.createRange();
+                    range.selectNode(copyDOM);
+                    window.getSelection().addRange(range);
+                    var successful = document.execCommand('copy');
+                    try {
+                        var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+                        console.log('Oops, unable to copy');
+                        console.log('Copy email command was ' + msg);
+    //                    fnBase.alert(msg);
+
+                    } catch(err) {
+                        console.log('Oops, unable to copy');
+                    }
+                    window.getSelection().removeAllRanges();
+                }
+            },
+            addPostDeviceInfo:function(){
+                var parser = new UAParser();
+                var us = navigator.userAgent;
+                parser.setUA(us);
+                var r = parser.getResult();
+                var type = r.os.name;
+                var pt = '';
+                if(type.indexOf("iOS")>-1){
+                    pt = 'I'
+                }else if(type.indexOf("Android")>-1){
+                    pt = 'A'
+                }
+                var sharecode;
+                if(channel=="AXyjp_Zycp"){
+                    sharecode="3ET45CD";
+                }else{
+                    sharecode="F55MDBA";
+                }
+                fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/Index/Frame/bindDevice",{
+                    "pt":pt,
+                    "sys":r.os.version,
+                    "screenWidth":screen.width,
+                    "sharecode":sharecode
+                },function(res){
+                    console.log(res)
+                })
+            }
+        }
+
+        if(browser.versions.ios){
+            sharesuccEvent.addPostDeviceInfo();
+        }
+    </script>
+    
+</body>
+</html>
+
+

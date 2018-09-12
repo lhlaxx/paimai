@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>极速拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/dropload.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/refund.css">
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>不中必返</h2>
+    <div class="refund-rule">返币规则</div>
+</header>
+<div class="container">
+    <div class="refund-main">
+        <div class="refund-main-msg">用户进入专区72小时内所有竞拍，只要不中奖我们将会<span>返还</span>您竞拍所用拍币的60%</div>
+        <!--<p class="left-time-msg">专区结束倒计时</p>-->
+        <!--<div class="refund-main-leftTime">00:00:00</div>-->
+        <!--<button class="refund-btn">点击返钱</button>-->
+    </div>
+    <div class="refund-goods">
+        <ul>
+            <!--<li class="goods-item">-->
+                <!--<h3 class="goods-name">iPhone7 128G</h3>-->
+                <!--<a class="goods-img" href="details.html">-->
+                    <!--<img src="http://egoures.tt286.com/market/indiana/goods2017/06/30/bzhlodqam3/1498806562925.jpg">-->
+                <!--</a>-->
+                <!--<div class="goods-time"><span>00</span>:<span>00</span>:<span class="miao">10</span></div>-->
+                <!--<p class="goods-price">￥149.00</p>-->
+                <!--<p class="goods-user">卓易</p>-->
+                <!--<button class="join-btn">参与竞拍</button>-->
+            <!--</li>-->
+            <!--<li class="goods-item">-->
+                <!--<h3 class="goods-name">iPhone7 128G</h3>-->
+                <!--<a class="goods-img" href="details.html">-->
+                    <!--<img src="http://egoures.tt286.com/market/indiana/goods2017/06/30/bzhlodqam3/1498806562925.jpg">-->
+                <!--</a>-->
+                <!--<div class="goods-p">倒计时</div>-->
+                <!--<div class="goods-time goods-time-p"><span>00</span>:<span>00</span>:<span class="miao">10</span></div>-->
+                <!--<button class="join-btn">即将开始</button>-->
+            <!--</li>-->
+        </ul>
+    </div>
+</div>
+
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/dropload.min.js"></script>
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+    var refundEvent = {
+        act_id:fnBase.getUrlPar("act_id"),
+        source:fnBase.getUrlPar("source"),
+        init:function(){
+            this.addGetGoodsInfoHtml();
+            this.addMainClickEvent();
+            store.set('refundHref',window.location.href);
+        },
+        refundTime:0,
+        addMainClickEvent:function(){
+            $(document).on("click",".back_arrow",function(){
+                if(refundEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back();
+                }
+            });
+            $(document).on("click",".refund-rule",function(){
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100212",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"返币规则点击",
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);   
+
+                fnBase.addLocationHref("refundrule.html?source=web&act_id="+refundEvent.act_id)
+            });
+            if(store.get('refundBtn')){
+                if(store.get('openid')){
+                    refundEvent.addClickAjax()
+                }
+            }
+            $(document).on("click",".refund-btn",function(){
+                if(store.get('openid')){
+                    refundEvent.addClickAjax()
+                }else{
+                    console.log("去登陆");
+                    store.set("refundBtn","click");
+                    window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index.html?from=refund&&from=refundbtn");
+                }
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100206",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"列表页点击返币按钮点击",
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);            
+            });
+            $(document).on("click",".goods-item",function(){
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100210",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"必返列表点击参与竞拍",
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+                window.Auction.openUrl($(this).attr("data-href")+"&source=refund&act_id="+refundEvent.act_id)
+            })
+        },
+        addClickAjax:function(){
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Paybackjoin/join",{
+                "act_id":refundEvent.act_id,
+                "openid":store.get('openid')
+            },function(res){
+                console.log(res);
+                store.remove('refundBtn');
+                if(res.state == 1){
+                    $(".refund-btn").hide();
+                    $(".refund-main-leftTime").addClass("refund-main-leftTime-btn");
+                    refundEvent.refundTime = res.lefttime;
+                    time()
+                }else {
+                    fnBase.alert(res.cause?res.cause:res.msg)
+                }
+            })
+        },
+        isEnd:false,
+        page:1,
+        lastId:0,
+        lefttime:0,
+        if_finish:0,
+        addGetGoodsInfoHtml:function(){
+            $('.container').dropload({
+                scrollArea : window,
+                domDown : {
+                    domClass   : 'dropload-down',
+                    domRefresh : '<div class="dropload-refresh">↑继续上拉显示下一条</div>',
+                    domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+                    domNoData  : '<div class="dropload-noData">无更多数据了</div>'
+                },
+                loadDownFn : function(me){
+                    // 拼接HTML
+                    var result = '';
+                    fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Paybackactivity/activity",{
+                        "openid":store.get('openid'),
+                        "act_id":refundEvent.act_id,
+                        "chanel":fnBase.ChannelId,
+                        "verCode":fnBase.VersionCode,
+                        "page":refundEvent.page,
+                        "size":10
+                    },function(res){
+                            if(refundEvent.isEnd){
+                                // 锁定
+                                me.lock();
+                                // 无数据
+                                me.noData();
+                            }else {
+                                if(res.state == 1){
+                                    var data = res.data;
+                                    refundEvent.isEnd = data.end;
+                                    refundEvent.lastId = data.lastId;
+                                    refundEvent.lefttime = data.lefttime;
+                                    refundEvent.if_finish = data.if_finish;
+                                    if(refundEvent.page == 1){
+                                        var refundTopHtml = "";
+                                        if(refundEvent.if_finish == '0'){
+                                            if (refundEvent.lefttime >= 0){
+                                                refundEvent.refundTime = refundEvent.lefttime;
+                                                if(refundEvent.refundTime>0){
+                                                    refundTopHtml =  '<p class="left-time-msg">专区结束倒计时</p>'
+                                                                  +  '<div class="refund-main-leftTime refund-main-leftTime-btn">00:00:00</div>';
+                                                    $(".refund-main").append(refundTopHtml);
+                                                    time()
+                                                }else {
+                                                    refundTopHtml =  '<p class="left-time-msg">本次不中必返已结束，敬请期待下次开启</p>';
+                                                    $(".refund-main").append(refundTopHtml);
+                                                }
+                                            }else {
+                                                refundTopHtml =  '<p class="left-time-msg">专区结束倒计时</p>'
+                                                        +  '<div class="refund-main-leftTime">'+formatSeconds(data.count)+'</div>'
+                                                        +  '<button class="refund-btn">立即开始</button>';
+                                                $(".refund-main").append(refundTopHtml);
+                                            }
+                                        }else if(refundEvent.if_finish == '1'){//已经结束
+                                            refundTopHtml =  '<p class="left-time-msg">本次不中必返已结束，敬请期待下次开启</p>';
+                                            $(".refund-main").append(refundTopHtml);
+                                        }else if(refundEvent.if_finish == '2'){//尚未开始
+                                            refundTopHtml =  '<p class="left-time-msg">本次不中必返尚未开启，敬请期待</p>';
+                                            $(".refund-main").append(refundTopHtml);
+                                        }
+                                    }
+                                    refundEvent.page++;
+                                    var goods = data.goods;
+                                    for(var i= 0,len=goods.length;i<len;i++){
+                                        result += '<li class="goods-item item' + goods[i].goodsId + '"data-goodid="' + goods[i].goodsId + '"data-href="'+goods[i].goods_url+'">'
+                                                +   '<h3 class="goods-name">' + goods[i].goodsName + '</h3>'
+                                                +   '<a class="goods-img">'
+                                                +       '<img data-src="' + goods[i].picUrl + '" class="lazyload">'
+                                                +   '</a>'
+                                                +   '<button class="join-btn">参与竞拍</button>'
+                                                + '</li>';
+                                    }
+                                }else {
+                                    fnBase.alert(res.msg)
+                                }
+                            }
+                            // 为了测试，延迟1秒加载
+                            setTimeout(function(){
+                                // 插入数据到页面，放到最后面
+                                $('.refund-goods ul').append(result);
+                                $(".refund-goods >ul >li:even").addClass("mar1");
+                                // 每次数据插入，必须重置
+                                me.resetload();
+                            },300);
+                    })
+                }
+            });
+        },
+        timeouts:[],
+        testObject:{}
+    };
+    refundEvent.init();
+
+    function formatSeconds(value) {
+        var theTimeS = parseInt(value);// 秒
+        var theTimeM = 0;// 分
+        var theTimeH = 0;// 小时
+        if(theTimeS >= 60) {
+            theTimeM = parseInt(theTimeS/60);
+            theTimeS = parseInt(theTimeS%60);
+            if(theTimeM >= 60) {
+                theTimeH = parseInt(theTimeM/60);
+                theTimeM = parseInt(theTimeM%60);
+            }
+        }
+        var result = ""+toZero(parseInt(theTimeS));
+        if(theTimeM >= 0) {
+            result = ""+toZero(parseInt(theTimeM))+":"+result;
+        }
+        if(theTimeH >= 0) {
+            result = ""+toZero(parseInt(theTimeH))+":"+result;
+        }
+        return result;
+    }
+
+    function time(){
+        $(".refund-main-leftTime").html(formatSeconds(refundEvent.refundTime));
+        if (refundEvent.refundTime == 0) {
+            $(".left-time-msg").html("本次不中必返已结束，敬请期待下次开启");
+            $(".refund-main-leftTime").hide();
+        }else{
+            refundEvent.refundTime--;
+            //定时器，每秒重新计算
+            setTimeout(function() {
+                time();
+            },1000)
+        }
+    }
+    function toZero(num) {
+        if (num <= 9) {
+            return "0" + num;
+        } else {
+            return "" + num;
+        }
+    }
+    var Op = "",clickJson = "";   
+    clickJson={
+        "actionId":3,
+        "uuid":fnBase.UUID,
+        "openId":store.get('openid'),
+        "ident":"100204",
+        "date":parseInt(new Date().getTime() / 1000),
+        "name":"不中必返页面到达",
+    };
+    Op={
+        "ot":"3"
+    };
+    fnBase.addStatisticsEvent(Op,clickJson);
+
+</script>
+</body>
+</html>

@@ -1,0 +1,249 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/css/sharegets.css?0.08"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+</head>
+<body>
+<header style="position: fixed">
+    <div class="back_arrow"></div>
+    <h2>师徒详情</h2>
+    <div class="sun-rule">师徒规则</div>
+</header>
+<div class="container" style="position: relative">
+    <div class="earning">
+        <!--<div class="total_earning">累计拍币收益<div class="earning_money">5000.00</div></div>-->
+        <!--<div class="code">-->
+            <!--<div class="my-code">我的邀请码:</div>-->
+            <!--<div content="code-ma">BRIDGE1</div>-->
+            <!--<div class="copy-code">复制</div>-->
+        <!--</div>-->
+    </div>
+    <div class="earning_details">
+        <!--<div class="details-wrap">-->
+            <!--<div class="prev_earning">昨日收益(拍币)<div class="prevMoney">0.00</div></div>-->
+            <!--<div class="friend_num">徒弟徒孙数(人)<div class="friendNum">1</div></div>-->
+            <!--<div class="shifu">您的师傅<div class="shifuName">您就是祖师爷</div></div>-->
+        <!--</div>-->
+    </div>
+    <div class="ul_list_wrap">
+        <ul class="friend_list">
+            <!--<li class="list_item">-->
+                <!--<div class="list_item01">-->
+                    <!--<h4 class="friend_name">许卡通</h4>-->
+                    <!--<span class="friend_grade">徒弟</span>-->
+                <!--</div>-->
+                <!--<div class="list_item02">-->
+                    <!--<h4 class="friend_status">注册收益</h4>-->
+                    <!--<span class="friend_time">2017-04-18</span>-->
+                <!--</div>-->
+                <!--<div class="list_item03">-->
+                    <!--<h4 class="friend_earn"><span>998.98</span>拍币</h4>-->
+                <!--</div>-->
+            <!--</li>-->
+        </ul>
+    </div>
+</div>
+
+<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/dropload.min.js"></script>
+<script src="../../../static/js/clipboard.min.js"></script>
+<script type="text/javascript" src="../../../static/js/AppHelper.js"></script>
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+
+ <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+    var myObject=myObject;
+    myObject.init();
+    myObject.isNew();
+    
+    var shareGetsEvent = {
+        source:fnBase.getUrlPar("source"),
+        init:function(){
+            this.addMainClick();
+            this.addGetShiTuInfo()
+        },
+        addMainClick:function(){
+            $(document).on("click",".back_arrow",function(){
+                if(shareGetsEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back();
+                }
+                //统计——师徒详情点击返回
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100090",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"师徒详情点击返回"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+            });
+            $(document).on("click",".sun-rule",function(){
+                //统计——师徒详情点击规则
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100092",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"师徒详情点击规则"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+
+                fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/shituRule.html?source=web")
+            });
+            fnBase.addCopyEvent("#copy","selector")
+        },
+        addGetShiTuInfo:function(){
+            var that = this;
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Share/Rebate",{
+
+            },function(res){
+                if(res.state == 1){
+                    that.setShiTuHtml(res.data)
+                }else {
+                    fnBase.alert(res.cause)
+                }
+            })
+        },
+        setShiTuHtml:function(data){
+            var earningStr='',earningDetailsStr='',parent_name='';
+            if(data.parent_name){
+                parent_name = data.parent_name
+            }else {
+                parent_name='你就是祖师爷'
+            }
+             earningStr = '<div class="total_earning">累计拍币收益<div class="earning_money">'+data.total_rebate+'</div></div>'
+                            + '<div class="code">'
+                            +   '<div class="my-code">我的邀请码:</div>'
+                            +   '<div class="code-ma" id="selector">'+data.share_code+'</div>'
+                            +   '<button class="copy-code" id="copy">复制</button>'
+                            +'</div>';
+            $(".earning").html(earningStr);
+            earningDetailsStr = '<div class="details-wrap">'
+                                +   '<div class="prev_earning">昨日收益(拍币)<div class="prevMoney">'+data.yestoday_rebate+'</div></div>'
+                                +   '<div class="friend_num">徒子徒孙数(人)<div class="friendNum">'+data.child_count+'</div></div>'
+                                +   '<div class="shifu">您的师傅<div class="shifuName">'+parent_name+'</div></div>'
+                                +'</div>';
+            $(".earning_details").html(earningDetailsStr);
+            shareGetsEvent.addGetsInfoHtml()
+        },
+        addGetsInfoHtml:function(){
+            var page = 0,pagesize=10;
+            $('.container').dropload({
+                scrollArea : window,
+                domDown : {
+                    domClass   : 'dropload-down',
+                    domRefresh : '<div class="dropload-refresh">↑继续上拉显示下一条</div>',
+                    domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+                    domNoData  : '<div class="dropload-noData">无更多数据了</div>'
+                },
+                loadDownFn : function(me){
+                    page++;
+                    var result = '',that = this;
+                    fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Share/rebatelist?page="+page+"&pagesize="+pagesize,{
+                        "openid":"",
+                        "chanel":fnBase.ChannelId,
+                        "verCode":fnBase.VersionCode,
+                        "pagesize":10
+                    },function(res){
+                        if(res.state == 1){
+                            if(res.data.list&&res.data.list.length>0){
+                                var data = res.data.list;
+                                for(var i= 0,len=data.length; i<len; i++){
+                                    result += '<li class="list_item">'
+                                            +   '<div class="list_item01">'
+                                            +       '<h4 class="friend_name">'+data[i].name+'</h4>'
+                                            +       '<span class="friend_grade">'+data[i].grade+'</span>'
+                                            +   '</div>'
+                                            +   '<div class="list_item02">'
+                                            +       '<h4 class="friend_status">'+data[i].act+'</h4>'
+                                            +       '<span class="friend_time">'+data[i].create_t+'</span>'
+                                            +   '</div>'
+                                            +   '<div class="list_item03">'
+                                            +       '<h4 class="friend_earn"><span>'+data[i].amount+'</span>拍币</h4>'
+                                            +   '</div>'
+                                            +'</li>'
+                                }
+                            }else {
+                                if(page==1){
+                                    that.domDown.domNoData='<div class="dropload-noData">暂无数据</div>'
+                                }
+                                me.lock();
+                                me.noData();
+                            }
+                            setTimeout(function(){
+                                $('.ul_list_wrap ul').append(result);
+                                me.resetload();
+                            },300);
+                        }else {
+                            fnBase.alert(res.cause)
+                        }
+                    })
+                }
+            });
+        }
+    };
+    shareGetsEvent.init();
+    if (window.history && window.history.pushState)
+        {
+            $(window).on('popstate', function() {
+                var hashLocation = location.hash;
+                var hashSplit = hashLocation.split("#!/");
+                var hashName = hashSplit[1];
+                if (hashName !== '') {
+                    var hash = window.location.hash;
+                    if (hash === '') {
+                        //统计——师徒详情硬件返回
+                        var Op = "",clickJson = "";
+                        Op={
+                            "ot":"3"
+                        };
+                        clickJson={
+                            "actionId":5,
+                            "uuid":fnBase.UUID,
+                            "openId":store.get('openid'),
+                            "ident":"100091",
+                            "date":parseInt(new Date().getTime() / 1000),
+                            "name":"师徒详情硬件返回"
+                        };
+                        fnBase.addStatisticsEvent(Op,clickJson);
+                    }
+                }
+            });
+         //window.history.pushState('forward', null, './#forward');
+        }
+</script>
+</body>
+</html>

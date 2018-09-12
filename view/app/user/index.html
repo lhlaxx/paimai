@@ -1,0 +1,621 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script type="text/javascript" src="../../../static/js/flexible.js"></script>
+    <script type="text/javascript" src="../../../static/js/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css?0.100">
+    <style>
+        html，body{
+            width:100%;
+            height: 100% !important;
+        }
+        body{
+            top:0;
+            left:0;
+        }
+        #content{
+            z-index:-1;
+        }
+        #scroller{
+            position:absolute;
+            z-index:1;
+            width:100%;
+            padding:0;
+        }
+        *{
+            margin:0;
+            padding: 0;
+        }
+        .pop_wrap{
+            background:rgba(0,0,0,0.6);
+            width:100%;
+            height:100%;
+            position: fixed;
+        }
+        .pop{
+            position:relative;
+            top:10%;
+            width:100%;
+            height:80%px;
+        }
+        .pop_show{
+            height:100% !important;
+        }
+        .hongbao{
+            display: block;
+            width:100%;
+            height:100%;
+        }
+        .close {
+            position: absolute;
+            z-index:5;
+            width:24px;
+            height:24px;
+            color:#fff;
+            font-size: 24px;
+            text-align: center;
+            line-height: 24px;
+            font-weight: 100;
+            /*border:1px solid #fff;*/
+            border-radius: 50%;
+            right: 17%;
+            top: 15%;
+        }
+        .button{
+            position: absolute;
+            width:40%;
+            height:80px;
+            display: block;
+            top:66%;
+            left: 50%;
+            right:50%;
+            margin-left: -20%;
+        }
+        .login{
+            width:20%;
+            height:72px;
+            position: absolute;
+            left:50%;
+            top:78%;
+            right:50%;
+            margin-left:-10%;
+        }
+        .pop_wrap1{
+            background:rgba(0,0,0,0.6);
+            width:100%;
+            height:100%;
+            position: absolute;
+            z-index:10;
+            top:0;
+        }
+        .mainContent{
+            height:100%;
+            top:0 !important;
+            margin-top:1.2rem;
+            overflow-y: hidden;
+        }
+        .pop1{
+            position:relative;
+            top:8%;
+            width:100%;
+            height:500px;
+        }
+        .button1{
+            position: absolute;
+            width:50%;
+            height:36px;
+            display: block;
+            top:400px;
+            left: 50%;
+            right:50%;
+            margin-left: -27%;
+        }
+    </style>
+</head>
+<body>
+    <div class="pop_wrap1" style="display:none">
+        <div class="pop1">
+            <img class="hongbao" src="../../../static/img/share/pop.png" alt="">
+            <span class="close"></span>
+            <img class="button1" src="../../../static/img/share/button.png" alt="">
+        </div>
+    </div>
+    <div class="navbar">
+        <h1>我的</h1>
+    </div>
+    <div class="mainContent">
+    <div class="portrait_and_recharge">
+        <div class="protrait pull-left" >
+            <img src="../../../static/img/usercenter/photo.png"/>
+        </div>
+        <div class="username pull-left">
+            <dl>
+                <dd class="usernickname" style="margin-top:0.4rem"></dd>
+                <dd class="vip"><span>会员ID:</span><span class="memberno"></span></dd>
+                <dd class="bind" style="display:none" >绑定手机号收徒赚拍币</dd>
+            </dl>
+        </div>
+        <div class="recharge pull-right">
+            <a id="recharge">充值</a>
+        </div>
+
+    </div>
+    <div class="myaccount">
+        <ul>
+            <li>
+                <a class="paiCoin">
+                    <div class="icon pull-left">
+                        <span><img src="../../../static/img/usercenter/icon_money.png"/></span>
+                    </div>
+                    <div class="mycenterList_label pull-left">
+                        拍币
+                    </div>
+                    <div class="goto pull-right">
+                        <span class="balance"></span>
+                        <span><img src="../../../static/img/usercenter/icon_goto.png"/></span>
+                    </div>
+                </a>
+            </li>
+            <li class="shituLine" style="display:none">
+                <a class="shitu">
+                    <div class="icon pull-left">
+                        <span><img src="../../../static/img/usercenter/icon_shitu.png"/></span>
+                    </div>
+                    <div class="mycenterList_label pull-left">
+                        师徒收益
+                    </div>
+                    <div class="goto pull-right">
+                        <span class="earnings"></span>
+                        <span><img src="../../../static/img/usercenter/icon_goto.png"/></span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+        <a>
+            
+        </a>
+    </div>
+    <div class="line"></div> 
+    <div class="mycenterList">
+        <ul>
+            <li>
+                <a id="record">
+                    <div class="icon pull-left">
+                        <span><img src="../../../static/img/usercenter/icon_record.png"/></span>
+                    </div>
+                    <div class="mycenterList_label pull-left iostxt1">
+                        我的拍卖纪录
+                    </div>
+                    <div class="goto pull-right">
+                        <span style="width:0.16rem;height:0.16rem;border-radius:0.08rem;background:#fe4141;position:absolute;margin-top: 0.6rem;margin-right: rem;right: 1rem;display:none;" class="signal"></span>
+                        <span><img src="../../../static/img/usercenter/icon_goto.png"/></span>
+                    </div>
+                </a>
+            </li>
+			
+			<li>
+                <a id="myprize">
+                    <div class="icon pull-left">
+                        <span><img src="../../../static/img/usercenter/choujiang.png"/></span>
+                    </div>
+                    <div class="mycenterList_label pull-left">
+                        我的抽奖纪录
+                    </div>
+                    <div class="goto pull-right">
+                        <span style="width:0.16rem;height:0.16rem;border-radius:0.08rem;background:#fe4141;position:absolute;margin-top: 0.6rem;margin-right: rem;right: 1rem;display:none;" class="signal"></span>
+                        <span><img src="../../../static/img/usercenter/icon_goto.png"/></span>
+                    </div>
+                </a>
+            </li>
+			
+            <li>
+                <a  id="address">
+                    <div class="icon pull-left">
+                        <span><img src="../../../static/img/usercenter/icon_address.png"/></span>
+                    </div>
+                    <div class="mycenterList_label pull-left">
+                        收货地址
+                    </div>
+                    <div class="goto pull-right">
+                        <span><img src="../../../static/img/usercenter/icon_goto.png"/></span>
+                    </div>
+                </a>
+            </li>
+            <li class="helpcenter">
+                <a >
+                    <div class="icon pull-left">
+                        <span><img src="../../../static/img/usercenter/icon_help.png"/></span>
+                    </div>
+                    <div class="mycenterList_label pull-left ">
+                        帮助中心
+                    </div>
+                    <div class="goto pull-right">
+                        <span><img src="../../../static/img/usercenter/icon_goto.png"/></span>
+                    </div>
+                </a>
+            </li>
+            <li class="rule">
+                <a>
+                    <div class="icon pull-left">
+                        <span><img src="../../../static/img/usercenter/icon_rule.png"/></span>
+                    </div>
+                    <div class="mycenterList_label pull-left iostxt2">
+                        拍卖规则
+                    </div>
+                    <div class="goto pull-right">
+                        <span><img src="../../../static/img/usercenter/icon_goto.png"/></span>
+                    </div>
+                </a>
+            </li>
+            <li class="about">
+                <a>
+                    <div class="icon pull-left">
+                        <span><img src="../../../static/img/usercenter/icon_settings.png"/></span>
+                    </div>
+                    <div class="mycenterList_label pull-left">
+                        设置
+                    </div>
+                    <div class="goto pull-right">
+                        <span><img src="../../../static/img/usercenter/icon_goto.png"/></span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="line"></div> 
+    <div class="logout" onclick="">
+        <a>安全退出</a>
+    </div>
+    <div style="font-size:0.3rem;color:#999;text-align:center;line-height:0.8rem;display:none;background:#f2f2f2" class="hints">本平台抢购活动均与苹果公司（Apple Inc.）无关</div>
+
+
+
+    <!--<script type="text/javascript" src="../../../static/js/jquery-1.12.3.min.js"></script>-->
+    <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js?0.100"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+    
+    <script type="text/javascript">
+        var fnBase =fnBase;
+        var myObject=myObject;
+        var host=myObject.host;
+        var source = fnBase.getUrlPar("source");
+        var AppHelper=AppHelper;
+        myObject.init();
+//        myObject.isNew();
+        /*var isNew=store.get('isNew');
+        alert(isNew);*/
+        var openid=store.get('openid');
+        var channel=AppHelper.YzAppGetChannel();
+        var verCode=AppHelper.YzAppGetVerCode(); 
+        var nickname=store.get('nickName');
+        var picurl=store.get('picUrl');
+        var memberno=store.get('memberno');
+        var isBind=store.get('isBind');
+        var loc=window.location.href;
+        var r = window.location.search;
+
+        var isNew=store.get('isNew');
+
+//        if(true){
+        if(isNew==true){
+            setTimeout(function(){
+                alertYDbox();
+                store.set('isNew',false);
+            },1000)
+            $(".pop-wrap1").css("display","block")
+            $("body").css("position","fixed")
+            $("body").css("overflow","hidden")
+        }
+        function alertYDbox(){
+            $('.pop_wrap1').show();
+        }
+
+        $('.close').click(function(){
+            $('.pop_wrap1').hide();
+            $('body').css('position','relative')
+            $('body').css('overflow','auto')
+
+        })
+        $('.button1').click(function(){
+            if(source == "web"){
+                window.location.href = host+"/front/view/app/share/new.html";
+            }else {
+                window.Auction.openUrl(host+"/front/view/app/share/new.html");
+            }
+        })
+
+
+        r = r.substring(r.indexOf("?"),r.length);
+        if(browser.versions.mobile){
+           if(browser.versions.ios){
+                $(".hints").show();
+                $(".iostxt1").html("我的购买记录");
+                $(".iostxt2").html("抢购规则");
+                $(".helpcenter").hide();
+                if(channel=="Ios1"||channel=="Ios2"||channel=="IosXyjp"){
+                    if((channel=="IosXyjp")&&(verCode==115)){
+                        $(".rule").hide();
+                    }else if((channel=="Ios2")&&(verCode==115)){
+                        $(".rule").hide();
+                    }
+                    else{
+                        $(".rule").show();
+                    }
+                }else{
+                    $(".rule").hide();
+                }
+                
+            }
+        }
+        
+        if((loc.indexOf("hasDot=false")>=0)||(loc.indexOf("hasDot=0")>=0)){
+            $(".signal").hide();
+        }else if((loc.indexOf("hasDot=true")>=0)||(loc.indexOf("hasDot=1")>=0)){
+            $(".signal").show();
+        }
+
+        $(".usernickname").html(nickname);
+        $(".protrait img").attr("src",picurl);
+        $(".memberno").html(memberno);
+        //$(".protrait img").attr("src","http://101.95.97.178:8089/front/static/img/usercenter/icon_money.png");
+
+        if(isBind==false){
+            $(".bind").show();
+        }
+
+        //修改昵称
+        $(".username").click(function(){
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100094",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"点击修改昵称"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+
+            var isNew=store.get('isBind');
+//            if(isNew){
+            window.location.href=host+'/front/view/app/user/changeUname.html';
+//            }else{
+//                myObject.alert("请去绑定手机号");
+//            }
+        })
+        
+        
+        //余额接口
+        myObject.loadShow();
+        myObject.commonJsonpAjax(host+'/index.php/index/User/getMyBalance',{
+            'openid':openid,
+            'chanel':channel,
+            'verCode':verCode
+        }, function(data){
+            if(data.state==1){
+                var balance=data.data.balance.toFixed(2);
+                var rebate=data.data.rebate.toFixed(2);
+                if(rebate==0){
+                    rebate=0;
+                }
+                $(".balance").html(balance);
+                if(verCode!=108){
+                    $(".earnings").html(rebate+'&nbsp;'+'拍币');
+                }
+            }else if(data.state==0){
+                myObject.alert(data.cause);
+                if(browser.versions.mobile){
+                    if(browser.versions.ios){
+                        window.Auction.loginFail(); 
+                    }
+                }
+                if(data.cause=='尚未登录'||data.cause=='重新登录'){
+                    window.Auction.openUrl(host+"/front/view/app/login/index.html?from=refund")
+                }
+            }
+        },function(){
+        
+        });
+        
+        //退出接口
+        $(".logout").click(function(){
+            myObject.loadShow();
+            myObject.commonJsonpAjax(host+'/index.php/index/Frame/LoginOut','', function(data){
+                myObject.alert("退出成功");
+                store.clear();
+                if(verCode!=108){
+                    window.Auction.logout(0); 
+                    
+                }else if(verCode==108){
+                    window.Auction.logout(); 
+                    window.location.href=host+'/front/view/app/login/index.html?from=mycenter';
+                }
+                
+            },function(){
+            
+            });
+            
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100023",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"我的页面点击退出"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+        })
+        
+
+        $("#record").click(function(){
+            pageUrl=host+'/front/view/app/user/record.html'+r;
+            window.Auction.openUrl(pageUrl);
+        })
+		
+		/*
+		我的抽奖记录
+		*/
+        $("#myprize").click(function(){
+            pageUrl=host+'/front/view/app/lottery/winrecord2.html'+r;
+            window.Auction.openUrl(pageUrl);
+        });
+		
+        $("#address").click(function(){
+            pageUrl=host+'/front/view/app/user/address.html';
+            window.Auction.openUrl(pageUrl);
+        });
+        $(".recharge").click(function(){
+            pageUrl=host+'/front/view/app/index/recharge.html?source=usercenter';
+            window.Auction.openUrl(pageUrl);
+            //统计——我的页面点击充值数
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100017",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"我的页面点击充值数"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+
+        })
+        $(".myaccount .paiCoin").click(function(){
+            pageUrl=host+'/front/view/app/index/account.html';
+            window.Auction.openUrl(pageUrl);
+        })
+        $(".myaccount .shitu").click(function(){
+            if(verCode!=108){
+                pageUrl=host+'/front/view/app/index/sharegets.html';
+                window.Auction.openUrl(pageUrl);
+            }else{
+                myObject.alert("请更新至最新版本");
+            }
+            //统计——我的页面点击师徒收益
+
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100083",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"我的页面点击师徒收益"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+        })
+        $(".about").click(function(){
+            //统计——我的页面点击设置
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100093",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"我的页面点击设置"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+
+
+            pageUrl=host+'/front/view/app/user/settings.html';
+            window.Auction.openUrl(pageUrl);
+        })
+        $(".rule").click(function(){
+            var isSDK=myObject.GetQueryString("isSDK");
+            if(isSDK){
+                pageUrl=host+'/front/view/app/user/rule2.html';
+            }else{
+                pageUrl=host+'/front/view/app/user/rule.html';
+            }
+            if((channel=='Ios1'||channel=='Ios2'||channel=='IosJsjx'||channel=='IosXyjp')&&verCode==111){
+                pageUrl=host+'/front/view/app/user/rule3.html';
+            }else{
+                pageUrl=host+'/front/view/app/user/rule.html';
+            }
+            console.log(pageUrl);
+            window.Auction.openUrl(pageUrl);
+        })
+        $(".helpcenter").click(function(){
+            if((channel=='Ios1'||channel=='Ios2'||channel=='IosJsjx'||channel=='IosXyjp')&&verCode==111){
+                pageUrl=host+'/front/view/app/user/help2.html';
+            }else{
+                pageUrl=host+'/front/view/app/user/help.html';
+            }
+            window.Auction.openUrl(pageUrl);
+        })
+        $(".bind").click(function(){
+            //统计——我的页面点击绑定手机号
+
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100085",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"我的页面点击绑定手机号"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+
+            pageUrl=host+'/front/view/app/user/bindPhone.html';
+            window.Auction.openUrl(pageUrl);
+        })
+
+        $(".mycenterList li").on("touchstart",function(){
+            $(this).css("background","#eee");
+        })
+        $(".mycenterList li").on("touchend",function(){
+            $(this).css("background","none");
+        })
+
+        myObject.isOpen();
+        var ifdisable=store.get('ifdisable');
+        console.log(ifdisable);
+        if(ifdisable){
+            $(".shituLine").hide();
+        }else{
+            $(".shituLine").show();
+        }
+    </script>
+</body>
+</html>
+
+    

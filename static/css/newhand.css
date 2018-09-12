@@ -1,0 +1,188 @@
+body, html {
+    background-color: #f5f5f5
+}
+
+div, footer, h1, h2, h3, h4, h5, h6, header, li, ul {
+    box-sizing: border-box
+}
+
+header {
+    width: 100%;
+    height: 1.2rem;
+    text-align: center;
+    line-height: 1.2rem;
+    background-color: #FFFFFF;
+    color: #333333;
+    font-size: .48rem;
+    position: fixed;
+    z-index: 10;
+}
+
+header .back_arrow {
+    width: 1.5rem;
+    height: 100%;
+    position: absolute;
+    left: 0;
+    top: 0;
+    background-image: url("data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABQAAAAiCAYAAABfqvm9AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6MEZEODYzRjQ0Mjg2MTFFN0FCRjBFMERBRDk4MDEyNDkiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6MEZEODYzRjU0Mjg2MTFFN0FCRjBFMERBRDk4MDEyNDkiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDowRkQ4NjNGMjQyODYxMUU3QUJGMEUwREFEOTgwMTI0OSIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDowRkQ4NjNGMzQyODYxMUU3QUJGMEUwREFEOTgwMTI0OSIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PtH5PisAAAG2SURBVHjarJY5SwNBFMc3hwqC2GglWFlYKBZWVlZWdh5oFOMV1wvxQPwWIuIRNWqMxgNBECy00K9llRj/D97A+Jhs9m0c+BX7dubH7M6beRPzfd+rs42BEZAGpeQ/yB5AAyBXqh7hOMuS1vN3PKJsAjxaMmpl8BFFOAnuQULI5sCTVpgCRYcsw3FPI5wGd0L2A5bAjQmEFc6AgpBVWJa3O4YRpnmQS3YtO9cSzvIgKVsBV64BQcJ5HiRl6+Ci2qBqwgVw6ZBtgGzQJyUDZDEh2wQntX64nGHGIaO2DY7CpIMt9PnfSNkOOAybrEZIq3bmkO2CA81WinM+nTpke2Bfu9FJ2OOQUStFOYZIuMWfKxvNbi2KsMIDz8U7mvUxJ7inXRSSrjp2AElzfGx52rQxezQn+iT42BrVCo10mZNbSql+DGuFRuo7TpNG8AKGtMKg864JvIJBrTBI2gzewIBWaNeMvIi3gHfQrxUGSVupDoNerdCUyj/VjVsb+ALdWqFdfwsi3g4+QZdWaKSL4FbEO3imnVGuImUuE0WHtC/qZcncZYrW8xSlUz3XOSOt8Go/U/BXgAEAvm5d67c2x2cAAAAASUVORK5CYII=");
+    background-repeat: no-repeat;
+    background-size: .266667rem .48rem;
+    background-position: .4rem center;
+    cursor: pointer;
+}
+.container {
+    width: 100%;
+    height: 100%;
+    padding-top: 1.2rem;
+    background-color: #6f8cf4;
+}
+.container .container-title {
+    width: 100%;
+    height: 5.76rem;
+    background-image: url("../../static/img/newhand_bg.png");
+    background-repeat: no-repeat;
+    background-size: 100% 100%;
+    padding-top: 3.266667rem;
+    z-index: 5;
+    position: absolute;
+    top: 1.2rem;
+    left: 0;
+}
+.container .container-title .container-title-p{
+    width: 7.22667rem;
+    height: .866667rem;
+    border-radius: .434667rem;
+    background-color: #6f8cf4;
+    text-align: center;
+    color: #ffffff;
+    font-size: .48rem;
+    line-height: .866667rem;
+    margin: 0 auto;
+    letter-spacing:0.09rem
+}
+.container .container-wrap{
+    width: 100%;
+    background-color: #6f8cf4;
+    position: absolute;
+    left: 0;
+    top:6.2rem;
+    padding-top: 0.4rem;
+}
+.container .container-wrap .left-time{
+    width: 100%;
+}
+.container .container-wrap .left-time .p{
+    width: 100%;
+    height: 1.16rem;
+    line-height: 1.16rem;
+    text-align: center;
+    font-size: .56rem;
+    color: #ffffff;
+}
+.container .container-wrap .left-time .time{
+    width: 6.77rem;
+    height: 0.933334rem;
+    line-height: 0.933334rem;
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    justify-content:space-between;
+    margin: 0 auto;
+    font-size: .56rem;
+    color: #ffffff;
+    opacity: 0;
+}
+.container .container-wrap .left-time .time .time-item{
+    width: 1.58rem;
+    height: 0.933334rem;
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    justify-content:space-between;
+}
+.container .container-wrap .left-time .time .time-item span{
+    width: 0.68rem;
+    height: .933334rem;
+    border-radius: .16rem;
+    background-color: #4665d3;
+    text-align: center;
+    line-height: 0.933334rem;
+    font-size: .48rem;
+    color: #fec142;
+    display: inline-block;
+}
+.container .container-wrap .goods{
+    width: 100%;
+    margin-top: .71rem;
+}
+.container .container-wrap .goods .goods-list{
+    width: 100%;
+    padding: 0 0.4rem;
+    display: -webkit-flex; /* Safari */
+    display: flex;
+    justify-content:space-between;
+    flex-wrap:wrap;
+}
+.container .container-wrap .goods .goods-list .goods-item{
+    width: 2.933334rem;
+    height: 4.093334rem;
+    border-radius: .16rem;
+    background-color: #ffffff;
+    padding-top: .506667rem;
+    cursor: pointer;
+    position: relative;
+}
+.container .container-wrap .goods .goods-list .goods-state{
+    opacity: .7;
+}
+.container .container-wrap .goods .goods-list .goods-item .goods-item-deal{
+    position: absolute;
+    width: 1.82rem;
+    height: 0.75rem;
+    top: 50%;
+    left: 50%;
+    margin-top: -.37rem;
+    margin-left: -.91rem;
+    background-size: 100% 100%;
+    background-image: url("../../static/img/new-hand-deal.png");
+}
+.container .container-wrap .goods .goods-list .goods-item .goods-img{
+    display: block;
+    width: 100%;
+    height: 2.533334rem;
+    overflow: hidden;
+}
+.container .container-wrap .goods .goods-list .goods-item .goods-img img{
+    width: 100%;
+}
+.container .container-wrap .goods .goods-list .goods-item .goods-name {
+    width: 100%;
+    padding: 0 .186667rem;
+    font-size: .32rem;
+    font-weight: bold;
+    text-align: left;
+    color: #333333;
+    white-space:nowrap;
+    overflow:hidden;
+    text-overflow:ellipsis;
+}
+.container .container-wrap .click-btn{
+    width: 8.8rem;
+    height: .96rem;
+    margin: 0 auto;
+    margin-top: .71rem;
+    border-radius: .48rem;
+    line-height: .96rem;
+    font-weight: bold;
+    text-align: center;
+    color: #ffffff;
+    cursor: pointer;
+    display: none;
+}
+.container .container-wrap .strategy-btn{
+    background-image: linear-gradient(to top, #ff9d12, #ffc832);
+    box-shadow: 0 .12rem .507rem 0 #fe6f18;
+    text-shadow: 0 0 .07rem rgba(254, 111, 24, 0.4), 0 0.01rem 0 rgba(0, 0, 0, 0.15);
+}
+.container .container-wrap .sunlist-btn{
+    border: solid 1px #ffc95a;
+    font-size: .373334rem;
+}

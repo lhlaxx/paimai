@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/css/hisrecord.css"/>
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>出价记录</h2>
+</header>
+<div class="content" id="wrapper">
+    <ul>
+        <!--<li class="record-list-item record-list-item-first">-->
+            <!--<div class="user-phone">怪咖国王范</div>-->
+            <!--<div class="user-state">领先</div>-->
+            <!--<div class="user-ads"><span class="user-ads1">山东省 日照市</span></div>-->
+            <!--<div class="user-price">￥100.50</div>-->
+        <!--</li>-->
+    </ul>
+    <div id="PullUp" class="scroller-pullUp">
+        <div id="prevBtn">上一页</div>
+        <div class="pageChange">1/2</div>
+        <div id="nextBtn">下一页</div>
+    </div>
+</div>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/iscroll-probe.js"></script>
+
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var hisrecord = {
+        totalPage:1,
+        currentPage:1,
+        goodsId:fnBase.getUrlPar("goodsid"),
+        init:function(){
+            this.addBackEvent();
+            this.addGetDealRecord(1);
+            this.addMoreBtn()
+        },
+        addBackEvent:function(){
+            $(".back_arrow").click(function(){
+                window.history.go(-1)
+            })
+        },
+        addGetDealRecord:function(page){
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Goods/getLog",{
+                goodsId:hisrecord.goodsId,
+                page:page
+            },function(res){
+                if(res.state == 1){
+                    hisrecord.currentPage = res.data.currentPage;
+                    hisrecord.totalPage = res.data.totalPage;
+                    $(".pageChange").html(hisrecord.currentPage+'/'+hisrecord.totalPage);
+                    if(hisrecord.currentPage == hisrecord.totalPage){
+                        $("#pullUp-msg").html("无更多数据了！");
+                    }
+                    var recordList = "", listData = res.data.dealRecord, listLen = listData.length,nickname="";
+                    if(listLen > 0){
+                        for(var i=0; i<listLen; i++){
+                            if(listData[i].nickname){
+                                nickname = listData[i].nickname
+                            }else {
+                                nickname = "花开那年"
+                            }
+                            recordList  += '<li class="record-list-item">'
+                                    +      '<div class="user-phone">'+nickname+'</div>'
+                                    +      '<div class="user-state">出局</div>'
+                                    +      '<div class="user-ads"><span class="user-ads1">'+listData[i].area+'</div>'
+                                    +      '<div class="user-price">￥'+listData[i].current_price+'</div>'
+                                    +   '</li>'
+                        }
+                        $(".content ul").empty();
+                        $(".content ul").append(recordList);
+                        var firstItem = $(".content ul .record-list-item").eq(0);
+                        if(hisrecord.currentPage == 1){
+                            firstItem.find(".user-state").html('领先');
+                            firstItem.addClass("record-list-item-first");
+                        }
+                    }
+                }else {
+                    fnBase.alert(res.cause)
+
+                }
+            });
+        },
+        addMoreBtn:function(){
+            $("body").on("click","#prevBtn",function(){
+                if(hisrecord.currentPage == 1){
+                    fnBase.alert("这是第一页了！")
+                }else {
+                    hisrecord.addGetDealRecord(parseInt(hisrecord.currentPage)-1)
+                }
+            });
+            $("body").on("click","#nextBtn",function(){
+                console.log(parseInt(hisrecord.currentPage)+1);
+                if(hisrecord.currentPage == hisrecord.totalPage){
+                    fnBase.alert("这是最后一页了！")
+                }else {
+                    hisrecord.addGetDealRecord(parseInt(hisrecord.currentPage)+1)
+                }
+
+            })
+        }
+    };
+    hisrecord.init()
+</script>
+</body>
+</html>

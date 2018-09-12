@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/writestrategy.css">
+    <style>
+        .tips{
+            top:30%;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>编写攻略</h2>
+    <div class="issue">发布</div>
+</header>
+<div class="container">
+    <div class="strategy-title">
+        <input type="text" placeholder="请输入标题(最长15个字)" maxlength="15">
+    </div>
+    <div class="photo-wrap">
+        <div class="photo-wrap-item">
+            <div class="photo-camera-wrap">
+                <img class="photo-camera" src="../../../static/img/strategy/camera.png">
+                <p class="photo-p">添加图片</p>
+                <input class="photo-input change" type="file" accept="image/*" name="test" multiple="multiple">
+                <img class="delete-photo photo-if-change" src="../../../static/img/strategy/delete-photo.png">
+            </div>
+            <div class="camera-insert photo-if-change">插入</div>
+        </div>
+    </div>
+    <div class="strategy-content">
+        <div class="item-content">
+            <textarea id="textarea" contenteditable=false placeholder="请输入内容" autofocus="autofocus" maxlength="2000" rows="4" cols="50"></textarea>
+        </div>
+    </div>
+</div>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/dropload.min.js"></script>
+<script src="../../../static/js/cursor.js"></script>
+ <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+    var oText = document.getElementById("textarea");
+
+    if(fnBase.mobileType == 'ios'){
+        autoTextarea(oText);// 调用(设置textarea为自动高度)
+    }
+    var photoHtml = '<div class="photo-wrap-item">'
+                 +   '<div class="photo-camera-wrap">'
+                 +       '<img class="photo-camera" src="../../../static/img/strategy/camera.png">'
+                 +       '<p class="photo-p">添加图片</p>'
+                 +       '<input class="photo-input change" type="file" accept="image/*" name="test" multiple="multiple">'
+                 +       '<img class="delete-photo photo-if-change" src="../../../static/img/strategy/delete-photo.png">'
+                 +   '</div>'
+                 +   '<div class="camera-insert photo-if-change">插入</div>'
+                 +'</div>';
+    var writeStrategyEvent = {
+        source:fnBase.getUrlPar("source"),
+        strategyId:fnBase.getUrlPar("strategyId"),
+        init:function(){
+            this.addMainClickEvent();
+            if(this.strategyId){
+                this.addAlterStrategy()
+            }
+            if(fnBase.mobileType == "android"){
+                if(fnBase.VersionCode >= '113'){
+                    this.addSelectPhoto01()
+                }else {
+                    $(".photo-input").css({"display":"none"})
+                    $(document).on("click",".photo-wrap-item",function(){
+                            fnBase.alert("请更新版本后体验")
+                    });
+                }
+            }else if(fnBase.mobileType == "ios"){
+                if(fnBase.VersionCode >= '114'){
+                    this.addSelectPhoto01()
+                }else {
+                    $(".photo-input").css({"display":"none"});
+                    $(document).on("click",".photo-wrap-item",function(){
+                        fnBase.alert("请更新版本后体验")
+                    });
+                }
+            }
+        },
+        addAlterStrategy:function(){
+            if(writeStrategyEvent.strategyId){
+                fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Paybackjoin/alterStrategy",{
+                    "strategyId":writeStrategyEvent.strategyId,
+                    "openid":store.get("openid")
+                },function(res){
+                    if(res.state == 1){
+                        $(".strategy-title input").val(res.title);
+                        $("#textarea").val(res.content);
+                        if(res.picUrl.length > 0){
+                            writeStrategyEvent.imgArray = res.picUrl;
+                            for(var i=0;i<res.picUrl.length;i++){
+                                $(".photo-wrap .photo-wrap-item").eq(i).children(".photo-camera-wrap").css({"background-image":'url(' + res.picUrl[i] + ')'});
+                                togglePhoto(true,i);
+                            }
+                        }else {
+
+                        }
+                        autoTextarea(oText);// 调用(设置textarea为自动高度)
+                    }
+                })
+            }else {
+
+            }
+
+        },
+        addMainClickEvent:function(){
+            $(document).on("click",".back_arrow",function(){
+                if($(".strategy-title input").val() != "" || writeStrategyEvent.imgArray.length > 0 || $("#textarea").val() != ""){
+                    confirm("是否保存草稿？",writeStrategyEvent.addDeleteStrategyEvent,writeStrategyEvent.addPostStrategyEvent,0,writeStrategyEvent.strategyId);
+                }else if(writeStrategyEvent.source == "web"){
+                        window.history.go(-1)
+                }else {
+                        window.Auction.back();
+                }
+            });
+//            $(document).on("input",".strategy-title input",function(){
+//                if($(".strategy-title input").val().length > 14){
+//                    fnBase.alert("标题栏最多15个字")
+//                }
+//            });
+            var bind_name = 'input';
+            if (navigator.userAgent.indexOf("MSIE") != -1){
+                bind_name = 'propertychange';
+            }
+            $('.strategy-title input').bind(bind_name, function(){
+                if($(".strategy-title input").val().length > 14){
+                    fnBase.alert("标题栏最多15个字")
+                }
+            });
+            $(document).on("input","#textarea",function(){
+                if($("#textarea").val().length > 2000){
+                    fnBase.alert("最多2000个字")
+                }
+            });
+            $(document).on("click",".issue",function(){
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100288",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"点击提交攻略按钮次数(只为按钮点击数)",
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+
+                if($(".strategy-title input").val() == ''){
+                    fnBase.alert("请输入攻略标题")
+                }else if($("#textarea").val() == ""){
+                    fnBase.alert("请输入攻略内容")
+                }else {
+
+                    writeStrategyEvent.addPostStrategyEvent(1,writeStrategyEvent.strategyId)
+                }
+            });
+            $(document).on("click",".delete-photo",function(){
+                var deleteIndex = $(this).parent().parent().index()
+                $(this).parent().css({"background-image":"none"});
+                console.log(deleteIndex);
+                togglePhoto(false,deleteIndex);
+                var testTextHtml = $("#textarea").val();
+                replaceIndex(deleteIndex,testTextHtml)
+            });
+            $(document).on("click",".camera-insert",function(){
+                var insertImgIndex = $(this).parent().index()+1;
+                var insertImgHtml = '【图片'+insertImgIndex+'】';
+                insertAfterText(oText,insertImgHtml);
+            })
+        },
+        addPostStrategyEvent:function(status,strategyId){
+            console.log(writeStrategyEvent.imgArray);
+            fnBase.loadShow();
+            fnBase.commonAjax(fnBase.source_url+"/index.php/index/Paybackjoin/editStrategy","POST",{
+                "openid":store.get("openid"),
+                "title": $(".strategy-title input").val(),
+                "content":$("#textarea").val(),
+                "status":status,
+                "image":writeStrategyEvent.imgArray,
+                "strategyId":strategyId
+            },function(res){
+                if(res.state == 1){
+                    fnBase.alert(res.msg);
+                    setTimeout(backPage,2000)
+                }else {
+                    fnBase.alert(res.msg)
+                }
+            })
+        },
+        addDeleteStrategyEvent:function(){
+            if(writeStrategyEvent.strategyId){
+                fnBase.loadShow();
+                fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Paybackjoin/delStrategy",{
+                    "openid":store.get("openid"),
+                    "strategyId":writeStrategyEvent.strategyId
+                },function(res){
+                    if(res.state == 1){
+                        fnBase.alert(res.msg);
+                        setTimeout(backPage,2000)
+                    }else {
+                        fnBase.alert(res.msg)
+                    }
+                })
+            }else {
+                backPage()
+            }
+
+        },
+        photoArray:[],
+        imgArray:[],
+        localImgArray:[],
+        addSelectPhoto01:function(){
+            $(document).on("change",".photo-input",function(){
+                // 检查文件是否选择:
+                var that = this;
+                if (!that.value) {
+                    fnBase.alert("请更新版本进行选择！");
+                    return;
+                }
+
+                var maxSize = 1024 * 1024*2;   //200KB
+                // 获取File引用:
+                var file = that.files[0];
+                var size = file.size;
+                var fileType = file.type;
+                var name = file.name;
+                if (fileType !== 'image/png' && fileType != "image/jpeg") {
+                    alert('不是有效的图片文件!');
+                    return;
+                }
+                // 读取文件:
+                var reader = new FileReader();
+                // 以DataURL的形式读取文件:
+                reader.readAsDataURL(file);
+                var sendData = "";
+                reader.onload = function(e) {
+                    var data = e.target.result; // 'data:image/jpeg;base64,/9j/4AAQSk...(base64编码)...'
+                    $(that).parent().css({"background-image":'url(' + data + ')'});
+                    togglePhoto(true,$(that).parent().parent().index());
+                    var result = e.target.result;
+
+                    var image = new Image();
+                    image.src = result;
+                    var cvs = document.createElement('canvas');
+                    var scale = 1;
+
+
+                    if(size > maxSize){  //1000只是示例，可以根据具体的要求去设定
+//                            if(this.width > this.height){
+//                                scale = 1000 / this.width;
+//                            }else{
+//                                scale = 1000 / this.height;
+//                            }
+
+                        cvs.width = image.width;
+                        cvs.height = image.height;     //计算等比缩小后图片宽高
+                        var ctx = cvs.getContext('2d');
+                        ctx.drawImage(image, 0, 0, cvs.width, cvs.height);
+                        data = cvs.toDataURL(fileType, 0.1);   //重新生成图片，<span style="font-family: Arial, Helvetica, sans-serif;">fileType为用户选择的图片类型</span>
+                    }
+                    sendData = data.replace("data:"+fileType+";base64,",'');
+
+                    writeStrategyEvent.imgArray.push(sendData);
+                };
+
+            })
+        }
+    };
+    writeStrategyEvent.init();
+
+
+    function togglePhoto(Boolean,index){
+        var photoWrapItem = $(".photo-wrap-item").eq(index);
+        if(Boolean){
+            writeStrategyEvent.photoArray[index]="1";
+            photoWrapItem.find(".photo-camera").css("display","none");
+            photoWrapItem.find(".photo-p").css("display","none");
+            photoWrapItem.find(".delete-photo").css("display","block");
+            photoWrapItem.find(".camera-insert").css("display","block");
+            if(writeStrategyEvent.photoArray.length >= 4){
+
+            }else {
+                $(".photo-wrap").append(photoHtml);
+            }
+        }else {
+            photoWrapItem.remove();
+            if(writeStrategyEvent.photoArray.length == 4){
+                $(".photo-wrap").append(photoHtml);
+            }
+            writeStrategyEvent.photoArray.splice(index,1);
+        }
+    }
+    function replaceIndex(delete_index){
+        console.log(delete_index);
+        writeStrategyEvent.imgArray.splice(delete_index,1);
+        $("#textarea").val($("#textarea").val().replace("【图片"+parseInt(delete_index+1)+"】",""));
+        for(var i=delete_index;i<$(".photo-wrap").children().length-1;i++){
+            console.log(parseInt(i));
+            console.log("【图片"+parseInt(i+2)+"】");
+            console.log("【图片"+parseInt(i+1)+"】");
+            $("#textarea").val($("#textarea").val().replace("【图片"+parseInt(i+2)+"】","【图片"+parseInt(i+1)+"】"));
+        }
+    }
+
+    function confirm(msg,cancelFn,sureFn,num,strategyId){
+        $('<div class="confirm_bg"><div class="content"><div class="confirm-inner"><div class="confirm-text">'+msg+'</div></div><div class="confirm-buttons"><span class="confirm-button btn_cancel">删除草稿</span><span class="confirm-button btn_sure">保存草稿</span></div></div></div>').appendTo($('body'))
+        $("body").on("click",".confirm-buttons .btn_cancel",function(){
+            $(".confirm_bg").remove();
+            if(cancelFn){
+                cancelFn()
+            }
+        });
+        $("body").on("click",".confirm-buttons .btn_sure",function(){
+            $(".confirm_bg").remove();
+            if(sureFn){
+                sureFn(num,strategyId)
+            }
+        });
+    }
+    function backPage(){
+        if(writeStrategyEvent.source == "web"){
+            window.history.go(-1)
+        }else {
+            window.Auction.back();
+        }
+    }
+    $('.tips').css({"top":"40%"});
+</script>
+</body>
+</html>

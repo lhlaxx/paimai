@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="utf-8">
+		<meta content="yes" name="apple-mobile-web-app-capable">
+		<meta content="yes" name="apple-touch-fullscreen">
+		<meta content="telephone=no,email=no" name="format-detection">
+		<meta name="Cache-Type" content='image/gif,image/png,image/jpg' />
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<title>拍卖</title>
+		<meta name="description" content="">
+		<meta name="keywords" content="index">
+		<meta name="renderer" content="webkit">
+		<meta http-equiv="Cache-Control" content="no-siteapp" />
+		<meta name="apple-mobile-web-app-title" content="" />
+		<script type="text/javascript" src="http://imgcdn.yz314.com/static/js/flexible.js"></script>
+		<script type="text/javascript" src="http://imgcdn.yz314.com/static/js/flexible_css.js"></script>
+		<link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+		<link rel="stylesheet" type="text/css" href="../../../static/css/tabs-vertical.css">
+		<link rel="stylesheet" type="text/css" href="http://imgcdn.yz314.com/static/css/dropload.css">
+	</head>
+
+	<body>
+		<div class="navbar">
+			<h1>商品列表</h1>
+		</div>
+		<div class="tabs-vertical">
+			<div class="tabs-left" style="float:left">
+				<ul>
+
+				</ul>
+			</div>
+			<div class="tabs-content-placeholder goodslistContent">
+
+			</div>
+
+		</div>
+		<!--<script type="text/javascript" src="http://imgcdn.yz314.com/static/js/jquery-1.12.3.min.js"></script>-->
+		<script type="text/javascript" src="http://imgcdn.yz314.com/static/js/zepto.min.js"></script>
+		<script type="text/javascript" src="http://imgcdn.yz314.com/static/js/fx.js"></script>
+		<script src="http://imgcdn.yz314.com/static/js/dropload.min.js"></script>
+		<script type="text/javascript" src="http://imgcdn.yz314.com/static/js/store-json2.min.js"></script>
+		<script type="text/javascript" src="http://imgcdn.yz314.com/static/js/AppHelper.js"></script>
+		<script type="text/javascript" src="http://imgcdn.yz314.com/static/js/MobileDetect.js"></script>
+		
+		<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+		
+		<script type="text/javascript">
+			$(".tabs-content-placeholder").on("click", ".cat .goodsAuction a", function() {
+				var pageUrl = $(this).attr("data-href");
+				window.Auction.openUrl(pageUrl);
+			})
+			var host = myObject.host;
+			var channel = AppHelper.YzAppGetChannel();
+			var verCode = AppHelper.YzAppGetVerCode();
+			var openid = store.get('openid');
+			var uuid = AppHelper.YzAppGetUUID();
+
+			var marginTop = 0.5 * ($(window).height() - $(".navbar").height() - $(window).width() * 0.3);
+			var tabheight = $(window).height() - $(".navbar").height();
+			//$(".tabs-left").css("height",tabheight);
+			//$(".tabs-vertical .tabs-content-placeholder").css("height",tabheight);
+			var clock = "";
+			var lefttime = "";
+
+			var test = [];
+
+			$(".tabs-content-placeholder").on("click", ".goodsAuction_bidding", function() {
+				//统计——点击竞拍数
+				var Op = "",
+					clickJson = "";
+				Op = {
+					"ot": "3"
+				};
+				clickJson = {
+					"actionId": 5,
+					"uuid": AppHelper.YzAppGetUUID(),
+					"openId": openid,
+					"ident": "100016",
+					"date": parseInt(new Date().getTime() / 1000),
+					"name": "点击竞拍数"
+				};
+				myObject.addStatisticsEvent(Op, clickJson);
+			})
+
+			$(".tabs-content-placeholder").on("click", ".goodsAuction a", function() {
+				var leftnum = $(".tabs-left li a.tab-active").data('index');
+				var leftnum = parseInt(leftnum) + 1;
+				var rightnum = parseInt($(this).parent().index());
+				var rightnum = rightnum + 1;
+				if(leftnum < 10) {
+					leftnum = "0" + leftnum;
+				}
+				if(rightnum < 10) {
+					rightnum = "00" + rightnum;
+				} else if((rightnum >= 10) && (rightnum <= 99)) {
+					rightnum = "0" + rightnum;
+				}
+				console.log(leftnum);
+				console.log(rightnum);
+				var btnName = $(this).find(".goodsAuction_name").html();
+				var extra = {
+					"btnName": btnName,
+					"position": "04" + leftnum + rightnum
+				}
+				console.log(extra);
+				var Op = "",
+					clickJson = "";
+				Op = {
+					"ot": "3"
+				};
+				clickJson = {
+					"actionId": 5,
+					"uuid": AppHelper.YzAppGetUUID(),
+					"openId": openid,
+					"ident": "100016",
+					"date": parseInt(new Date().getTime() / 1000),
+					"name": "点击商品列表右侧商品",
+					"extra": extra
+				};
+				myObject.addStatisticsEvent(Op, clickJson);
+			})
+		</script>
+		<script type="text/javascript" src="../../../src/js/data2.js"></script>
+	</body>
+
+</html>

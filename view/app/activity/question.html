@@ -1,0 +1,962 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="拍卖">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+    <style>
+.div_question,.div_question_
+{  
+    
+    padding:0.4rem 0.4rem 0.1rem 0.4rem; 
+    clear:both;
+    width:100%;
+    box-sizing:border-box;
+    height:auto;
+    font-size:0.4rem
+}
+.surveydescription img,.div_title_page_question img,.div_question img,.div_question_ img
+{
+    max-width:100%;
+    overflow:hidden;
+}
+
+.div_topic_page_question{
+    padding-top:1px;
+    font-weight:bold;
+}
+.div_title_question_all{
+    padding-top:2px;
+    
+    color:#444444;
+     font-weight:bold;
+    height:auto;
+    line-height:20px;
+}
+.div_table_question{
+ float:right;
+ display:block;
+ margin-bottom:4px;
+ height:25px;
+ clear:both;
+}
+.div_table_question_hide
+{
+    display:none;
+}
+
+.div_table_radio_question{
+   clear:both;
+}
+.div_title_question select,.div_table_radio_question select {
+ height:28px; line-height:20px;padding:3px 6px;border: solid 1px #d5d5d5;
+      appearance:none;-moz-appearance:none;-webkit-appearance:none;background: url("/images/arrow.png") no-repeat scroll right center #ffffff;
+      padding-right: 14px;vertical-align: middle; 
+    padding-right:3px\0;background:#ffffff\0;max-width:680px;
+}
+.div_table_radio_question .inputtext
+{
+    line-height:22px;
+    height:22px;
+    
+}
+.div_title_question .underline,.div_title_question .inputtext {
+   
+}
+.div_table_clear_top
+{
+    clear:both;
+    margin-top:4px;
+}
+.div_table_clear_bottom
+{
+    clear:both;
+    margin-bottom:10px;
+}
+.div_table_radio_question li
+{
+ float:left;
+ list-style-type:none;
+}
+.ulradiocheck li,.ulradiocheck_ li{
+  line-height:0.4rem;
+  position:relative;
+  width: 100%;
+  padding:0.1rem 0;
+}
+.ulradiocheck li input,.ulradiocheck_ li input,
+{
+    position:absolute; 
+}
+.ulradiocheck li label,.ulradiocheck_ li label
+{
+    display: inline-block;
+    vertical-align: middle;
+    margin-left: 0.6rem;
+    line-height: 0.6rem;
+}
+tr.labelname
+{
+    background:#f9f9f9;
+}
+tr.labelname b
+{
+    color:#666;font-size:16px;
+}
+.div_ins_question
+{
+ padding-top:8px; 
+ color:#666666;
+ padding-left:20px;
+ line-height:18px;
+ clear:both;
+}
+.option 
+{
+    background-color:#cdd7cc;
+}
+.jqRadio {
+    background: transparent url(../../../static/img/activity/radio1.png) no-repeat;
+    vertical-align: middle;
+    height: 0.426667rem;
+    width: 0.453333rem;
+    display: inline-block;
+    position: absolute;
+    background-size: 100%;
+    margin-top: 0.086667rem;
+}
+.jqChecked {
+    background: transparent url(../../../static/img/activity/radio2.png) no-repeat;
+    background-size: 100%;
+}
+.div_title_question{
+    font-size: 0.4rem;
+    line-height: 0.6rem;
+}
+.button{
+    font-size: 0.4rem;
+    padding: 0.2rem;
+    border-radius: 0.266667rem;
+    color: #fff;
+    background: #4698fd;
+    font-weight: bold;
+    margin: 0.4rem 0.4rem;
+    padding: 0.2rem 0;
+    text-align: center;
+}
+.tipBox{width: 100%;height: 100%;position: fixed;background: rgba(0,0,0,0.5);top:0;display: none}
+.tipBox_inner{width: 8rem;background: #fff;border-radius: 0.266667rem;top: 50%;position: absolute;left: 50%;margin-left: -4rem;margin-top: -1.85rem; }
+.tipBox_inner p{border-bottom:1px solid #eee;font-size: 0.4rem;font-weight: bold;line-height: 0.7rem;padding: 0.9rem 0.1rem 0.9rem 0.4rem;text-align:center;}
+.tipBox_inner>div{display:flex;display:-webkit-flex;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;}
+.tipBox_inner .go{display: inline-block;width: 50%;font-size: 0.4rem;color:#666;border-right:1px solid #eee;box-sizing:border-box;text-align: center;padding:0.4rem 0;}
+.tipBox_inner .continue{display: inline-block;width: 50%;color:#007aff;font-weight:bold;font-size: 0.4rem;text-align: center;padding:0.4rem 0;}
+.navbar{
+        background: #fff;
+        color:#000;
+        z-index:9999;
+    }
+    body{
+        background:#fff;
+    }
+    .main_question{
+        padding-top: 1.2rem;
+    }
+    .p1{
+        padding:0.4rem;
+        font-size: 0.4rem;
+        font-weight: bold;
+    }
+    .p2{
+        padding: 0.4rem;
+        font-size: 0.3rem;
+    }
+    html,body{
+        height: 100%;
+        width: 100%;
+    }
+    body{
+        padding-bottom: 0.6rem;
+        overflow-y: scroll;
+    }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a class="back"><img src="../../../static/img/activity/back_arrow.png"/></a>
+        <h1>问卷调查</h1>
+    </div>
+    <div class="main_question">
+    <div class="p1">悬赏调研，填写完整并被小极采纳，将获得“极速拍卖”的神秘奖励哦！</div>
+    <div class="question div_question" id="div1" data-id="A1001">
+        <div class="div_title_question_all">
+            <div  class="div_title_question">1.您是从哪里知道“极速拍卖”的？</div>
+            <div class="div_table_radio_question" id="divquestion1">
+                <div class="div_table_clear_top"></div>
+                <ul class="ulradiocheck">
+                    <li><a href="javascript:" class="jqRadio" rel="q1_1" data-answerid="A01"></a>
+                        <input style="display:none;" type="radio" name="q1" id="q1_1" value="1"><label for="q1_1">朋友推荐</label>
+                    </li>
+                    <li><a href="javascript:" class="jqRadio" rel="q1_2" data-answerid="A02"></a><input style="display:none;" type="radio" name="q1" id="q1_2" value="2"><label for="q1_2">榜单</label>
+                    </li>
+                    <li><a href="javascript:" class="jqRadio" rel="q1_3" data-answerid="A03"></a><input style="display:none;" type="radio" name="q1" id="q1_3" value="3"><label for="q1_3">微信</label>
+                    </li>
+                    <li><a href="javascript:" class="jqRadio" rel="q1_4" data-answerid="A04"></a><input style="display:none;" type="radio" name="q1" id="q1_4" value="4"><label for="q1_4">微博</label>
+                    </li>
+                    <li><a href="javascript:" class="jqRadio" rel="q1_5" data-answerid="A05"></a><input style="display:none;" type="radio" name="q1" id="q1_5" value="5"><label for="q1_5">应用市场</label>
+                    </li>
+                    <li><a href="javascript:" class="jqRadio" rel="q1_6" data-answerid="A06"></a><input style="display:none;" type="radio" name="q1" id="q1_6" value="6"><label for="q1_6">论坛</label>
+                    </li>
+                    <li><a href="javascript:" class="jqRadio jqRadioInput" rel="q1_7" data-answerid="B07"></a><input style="display:none;" type="radio" name="q1" id="q1_7" value="7"><label for="q1_7" >其他</label>
+                        <input type="text" style="inline-block;line-height:0.4rem;border:none;border-bottom:1px solid #ccc;margin-left:0.2rem;margin-top:0.1rem;background:#fff" placeholder="请输入" maxLength="20" disabled="disabled" class="jqRadioInput_"></input>
+                    </li>
+                    <div style="clear:both;"></div>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="div_table_clear_bottom"></div>
+            </div>
+        </div>
+    </div>
+    <div class="question div_question" id="div2" data-id="A1002">
+        <div class="div_title_question_all">
+            <div class="div_title_question">2.您的性别是？</div>
+            <div class="div_table_radio_question" id="divquestion2">
+                <div class="div_table_clear_top"></div>
+                <ul class="ulradiocheck">
+                    <li><a href="javascript:" class="jqRadio" rel="q2_1" data-answerid="A01"></a>
+                        <input style="display:none;" type="radio" name="q2" id="q2_1" value="1"><label for="q2_1">男</label>
+                    </li>
+                    <li><a href="javascript:" class="jqRadio" rel="q2_2" data-answerid="A02"></a><input style="display:none;" type="radio" name="q2" id="q2_2" value="2"><label for="q2_2">女</label>
+                    </li>
+                    
+                    <div style="clear:both;"></div>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="div_table_clear_bottom"></div>
+            </div>
+        </div>
+    </div>    
+    <div class="question div_question" id="div3" data-id="A1003">
+        <div class="div_title_question_all">
+            <div class="div_title_question">3.您的年龄是？</div>
+            <div class="div_table_radio_question" id="divquestion3">
+                <div class="div_table_clear_top"></div>
+                <ul class="ulradiocheck">
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q3_1" data-answerid="A01"></a>
+                        <input style="display:none;" type="radio" name="q3" id="q3_1" value="1">
+                        <label for="q3_1">16岁以下</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q3_2" data-answerid="A02"></a>
+                        <input style="display:none;" type="radio" name="q3" id="q3_2" value="2">
+                        <label for="q3_2">16岁-19岁</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q3_3" data-answerid="A03"></a>
+                        <input style="display:none;" type="radio" name="q3" id="q3_3" value="3">
+                        <label for="q3_3">20岁-22岁</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q3_4" data-answerid="A04"></a>
+                        <input style="display:none;" type="radio" name="q3" id="q3_4" value="4">
+                        <label for="q3_4">23岁-26岁</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q3_5" data-answerid="A05"></a>
+                        <input style="display:none;" type="radio" name="q3" id="q3_5" value="5">
+                        <label for="q3_5">27岁-29岁</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q3_6" data-answerid="A06"></a>
+                        <input style="display:none;" type="radio" name="q3" id="q3_6" value="6">
+                        <label for="q3_6">30岁-35岁</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q3_7" data-answerid="A07"></a>
+                        <input style="display:none;" type="radio" name="q3" id="q3_7" value="7">
+                        <label for="q3_7">36岁-40岁</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q3_8" data-answerid="A08"></a>
+                        <input style="display:none;" type="radio" name="q3" id="q3_8" value="8">
+                        <label for="q3_8">41岁-50岁</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q3_9" data-answerid="A09"></a>
+                        <input style="display:none;" type="radio" name="q3" id="q3_9" value="9">
+                        <label for="q3_9">51岁以上</label>
+                    </li>
+                    <div style="clear:both;"></div>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="div_table_clear_bottom"></div>
+            </div>
+        </div>
+    </div>
+    <div class="question div_question" id="div4" data-id="A1004">
+        <div class="div_title_question_all">
+            <div  class="div_title_question">4.您当前的职业是？</div>
+            <div class="div_table_radio_question" id="divquestion4">
+                <div class="div_table_clear_top"></div>
+                <ul class="ulradiocheck">
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q4_1" data-answerid="A01"></a>
+                        <input style="display:none;" type="radio" name="q4" id="q4_1" value="1">
+                        <label for="q4_1">学生</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q4_2" data-answerid="A02"></a>
+                        <input style="display:none;" type="radio" name="q4" id="q4_2" value="2">
+                        <label for="q4_2">企业员工</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q4_3" data-answerid="A03"></a>
+                        <input style="display:none;" type="radio" name="q4" id="q4_3" value="3">
+                        <label for="q4_3">公职人员</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q4_4" data-answerid="A04"></a>
+                        <input style="display:none;" type="radio" name="q4" id="q4_4" value="4">
+                        <label for="q4_4">私营业主及个体户</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q4_5" data-answerid="A05"></a>
+                        <input style="display:none;" type="radio" name="q4" id="q4_5" value="5">
+                        <label for="q4_5">无</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio jqRadioInput" rel="q4_6" data-answerid="B06"></a><input style="display:none;" type="radio" name="q4" id="q4_6" value="6"><label for="q4_6" >其他</label>
+                        <input type="text" style="inline-block;line-height:0.4rem;border:none;border-bottom:1px solid #ccc;margin-left:0.2rem;margin-top:0.1rem;background:#fff" placeholder="请输入" maxLength="20" disabled="disabled" class="jqRadioInput_"></input>
+                    </li>
+                    <div style="clear:both;"></div>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="div_table_clear_bottom"></div>
+            </div>
+        </div>
+    </div>
+    <div class="question div_question" id="div5" data-id="A1005">
+        <div class="div_title_question_all">
+            <div class="div_title_question">5.您最常用的通讯工具是？</div>   
+            <div class="div_table_radio_question" id="divquestion5">
+                <div class="div_table_clear_top"></div>
+                <ul class="ulradiocheck">
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q5_1" data-answerid="A01"></a>
+                        <input style="display:none;" type="radio" name="q5" id="q5_1" value="1">
+                        <label for="q5_1">微信</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q5_2" data-answerid="A02"></a>
+                        <input style="display:none;" type="radio" name="q5" id="q5_2" value="2">
+                        <label for="q5_2">QQ</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q5_3" data-answerid="A03"></a>
+                        <input style="display:none;" type="radio" name="q5" id="q5_3" value="3">
+                        <label for="q5_3">微博</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q5_4" data-answerid="A04"></a>
+                        <input style="display:none;" type="radio" name="q5" id="q5_4" value="4">
+                        <label for="q5_4">微信和QQ都经常用</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio jqRadioInput" rel="q5_5" data-answerid="B05"></a><input style="display:none;" type="radio" name="q5" id="q5_5" value="5"><label for="q5_5" >其他</label>
+                        <input type="text" style="inline-block;line-height:0.4rem;border:none;border-bottom:1px solid #ccc;margin-left:0.2rem;margin-top:0.1rem;background:#fff" placeholder="请输入" maxLength="20" disabled="disabled" class="jqRadioInput_"></input>
+                    </li>
+                    <div style="clear:both;"></div>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="div_table_clear_bottom"></div>
+            </div>
+        </div>
+    </div> 
+    <div class="question div_question" id="div6" data-id="A1006">
+        <div class="div_title_question_all">
+            <div class="div_title_question">6.您是否知道如何去竞拍商品？（可在首页帮助中查看教程）？</div>  
+            <div class="div_table_radio_question" id="divquestion6">
+                <div class="div_table_clear_top"></div>
+                <ul class="ulradiocheck">
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q6_1" data-answerid="A01"></a>
+                        <input style="display:none;" type="radio" name="q6" id="q6_1" value="1">
+                        <label for="q6_1">知道</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q6_2" data-answerid="A02"></a>
+                        <input style="display:none;" type="radio" name="q6" id="q6_2" value="2">
+                        <label for="q6_2">不知道</label>
+                    </li>
+                    <div style="clear:both;"></div>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="div_table_clear_bottom"></div>
+            </div>
+        </div>
+    </div>
+    <div class="question div_question" id="div7" data-id="A1007">
+        <div class="div_title_question_all">
+            <div class="div_title_question">7.下面哪些会是您不参与竞拍的原因呢？</div>
+            <div class="div_table_radio_question" id="divquestion7">
+                <div class="div_table_clear_top"></div>
+                <ul class="ulradiocheck">
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q7_1" data-answerid="A01"></a>
+                        <input style="display:none;" type="radio" name="q7" id="q7_1" value="1">
+                        <label for="q7_1">不了解竞拍规则</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q7_2" data-answerid="A02"></a>
+                        <input style="display:none;" type="radio" name="q7" id="q7_2" value="2">
+                        <label for="q7_2">对商品不感冒，不喜欢</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q7_3" data-answerid="A03"></a>
+                        <input style="display:none;" type="radio" name="q7" id="q7_3" value="3">
+                        <label for="q7_3">商品价值太低，不够吸引</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q7_4" data-answerid="A04"></a>
+                        <input style="display:none;" type="radio" name="q7" id="q7_4" value="4">
+                        <label for="q7_4">商品价值太高，竞拍时间太长</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q7_5" data-answerid="A05"></a>
+                        <input style="display:none;" type="radio" name="q7" id="q7_5" value="5">
+                        <label for="q7_5">竞拍需要时间去守候，太浪费时间</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio jqRadioInput" rel="q7_6" data-answerid="B06"></a><input style="display:none;" type="radio" name="q7" id="q7_6" value="6"><label for="q7_6" >其他</label>
+                        <input type="text" style="inline-block;line-height:0.4rem;border:none;border-bottom:1px solid #ccc;margin-left:0.2rem;margin-top:0.1rem;background:#fff" placeholder="请输入" maxLength="20" disabled="disabled" class="jqRadioInput_"></input>
+                    </li>
+                    <div style="clear:both;"></div>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="div_table_clear_bottom"></div>
+            </div>
+        </div>
+    </div>
+    <div class="question div_question" id="div8" data-id="A1008">
+        <div class="div_title_question_all">
+            <div class="div_title_question">8.您比较喜欢竞拍哪类商品？（可多选）</div> 
+            <div class="div_table_radio_question" id="divquestion8">
+                <div class="div_table_clear_top"></div>
+                <ul class="ulradiocheck_">
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q8_1" data-answerid="A01"></a>
+                        <input style="display:none;" type="radio" name="q8" id="q8_1" value="1">
+                        <label for="q8_1">苹果产品</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q8_2" data-answerid="A02"></a>
+                        <input style="display:none;" type="radio" name="q8" id="q8_2" value="2">
+                        <label for="q8_2">手机</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q8_3" data-answerid="A03"></a>
+                        <input style="display:none;" type="radio" name="q8" id="q8_3" value="3">
+                        <label for="q8_3">电脑</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q8_4" data-answerid="A04"></a>
+                        <input style="display:none;" type="radio" name="q8" id="q8_4" value="4">
+                        <label for="q8_4">充值卡</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q8_5" data-answerid="A05"></a>
+                        <input style="display:none;" type="radio" name="q8" id="q8_5" value="5">
+                        <label for="q8_5">电子产品</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q8_6" data-answerid="A06"></a>
+                        <input style="display:none;" type="radio" name="q8" id="q8_6" value="6">
+                        <label for="q8_6">家用电器</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q8_7" data-answerid="A07"></a>
+                        <input style="display:none;" type="radio" name="q8" id="q8_7" value="7">
+                        <label for="q8_7">首饰饰品</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q8_8" data-answerid="A08"></a>
+                        <input style="display:none;" type="radio" name="q8" id="q8_8" value="8">
+                        <label for="q8_8">休闲小食</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio jqRadioInput" rel="q8_9" data-answerid="B09"></a><input style="display:none;" type="radio" name="q8" id="q8_9" value="9"><label for="q8_9" >其他</label>
+                        <input type="text" style="inline-block;line-height:0.4rem;border:none;border-bottom:1px solid #ccc;margin-left:0.2rem;margin-top:0.1rem;background:#fff" placeholder="请输入" maxLength="20" disabled="disabled" class="jqRadioInput_"></input>
+                    </li>
+                    <div style="clear:both;"></div>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="div_table_clear_bottom"></div>
+            </div>
+        </div>
+    </div>
+    <div class="question div_question" id="div9" data-id="A1009">
+        <div class="div_title_question_all">
+            <div class="div_title_question">9.您觉得增加以下哪些功能会让你更喜欢竞拍？（可多选）</div>
+            <div class="div_table_radio_question" id="divquestion9">
+                <div class="div_table_clear_top"></div>
+                <ul class="ulradiocheck_">
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q9_1" data-answerid="A01"></a>
+                        <input style="display:none;" type="radio" name="q9" id="q9_1" value="1">
+                        <label for="q9_1">充值优惠</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q9_2" data-answerid="A02"></a>
+                        <input style="display:none;" type="radio" name="q9" id="q9_2" value="2">
+                        <label for="q9_2">分享给好友，有收益</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q9_3" data-answerid="A03"></a>
+                        <input style="display:none;" type="radio" name="q9" id="q9_3" value="3">
+                        <label for="q9_3">不中就赔</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q9_4" data-answerid="A04"></a>
+                        <input style="display:none;" type="radio" name="q9" id="q9_4" value="4">
+                        <label for="q9_4">收藏功能（可以收藏您喜欢的商品，实时知道商品的竞拍进度）</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q9_5" data-answerid="A05"></a>
+                        <input style="display:none;" type="radio" name="q9" id="q9_5" value="5">
+                        <label for="q9_5">差价购买（当您竞拍失败后，可以用返还的部分拍币抵扣该期商品的市场价格购买）</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio jqRadioInput" rel="q9_6" data-answerid="B06"></a><input style="display:none;" type="radio" name="q9" id="q9_6" value="6"><label for="q9_6" >其他</label>
+                        <input type="text" style="inline-block;line-height:0.4rem;border:none;border-bottom:1px solid #ccc;margin-left:0.2rem;margin-top:0.1rem;background:#fff" placeholder="请输入" maxLength="20" disabled="disabled" class="jqRadioInput_"></input>
+                    </li>
+                    <div style="clear:both;"></div>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="div_table_clear_bottom"></div>
+            </div>
+        </div>
+    </div>
+    <div class="question div_question" id="div10" data-id="A1010">
+        <div class="div_title_question_all">
+            <div class="div_title_question">10.您觉得极速拍卖给你带来了什么？</div>  
+            <div class="div_table_radio_question" id="divquestion10">
+                <div class="div_table_clear_top"></div>
+                <ul class="ulradiocheck">
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q10_1" data-answerid="A01"></a>
+                        <input style="display:none;" type="radio" name="q10" id="q10_1" value="1">
+                        <label for="q10_1">节省我购物的价格</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q10_2" data-answerid="A02"></a>
+                        <input style="display:none;" type="radio" name="q10" id="q10_2" value="2">
+                        <label for="q10_2">竞拍的刺激感</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q10_3" data-answerid="A03"></a>
+                        <input style="display:none;" type="radio" name="q10" id="q10_3" value="3">
+                        <label for="q10_3">获得想要的商品</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q10_4" data-answerid="A04"></a>
+                        <input style="display:none;" type="radio" name="q10" id="q10_4" value="4">
+                        <label for="q10_4">和朋友交流的话题</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio jqRadioInput" rel="q10_5" data-answerid="B05"></a><input style="display:none;" type="radio" name="q10" id="q10_5" value="5"><label for="q10_5">其他</label>
+                        <input type="text" style="inline-block;line-height:0.4rem;border:none;border-bottom:1px solid #ccc;margin-left:0.2rem;margin-top:0.1rem;background:#fff" placeholder="请输入" maxLength="20" disabled="disabled" class="jqRadioInput_"></input>
+                    </li>
+                    <div style="clear:both;"></div>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="div_table_clear_bottom"></div>
+            </div>
+        </div>
+    </div>
+    <div class="question div_question" id="div11" data-id="A1011">
+        <div class="div_title_question_all">
+            <div class="div_title_question">11.您第一眼看到极速拍卖的标识（logo），有什么感觉？</div>
+            <div class="div_table_radio_question" id="divquestion11">
+                <div class="div_table_clear_top"></div>
+                <ul class="ulradiocheck">
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q11_1" data-answerid="A01"></a>
+                        <input style="display:none;" type="radio" name="q11" id="q11_1" value="1">
+                        <label for="q11_1">公正公平</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q11_2" data-answerid="A02"></a>
+                        <input style="display:none;" type="radio" name="q11" id="q11_2" value="2">
+                        <label for="q11_2">严肃认真</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio jqRadioInput" rel="q11_3" data-answerid="B03"></a><input style="display:none;" type="radio" name="q11" id="q11_3" value="3"><label for="q11_3" >其他</label>
+                        <input type="text" style="inline-block;line-height:0.4rem;border:none;border-bottom:1px solid #ccc;margin-left:0.2rem;margin-top:0.1rem;background:#fff" placeholder="请输入" maxLength="20" disabled="disabled" class="jqRadioInput_"></input>
+                    </li>
+                    <div style="clear:both;"></div>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="div_table_clear_bottom"></div>
+            </div>
+        </div>
+    </div>
+    <div class="question div_question" id="div12" data-id="A1012">
+        <div class="div_title_question_all">
+            <div class="div_title_question">12.您之前是否接触过类似的产品/APP？</div>
+            <div class="div_table_radio_question" id="divquestion12">
+                <div class="div_table_clear_top"></div>
+                <ul class="ulradiocheck">
+                    <li>
+                        <a href="javascript:" class="jqRadio jqRadioInput" rel="q12_1" data-answerid="B01"></a><input style="display:none;" type="radio" name="q12" id="q12_1" value="1"><label for="q12_1" >有,</label>
+                        <input type="text" style="inline-block;line-height:0.4rem;border:none;border-bottom:1px solid #ccc;margin-left:0.2rem;margin-top:0.1rem;background:#fff" placeholder="请输入" maxLength="20" disabled="disabled" class="jqRadioInput_"></input>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q12_2" data-answerid="A02"></a>
+                        <input style="display:none;" type="radio" name="q12" id="q12_2" value="2">
+                        <label for="q12_2">没有</label>
+                    </li>
+                    <div style="clear:both;"></div>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="div_table_clear_bottom"></div>
+            </div>
+        </div>
+    </div>
+    <div class="question div_question" id="div13" data-id="A1013">
+        <div class="div_title_question_all">
+            <div  class="div_title_question">13.您是否愿意愿意把极速拍卖分享给亲朋好友？</div>
+            <div class="div_table_radio_question" id="divquestion13">
+                <div class="div_table_clear_top"></div>
+                <ul class="ulradiocheck">
+                    <li>
+                        <a href="javascript:" class="jqRadio" rel="q13_1" data-answerid="A01"></a>
+                        <input style="display:none;" type="radio" name="q13" id="q13_1" value="1">
+                        <label for="q13_1">愿意</label>
+                    </li>
+                    <li>
+                        <a href="javascript:" class="jqRadio jqRadioInput" rel="q13_2" data-answerid="B02"></a><input style="display:none;" type="radio" name="q13" id="q13_2" value="2"><label for="q13_2">不愿意，</label>
+                        <input type="text" style="inline-block;line-height:0.4rem;border:none;border-bottom:1px solid #ccc;margin-left:0.2rem;margin-top:0.1rem;background:#fff" placeholder="请输入" maxLength="20" disabled="disabled" class="jqRadioInput_"></input>
+                    </li>
+                    <div style="clear:both;"></div>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="div_table_clear_bottom"></div>
+            </div>
+        </div>
+    </div>
+    <div class="question div_question_" id="div14" data-id="A1014">
+        <div class="div_title_question_all">
+            <div class="div_title_question">14.您对极速拍卖有什么建议/想法？（选填）</div>  
+            <div class="div_table_radio_question" id="divquestion14">
+                <div class="div_table_clear_top"></div>
+                <ul class="ulradiocheck">
+                    <li>
+                        <textarea type="text" style="margin-top:0.1rem;width:100%;border:1px solid #ccc;height:2rem;" ></textarea >
+                    </li>
+                    <div style="clear:both;"></div>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="div_table_clear_bottom"></div>
+            </div>
+        </div>
+    </div>
+    <div class="question div_question_" id="div15" data-id="A1015">
+        <div class="div_title_question_all">
+            <div class="div_title_question">15.请填写您的手机号码，我们将联系此号码给您发奖（不填视为自动放弃奖品）（选填）</div>
+            <div class="div_table_radio_question" id="divquestion15">
+                <div class="div_table_clear_top"></div>
+                <ul class="ulradiocheck">
+                    <li>
+                        <textarea type="text" style="margin-top:0.1rem;width:100%;border:1px solid #ccc;height:2rem;" ></textarea >
+                    </li>
+                    <div style="clear:both;"></div>
+                </ul>
+                <div style="clear:both;"></div>
+                <div class="div_table_clear_bottom"></div>
+            </div>
+        </div>
+    </div>
+    <div class="p2">备注：“极速拍卖”已升级版本，新版本更名为“小易竞拍”，欢迎广大用户下载更新！</div>
+    </div>
+    <div class="tipBox">
+        <div class="tipBox_inner">
+            <p>您还有问题未填写，是否继续填写?</p>
+            <div>
+                <a class="go">提交</a>
+                <a class="continue">继续填写</a>
+            </div>
+        </div>
+    </div>
+    <div class="button" onclick="">提交</div>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script> 
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../static/js/ua-parser.min.js"></script>
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+    <script type="text/javascript">
+        var myObject=myObject;
+        var openid=store.get('openid');
+        $(".ulradiocheck li a").click(function(){
+            $(this).addClass("jqChecked");
+            $(this).parent().siblings().find("a").removeClass("jqChecked");
+            var className=$(this).attr("class");
+            console.log(className);
+            if(className.indexOf("jqRadioInput")>=0){
+                $(this).parent().find("input").attr("disabled",false);
+            }else{
+                $(this).parents(".ulradiocheck_").find(".jqRadioInput_").val("");
+            }
+        })
+        $(".ulradiocheck_ li a").click(function(){
+            var className=$(this).attr("class");
+            if(className.indexOf("jqChecked")>=0){
+                $(this).removeClass("jqChecked");
+            }else{
+               $(this).addClass("jqChecked");
+
+            }
+            if(className.indexOf("jqRadioInput")>=0){
+                $(this).parent().find("input").attr("disabled",false);
+            }else{
+               
+            }
+            if(className.indexOf("jqRadioInput")>=0&&className.indexOf("jqChecked")>=0){
+                $(this).parent().find("input").val("");
+                $(this).parent().find("input").attr("disabled",true);
+            }else{
+               
+            }
+        })
+        $(".button").click(function(){
+            
+
+            var flag=0;
+
+            $(".div_question").each(function(){
+                if($(this).html().indexOf("jqChecked")<0){
+                    $(".tipBox_inner p").html("您还有问题未填写，是否继续填写?");
+                    $(".tipBox .go").html("提交");
+                    $(".tipBox").show();
+                    return false
+                }else{
+                    flag=flag+1;
+                }
+            })
+           
+            if(flag==13){
+                submit();
+                myObject.alert("提交成功");
+                setTimeout(function(){
+                    window.Auction.back();
+                },1500)
+            }
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100316",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"问卷调查页面点击提交"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+        })
+        $(".continue").click(function(){
+            $(".tipBox").hide();
+        })
+        $(".go").click(function(){
+            $(".div_question").each(function(){
+                if($(this).html().indexOf("jqChecked")>=0){
+                    submit();
+                    return false
+                } 
+            }) 
+            $(".tipBox").hide();
+            if($(".go").html()=="提交"){
+                myObject.alert("提交成功!");
+                setTimeout(function(){
+                    window.Auction.back();
+                },1500)
+            }else{
+                window.Auction.back();
+            }
+            
+        })
+        
+
+
+        
+
+        $(".back").click(function(){
+            var flag=0;
+
+            $(".div_question").each(function(){
+                if($(this).html().indexOf("jqChecked")<0){
+                    $(".tipBox_inner p").html("您还有问题未填写，是否继续退出?");
+                    $(".tipBox .go").html("退出");
+                    $(".tipBox").show();
+                    return false
+                }else{
+                    flag=flag+1;
+                }
+            })
+            if(flag==13){
+                submit();
+                setTimeout(function(){
+                    window.Auction.back();
+                },200)
+                
+            }
+
+        })
+        function submit(){
+            
+            var list=[];
+            $(".question").each(function(){
+                var ident=$(this).data("id");
+                var question=$(this).find(".div_title_question").html();
+                var type;
+                if($(this).attr("class").indexOf("div_question_")<0){//是选择题
+                    var s1=$(this).html();
+                    if(s1.indexOf("jqChecked")>0){//有选项
+                        var ulclass=$(this).find("ul").attr("class");
+                        if(ulclass.indexOf("ulradiocheck_")>=0){//是多选题
+                            var ullength=$(this).find("li").length;
+                            var answer="";
+                            var answerId="";
+                            var result=[];
+                            for(var i=0;i<ullength;i++){
+                                var liclass=$(this).find("li").eq(i).find("a").attr("class");
+                                console.log(liclass);
+                                if(liclass.indexOf("jqChecked")>=0){
+                                    answerId=$(this).find("li").eq(i).find("a").data("answerid");
+                                    if($(this).find("li").eq(i).find("a").attr("class").indexOf("jqRadioInput")>=0){//有填空
+                                        answer=$(this).find("li").eq(i).find("label").html()+","+$(this).find("li").eq(i).find(".jqRadioInput_").val();
+                                       
+                                    }else{
+                                        answer=$(this).find("li").eq(i).find("label").html();
+                                    }
+                                    var resultjson={
+                                    "answer":answer,
+                                    "answerId":answerId,
+                                    }
+
+                                    result.push(resultjson)
+
+                                }
+                                
+
+                            }
+                            
+                        }else{//是单选题
+                            if($(this).find(".jqChecked").attr("class").indexOf("jqRadioInput")>=0){//有填空
+                                var answer=$(this).find(".jqChecked").parent().find("label").html();
+
+                                answer=answer+$(this).find(".jqRadioInput_").val();
+                                console.log($(this).find(".jqRadioInput_").val());
+                                console.log(answer);
+                            }else{
+                                var answer=$(this).find(".jqChecked").parent().find("label").html();
+                            }
+                            var answerId=$(this).find(".jqChecked").data("answerid");
+                            console.log(answerId);
+                            var result={
+                                "answer":answer,
+                                "answerId":answerId,
+                            }
+                        }    
+                    }else{
+                        var result={
+                        "answer":"",
+                        "answerId":"",
+                        }
+                    }
+                    
+                }else{//是填空题
+                    var answer=$(this).find("textarea").val();
+                    console.log(answer);
+                    
+                    var result={
+                        "answer":answer,
+                        "answerId":"B01",
+                    }
+                }
+                
+                if($(this).html().indexOf("jqChecked")>=0){
+                    if($(this).find("ul").attr("class").indexOf("ulradiocheck_")>=0){
+                        type="1";
+                    }else{
+                        type="0"
+                    }
+                }else{
+                    if(($(this).attr("class").indexOf("div_question_")>=0)&&($(this).find("textarea").val()!="")){
+                        type="2"
+                    }else{
+                        type="3"
+                    }
+                }
+                
+                console.log(ident);
+                console.log(question);
+                var jsonhtml={
+                    "ident":ident,
+                    "question":question,
+                    "result":JSON.stringify(result),
+                    "type":type
+                }
+                list.push(jsonhtml);
+            })
+            console.log(list); 
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":"14",
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "date":parseInt(new Date().getTime() / 1000),
+                "data":list
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+
+        }
+
+
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":3,
+            "uuid":AppHelper.YzAppGetUUID(),
+            "openId":openid,
+            "ident":"100315",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"问卷调查页面到达"
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+    </script> 
+        
+    
+</body>
+</html>
+
+    

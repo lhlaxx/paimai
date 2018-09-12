@@ -1,0 +1,285 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <meta name="viewport" content="initial-scale=1, maximum-scale=1">
+    <script src="../../../static/js/flexible_css.js"></script>
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/css/greatlist.css"/>
+    <style>
+        .pull-right{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<div class="page-group">
+    <div class="page  page-current" id="router">
+        <header>
+            <div class="back_arrow"></div>
+            <h2>大神榜</h2>
+        </header>
+        <div class="container">
+            <div class="container-title">
+                <input class="see-the-past see-the-past-input" value="">
+                <img class="see-the-past-btn" src="../../../static/img/strategy/past-btn.png">
+                <!--<img src="" class="see-the-past-btn"/>-->
+            </div>
+            <div class="great-list">
+                <div class="great-list-title">
+                    <ul>
+                        <li>昵称</li>
+                        <li>中奖次数</li>
+                        <li>商品金额</li>
+                        <li>他的攻略</li>
+                    </ul>
+                    <p class="great-list-p">点击昵称可以查看该用户上周中奖商品</p>
+                </div>
+                <div class="great-list-wrapper">
+                    <ul>
+                        <!--<li class="great-list-item">-->
+                            <!--<div class="great-list-item-first">-->
+                                <!--<div class="user-name">许世通</div>-->
+                                <!--<div class="winning-count">1200</div>-->
+                                <!--<div class="goods-price">￥3000</div>-->
+                                <!--<div class="user-strategy">查看</div>-->
+                            <!--</div>-->
+                            <!--<div class="great-list-item-two">-->
+                                <!--<p class="last-user-goods-title">上周中奖部分商品展示</p>-->
+                                <!--<ul class="great-list-item-two-ul">-->
+                                    <!--<li class="great-list-item-two-item">-->
+                                        <!--<div class="goods-img"><img src="http://egoures.tt286.com/market/indiana/goods2016/11/22/ekpyon3ue0/1479784188197.png"></div>-->
+                                        <!--<div class="goods-info">-->
+                                            <!--<div class="goods-name">苹果77不打卡少部分机当时 </div>-->
+                                            <!--<div class="goods-win-time">2017-14515</div>-->
+                                        <!--</div>-->
+                                        <!--<div class="win-btn">我要中奖</div>-->
+                                    <!--</li>-->
+                                <!--</ul>-->
+                            <!--</div>-->
+                        <!--</li>-->
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/dropload.min.js"></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var greatListEvent = {
+        source:fnBase.getUrlPar("source"),
+        init:function(){
+            this.addMainClickEvent();
+            this.addIndexAjaxData();
+            this.addGetPastWeek()
+        },
+        addMainClickEvent:function(){
+            $(document).on("click",".back_arrow",function(){
+                if(greatListEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back();
+                }
+            });
+            $(document).on("click",".user-name",function(){
+                $(this).parent().siblings().toggle()
+            });
+            $(document).on("click",".user-strategy",function(){
+
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100264",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"大神榜查看大神攻略",
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+
+                fnBase.addLocationHref("perstrategy.html?source=web&openid="+$(this).attr("data-openid"))
+            });
+
+            $(document).on("click",".great-list-item-two-item",function(){
+                window.Auction.openUrl(fnBase.source_url+"/front/view/app/index/enterdetails.html?Baseid="+$(this).attr("data-base_id")+"&source=web")
+            });
+            $(document).on("click",".pull-right",function(){
+                var start_t='',stop_t='',inputData='',indexWeekArr;
+                inputData = $(".see-the-past").val();
+                indexWeekArr = greatListEvent.weekArr[greatListEvent.weekDate.indexOf(inputData)];
+                start_t = indexWeekArr.round_start;
+                stop_t = indexWeekArr.round_end;
+                console.log(indexWeekArr);
+                fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Godlist/godShow",{
+                    "start_t":start_t,
+                    "stop_t":stop_t
+                },function(res){
+                    greatListEvent.addListHtml(res.godList)
+                })
+            });
+        },
+        weekArr:[],
+        weekDate:[],
+        addIndexAjaxData:function(){
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Godlist/godShow",{
+
+            },function(res){
+                if(res.state == 1){
+                    for(var i= 0,len=res.weekArr.length;i<len;i++){
+                        greatListEvent.weekDate.push(res.weekArr[i].date)
+                    }
+                    $(".see-the-past").val(greatListEvent.weekDate[greatListEvent.weekDate.length-1]);
+                    greatListEvent.weekArr=res.weekArr;
+                    greatListEvent.addSetPickerEvent(greatListEvent.weekDate);
+                    greatListEvent.addListHtml(res.godList)
+                }else {
+                    fnBase.alert(res.msg)
+                }
+            })
+        },
+        addSetPickerEvent:function(weekDate){
+            $(".see-the-past-input").picker({
+                toolbarTemplate: '<header class="bar bar-nav">\
+                                <button class="button button-link pull-right close-picker">确定</button>\
+                                <h1 class="title">选择期数</h1>\
+                              </header>',
+                cols: [
+                    {
+                        textAlign: 'center',
+                        values: weekDate
+                    }
+                ]
+            });
+            $.init();
+        },
+        addGetPastWeek:function(){
+            $(document).on("click",".see-the-past-btn",function(){
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100263",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"点击查看往期大神榜单",
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+
+                $(".see-the-past-input").picker("open");
+
+
+            });
+        },
+        addListHtml:function(godList){
+            var greatList = "",greatListNum="",listLen = godList.length,lastList="",ifStrategy="",list_item_two_html="";
+            if(listLen > 0){
+                if(listLen >= 20){
+                    lastList = '<li class="scroller-pullUp">本榜只显示前20名，未上榜的继续努力</li>'
+                }
+                for(var i= 0,len=godList.length;i<len;i++){
+                    list_item_two_html="";
+                    if (i > 2){
+                        greatListNum = '<span class="great-list-num">'+(i+1)+'</span>'
+                    }
+                    console.log(godList[i].exist)
+                    if(godList[i].exist == "1"){
+                        ifStrategy = '<div class="user-strategy" data-openid="'+godList[i].openid+'">查看</div>'
+                    }else {
+                        ifStrategy = '<div class="no-strategy">暂无攻略</div>'
+                    }
+                    for(var j= 0,len_j=godList[i].goodsList.length;j<len_j;j++){
+                        list_item_two_html += '<li class="great-list-item-two-item" data-base_id="'+godList[i].goodsList[j].base_id+'" data-goodsId="'+godList[i].goodsList[j].goods_id+'">'
+                                            +           '<div class="goods-img"><img src="'+godList[i].goodsList[j].goodsPic+'"></div>'
+                                            +           '<div class="goods-info">'
+                                            +               '<div class="goods-name">'+godList[i].goodsList[j].name+'</div>'
+                                            +               '<div class="goods-win-time">'+godList[i].goodsList[j].win_t+'</div>'
+                                            +           '</div>'
+                                            +           '<div class="win-btn">我要中奖</div>'
+                                            +       '</li>'
+
+                    }
+                    greatList += '<li class="great-list-item">'
+                                    +'<div class="great-list-item-first">'
+                            +   greatListNum
+                            +   '<div class="user-name">'+godList[i].name+'</div>'
+                            +   '<div class="winning-count">'+godList[i].count+'</div>'
+                            +   '<div class="goods-price">￥'+godList[i].price+'</div>'
+                            +   ifStrategy
+                            +   '</div>'
+                            +'<div class="great-list-item-two">'
+                            +   '<p class="last-user-goods-title">上周中奖部分商品展示</p>'
+                            +   '<ul class="great-list-item-two-ul">'
+                            +         list_item_two_html
+                                    +   '</ul>'
+                                    +'</div>'
+                            +'</li>'
+                }
+                greatList += lastList;
+                $(".great-list-wrapper ul").html(greatList)
+            }
+        }
+    };
+    greatListEvent.init();
+
+
+    $("body").on('click','.see-the-past-input',function(){
+        var Op = "",clickJson = "";
+        clickJson={
+            "actionId":5,
+            "uuid":fnBase.UUID,
+            "openId":store.get('openid'),
+            "ident":"100263",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"点击查看往期大神榜单",
+        };
+        Op={
+            "ot":"3"
+        };
+        fnBase.addStatisticsEvent(Op,clickJson);
+    })
+    var Op = "",clickJson = "";
+    clickJson={
+        "actionId":3,
+        "uuid":fnBase.UUID,
+        "openId":store.get('openid'),
+        "ident":"100262",
+        "date":parseInt(new Date().getTime() / 1000),
+        "name":"排行榜页面到达",
+    };
+    Op={
+        "ot":"3"
+    };
+    fnBase.addStatisticsEvent(Op,clickJson);
+
+</script>
+</body>
+</html>

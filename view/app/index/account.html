@@ -1,0 +1,210 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/css/account.css"/>
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>账户明细</h2>
+</header>
+<div class="content" id="wrapper">
+    <div id="scroll">
+        <ul>
+            <!--<li class="list-item">-->
+            <!--<div class="list-item-l">-->
+            <!--<h3>参与竞大拍<span>(周生生d嘻寻寻寻寻d</span>)</h3>-->
+            <!--<p>2017-06-26<span>15:02:35</span></p>-->
+            <!--</div>-->
+            <!--<div class="list-item-r"><span>-5.00</span>拍币</div>-->
+            <!--</li>-->
+            <li class="list-none" style="display: none">
+                <img src="../../../static/img/account-none.png" alt=""/>
+                <p>暂无明细</p>
+            </li>
+        </ul>
+        <div id="PullUp" class="scroller-pullUp" style="display: none">
+            <span id="pullUp-msg" class="pull-up-msg">点击加载更多</span>
+        </div>
+    </div>
+</div>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/iscroll-probe.js"></script>
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+
+<script src="../../../src/js/util.js"></script>
+<script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+    var op = 'wx_89af34c5bd55965fa1549758';
+    var accountEvent = {
+        moneyState:1,
+        dataLength:0,
+        end:false,
+        lastId:0,
+        msg:"",
+        init:function(){
+            this.addBackEvent();
+            this.addMoreBtn();
+            this.addGetData(0)
+        },
+        addBackEvent:function(){
+            $(".back_arrow").click(function(){
+                window.Auction.back()
+            })
+        },
+        addGetData:function(lastId){
+            fnBase.loadShow();
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/User/getMyRecharge",{
+                openid:store.get('openid'),
+                lastId:lastId
+            }, function(res){
+                accountEvent.end = res.end;
+                accountEvent.lastId = res.lastId;
+                if(accountEvent.end){
+                    $("#pullUp-msg").html("无更多数据了！");
+                }
+                var statetext = "",moneyState = "",classState="", htmltext = "",msg="",titleHtml="";
+                var data = res.info;
+                if(data.length > 0){
+                    for (var i= 0,len = data.length; i<len;i++){
+                        accountEvent.msg = data[i].msg;
+                        statetext = accountEvent.addSetText(data[i].type);
+                        moneyState = accountEvent.moneyState?"+":"-";
+                        classState = accountEvent.moneyState?"list-item-r1":"list-item-r0";
+                        titleHtml = data[i].title?fnBase.addCutStrEvent(data[i].title,8):"这是标题";
+                        htmltext += '<li class="list-item">'
+                                +      '<div class="list-item-l">'
+                                +          '<h3>'+statetext+'<span>('+titleHtml+'</span>)</h3>'
+                                +          '<p>'+data[i].time+'</p>'
+                                +      '</div>'
+                                +      '<div class="list-item-r '+classState+'"><span>'+moneyState+data[i].money+'</span>拍币</div>'
+                                + '</li>'
+                    }
+                    $(".content ul").append(htmltext);
+                    if(data.length > 19 && lastId == 0){
+                        $("#PullUp").show();
+                    }
+                    setTimeout(function () {
+                        myScroll.refresh();
+                    }, 0);
+                }else {
+                    if(lastId == 0){
+                        $(".list-none").show()
+                    }
+                }
+            })
+        },
+        addGetData01:function(lastId){
+            fnBase.loadShow();
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/User/getMyRecharge",{
+                openid:op,
+                lastId:lastId
+            }, function(res){
+                accountEvent.end = res.end;
+                accountEvent.lastId = res.lastId;
+                if(accountEvent.end){
+                    $("#pullUp-msg").html("无更多数据了！");
+                }
+                var statetext = "",moneyState = "",classState="", htmltext = "",msg="";
+                var data = res.info;
+                if(data.length > 0){
+                    for (var i= 0,len = data.length; i<len;i++){
+                        accountEvent.msg = data[i].msg;
+                        statetext = accountEvent.addSetText(data[i].type);
+                        moneyState = accountEvent.moneyState?"+":"-";
+                        classState = accountEvent.moneyState?"list-item-r1":"list-item-r0";
+                        htmltext += '<li class="list-item">'
+                                +      '<div class="list-item-l">'
+                                +          '<h3>'+statetext+'<span>('+fnBase.addCutStrEvent(data[i].title,17)+'</span>)</h3>'
+                                +          '<p>'+data[i].time+'</p>'
+                                +      '</div>'
+                                +      '<div class="list-item-r '+classState+'"><span>'+moneyState+data[i].money+'</span>拍币</div>'
+                                + '</li>'
+                    }
+                    $(".content ul").append(htmltext);
+                    if(data.length > 19 && lastId == 0){
+                        $("#PullUp").show();
+                    }
+                }else {
+                    if(lastId == 0){
+                        $(".list-none").show()
+                    }
+                }
+            })
+        },
+        addSetText:function(type){
+            if(type == 0){
+                this.moneyState = 1;
+                return "充值"
+            }
+            if(type == 1){
+                this.moneyState = 0;
+                return "购买商品"
+            }
+            if(type == 2){
+                this.moneyState = 1;
+                if(browser.versions.ios){
+                    return "未抢中返还"
+                }else{
+                    return "未中标返还"
+                }
+                
+            }
+            if(type == 3 || type == 6){
+                this.moneyState = 1;
+                return accountEvent.msg
+            }
+            if(type == 5){
+                this.moneyState = 0;
+                return accountEvent.msg
+            }
+        },
+        addMoreBtn:function(){
+                $("body").on("myCustomTapEvent","#PullUp",function(){
+                    if(accountEvent.end){
+                        fnBase.alert("无更多数据了！")
+                    }else {
+                        accountEvent.addGetData(accountEvent.lastId);
+                        setTimeout(function () {
+                            myScroll.refresh();
+                        }, 0);
+                    }
+
+                })
+
+        }
+    };
+    accountEvent.init();
+
+    var myScroll = null;
+    myScroll = new IScroll('#wrapper', {
+        probeType: 3,
+        mouseWheel: true,
+        scrollbars: true,
+        preventDefault: true,
+        fadeScrollbars: true,
+        tap: 'myCustomTapEvent'
+    });
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+</script>
+</body>
+</html>

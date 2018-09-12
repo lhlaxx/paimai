@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+</head>
+<body>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/pingpp.js"></script>
+<script type="text/javascript" src="../../../static/js/AppHelper.js"></script> 
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+    var rechargeEvent={
+        json_dt:fnBase.getUrlPar("json_dt"),
+        diffAppScheme:fnBase.getUrlPar("diffAppScheme"),
+        init:function(){
+            console.log(JSON.parse(this.json_dt));
+            var json_dt = JSON.parse(this.json_dt);
+            pingpp.createPayment(json_dt, function(result, err){
+                                    console.log(result);
+                                    console.log(err.msg);
+                                    console.log(err.extra);
+                if (result == "success") {
+                    // 只有微信公众账号 wx_pub 支付成功的结果会在这里返回，其他的支付结果都会跳转到 extra 中对应的 URL。
+                } else if (result == "fail") {
+                    // charge 不正确或者微信公众账号支付失败时会在此处返回
+                } else if (result == "cancel") {
+                    // 微信公众账号支付取消支付
+                }
+            });
+        }
+    };
+    rechargeEvent.init();
+</script>
+</body>
+</html>

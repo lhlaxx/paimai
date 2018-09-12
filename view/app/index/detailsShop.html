@@ -1,0 +1,199 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <!--<link href="//cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="../../../static/css/swiper.min.css"/>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/css/details.css"/>
+    <link rel="stylesheet" href="../../../static/css/zan.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+    <style>
+        .price-wrap .price-wrap-l{
+            width: 70%;
+            float:left;
+        }
+        .price-wrap span{
+            font-size: 0.5rem;
+            height: 1.333334rem;
+            display: inline-block;
+            line-height: 1.333334rem;
+        }
+        .price-wrap .price-wrap-r{
+            width:30%;
+            float:right;
+            border:none;
+            padding-top:0;
+            border-bottom: 1px solid #fe4141;
+            border-top: 1px solid #fe4141;
+        }
+        footer .footer-r{
+            float:none;
+        }
+        .swiper-banner img {
+            margin: 0 auto;
+            display: block;
+        }
+        .swiper-banner{
+            background: #fff;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="back_arrow back_home"></div>
+    <h2  id="picker1">商品详情</h2>
+</header>
+<div class="fix-price-wrap"></div>
+<div class="content" id="content">
+    <div id="scroller">
+        <div class="swiper-container swiper-banner">
+        </div>
+        <div class="price-details">
+        </div>
+    </div>
+</div>
+<footer id="footer">
+    <div class="" id="bid-btn" onclick=""><p>购买</p></div>
+</footer>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<!--<script src="//cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>-->
+<script src="../../../static/js/swiper.jquery.min.js"></script>
+<!--<script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>-->
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/iscroll-probe.js"></script>
+<script type="text/javascript" src="../../../static/js/AppHelper.js"></script>
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+
+ 	<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+
+    var fnBase = fnBase;
+    fnBase.init();
+
+    /*var AppHelper=AppHelper;
+    var channel=AppHelper.YzAppGetChannel();
+    var verCode=AppHelper.YzAppGetVerCode(); */
+    
+
+    var detailsEvent = {
+        //priceList:[],
+        loading:true,
+        goodsid:fnBase.getUrlPar("goodsid"),
+        Baseid:fnBase.getUrlPar("Baseid"),
+        source:fnBase.getUrlPar("source"),
+        //bidtime:6,
+        state:0,
+        kindId:"",
+        sunData:{
+            "goodsId":fnBase.getUrlPar("goodsid"),
+            "goodsName":"",
+            "imgUrl":"",
+            "goodsPeriod":"",
+            "dealTime":"",
+            "dealPrice":"",
+            "failMsg":""
+        },
+        init:function(){
+            this.addMainClickEvent();
+            //this.addGetSunList();
+            this.buyGoods();
+            this.getGoodInfo();
+        },
+        addMainClickEvent:function(){
+            $(".back_arrow").click(function(){
+                if(detailsEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back()
+                }
+            });
+        },
+        getGoodInfo:function(){
+            console.log(detailsEvent.goodsid);
+            fnBase.commonAjax(fnBase.source_url+"/index.php/index/Independentgoods/goodsinfo",'GET',{
+                "goods_id":detailsEvent.goodsid,
+                "channel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode,
+            },function(res){
+                if(res.state ==1){
+                    console.log(res);
+                    var detailsStr = "", fixDetailsStr = "",HintsStr='',imgStr='';
+                    detailsStr  += '<h3 class="goods-name">'+res.goods_list.name+'</h3>';
+                    fixDetailsStr   +=   '<div class="price-wrap">'
+                            +       '<div class="price-wrap-l"><span>市场价</span></div>'
+                           
+                            +       '<div class="price-wrap-r"><span>￥</span><span>'+res.goods_list.price+'</span></div>'   
+                    /*HintsStr +='<div style="clear:both"></div><div style="font-size:0.3rem;color:#999;text-align:center;padding: 0.25rem 0 0 0;" class="hints">' 
+                             +'本平台抢购活动均与苹果公司（Apple Inc.）无关'
+                             +'</div>'*/
+                    imgStr+='<img src="'+res.goods_list.img+'">'
+                    $(".fix-price-wrap").html(fixDetailsStr);
+                    detailsStr +=fixDetailsStr;
+                    //detailsStr +=HintsStr;
+                    
+                    $(".swiper-banner").html(imgStr);
+                    $(".price-details").html(detailsStr);       
+        //    
+                    detailsEvent.loading = false;
+                }else {
+                    fnBase.alert(res.cause)
+                }
+            },function(){
+                    
+            })
+        },
+        buyGoods:function(){
+            //商品下单
+            $("body").on("click","#bid-btn",function(){
+                var openid=store.get('openid');
+                if(!(openid)){
+                    fnBase.alert("尚未登录");
+                    return
+                }
+                fnBase.commonAjax(fnBase.source_url+'/index.php/Index/Malltrade/mallOrder','GET',{
+                    "act_goods_id":detailsEvent.goodsid,
+                    "channel":fnBase.ChannelId,
+                    "verCode":fnBase.VersionCode,
+                },function(data){
+                        if(data.state==1){
+                            var order_id=data.data.order_id;
+                            var openid=data.data.openid;
+                            var act_goods_id=data.data.act_goods_id;
+                            store.set('openid',openid);
+
+                            var pageUrl=fnBase.source_url+"/front/view/app/index/order.html?order_id="+order_id;
+                            window.Auction.openUrl(pageUrl);
+                           
+                        }else if(data.state==0){
+                            fnBase.alert(data.msg);
+                            
+                        }
+                    },function(){
+                    
+                    });
+                    
+            })
+        }
+    };
+    detailsEvent.init();
+
+</script>
+</body>
+</html>

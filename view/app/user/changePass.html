@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script type="text/javascript" src="../../../static/js/flexible.js"></script>
+    <script type="text/javascript" src="../../../static/js/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css?0.100">
+    <script type="text/javascript" src="../../../static/js/jquery-1.12.3.min.js"></script>
+</head>
+<body>
+    <div class="navbar">
+        <a class="back" href="javascript:history.go(-1)"><img src="../../../static/img/back.png"/></a>
+        <h1>修改密码</h1>
+    </div>
+    <div class="mainContent">
+        <ul class="changepassBoard">
+            <li>
+                <input type="text"  placeholder="请输入手机号" id="username" maxlength="11" onkeyup="if (this.value != this.value.replace(/\D/g,'')) this.value=this.value.replace(/\D/g,'')" disabled="disabled" style="background:#fff"/>      
+            </li>
+            <li>
+                <input type="tel" class="name-input" required="required" placeholder="请输入验证码" id="ecode" maxlength="6" onkeyup="if (this.value != this.value.replace(/\D/g,'')) this.value=this.value.replace(/\D/g,'')"/> 
+                <a href="javascript:;" class="clear-input">
+                   <img src="../../../static/img/delete-icon.png" class="clear-input-img" alt="" style="width:0.4rem"/>
+                </a>
+                <button type="button" class="sendCode">发送验证码</button>   
+            </li>
+            <li>
+                <input type="password" class="name-input" required="required" placeholder="请输入登录密码" id="password" maxlength="16"/>  
+                <a href="javascript:;" class="clear-input">
+                   <img src="../../../static/img/delete-icon.png" class="clear-input-img" alt="" style="width:0.4rem"/>
+                </a> 
+            </li>
+        </ul>
+        <div class="clearboth">
+            <a class="notReceived">收不到验证码?</a>
+        </div>    
+        <div class="confirm">
+            <button type="button">确认</button>
+        </div> 
+    </div>
+    <script type="text/javascript" src="../../../static/js/jquery-1.12.3.min.js"></script>  
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js?0.100"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+    <script type="text/javascript">
+        var myObject=myObject;
+        myObject.init();
+        var phone=store.get('phone');
+        var host=myObject.host;
+        console.log(phone);
+        $("#username").val(phone);
+        $(".sendCode").click(function(){
+            var username=$("#username").val();
+            myObject.validateReg(username,'ChangePass');
+        })
+        $(".confirm button").click(function(){
+            var phone=$("#username").val();
+            var verifyCode=$("#ecode").val();
+            var password=$("#password").val();
+            var openid=store.get('openid');
+            myObject.OnChange(phone,verifyCode,password,openid);
+        })
+        $(".notReceived").click(function(){
+            var pageUrl=host+'/front/view/app/login/helpcode.html';
+            window.Auction.openUrl(pageUrl);
+        })
+    </script>
+</body>
+</html>
+
+    

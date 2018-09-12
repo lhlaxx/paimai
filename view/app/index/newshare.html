@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/css/newshare.css?0.03"/>
+    <style>
+        .rule-enter a{
+            text-decoration: underline;
+            color: #007aff;
+        }
+    </style>
+
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>邀请好友瓜分现金</h2>
+</header>
+<div class="container" id="wrapper">
+    <div id="scroll">
+        <div class="img-bg"><img src="../../../static/img/active/newshare-bg.png"></div>
+        <div class="share-btn">立即邀请</div>
+        <div class="rule-enter"><a>活动规则</a></div>
+        <div class="line">
+            <div class="line-width-left"><div class="line-width-inner"></div></div>
+            <div class="line-width-right"><div class="line-width-inner"></div></div>
+            <span class="progress progress-01"></span>
+            <span class="progress progress-02"></span>
+            <span class="progress progress-03"></span>
+        </div>
+        <div class="progress-details">
+            <div class="progress-details-01">
+                <h4>第一步</h4>
+                <p class="p">分享给好友</p>
+            </div>
+            <div class="progress-details-02">
+                <h4>第二步</h4>
+                <p class="p">好友下载后</p>
+                <p class="p">手机号注册</p>
+            </div>
+            <div class="progress-details-03">
+                <h4>第三步</h4>
+                <p class="p">邀请成功</p>
+                <p class="p">获得现金红包</p>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="select-cash-bg">
+    <div class="select-cash">
+        <div class="rule-title">活动规则</div>
+        <div class="active-rule">
+            <h3>活动时间：</h3>
+            <p>2018.3.1-2018.3.3；</p>
+        </div>
+        <div class="active-rule">
+            <h3>参与对象：</h3>
+            <p>平台所有用户；</p>
+        </div>
+        <div class="active-rule">
+            <h3>活动说明：</h3>
+            <p>每成功邀请一个新用户进行手机号注册登录，即可获得1元现金红包，活动结束后工作人员将电话联系您确认最终可进行提现的红包并发放到您的支付宝上。</p>
+            <p>最终解释权归本平台所有</p>
+        </div>
+        <div class="close">
+            <div class="close-l"></div>
+            <div class="close-btn"></div>
+        </div>
+    </div>
+</div>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/clipboard.min.js"></script>
+<script src="../../../static/js/iscroll-probe.js"></script>
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var openid="";
+    var uuid="";
+    var channel="";
+    try {
+        openid=store.get('openid');
+        if(openid==undefined){
+            openid="";
+        }
+        uuid=window.Auction.getUUID();
+        channel=window.Auction.getChannelId();
+    }catch (err){
+       
+
+    }
+
+    var newShareEvent = {
+        source:fnBase.getUrlPar("source"),
+        shareCode:"",
+        init:function () {
+            this.addMainClickEvent();
+            if(store.get("openid")){
+                this.addGetShareEvent()
+            }
+            setTimeout(function () {
+                myScroll.refresh();
+            }, 0);
+        },
+        addMainClickEvent:function () {
+            $(".back_arrow").click(function(){
+                if(newShareEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back()
+                }
+            });
+            $(document).on("myCustomTapEvent",".rule-enter a",function(){
+                $(".select-cash-bg").show();
+            });
+            $(document).on("click",".close-btn",function(){
+                $(".select-cash-bg").hide();
+            });
+            $(document).on("myCustomTapEvent",".share-btn",function(){
+                if(newShareEvent.shareCode == ""){
+                    fnBase.alert("请登录后进行操作")
+                }else {
+                    var shareData = {
+                        "title":"分享得现金",
+                        "content":"新年开工大吉，分享得现金",
+                        "actionUrl":fnBase.source_url+"/front/view/app/index/newsharesucc.html?shareCode="+newShareEvent.shareCode+"&ChannelId="+fnBase.ChannelId+"&aid="+fnBase.addGetAppIdEvent(),
+                        "imgUrl":fnBase.source_url+"/front/static/img/share_icon_com.png",
+                        "ruleUrl":fnBase.source_url+"/front/view/app/index/shituRule.html"
+                    };
+                    console.log(shareData);
+                    window.Auction.share(JSON.stringify(shareData))
+
+                    var Op = "",clickJson = "";
+                    Op={
+                        "ot":"3"
+                    };
+                    clickJson={
+                        "actionId":5,
+                        "uuid":uuid,
+                        "openId":openid,
+                        "ident":"100348",
+                        "date":parseInt(new Date().getTime() / 1000),
+                        "name":channel+"分享赚一元页面点击立即邀请"
+                    };
+                    fnBase.addStatisticsEvent(Op,clickJson);
+                }
+
+            });
+        },
+        addGetShareEvent:function(){
+            var that = this;
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Share/mkShareCode",{
+
+            },function(res){
+                console.log(res.data);
+                newShareEvent.shareCode = res.share_code;
+            })
+        }
+    };
+    newShareEvent.init();
+    var myScroll = null;
+    myScroll = new IScroll('#wrapper', {
+        probeType: 3,
+        mouseWheel: true,
+        scrollbars: true,
+        preventDefault: true,
+        fadeScrollbars: true,
+        tap: 'myCustomTapEvent'
+    });
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+    var Op = "",clickJson = "";
+    Op={
+        "ot":"3"
+    };
+    clickJson={
+        "actionId":3,
+        "uuid":uuid,
+        "openId":openid,
+        "ident":"100347",
+        "date":parseInt(new Date().getTime() / 1000),
+        "name":channel+"分享赚一元（应用内）页面到达"
+    };
+    fnBase.addStatisticsEvent(Op,clickJson);
+</script>
+</body>
+</html>

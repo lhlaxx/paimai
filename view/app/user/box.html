@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script type="text/javascript" src="../../../static/js/flexible.js"></script>
+    <script type="text/javascript" src="../../../static/js/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+    <style>
+        body{
+            background: #ff6765;
+            overflow: hidden;
+        }
+        html,body{
+            height:100%;
+            width:100%;
+        }
+        .pic{
+            width: 100%;
+        }
+        .close{
+            position: absolute;
+            right:0.4rem;
+            top:0.4rem;
+        }
+    </style>
+</head>
+<body>
+    <div class="alertBox1 inviteBox">
+        <div class="close">
+            <img src="../../../static/img/close2.png"/>
+        </div>
+        <div class="clear"></div>
+        <img src="../../../static/img/newPerson.png" class="pic"/>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+    <script>
+        var myObject=myObject;
+        var host=myObject.host;
+
+        myObject.alertPosition();
+        
+        $(".close").click(function(){
+            var data={
+                'type':'0',
+                'url':'',
+                'position':''
+            }
+            window.Auction.dimissDialog(JSON.stringify(data));
+        })
+    </script>
+</body>
+</html>
+
+    

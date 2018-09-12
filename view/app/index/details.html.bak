@@ -1,0 +1,1998 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <meta name="viewport" content="width=device-width, initial-scale=1,maximum-scale=1.0, minimum-scale=1.0, user-scalable=no">
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <!--<link href="//cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css" rel="stylesheet">-->
+    <link rel="stylesheet" href="../../../static/css/swiper.min.css"/>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/css/details.css?0.15"/>
+    <link rel="stylesheet" href="../../../static/css/zan.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css?0.201">
+</head>
+<body>
+<header>
+    <div class="back_arrow back_home"></div>
+    <h2  id="picker1">商品详情</h2>
+    <div class="header-btn">攻略</div>
+</header>
+<div class="fix-price-wrap"></div>
+<div class="barrage-play-item">
+    <!--<div class="barrage-item"><img src="http://yydb.zhuoyi.com/wap/v2.0/Public/img/personal/img1-1.png">扎心了，老铁</div>-->
+    <!--<div class="barrage-item"><span>崔</span>扎心了，老铁</div>-->
+</div>
+<div class="content" id="content">
+    <div id="scroller">
+        <!--不中必反-->
+        <div class="refund">
+            <p class="refund-p">本商品可以开启<span class="iosShentxt">不中必返</span>，<span class="iosShenhide">开启之后72小时内</span>消费任意<span class="iosShenhide">大于10元的</span>金额，<span class="iosShentxt2" style="display:none">若<span class="iosShentxt3">竞拍</span>失败</span>返还<span class="rate">60%</span></p>
+            <div class="refund-details">
+                <div class="refund-time-p"></div>
+                <div class="refund-time"></div>
+                <div class="refund-start-btn">点击开始</div>
+                <div class="refund-rule">返币规则</div>
+            </div>
+        </div>
+        <!--新手专区-->
+        <div class="new-hand">
+            <p class="new-hand-p"></p>
+            <div class="new-hand-details">
+                <div class="new-hand-time-p"></div>
+                <div class="new-hand-time"></div>
+            </div>
+        </div>
+        <!--banner start-->
+        <div class="swiper-container swiper-banner">
+            <div class="swiper-barrage">
+                <div class="barrage-if-on swiper-barrage-btn">弹幕开关</div>
+                <div class="barrage-select swiper-barrage-btn">选择弹幕</div>
+            </div>
+            <!--<div class="swiper-wrapper">-->
+            <!--<div class="swiper-slide">-->
+            <!--<img src="http://sjdcmp.droibank.tt286.com/public/images/26/24/43/650eb020cd2f3ac0955fb2baa1108b5c87e21932.png">-->
+            <!--</div>-->
+            <!--</div>-->
+            <!--<div class="swiper-pagination"></div>-->
+        </div>
+        <!--goodsInfo start-->
+        <div class="price-details">
+            <!--<h3 class="goods-name">苹果7</h3>
+            <div class="price-wrap">
+                <div class="price-wrap-l">
+                    <div class="price-wrap-l-01"><span>￥</span><span>当前价</span></div>
+                    <div class="price-wrap-l-02">165464</div>
+                    <div class="price-wrap-l-03">市场价<span>￥4561</span></div>
+                </div>
+                <div class="price-wrap-r">
+                    <span>00</span>:<span>00</span>:<span class="miao">10</span>
+                </div>
+            </div>
+            <div class="price-name">若无人出价，<span>181****3146</span>将以<span>13231</span>元拍得本商品</div>-->
+        </div>
+        <!--弹幕记录-->
+        <div class="barrage-wrap">
+            <div class="barrage-wrap-if wrap-list-title">
+                <h3 class="list-title-h3">弹幕历史记录</h3>
+                <img class="list-title-img" src="../../../static/img/details/list-off.png">
+            </div>
+            <div class="barrage-content-wrap">
+                <div class="barrage-wrap-title">
+                    <div class="barrage-nickname">昵称</div>
+                    <div class="barrage-time">时间</div>
+                    <div class="barrage-content">弹幕内容</div>
+                </div>
+                <ul class="barrage-wrap-ul">
+                    <!--<li class="barrage-wrap-item">-->
+                    <!--<div class="barrage-nickname">许卡通</div>-->
+                    <!--<div class="barrage-time">16:02:33</div>-->
+                    <!--<div class="barrage-content">扎心了，老铁</div>-->
+                    <!--</li>-->
+                </ul>
+            </div>
+        </div>
+        <!--价格记录-->
+        <div class="price-record">
+            <div class="price-wrap-if wrap-list-title">
+                <h3 class="list-title-h3">成交价格走势图</h3>
+                <img class="list-title-img" src="../../../static/img/details/list-off.png">
+            </div>
+            <div class="price-content-wrap">
+                <!--<div class="price-min-max">-->
+                <!--<div class="price-min">历史最低价：<span></span></div>-->
+                <!--<div class="price-max">历史最高价：<span></span></div>-->
+                <!--</div>-->
+                <!--<div id="canvas-wrapper" style="width: 100%;height: 5.5rem">-->
+                <!--<div class="no-price" style="display: none">-->
+                <!--<img src="../../../static/img/details/no-price-list.png" alt=""/>-->
+                <!--<p>该商品首次参与竞拍，暂无历史记录</p>-->
+                <!--</div>-->
+                <!--</div>-->
+            </div>
+        </div>
+        <div class="product-info">
+            <div class="product-wrap-if">
+                <h3 class="list-title-h3">小易竞拍</h3>
+            </div>
+            <div class="product-icon">
+                <div class="product-icon-item">正品保障</div>
+                <div class="product-icon-item">最低风险</div>
+                <div class="product-icon-item">快速发货</div>
+                <div class="product-icon-item">公平公正</div>
+            </div>
+            <div class="product-info-main">
+                <ul>
+                    <!--<li class="product-info-main-item">起拍价：<span>￥0.0</span></li>-->
+                    <!--<li class="product-info-main-item">加价幅度：<span>￥0.01</span></li>-->
+                    <!--<li class="product-info-main-item">手续费：<span>1拍币/次</span></li>-->
+                    <!--<li class="product-info-main-item">竞拍倒计时：<span>10s</span></li>-->
+                    <!--<li class="product-info-main-item">差价购买：<span>暂不支持</span></li>-->
+                    <!--<li class="product-info-main-item">退币比例：<span>30%</span></li>-->
+                </ul>
+            </div>
+        </div>
+        <div class="footer-tab">
+            <div class="footer-tab-title">
+                <div class="footer-tab-title-item footer-tab-title-record footer-tab-title-active">出价记录<span>(134)</span></div>
+                <div class="footer-tab-title-item footer-tab-title-sun">有奖晒单<span>(1343)</span></div>
+                <div class="footer-tab-title-item footer-tab-title-rule">竞拍规则</div>
+            </div>
+            <div class="footer-tab-main">
+                <ul class="lists record-list">
+                    <!--<li class="record-list-item record-list-item-first">-->
+                        <!--<div class="user-phone">你挺能闹i</div>-->
+                        <!--<div class="user-state">领先</div>-->
+                        <!--<div class="user-ads"><span class="user-ads1">江苏省 扬州市</span></div>-->
+                        <!--<div class="user-price">￥821.57</div>-->
+                    <!--</li>-->
+                    <!--<li class="record-list-item">-->
+                        <!--<div class="user-phone">徘徊在十字街口</div>-->
+                        <!--<div class="user-state">出局</div>-->
+                        <!--<div class="user-ads"><span class="user-ads1">江苏省 常州市</span></div>-->
+                        <!--<div class="user-price">￥821.56</div>-->
+                    <!--</li>-->
+                    <!--<li id="PullUp" class="scroller-pullUp">点击查看更多</li>-->
+                </ul>
+                <ul class="lists sun-list">
+                    <!--<li class="sun-list-item">-->
+                        <!--<div class="sun-list-item-top">-->
+                            <!--<div class="goods-qi">-->
+                                <!--<span class="goods-qishu">第2017081898975465期</span>-->
+                                <!--<span class="goods-time">2017-02-25</span>-->
+                            <!--</div>-->
+                            <!--<div class="goods-price">￥381.60</div>-->
+                            <!--<div class="goods-winter">许卡通</div>-->
+                        <!--</div>-->
+                        <!--<div class="sun-list-item-center">-->
+                            <!--<div class="goods-img">-->
+                                <!--<div class="corner">-->
+                                    <!--<img class="corner-icon creamUrl" src="../../../static/img/creamUrl.png">-->
+                                    <!--<img class="corner-icon stickUrl" src="../../../static/img/stickUrl.png">-->
+                                <!--</div>-->
+                                <!--<img src="http://egoures.tt286.com/market/indiana/goods2017/06/30/bzhlodqam3/1498806562925.jpg">-->
+                                <!--<img src="http://egoures.tt286.com/market/indiana/goods2017/06/30/bzhlodqam3/1498806562925.jpg">-->
+                                <!--<img src="http://egoures.tt286.com/market/indiana/goods2017/06/30/bzhlodqam3/1498806562925.jpg">-->
+                            <!--</div>-->
+                            <!--<p class="goods-des">用了快俩月了，用的硅胶壳，后边有那种亮点，可能是脏东西磨的，另外，屏幕不太亮，家里哥用的6s和6sp-->
+                                <!--，相对来说7的屏幕暗黄相对来说7的屏幕暗黄相对来...屏幕暗黄相对来说7的屏幕暗黄</p>-->
+                        <!--</div>-->
+                        <!--<div class="sun-list-item-bottom">-->
+                            <!--<div class="get-bi">获赠拍币：<span>333.00</span></div>-->
+                            <!--<div class="sun-goods-zan">-->
+                                <!--<span class="zan-icon"><img src="../../../static/img/zan.png"/></span>-->
+                                <!--<span class="zan-num">1</span>-->
+                            <!--</div>-->
+                        <!--</div>-->
+                    <!--</li>-->
+                </ul>
+                <ul class="lists rule-list">
+                    <li>
+                        <div class="helpContent">
+                            <div class="helpicon"><span></span><img src="../../../static/img/question.png"/></div><p class="question">当前价</p>
+                        </div>
+                        <div class="helpContent">
+                            <div class="helpicon"><span></span><img src="../../../static/img/answer.png"/></div>
+                            <p class="answer">前一次用户（包括您和其他用户）出价之后的金额，每次出价商品价格增加0.01元。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="helpContent">
+                            <div class="helpicon"><span></span><img src="../../../static/img/question.png"/></div><p class="question">成功竞拍/出局</p>
+                        </div>
+                        <div class="helpContent">
+                            <div class="helpicon"><span></span><img src="../../../static/img/answer.png"/></div>
+                            <p class="answer">竞拍时间结束时，最终出价领先的用户，视为成功抢购。其余用户视为出局。</p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="helpContent">
+                            <div class="helpicon"><span></span><img src="../../../static/img/question.png"/></div><p class="question">出价资格</p>
+                        </div>
+                        <div class="helpContent">
+                            <div class="helpicon"><span></span><img src="../../../static/img/answer.png"/></div>
+                            <p class="answer">您竞拍出价前需要获得出价资格；<br/>
+                                (1)出价资格支付的拍币对应商品所在的专区，如在10元专区，每获得一次出价资格需要支付10拍币；<br/>
+                                (2)竞拍结束后，您为获取出价资格支付的费用都会返回30%到您极速拍卖的账户中，可用于参与其他商品抢购。<br/></p>
+                        </div>
+                    </li>
+                    <li>
+                        <div class="helpContent">
+                            <div class="helpicon"><span></span><img src="../../../static/img/question.png"/></div><p class="question">倒计时规则</p>
+                        </div>
+                        <div class="helpContent">
+                            <div class="helpicon"><span></span><img src="../../../static/img/answer.png"/></div>
+                            <p class="answer">倒计时统一为10秒，临近结束前，如果有用户出价，倒计时会自动延长，直至最终无人出价，竞拍结束。</p>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>
+<footer id="footer" style="display: none">
+    <div class="footer-l">
+        <div class="footer-l-top">
+            <div class="AddSubtract">
+                <div class="num-btn minus minus-frozen">-</div>
+                <input type="tel" readonly id="bid-num" maxlength="3" class="num-text" value="1"/>
+                <div class="num-btn add">+</div>
+            </div>
+        </div>
+        <div class="footer-l-bottom">
+            <div class="progress">
+                <div class="progressW">
+                </div>
+            </div>
+            <div class="left-counts">剩20次</div>
+        </div>
+    </div>
+    <div class="footer-r" id="bid-btn" onclick="">出价<p><span>10</span>拍币/次</p></div>
+</footer>
+<div class="select-cash-bg">
+    <div class="select-cash">
+        <a class="select-close"><img src="../../../static/img/close_enterpass.png"/></a>
+        <div class="input-cash">
+            <input type="tel" placeholder="" maxlength="5" class="cash-input" autofocus="autofocus">
+        </div>
+        <div class="line"></div>
+        <ul>
+            <li class="recharge-item">5</li>
+            <li class="recharge-item">10</li>
+            <li class="recharge-item">20</li>
+            <li class="recharge-item">50</li>
+            <li class="recharge-item">100</li>
+            <li class="recharge-item">200</li>
+        </ul>
+        <div class="line"></div>
+        <div class="confirm-btn">确定</div>
+    </div>
+</div>
+<div class="tipBox">
+    <div class="tipBox_inner">
+        <p>您已有账号，是否继续使用游客模式?</p>
+        <div>
+            <a class="go">继续</a>
+            <a class="accountLog">账号登录</a>
+        </div>
+    </div>
+</div>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<!--<script src="//cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>-->
+<script src="../../../static/js/swiper.jquery.min.js"></script>
+<!--<script src="http://echarts.baidu.com/build/dist/echarts-all.js"></script>-->
+<script src="../../../static/js/echarts-all.js"></script>
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/picker.min.js"></script>
+<script src="../../../src/js/common.js?0.08"></script>
+<script src="../../../static/js/iscroll-probe.js"></script>
+<script type="text/javascript" src="../../../static/js/AppHelper.js"></script>
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+<script src="../../../src/js/main.js?0.209"></script>
+<script>
+
+    var fnBase = fnBase;
+    fnBase.init();
+    var myObject=myObject;
+    myObject.init();
+    myObject.isNew();
+    var AppHelper=AppHelper;
+    var channel=AppHelper.YzAppGetChannel();
+    var verCode=AppHelper.YzAppGetVerCode(); 
+    var buyName;
+    var buyName2;
+    var buyName3;
+    var ykflag=store.get('ykflag');
+    
+    if(browser.versions.ios){
+        buyName="购买";
+        buyName2="开卖";
+        buyName3="抢购";
+    }else{
+        buyName="拍得";
+        buyName2="拍卖";
+        buyName3="竞拍";
+    }
+
+    if((channel=='Ios1'||channel=='Ios2'||channel=='IosJsjx'||channel=='IosXyjp')&&verCode==111){
+        $(".iosShenhide").hide();
+        $(".iosShentxt").html("推荐热卖专区");
+        $(".iosShentxt2").show();
+        $(".iosShentxt3").html("购买");
+
+    }else{
+
+    }
+    var detailsEvent = {
+        priceList:[],
+        numVal:1,
+        timerJiShiQi:null,
+        loading:true,
+        goodsid:fnBase.getUrlPar("goodsid"),
+        Baseid:fnBase.getUrlPar("Baseid"),
+        source:fnBase.getUrlPar("source"),
+        pushIos:fnBase.getUrlPar("pushIos"),
+        bidtime:6,
+        state:0,
+        kindId:"",
+        sunData:{
+            "goodsId":fnBase.getUrlPar("goodsid"),
+            "goodsName":"",
+            "imgUrl":"",
+            "goodsPeriod":"",
+            "dealTime":"",
+            "dealPrice":"",
+            "failMsg":""
+        },
+        join_current_times:0,
+        join_total_times:0,
+        footerLBottom:false,
+        isSDK:fnBase.getUrlPar("isSDK"),
+        act_id:fnBase.getUrlPar("act_id"),
+        init:function(){
+            if(detailsEvent.pushIos){
+                $("header").hide();
+                $("header").css({"height":"0"});
+                $(".fix-price-wrap").css({"top":"0"});
+                $(".content").css({"top":0})
+            }
+            this.addMainClickEvent();
+            this.addInputNum();
+            this.addMinusFn();
+            this.setBidEvent();
+            this.addDetailsStatistics(100013);
+            this.getRefundInfo();
+            this.getNewHandInfo();
+            this.addBarrageDataFirstEvent();
+            this.addBarragePickerEvent()
+        },
+        refundTime:0,
+        BarrageTenTime:setInterval(function(){
+            if(detailsEvent.isBarragePlay){
+                detailsEvent.addBarrageDataEvent()
+            }
+        },11000),
+        addMainClickEvent:function(){
+            $(".back_arrow").click(function(){
+                if(detailsEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back()
+                }
+            });
+            $(".header-btn").click(function(){
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100258",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"商品详情页点击大神攻略"
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+                window.Auction.openUrl(fnBase.source_url+"/front/view/app/index/bigstrategy.html");
+            });
+
+            $(document).on("myCustomTapEvent",".wrap-list-title",function(){
+                $(this).children(".list-title-img").toggleClass("list-title-img-on");
+                $(this).next().slideToggle(350);
+                setTimeout(function () {
+                    myScroll.refresh();
+                }, 360);
+            });
+//            底部tab
+
+            $(document).on("myCustomTapEvent",".footer-tab-title-item",function(){
+                var $this = $(this);
+                itemIndex = $this.index();
+                $this.addClass('footer-tab-title-active').siblings('.footer-tab-title-item').removeClass('footer-tab-title-active');
+                $('.footer-tab-main .lists').eq(itemIndex).show().siblings('.lists').hide();
+                setTimeout(function () {
+                    myScroll.refresh();
+                }, 0);
+            });
+            $(document).on("myCustomTapEvent",".sun-list-item-more",function(){
+                //统计——详情页晒单点击查看更多
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100107",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"详情页晒单点击查看更多"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+                if(fnBase.VersionCode == '108'){
+                    fnBase.alert("请更新版本进行体验")
+                }else {
+                    window.Auction.backPage(2)
+                }
+            });
+            $(document).on("myCustomTapEvent",".sun-list-item-center",function(){
+                //统计——详情页晒单点击晒单详情
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100109",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"详情页晒单点击晒单详情"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+                if(fnBase.VersionCode == '108'){
+                    fnBase.alert("请更新版本进行体验")
+                }else {
+                    fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/sundetails.html?goodsid="+$(this).attr("data-goodsId")+"&source=web&isSDK="+detailsEvent.isSDK)
+                }
+            });
+            $("body").on("myCustomTapEvent",".zan-icon",function(){
+                var zanThis = $(this);
+                if(zanThis.attr("data-like") == "true"){
+                    fnBase.alert("你已经点赞过了！不能取消喽！")
+                }else {
+                    fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/Index/Ordershow/doHits",{
+                        "openid":store.get('openid'),
+                        "goodsId":zanThis.attr("data-goodsId"),
+                        "chanel":fnBase.ChannelId,
+                        "verCode":fnBase.VersionCode
+                    },function(res){
+                        if(res.state == 1){
+                            zanThis.attr("data-like","true");
+                            zanThis.html("<img src='../../../static/img/yizan.png' class='animation' />");
+                            zanThis.next().text(res.likeNum);
+                            //zanThis.next().next().show().html("<em class='add-animation'>+1</em>");
+                            //统计——详情页晒单点赞
+                            var Op = "",clickJson = "";
+                            Op={
+                                "ot":"3"
+                            };
+                            clickJson={
+                                "actionId":5,
+                                "uuid":fnBase.UUID,
+                                "openId":store.get('openid'),
+                                "ident":"100108",
+                                "date":parseInt(new Date().getTime() / 1000),
+                                "name":"详情页晒单点赞"
+                            };
+                            fnBase.addStatisticsEvent(Op,clickJson);
+
+                        }else {
+                            fnBase.alert(res.cause?res.cause:res.msg)
+                        }
+                    })
+                }
+            });
+            $("body").on("myCustomTapEvent","#PullUp",function(){
+                fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/hisrecord.html?goodsid="+detailsEvent.goodsid)
+            });
+//            不中必返相关
+            $(document).on("myCustomTapEvent",".refund-start-btn",function(){
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100207",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"商品详情页点击开始按钮",
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson); 
+                if(store.get('openid')){
+                    fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Paybackjoin/join",{
+                        "act_id":detailsEvent.act_id,
+                        "openid":store.get('openid')
+                    },function(res){
+                        store.remove('refundBtnDetails');
+                        if(res.state == 1){
+                            $(".refund-time-p").html("活动结束倒计时");
+                            $(".refund-start-btn").hide();
+                            $(".refund-time").show();
+                            detailsEvent.refundTime = res.lefttime;
+                            time()
+                        }else {
+                            fnBase.alert(res.cause?res.cause:res.msg)
+                        }
+                    })
+                }else {
+                    store.set("refundBtnDetails","click");
+                    window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index.html?from=refund")
+                }
+
+            });
+            $(document).on("myCustomTapEvent",".refund-rule",function(){
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100212",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"返币规则点击",
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson); 
+                
+                fnBase.addLocationHref("refundrule.html?source=web&act_id="+detailsEvent.act_id)
+            });
+
+//            弹幕相关
+            $("body").on("myCustomTapEvent",".barrage-if-on",function(){
+                $(".barrage-if-on").toggleClass("barrage-if-off");
+                if($(this).hasClass("barrage-if-off")){
+                    console.log("这是关闭状态");
+                    $(".barrage-play-item").hide();
+                    detailsEvent.isBarragePlay = false;
+                }else {
+                    console.log("这是开启状态");
+                    $(".barrage-play-item").show();
+                    detailsEvent.isBarragePlay = true;
+                }
+            });
+        },
+        barrage_list:[],
+        barrage_list_history:[],
+        addBarrageDataFirstEvent:function(){
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Barrage/getBarrageList",{
+                "chanel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode
+            },function(res){
+                if(res.state == 1){
+                    detailsEvent.barrage_list=detailsEvent.barrage_list.concat(res.barrage_list);
+                    detailsEvent.barrage_list_history = res.barrage_list_history;
+                    detailsEvent.addGetSunList();
+                    detailsEvent.addBarragePlayEvent()
+                }else {
+                    console.log(res.msg)
+                }
+            })
+        },
+        addBarrageDataEvent:function(){
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Barrage/getBarrageList",{
+                "openid":store.get('openid'),
+                "chanel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode,
+                "act_goods_id":detailsEvent.goodsid
+            },function(res){
+                if(res.state == 1){
+                    detailsEvent.barrage_list=detailsEvent.barrage_list.concat(res.barrage_list);
+                    detailsEvent.barrage_list_history = res.barrage_list_history;
+                    var barrage_list_html="";
+                    if(detailsEvent.barrage_list_history&&detailsEvent.barrage_list_history.length>0){
+                        $(".barrage-wrap").show();
+                        for(var i= 0,len=detailsEvent.barrage_list_history.length;i<len;i++){
+                            barrage_list_html += '<li class="barrage-wrap-item">'
+                                    +   '<div class="barrage-nickname">'+detailsEvent.barrage_list_history[i].nickname+'</div>'
+                                    +   '<div class="barrage-time">'+detailsEvent.barrage_list_history[i].barrage_time+'</div>'
+                                    +   '<div class="barrage-content">'+detailsEvent.barrage_list_history[i].content+'</div>'
+                                    +'</li>'
+                        }
+                        $(".barrage-wrap .barrage-wrap-ul").html(barrage_list_html)
+                    }
+                }else {
+                    console.log(res.msg)
+                }
+            })
+        },
+        isBarragePlay:true,
+        addBarragePlayEvent:function(){
+            var index = 0;
+            var setI = null;
+            setI = setInterval(function(){
+                if(index < detailsEvent.barrage_list.length){
+                    if(detailsEvent.isBarragePlay){
+
+                        auto(index,detailsEvent.barrage_list);
+                        index++
+                    }else {
+
+                    }
+                }else {
+
+                }
+            },3500);
+        },
+        addBarragePickerEvent:function(){
+            var content_list = [];
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Barrage/getBarrageConfig",{
+                "chanel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode
+            },function(res){
+                if(res.state == 1){
+                    content_list = res.content_list;
+                    var picker1 = new Picker({
+                        data: [content_list]
+                    });
+                    picker1.on('picker.select', function (selectedVal, selectedIndex) {
+                        console.log(content_list[selectedIndex[0]].id);
+                        detailsEvent.addPostBarrageEvent(content_list[selectedIndex[0]].id,content_list[selectedIndex[0]].text)
+                    });
+                    picker1.on('picker.change', function (index, selectedIndex) {
+                        console.log(index);
+                    });
+
+                    picker1.on('picker.valuechange', function (selectedVal, selectedIndex) {
+                        console.log(selectedVal);
+                    });
+                    $(document).on("myCustomTapEvent",".barrage-select",function(){
+                        if(store.get('openid')){
+                            picker1.show();
+                        }else {
+                            fnBase.alert('尚未登录')
+                        }
+                    });
+                }else {
+                    console.log(res.msg)
+                }
+            });
+        },
+        addPostBarrageEvent:function(id,text){
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/User/doBarrage",{
+                "openid":store.get('openid'),
+                "barrage_id":id,
+                "chanel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode,
+                "act_goods_id":detailsEvent.goodsid
+            },function(res){
+                var result;
+                var barrageContent;
+                if(res.state == 1){
+                    if(res.barrage_content.length > 0){
+                        auto(0,res.barrage_content);
+                        result="成功_";
+                        barrageContent=res.barrage_content[0].content;
+                    }
+                }else {
+                    fnBase.alert(res.cause?res.cause:res.msg);
+                    barrageContent=text;
+                    result="失败_";
+
+                }
+
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100317",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":result+barrageContent
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+            })
+        },
+        addInputNum:function(){
+            $("body").on("click","#bid-num",function(){
+                $(".select-cash-bg").show();
+                $(".cash-input").trigger("click").focus();
+                $(".cash-input").val($("#bid-num").val())
+            });
+            $("body").on("click",".recharge-item",function(){
+                $(this).addClass("recharge-active").siblings().removeClass("recharge-active");
+                $(".cash-input").val($(this).html())
+            });
+            $("body").on("click",".confirm-btn",function(){
+                $(".select-cash-bg").hide();
+                if(parseInt($('.cash-input').val()) > 0){
+                    $("#bid-num").val($('.cash-input').val());
+                    $(".winCount").html($('.cash-input').val());
+                    $(" .minus").removeClass("minus-frozen");
+
+                    var countMoney=$('.cash-input').val();
+                    console.log(countMoney);
+                    if(countMoney==5){
+                        var ident="100074";
+                        var name="出价页选5元";
+
+                    }else if(countMoney==10){
+                        var ident="100075";
+                        var name="出价页选10元";
+                    }else if(countMoney==20){
+                        var ident="100076";
+                        var name="出价页选20元";
+                    }else if(countMoney==50){
+                        var ident="100077";
+                        var name="出价页选50元";
+                    }else if(countMoney==100){
+                        var ident="100078";
+                        var name="出价页选100元";
+                    }else if(countMoney==200){
+                        var ident="100079";
+                        var name="出价页选200元";
+                    }
+                    var Op = "",clickJson = "";
+                    clickJson={
+                        "actionId":5,
+                        "uuid":fnBase.UUID,
+                        "openId":store.get('openid'),
+                        "ident":ident,
+                        "date":parseInt(new Date().getTime() / 1000),
+                        "name":name
+                    };
+                    Op={
+                        "ot":"3"
+                    };
+                    fnBase.addStatisticsEvent(Op,clickJson);
+
+                }else {
+                    $("#bid-num").val(1);
+                    $(".winCount").html(1);
+                    $(" .minus").addClass("minus-frozen");
+                }
+                detailsEvent.numVal = $("#bid-num").val();
+            });
+            $("body").on("click",".select-close",function(){
+                $(".select-cash-bg").hide();
+            });
+        },
+        addMinusFn:function(){
+            $("body").on("touchstart",".AddSubtract .add",function(){
+                detailsEvent.numVal++;
+                $(".num-text").val(detailsEvent.numVal);
+                $(".winCount").html(detailsEvent.numVal);
+                $(".minus").removeClass("minus-frozen")
+            });
+            $("body").on("touchstart",".AddSubtract .minus",function(){
+                detailsEvent.numVal--;
+                if(detailsEvent.numVal<=1){
+                    detailsEvent.numVal=1;
+                    $(" .minus").addClass("minus-frozen");
+                }
+                else {
+                    $(" .minus").removeClass("minus-frozen")
+                }
+                $(".num-text").val(detailsEvent.numVal);
+                $(".winCount").html(detailsEvent.numVal);
+            });
+        },
+        setMiaoEvent:function(bidtime){
+            var bidtime = bidtime?bidtime:9;
+            var $miao=10,leftTime= 0;
+            leftTime = Math.abs($miao - bidtime);
+            detailsEvent.timerJiShiQi=setInterval(function () {
+                if($miao < leftTime){
+                    clearInterval(detailsEvent.timerJiShiQi);
+                    setTimeout(function () {
+                        myScroll.refresh();
+                    }, 0);
+                    detailsEvent.addChangeHtml()
+                }else {
+                    $(".miao").html($miao<10 ? "0" + $miao:"" + $miao);
+                    $miao-=1;
+                }
+            },1000)
+        },
+        shareList:'',
+        getRefundInfo:function(){
+                fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Paybackactivity/goodsDetail",{
+                    "goods_id":detailsEvent.goodsid,
+                    "chanel":fnBase.ChannelId,
+                    "verCode":fnBase.VersionCode
+                },function(res){
+                    console.log("活动测试");
+                    if(res.state){
+                        if(res.data.is_exist){
+                            $(".refund").show();
+
+                            $(".refund-p span.rate").html(res.data.rate);
+                            detailsEvent.act_id = res.data.act_id;
+                            if(res.data.if_finish == "0"){
+                                if(res.data.lefttime>=0){
+                                    $(".refund-time-p").html("活动结束倒计时");
+                                    $(".refund-start-btn").hide();
+                                    $(".refund-time").show();
+                                    detailsEvent.refundTime = res.data.lefttime;
+                                    //detailsEvent.refundTime = 45112;
+                                    time()
+                                }
+                            }else if(res.data.if_finish == "1"){
+                                if((channel=='Ios1'||channel=='Ios2'||channel=='IosJsjx'||channel=='IosXyjp')&&verCode==111){
+                                    $(".refund-time-p").html("本次推荐热卖专区已结束，敬请期待下次开启");
+                                }else{
+                                    $(".refund-time-p").html("本次不中必返已结束，敬请期待下次开启");
+                                }
+                                
+                                $(".refund-start-btn").hide();
+                            }else if(res.data.if_finish == "2"){
+                                if((channel=='Ios1'||channel=='Ios2'||channel=='IosJsjx'||channel=='IosXyjp')&&verCode==111){
+                                    $(".refund-time-p").html("本次推荐热卖专区尚未开始，敬请期待");
+                                }else{
+                                    $(".refund-time-p").html("本次不中必返尚未开始，敬请期待");
+                                }
+                                
+                                $(".refund-start-btn").hide();
+                            }
+
+                            if(store.get('refundBtnDetails')){
+                                if(store.get('openid')){
+                                    fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Paybackjoin/join",{
+                                        "act_id":detailsEvent.act_id,
+                                        "openid":store.get('openid')
+                                    },function(res){
+                                        store.remove('refundBtnDetails');
+                                        if(res.state == 1){
+                                            $(".refund-time-p").html("活动结束倒计时");
+                                            $(".refund-start-btn").hide();
+                                            $(".refund-time").show();
+                                            detailsEvent.refundTime = res.lefttime;
+                                            time()
+                                        }else {
+                                            fnBase.alert(res.cause?res.cause:res.msg)
+                                        }
+                                    })
+                                }
+                            }
+                        }else {
+
+                        }
+                    }
+                })
+        },
+        newHandTime:0,
+        getNewHandInfo:function(){
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Newhand/goodsDetail",{
+                "uuid":fnBase.UUID,
+                "goods_id":detailsEvent.goodsid
+            },function(res){
+                if(res.state == 1){
+                    if(res.status == 1){
+                        $(".new-hand").show();
+                        if(res.if_finish == 0){
+                            $(".new-hand-p").text('本商品为新手福利商品，只有第一次打开应用之后24小时内可以购买，抓紧机会哦');
+                            if(res.count_down == -1){
+                                $(".new-hand-time-p").text('剩余时间已结束')
+                            }else {
+                                detailsEvent.newHandTime = res.count_down;
+                                $(".new-hand-time-p").text('倒计时');
+                                newTime()
+                            }
+                        }else if(res.if_finish == 1){
+                            $(".new-hand-p").text('本商品为新手福利商品，活动已经结束')
+                        }else if(res.if_finish == 2){
+                            $(".new-hand-p").text('本商品为新手福利商品，活动尚未结束')
+                        }else {
+
+                        }
+                    }
+                }else {
+                    fnBase.alert(res.msg)
+                }
+            })
+        },
+        addGetSunList:function(){
+            var that = this;
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/Index/Ordershowlist/showDetailByGoodsid",{
+                "openid":store.get('openid'),
+                "goodsId":detailsEvent.goodsid,
+                "chanel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode,
+                "lastId":0,
+                "size":5
+            },function(res){
+                if(res.shareList&&res.shareList.length>0){
+                    detailsEvent.shareList = res.shareList;
+                }
+                fnBase.loadShow();
+                that.getGoodInfo()
+            });
+        },
+        getGoodInfo:function(){
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Goods/goods",{
+                "goodsId":detailsEvent.goodsid,
+                "channel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode,
+                "Baseid":detailsEvent.Baseid
+            },function(res){
+                if(res.state == 1 || res.state == 100){
+                    detailsEvent.state = res.state;
+                    detailsEvent.join_current_times=res.data.join_current_times;
+                    detailsEvent.join_total_times=res.data.join_total_times;
+                    detailsEvent.setGoodsInfo(res.data);
+                    detailsEvent.kindId = res.data.catId;
+                    console.log(detailsEvent.kindId)
+                }else {
+                    fnBase.alert(res.cause)
+                }
+            })
+        },
+        setGoodsInfo:function(data){
+//            轮播图数据
+            var swiper = '',bannerStr='';
+            if(data.picUrl&&data.picUrl.length > 0){
+                var oBanner = data.picUrl;
+                var len=oBanner.length;
+                if(data.state == 0){
+                    if(browser.versions.ios){
+                        bannerStr += '<div class="swiper-slide">'
+                            +       '<a href="#"><img data-src="'+oBanner[0]+'" class="lazyload stateNot"></a>'
+                            +       '<div class="details-init details-yuyue1"></div>'
+                            +   '</div>';
+                    }else{
+                        bannerStr += '<div class="swiper-slide">'
+                            +       '<a href="#"><img data-src="'+oBanner[0]+'" class="lazyload stateNot"></a>'
+                            +       '<div class="details-init details-yuyue"></div>'
+                            +   '</div>';
+                    }
+                    
+                }else if(data.state == 1){
+                    for (var i=0;i<len;i++){
+                        bannerStr += '<div class="swiper-slide">'
+                                +       '<a href="#"><img data-src="'+oBanner[i]+'" class="lazyload"></a>'
+                                +   '</div>'
+                    }
+                }else{
+                    bannerStr += '<div class="swiper-slide">'
+                            +       '<a href="#"><img data-src="'+oBanner[0]+'" class="lazyload stateNot"></a>'
+                            +       '<div class="details-init details-deal"></div>'
+                            +   '</div>';
+                    $(".swiper-banner .swiper-wrapper").html(bannerStr);
+                }
+            }else {
+                bannerStr += '<div class="swiper-slide">'
+                        +       '<a href="#"><img data-src="" class="lazyload"></a>'
+                        +   '</div>'
+            }
+            swiper  = '<div class="swiper-wrapper">'
+                    +       bannerStr
+                    +   '</div>'
+                    +   '<div class="swiper-pagination"></div>';
+            $(".swiper-banner").append(swiper);
+
+            var mySwiper = new Swiper (".swiper-banner", {
+                loop: true,
+                autoplay : 10000,
+                speed:300,
+                pagination: '.swiper-pagination',
+                paginationBulletRender: function (swiper, index, className) {
+                    return '<span class="' + 'swiper-pagination-bullet' + '">' + '</span>';
+                }
+            });
+//            商品信息详情相关
+            var detailsStr = "", BidStateStr = "",fixDetailsStr = "",issueStr='',HintsStr='';
+            if(data.issue_id){
+                issueStr = '【第'+data.issue_id+'期】'
+            }
+            detailsStr  += '<h3 class="goods-name">'+issueStr+data.goodsName+'</h3>';
+            fixDetailsStr   +=   '<div class="price-wrap">'
+                    +       '<div class="price-wrap-l">'
+                    +           '<div class="price-wrap-l-01"><span>￥</span><span>当前价</span></div>'
+                    +           '<div class="price-wrap-l-02">'+data.bidPrice+'</div>'
+                    +           '<div class="price-wrap-l-03">市场价<span>￥'+data.realPrice+'</span></div>'
+                    +       '</div>';
+            HintsStr +='<div style="font-size:0.3rem;color:#999;text-align:center;padding: 0.25rem 0 0 0;" class="hints">' 
+                     +'本平台抢购活动均与苹果公司（Apple Inc.）无关'
+                     +'</div>';
+            if(data.state == 0){
+                fixDetailsStr +=   '<div class="price-wrap-r">倒计时'
+                        +           '<div class="span"><span>00</span>:<span>00</span>:<span class="miao">00</span></div>'
+                        +       '</div>'
+                        + '</div>';
+                BidStateStr = '<div class="price-name">商品即将开始'+buyName2+'，说不定就你一个人在等哦！</div>';
+            }else if(data.state == 1){
+                fixDetailsStr +=   '<div class="price-wrap-r">距结束仅剩'
+                        +           '<div class="span"><span>00</span>:<span>00</span>:<span class="miao">10</span></div>'
+                        +       '</div>'
+                        + '</div>';
+                BidStateStr = '<div class="price-name">若无人出价，<span>'+fnBase.addCutStrEvent(data.nickName?data.nickName:"",12)+'</span>将以<span>'+data.bidPrice+'</span>元'+buyName+'本商品</div>';
+            }else {
+                fixDetailsStr +=   '<div class="price-wrap-r" style="color:#666666">'+buyName3+'已结束'
+                        +           '<div class="span"><span>00</span>:<span>00</span>:<span class="miao">00</span></div>'
+                        +       '</div>'
+                        + '</div>';
+                BidStateStr = '<div class="price-name">'+buyName3+'结束，恭喜<span>'+fnBase.addCutStrEvent(data.nickName?data.nickName:"",12)+'</span>以<span>'+data.bidPrice+'</span>的价格'+buyName+'本商品！</div>';
+            }
+            $(".fix-price-wrap").html(fixDetailsStr);
+            detailsStr +=fixDetailsStr;
+            detailsStr +=BidStateStr;
+            if(browser.versions.mobile){
+               if(browser.versions.ios){
+                    detailsStr +=HintsStr;
+                }
+            }   
+            
+            $(".price-details").html(detailsStr);
+            //攻略入口
+            if(fnBase.mobileType == 'ios'){
+                if(fnBase.ChannelId == 'Ios2' || fnBase.ChannelId == 'IosXyjp'){
+                    $(".header-btn").show();
+                }
+            }else {
+                $(".header-btn").show();
+            }
+//          弹幕历史记录
+            var barrage_list_html="";
+            if(detailsEvent.barrage_list_history&&detailsEvent.barrage_list_history.length>0){
+                $(".barrage-wrap").show();
+                for(var i= 0,len=detailsEvent.barrage_list_history.length;i<len;i++){
+                    barrage_list_html += '<li class="barrage-wrap-item">'
+                                        +   '<div class="barrage-nickname">'+detailsEvent.barrage_list_history[i].nickname+'</div>'
+                                        +   '<div class="barrage-time">'+detailsEvent.barrage_list_history[i].barrage_time+'</div>'
+                                        +   '<div class="barrage-content">'+detailsEvent.barrage_list_history[i].content+'</div>'
+                                        +'</li>'
+                }
+                $(".barrage-wrap .barrage-wrap-ul").html(barrage_list_html)
+            }
+//            价格折线图
+            $(".price-record").show();
+            var priceHisStr = '',lowPriceStr='',heightPriceStr='',zhexianStr='';
+            if(data.lowPrice > 0){
+                lowPriceStr = '￥'+data.lowPrice;
+            }else {
+                lowPriceStr = '暂无记录';
+            }
+            if(data.heightPrice > 0){
+                heightPriceStr = '￥'+data.heightPrice;
+            }else {
+                heightPriceStr = '暂无记录';
+            }
+            priceHisStr += '<div class="price-min-max">'
+                    +    '<div class="price-min">历史最低价：<span>'+lowPriceStr+'</span></div>'
+                    +    '<div class="price-max">历史最高价：<span>'+heightPriceStr+'</span></div>'
+                    +  '</div>';
+            detailsEvent.priceList = data.price;
+            if(detailsEvent.priceList.length > 0){
+                zhexianStr = '<div id="canvas-wrapper" style="width: 100%;height: 5.5rem;font-size: .9rem">'
+                        +'</div>';
+                priceHisStr += zhexianStr;
+                $(".price-record .price-content-wrap").html(priceHisStr);
+                zhexian(detailsEvent.priceList);
+            }else {
+                zhexianStr  = '<div id="canvas-wrapper" style="width: 100%;height: 5.5rem">'
+                        +   '<div class="no-price">'
+                        +       '<img src="../../../static/img/details/no-price-list.png" alt=""/>'
+                        +       '<p>该商品首次参与'
+                        + buyName3
+                        +'，暂无历史记录</p>'
+                        +   '</div>'
+                        +'</div>';
+                priceHisStr += zhexianStr;
+                $(".price-record .price-content-wrap").html(priceHisStr);
+            }
+            $(".price-content-wrap").hide();
+//            产品信息相关
+            $(".product-info").show();
+            var chajiagou = "暂不支持";
+            if(data.info_chajiagou && data.info_chajiagou == 1){
+                chajiagou = "支持"
+            }
+            var productInfoHtml =   '<li class="product-info-main-item">起拍价：<span>'+'￥'+data.info_init_price+'</span></li>'
+                                +   '<li class="product-info-main-item">加价幅度：<span>'+'￥'+data.info_step_price+'</span></li>'
+                                +   '<li class="product-info-main-item">手续费：<span>'+data.info_auction_per_price+'拍币/次</span></li>'
+                                +   '<li class="product-info-main-item">竞拍倒计时：<span>'+data.info_countdown+'s'+'</span></li>'
+                                +   '<li class="product-info-main-item">差价购买：<span>'+chajiagou+'</span></li>'
+                                +   '<li class="product-info-main-item">退币比例：<span>'+data.info_back_cost+'%</span></li>';
+            $(".product-info-main ul").empty();
+            $(".product-info-main ul").html(productInfoHtml);
+
+//            三个tab切换开始
+            $(".footer-tab-title .footer-tab-title-record span").html("（"+data.num+"）");
+            $(".footer-tab-title .footer-tab-title-sun span").html("（"+data.info_show_num+"）");
+            $(".footer-tab").show();
+//            晒单列表相关
+            var sunTitleStr='',sunListStr = '';
+            if(detailsEvent.shareList&&detailsEvent.shareList.length>0){
+                    detailsEvent.kindId = detailsEvent.shareList[0].kindId;
+                    for (var i= 0,len=detailsEvent.shareList.length; i<len; i++){
+                        var getBi='',cornerImg='';
+                        if(detailsEvent.shareList[i].showMoney){
+                            getBi = '<div class="get-bi">获赠拍币：<span>'+detailsEvent.shareList[i].showMoney+'</span></div>'
+                        }
+                        if(detailsEvent.shareList[i].creamUrl){
+                            cornerImg+='<img class="corner-icon creamUrl" src="'+detailsEvent.shareList[i].creamUrl+'">'
+                        }
+                        if(detailsEvent.shareList[i].stickUrl){
+                            cornerImg+='<img class="corner-icon stickUrl" src="'+detailsEvent.shareList[i].stickUrl+'">'
+                        }
+                        sunListStr += '<li class="sun-list-item">'
+                                +           '<div class="sun-list-item-top">'
+                                +               '<div class="goods-qi">'
+                                +                   '<span class="goods-qishu">第'+detailsEvent.shareList[i].periodNum+'期</span>'
+                                +                   '<span class="goods-time">'+detailsEvent.shareList[i].time+'</span>'
+                                +               '</div>'
+                                +               '<div class="goods-price">￥'+detailsEvent.shareList[i].dealPrice+'</div>'
+                                +               '<div class="goods-winter">'+detailsEvent.shareList[i].nickName+'</div>'
+                                +           '</div>'
+                                +           '<div class="sun-list-item-center" data-goodsId="'+detailsEvent.shareList[i].goodsId+'">'
+                                +               '<div class="goods-img">'
+                                +                   '<div class="corner">'
+                                +                       cornerImg
+                                +                   '</div>'
+                                +                   getGoodsImg(detailsEvent.shareList[i].imgUrls)
+                                +               '</div>'
+                                +               '<p class="goods-des">'+detailsEvent.shareList[i].shareDes+'</p>'
+                                +           '</div>'
+                                +           '<div class="sun-list-item-bottom">'
+                                +               getBi
+                                +               '<div class="sun-goods-zan">'
+                                +                   '<span class="zan-icon" data-like="'+detailsEvent.shareList[i].hasLike+'" data-goodsId="'+detailsEvent.shareList[i].goodsId+'"><img src="'+getZanImg(detailsEvent.shareList[i].hasLike)+'"/></span>'
+                                +                   '<span class="zan-num">'+detailsEvent.shareList[i].likeNum+'</span>'
+                                +                   '<span class="add-num"><em>+1</em></span>'
+                                +               '</div>'
+                                +           '</div>'
+                                +       '</li>'
+                    }
+                sunListStr += '<li class="sun-list-item-more">点击查看更多</li>'
+            }else {
+                    sunListStr  = '<div class="no-sun-list">'
+                                +   '<img src="../../../static/img/details/no-sun-list.png" alt=""/>'
+                                +   '<p>该商品暂无晒单，等你来晒哟！</p>'
+                                + '</div>';
+            }
+            $(".sun-list").html(sunListStr);
+
+            //出价记录相关
+            var recordList = "", listData = data.bidRecord, listLen = listData.length,lastList = "";
+            if(listLen > 0){
+                if(listLen >= 20){
+                    listLen = 20;
+                    lastList = '<li id="PullUp" class="scroller-pullUp">点击查看更多</li>'
+                }
+                for(var i=0; i<listLen; i++){
+                    recordList  += '<li class="record-list-item">'
+                            +      '<div class="user-phone">'+listData[i].nickName+'</div>'
+                            +      '<div class="user-state">出局</div>'
+                            +      '<div class="user-ads"><span class="user-ads1">'+listData[i].address+'</div>'
+                            +      '<div class="user-price">￥'+listData[i].bidPrice+'</div>'
+                            +   '</li>'
+                }
+                var recordListHtml = recordList + lastList;
+                $(".record-list").append(recordListHtml);
+                var firstItem = $(".record-list .record-list-item").eq(0);
+                firstItem.find(".user-state").html('领先');
+                firstItem.addClass("record-list-item-first");
+            }
+//          底部
+            var progressPercent = fnBase.calculateProcessPercentage(detailsEvent.join_current_times, detailsEvent.join_total_times);
+            if(detailsEvent.join_current_times == 0){
+                progressPercent = 0
+            }
+            var leftCounts = parseInt(detailsEvent.join_current_times),footerLBottom='';
+            if(leftCounts <= 0){
+                leftCounts = 0;
+                footerLBottom = '</div>'
+            }else {
+                 footerLBottom  =    '<div class="footer-l-bottom">'
+                                +       '<div class="progress">'
+                                +           '<div class="progressW" style="width: '+progressPercent+'%">'
+                                +           '</div>'
+                                +       '</div>'
+                                +       '<div class="left-counts">剩'+leftCounts+'次</div>'
+                                +   '</div>'
+                                +'</div>';
+                detailsEvent.footerLBottom = true
+            }
+            var footerHtml = '<div class="footer-l">'
+                            +   '<div class="footer-l-top">'
+                            +       '<div class="AddSubtract">'
+                            +               '<div class="num-btn minus minus-frozen">-</div>'
+                            +               '<input type="tel" readonly id="bid-num" maxlength="3" class="num-text" value="1"/>'
+                            +               '<div class="num-btn add">+</div>'
+                            +       '</div>'
+                            +   '</div>'
+                            +   footerLBottom
+                            +'<div class="footer-r" id="bid-btn" onclick="">出价<span class="winCount">1</span>次<p><span>'+data.winPrice+'</span>拍币/次</p></div>';
+
+            $("#footer").css({"display":"block"});
+            if(data.state == 0){
+                $("#footer").empty();
+                $("#footer").html("<div class='yuyue'>等待开始"+buyName3+"</div>");
+                $(".record-title-r span").html(0);
+                $(".record-list-wrap").remove();
+                toRTime(data.bidTime)
+            }else if(data.state == 1){
+                $("#footer").empty();
+                $("#footer").html(footerHtml);
+                if(detailsEvent.state==100){
+
+                }else {
+                    detailsEvent.setMiaoEvent(data.bidTime);
+                }
+            }else{
+                $("#footer").empty();
+                $("#footer").html(footerHtml);
+                if(data.isShot == true){
+                    if(data.state == 3 || data.state == 4 || data.state == 5){
+                        if(fnBase.VersionCode == '108'){
+                            $("#footer").html("前往下一期");
+                            $("#footer").click(function(){
+                                if(data.haveNew){
+                                    fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/details.html?goodsid="+data.kindId)
+                                }else {
+                                    fnBase.alert("暂时无下一期商品，敬请期待！")
+                                }
+                            })
+                        }else {
+                            if(data.is_login==1&&data.is_order_show==1){
+                                if(detailsEvent.isSDK==""){
+                                    $("#footer").html("去分享");
+                                    $("#footer").click(function(){
+                                        fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/sharepage.html?source=web&goodsId="+detailsEvent.kindId)
+                                    })
+                                }else {
+                                    $("#footer").html("前往下一期");
+                                    $("#footer").click(function(){
+                                        if(data.haveNew){
+                                            fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/details.html?goodsid="+data.kindId)
+                                        }else {
+                                            fnBase.alert("暂时无下一期商品，敬请期待！")
+                                        }
+                                    })
+                                }
+                            }else {
+                                //          分享数据相关
+                                detailsEvent.sunData.goodsName = data.goodsName;
+                                detailsEvent.sunData.imgUrl = data.picUrl[0];
+                                detailsEvent.sunData.goodsPeriod = data.issue_id;
+                                detailsEvent.sunData.dealTime = data.bidRecord[0].create_t;
+                                detailsEvent.sunData.dealPrice = data.bidPrice;
+                                $("#footer").html("去晒单赢拍币！");
+                                $("#footer").click(function(){
+                                    var Op = "",clickJson = "";
+                                    Op={
+                                        "ot":"3"
+                                    };
+                                    clickJson={
+                                        "actionId":5,
+                                        "uuid":fnBase.UUID,
+                                        "openId":store.get('openid'),
+                                        "ident":"100146",
+                                        "date":parseInt(new Date().getTime() / 1000),
+                                        "name":"晒单入口商品详情"
+                                    };
+                                    fnBase.addStatisticsEvent(Op,clickJson);
+                                    window.Auction.writeOrder(JSON.stringify(detailsEvent.sunData))
+                                })
+
+                            }
+                        }
+
+                    }else {
+                        $("#footer").html("去付款");
+                        $("#footer").click(function(){
+                            fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/order.html?order_id="+data.order_id)
+                        })
+                    }
+                }else {
+                    $("#footer").html("前往下一期");
+                    $("#footer").click(function(){
+                        if(data.haveNew){
+                            fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/details.html?goodsid="+data.kindId)
+                        }else {
+                            fnBase.alert("暂时无下一期商品，敬请期待！")
+                        }
+                    })
+                }
+            }
+            detailsEvent.loading = false;
+            $(".swiper-barrage").show();
+            setTimeout(function () {
+                myScroll.refresh();
+            }, 0);
+        },
+        addChangeHtml:function(){
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Goods/goods",{
+                "goodsId":detailsEvent.goodsid,
+                "channel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode
+            },function(res){
+                detailsEvent.state = res.state;
+                detailsEvent.join_current_times=res.data.join_current_times;
+                detailsEvent.join_total_times=res.data.join_total_times;
+                var res = res.data;
+                $(".price-wrap-l-02").html(res.bidPrice);
+                if(res.state == 1){
+                    if(detailsEvent.state==100){
+
+                    }else {
+                        detailsEvent.setMiaoEvent(res.bidTime);
+                    }
+                    $(".price-wrap-r").html('距结束仅剩<div class="span"><span>00</span>:<span>00</span>:<span class="miao">10</span></div>');
+                    
+                    $(".price-name").html("若无人出价，<span>"+fnBase.addCutStrEvent(res.nickName?res.nickName:"",12)+"</span>将以<span>"+res.bidPrice+"</span>元"+buyName+"本商品");
+                    var progressPercent = fnBase.calculateProcessPercentage(detailsEvent.join_current_times, detailsEvent.join_total_times),footerLBottom='';
+                    var leftCounts = parseInt(detailsEvent.join_current_times);
+                    if(leftCounts < 0){
+                        leftCounts = 0;
+                    }
+                    if(detailsEvent.join_current_times == 0){
+                        progressPercent = 0
+                    }else {
+                        footerLBottom   = '<div class="footer-l-bottom">'
+                                        +       '<div class="progress">'
+                                        +           '<div class="progressW" style="width: '+progressPercent+'%">'
+                                        +           '</div>'
+                                        +       '</div>'
+                                        +       '<div class="left-counts">剩'+leftCounts+'次</div>'
+                                        +   '</div>'
+                                        +'</div>';
+                        if(detailsEvent.footerLBottom){
+
+                        }else {
+                            console.log(footerLBottom)
+                            $(".footer-l").append(footerLBottom);
+                            detailsEvent.footerLBottom = true
+                        }
+                    }
+                    $(".progressW").css({"width":progressPercent+"%"});
+                    $(".left-counts").html('剩'+leftCounts+'次')
+                }else {
+                    detailsEvent.sunData.dealTime = res.bidRecord[0].create_t;
+                    detailsEvent.sunData.dealPrice = res.bidPrice;
+                    $(".price-name").html("恭喜<span>"+fnBase.addCutStrEvent(res.nickName?res.nickName:"",12)+"</span>以<span>"+res.bidPrice+"</span>元的价格"+buyName+"本商品");
+                    $(".price-name").addClass("price-wrap-r-end");
+                    $(".price-wrap-r").html(buyName3+'已结束<div class="span"><span>00</span>:<span>00</span>:<span class="miao">00</span></div>');
+                    if(res.isShot == true){
+                        if(res.state == 3 || res.state == 4 || res.state == 5){
+                            if(res.is_login==1&&res.is_order_show==1&&detailsEvent.isSDK==""){
+                                if(detailsEvent.isSDK==""){
+                                    $("#footer").html("去分享");
+                                    $("#footer").click(function(){
+                                        fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/sharepage.html?source=web&goodsId="+detailsEvent.kindId)
+                                    })
+                                }else {
+                                    $("#footer").html("前往下一期");
+                                    $("#footer").click(function(){
+                                        if(data.haveNew){
+                                            fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/details.html?goodsid="+data.kindId)
+                                        }else {
+                                            fnBase.alert("暂时无下一期商品，敬请期待！")
+                                        }
+                                    })
+                                }
+                            }else {
+                                //          分享数据相关
+                                detailsEvent.sunData.goodsName = res.goodsName;
+                                detailsEvent.sunData.imgUrl = res.picUrl[0];
+                                detailsEvent.sunData.goodsPeriod = res.issue_id;
+                                detailsEvent.sunData.dealTime = res.bidRecord[0].create_t;
+                                detailsEvent.sunData.dealPrice = res.bidPrice;
+                                $("#footer").html("去晒单赢拍币！");
+                                $("#footer").click(function(){
+                                    var Op = "",clickJson = "";
+                                    Op={
+                                        "ot":"3"
+                                    };
+                                    clickJson={
+                                        "actionId":5,
+                                        "uuid":fnBase.UUID,
+                                        "openId":store.get('openid'),
+                                        "ident":"100146",
+                                        "date":parseInt(new Date().getTime() / 1000),
+                                        "name":"晒单入口商品详情"
+                                    };
+                                    fnBase.addStatisticsEvent(Op,clickJson);
+                                    window.Auction.writeOrder(JSON.stringify(detailsEvent.sunData));
+                                    
+
+                                })
+                            }
+                        }else {
+                            $("#footer").html("去付款");
+                            $("#footer").click(function(){
+                                fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/order.html?order_id="+res.order_id)
+                            })
+                        }
+                    }else {
+                        $("#footer").html("前往下一期");
+                        $("#footer").click(function(){
+                            if(res.haveNew){
+                                fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/details.html?goodsid="+res.kindId)
+                            }else {
+                                fnBase.alert("暂时无下一期商品，敬请期待！")
+                            }
+                        })
+                    }
+                }
+                $(".price-min span").html('￥'+res.lowPrice);
+                $(".price-max span").html('￥'+res.heightPrice);
+
+                //出价记录相关(变化)
+                if(res.lowPrice > 0){
+                    $(".price-min span").html('￥'+res.lowPrice);
+                }else {
+                    $(".price-min span").html('暂无记录');
+                }
+                if(res.heightPrice > 0){
+                    $(".price-max span").html('￥'+res.heightPrice);
+                }else {
+                    $(".price-max span").html('暂无记录');
+                }
+                $(".footer-tab-title .footer-tab-title-record span").html("（"+res.num+"）");
+                var recordList = "", listData = res.bidRecord, listLen = listData.length,lastList = "";
+                if(listLen >= 20){
+                    listLen = 20;
+                    lastList = '<li id="PullUp" class="scroller-pullUp">点击查看更多</li>'
+                }
+                for(var i=0; i<listLen; i++){
+                    recordList  += '<li class="record-list-item">'
+                            +      '<div class="user-phone">'+listData[i].nickName+'</div>'
+                            +      '<div class="user-state">出局</div>'
+                            +      '<div class="user-ads"><span class="user-ads1">'+listData[i].address+'</div>'
+                            +      '<div class="user-price">￥'+listData[i].bidPrice+'</div>'
+                            +   '</li>'
+                }
+                $(".record-list").html(recordList);
+                $(".record-list").append(lastList);
+                $(".record-list .record-list-item").eq(0).find(".user-state").html('领先');
+                $(".record-list .record-list-item").eq(0).addClass("record-list-item-first");
+                detailsEvent.loading = false;
+                setTimeout(function () {
+                    myScroll.refresh();
+                }, 0);
+            })
+        },
+        setBidEvent:function(){
+            $("body").on("click","#bid-btn",function(){
+                
+                if(detailsEvent.refundTime>0){
+                    detailsEvent.addDetailsStatistics(100211);
+                }else{
+                    detailsEvent.addDetailsStatistics(100014);
+                }
+                
+                if(store.get('openid')){
+                    
+                    if(!detailsEvent.loading){
+                        detailsEvent.loading = true;
+                        if(store.get('ykflag')==1){
+                            store.set('ykflag',0);
+                        }
+                        else{
+                            fnBase.loadShow();
+                        }
+                        clearInterval(detailsEvent.timerJiShiQi);
+                        fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Auction/auction",{
+                            "openid":store.get('openid'),
+                            "goodsId":detailsEvent.goodsid,
+                            "bidNum":parseInt($("#bid-num").val()),
+                            "uuid":fnBase.UUID
+                        },function(res){
+                            
+                            if(res.state == 1 || res.state == 2){
+                                fnBase.alert(res.cause);
+                                detailsEvent.addChangeHtml()
+                            }else if(res.state == -1){
+                                fnBase.alert(res.cause);
+                                detailsEvent.loading = false;
+                                setTimeout(function(){
+                                    //fnBase.addLocationHref(fnBase.source_url+"/front/view/app/login/index.html")
+                                    window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index.html?from=refund")
+                                },1500)
+                            }else if(res.state == 3){
+                                fnBase.alert(res.cause);
+                                setTimeout(function(){
+                                    store.set('detailsUrl',window.location.href);
+                                    fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/recharge.html?source=web")
+                                },2000)
+                            }else {
+                                fnBase.alert(res.cause);
+                                detailsEvent.loading = false;
+                            }
+                        })
+                    }
+                }else {
+                    //fnBase.addLocationHref(fnBase.source_url+"/front/view/app/login/index.html")
+                    //window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index.html?from=refund")
+                    //window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index1.html?from=refund");
+                    var isSDK=myObject.GetQueryString("isSDK");
+                    /*if(isSDK){*/
+                        fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Member/getIfbind",{
+                            "uuid":fnBase.UUID,
+                        },function(res){
+                            if(res.state == 1){
+                               if(res.if_bind==1){
+                                    $(".tipBox").show();
+                               }else{
+                                    window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index1.html?from=refund")
+                               }
+                            }else {
+                                fnBase.alert(res.msg)
+                            }
+                        })
+                    /*}else{
+                        window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index.html?from=refund")
+                    }*/
+                    
+                }
+            });
+        },
+        addDetailsStatistics:function(id){
+            var Op = "",clickJson = "";
+            var goodsId=myObject.GetQueryString("goodsid");
+            var source=myObject.GetQueryString("source");
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Goods/goods",{
+                "goodsId":goodsId,
+                "channel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode
+            },function(res){
+                if(res.state == 1 || res.state == 100){
+                    console.log(res);
+                    var goodsName=res.data.goodsName;
+                    var catId=res.data.catId;
+                    console.log(goodsName);
+                    if(id == 100013){
+                        if(source=="refund"){
+                            clickJson={
+                                "actionId":3,
+                                "uuid":fnBase.UUID,
+                                "openId":store.get('openid'),
+                                "ident":"100205",
+                                "date":parseInt(new Date().getTime() / 1000),
+                                "name":"不中必返商品详情页到达数",
+                                "catId":catId,
+                                "goodsId":goodsId,
+                                "goodsName":goodsName,
+                            };
+                        }else{
+                            clickJson={
+                                "actionId":3,
+                                "uuid":fnBase.UUID,
+                                "openId":store.get('openid'),
+                                "ident":"100013",
+                                "date":parseInt(new Date().getTime() / 1000),
+                                "name":"商品详情页到达数",
+                                "catId":catId,
+                                "goodsId":goodsId,
+                                "goodsName":goodsName,
+                            };
+                        }
+                        console.log(clickJson);
+                        Op={
+                            "ot":"3"
+                        };
+                        fnBase.addStatisticsEvent(Op,clickJson);
+                        return
+                    }
+                    if(id == 100014){
+                        clickJson={
+                            "actionId":5,
+                            "uuid":fnBase.UUID,
+                            "openId":store.get('openid'),
+                            "ident":"100014",
+                            "date":parseInt(new Date().getTime() / 1000),
+                            "name":"商品详情页出价点击数"
+                        };
+                        Op={
+                            "ot":"3"
+                        };
+                        fnBase.addStatisticsEvent(Op,clickJson);
+                    }
+                    if(id ==100211){
+                        clickJson={
+                            "actionId":5,
+                            "uuid":fnBase.UUID,
+                            "openId":store.get('openid'),
+                            "ident":"100211",
+                            "date":parseInt(new Date().getTime() / 1000),
+                            "name":"必返状态下详情页点击出价"
+                        };
+                        Op={
+                            "ot":"3"
+                        };
+                        fnBase.addStatisticsEvent(Op,clickJson);
+                    }
+                }else {
+                    fnBase.alert(res.cause)
+                }
+            })
+            
+        }
+    };
+    detailsEvent.init();
+    function getZanImg(hasLike){
+        if(hasLike){
+            return "../../../static/img/yizan.png"
+        }else {
+            return "../../../static/img/zan.png"
+        }
+    }
+    function getGoodsImg(dataImgUrls){
+        var imgHtml = "";
+        for(var i = 0,len = dataImgUrls.length;i<len;i++){
+            imgHtml += '<img class="lazyload" src="'+dataImgUrls[i]+'">'
+        }
+        return imgHtml
+    }
+
+    function getDpr(){
+        var dpr = $('html').attr('data-dpr');
+        if (dpr == 1) {
+            return 10;
+        }else if (dpr == 2) {
+            return  20;
+        }else {
+            return 30;
+        }
+    }
+    function zhexian(){
+        var worldMapContainer = document.getElementById('canvas-wrapper');
+        var myChart = echarts.init(worldMapContainer);
+        var option = {
+            title:{
+                "textStyle":{
+                    fontSize: 36,
+                    fontWeight: 'bolder',
+                    color: '#333'
+                }
+            },
+            tooltip: {
+                "show": false
+            },
+            grid:{
+                x:"15%",
+                y:"12%",
+                x2:"2%",
+                y2:"13%",
+                borderWidth:1
+            },
+            textStyle:{
+                fontSize : getDpr()
+            },
+            xAxis : [
+                {
+                    type : 'category',
+                    data : ["1","2","3","4","5","6","7"],
+                    axisLabel : {
+                        textStyle : {
+                            fontSize : getDpr()
+                        }
+                    }
+                }
+            ],
+            yAxis : [
+                {
+                    type : 'value',
+                    axisLabel : {
+                        textStyle : {
+                            fontSize : getDpr()
+                        }
+                    }
+                }
+            ],
+            lable:{
+                normal:{
+                    textStyle:{
+                        fontSize:getDpr()
+                    }
+                }
+            },
+            series : [
+                {
+                    "name":"",
+                    "type":"line",
+                    "data":detailsEvent.priceList,
+                    itemStyle : {
+                        normal: {
+                            label : {
+                                show: true,
+                                textStyle : {
+                                    fontSize : getDpr()
+                                }
+
+                            }
+                        }
+                    }
+                }
+            ]
+        };
+        myChart.setOption(option);
+    }
+
+    var topIndex=0;
+    function auto(index,barrage_list){
+        var boxDom=$(".barrage-play-item"),pageW=parseInt($(document).width()),barrageTop=["1.5rem","2.5rem","4.3rem"],
+                barrageColor=["#cb463c","#5c7182","#f4702e","#a54a50","#657c40","#7d5b4f"];
+        var imgOrSpanHtml = "",colorIndex = "";
+        topIndex ++;
+        if(topIndex>2){
+            topIndex=0;
+        }
+        colorIndex = parseInt(barrageColor.length*(Math.random()));
+        if(barrage_list[index].head == ""){
+            if(barrage_list[index].nickname.replace(/[^\u4e00-\u9fa5]/gi,"")){
+                imgOrSpanHtml = '<span>'+barrage_list[index].nickname.replace(/[^\u4e00-\u9fa5]/gi,"").substring(0,1)+'</span>'
+            }else if(barrage_list[index].nickname.replace(/[^A-Za-z]/gi,"")){
+                imgOrSpanHtml = '<span>'+barrage_list[index].nickname.replace(/[^A-Za-z]/gi,"").substring(0,1)+'</span>'
+            }else {
+                imgOrSpanHtml = '<img src="../../../static/img/details/default-head.png">'
+            }
+        }else {
+            imgOrSpanHtml = '<img src="'+barrage_list[index].head+'">'
+        }
+        var creSpan=$('<div class="barrage-item">'+imgOrSpanHtml+barrage_list[index].content+'</div>');
+
+        boxDom.append(creSpan);
+        creSpan.css({"top":barrageTop[topIndex],"left":pageW});
+        $(".barrage-play-item>.barrage-item:last-child span").css({"background-color": barrageColor[colorIndex]});
+        console.log(creSpan.width());
+        var spanDom=$(".barrage-play-item>.barrage-item:last-child");
+        spanDom.stop().animate({"left":-creSpan.width()},17000,"linear",function(){
+            $(this).remove();
+        });
+    }
+
+    var myScroll = null,headerTop = $("header").outerHeight();
+    myScroll = new IScroll('#content', {
+        probeType: 3,
+        mouseWheel: true,
+        scrollbars: true,
+        preventDefault: true,
+        fadeScrollbars: true,
+        tap: 'myCustomTapEvent'
+    });
+    myScroll.on('scroll', function() {
+        var priceTop = $(".price-details").find(".price-wrap").offset().top;
+        console.log("headerTop:"+headerTop);
+        console.log("priceTop:"+priceTop);
+        if(priceTop <= headerTop){
+            $(".fix-price-wrap").css("z-index",10)
+        }else {
+            $(".fix-price-wrap").css("z-index",-10)
+        }
+    });
+    myScroll.on('scrollEnd', function() {
+        var priceTop = $(".price-details").find(".price-wrap").offset().top;
+        if(priceTop <= headerTop){
+            $(".fix-price-wrap").css("z-index",10)
+        }else {
+            $(".fix-price-wrap").css("z-index",-10)
+        }
+    });
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+    function toRTime(m){
+        var miao=0,Fen= 0,timer;
+        Fen = parseInt(m / 60);
+        miao = m % 60;
+        timer=setInterval(function() {
+            $(".span").html('<span>00</span>:<span>'+toZero(Fen)+'</span>:<span class="miao">'+toZero(miao)+'</span>');
+            if(Fen==0&&miao==0){
+                clearInterval(timer);
+                detailsEvent.getGoodInfo();
+            }
+            if(Fen>=0){
+                miao--;
+                if(miao<0){
+                    miao=59;
+                }
+                if(miao>=0&&miao!=60){
+                    if(miao==59){
+                        Fen--
+                    }
+                }
+            }
+        }, 1000);
+    }
+
+    function formatSeconds(value) {
+        var theTimeS = parseInt(value);// 秒
+        var theTimeM = 0;// 分
+        var theTimeH = 0;// 小时
+        if(theTimeS >= 60) {
+            theTimeM = parseInt(theTimeS/60);
+            theTimeS = parseInt(theTimeS%60);
+            if(theTimeM >= 60) {
+                theTimeH = parseInt(theTimeM/60);
+                theTimeM = parseInt(theTimeM%60);
+            }
+        }
+        var result = ""+toZero(parseInt(theTimeS));
+        if(theTimeM >= 0) {
+            result = ""+toZero(parseInt(theTimeM))+":"+result;
+        }
+        if(theTimeH >= 0) {
+            result = ""+toZero(parseInt(theTimeH))+":"+result;
+        }
+        return result;
+    }
+
+    function time(){
+        console.log(formatSeconds(detailsEvent.refundTime));
+        $(".refund-time").html(formatSeconds(detailsEvent.refundTime));
+        if (detailsEvent.refundTime == 0) {
+            if((channel=='Ios1'||channel=='Ios2'||channel=='IosJsjx'||channel=='IosXyjp')&&verCode==111){
+                $(".refund-time-p").html("本次推荐热卖专区已结束，敬请期待下次开启");
+            }else{
+                $(".refund-time-p").html("本次不中必返已结束，敬请期待下次开启");
+            }
+            
+            $(".refund-start-btn").hide();
+            $(".refund-time").hide()
+        }else{
+            detailsEvent.refundTime--;
+            //定时器，每秒重新计算
+            setTimeout(function() {
+                time();
+            },1000)
+        }
+    }
+
+    function newTime(){
+        $(".new-hand-time").html(formatSeconds(detailsEvent.newHandTime));
+        if (detailsEvent.newHandTime == 0) {
+            $(".new-hand-p").text('本商品为新手福利商品，时间已经结束');
+            $(".new-hand-time-p").hide();
+            $(".new-hand-time").hide()
+        }else{
+            detailsEvent.newHandTime--;
+            //定时器，每秒重新计算
+            setTimeout(function() {
+                newTime();
+            },1000)
+        }
+    }
+
+    function toZero(num) {
+        if (num <= 9) {
+            return "0" + num;
+        } else {
+            return "" + num;
+        }
+    }
+
+    if(ykflag==1){
+        var btn = document.getElementById('bid-btn');
+        detailsEvent.loading = false;
+        btn.click();
+        
+    }
+    $(".accountLog").click(function(){
+        
+        window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index.html?from=refund")
+    });
+    $(".go").click(function(){
+        $(".tipBox").hide();
+        window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index2.html?from=refund")
+    })
+
+   
+    $("body").on("myCustomTapEvent",".barrage-wrap-if",function(){
+        var Op = "",clickJson = "";
+        clickJson={
+            "actionId":5,
+            "uuid":fnBase.UUID,
+            "openId":store.get('openid'),
+            "ident":"100326",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"弹幕展开/收回点击次数"
+        };
+        Op={
+            "ot":"3"
+        };
+        fnBase.addStatisticsEvent(Op,clickJson);
+    })
+    $("body").on("myCustomTapEvent",".price-wrap-if",function(){
+        var Op = "",clickJson = "";
+        clickJson={
+            "actionId":5,
+            "uuid":fnBase.UUID,
+            "openId":store.get('openid'),
+            "ident":"100328",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"成交价格走势图展开/收回点击次数"
+        };
+        Op={
+            "ot":"3"
+        };
+        fnBase.addStatisticsEvent(Op,clickJson);
+    })
+    $("body").on("myCustomTapEvent",".barrage-if-on",function(){
+        var Op = "",clickJson = "";
+        clickJson={
+            "actionId":5,
+            "uuid":fnBase.UUID,
+            "openId":store.get('openid'),
+            "ident":"100327",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"弹幕开关按钮点击次数"
+        };
+        Op={
+            "ot":"3"
+        };
+        fnBase.addStatisticsEvent(Op,clickJson);
+    })
+    $("body").on("myCustomTapEvent",".footer-tab-title-record",function(){
+        var Op = "",clickJson = "";
+        clickJson={
+            "actionId":5,
+            "uuid":fnBase.UUID,
+            "openId":store.get('openid'),
+            "ident":"100329",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"出价记录按菜单点击次数"
+        };
+        Op={
+            "ot":"3"
+        };
+        fnBase.addStatisticsEvent(Op,clickJson);
+    })
+    $("body").on("myCustomTapEvent",".footer-tab-title-sun",function(){
+        var Op = "",clickJson = "";
+        clickJson={
+            "actionId":5,
+            "uuid":fnBase.UUID,
+            "openId":store.get('openid'),
+            "ident":"100330",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"有奖晒单菜单点击次数"
+        };
+        Op={
+            "ot":"3"
+        };
+        fnBase.addStatisticsEvent(Op,clickJson);
+    })
+    $("body").on("myCustomTapEvent",".footer-tab-title-rule",function(){
+        var Op = "",clickJson = "";
+        clickJson={
+            "actionId":5,
+            "uuid":fnBase.UUID,
+            "openId":store.get('openid'),
+            "ident":"100331",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"竞拍规则菜单点击次数"
+        };
+        Op={
+            "ot":"3"
+        };
+        fnBase.addStatisticsEvent(Op,clickJson);
+    })
+    
+
+</script>
+<script>
+
+
+</script>
+</body>
+</html>

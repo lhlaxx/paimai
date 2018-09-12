@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+    <style>
+        html{
+            overflow: hidden;
+        }
+        body,html{
+            background: #ffecb3;
+            margin: 0;
+            padding: 0;
+            border: 0;
+            width: 100%;
+            height: 100%;
+        }
+        body{
+            background-size: 100% 100%;
+            overflow-y:scroll;
+            padding-top:1.2rem;
+        }
+        .photoBox{
+            width: 8rem;
+            border-radius: 0.266667rem;
+            border:0.1rem solid #fff;
+            background: #edeee8;
+            margin:1.2rem auto;
+            box-sizing:border-box;
+            position: relative;
+            z-index:2;
+            -moz-box-shadow:0 0 0.133333rem #fbce8b; 
+            -webkit-box-shadow:0 0 0.133333rem #fbce8b;
+            box-shadow:0 0 0.133333rem #fbce8b;
+        }
+        .imageBox{
+            width: 6rem;
+            height:6rem;
+            /*border-image: -webkit-linear-gradient(blue) 30 30;
+            border-image: -moz-linear-gradient(blue) 30 30;
+            border-image: linear-gradient(blue) 30 30;*/
+            background: #fff;
+            margin:0 auto;
+            border-radius: 0.266667rem;
+            overflow: hidden;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-around;
+            -moz-box-shadow:0 0 0.3rem #d4d4d4 inset;
+            -webkit-box-shadow:0 0 0.3rem #d4d4d4 inset;
+            box-shadow:0 0 0.3rem #d4d4d4 inset;
+            margin-top: 0.8rem;
+        }
+        .imageBox img{
+            width: 5.4rem;
+            border-radius: 0.266667rem;
+            display: block;
+            margin: 0 auto;
+        }
+        .title{
+            padding:0.64rem 0;
+        }
+        .title p{
+            line-height: 0.64rem;
+            font-size: 0.4rem;
+            color:#222222;
+            text-align: center;
+            font-weight: bold;
+            padding: 0 0.5rem;
+        }
+        .button{
+            margin-bottom: 1rem
+        }
+        .btn{
+            width: 8.2rem;
+            margin: 0 auto;
+            background: #ff413c;
+            color: #fff;
+            text-align: center;
+            font-size: 0.48rem;
+            line-height: 0.48rem;
+            padding:0.32rem 0;
+            border-radius: 0.56rem;
+        }
+        .titlePic{
+            width: 4rem;
+            margin: 0.72rem auto;
+            display: block;
+        }
+        .bg1{
+            position: absolute;
+            top:-0.2rem;
+            left:0.2rem;
+            width: 1.5rem;
+        }
+        .bg2{
+            position: absolute;
+            bottom:0.3rem;
+            width: 1.44rem;
+            right:0rem;
+            z-index:1;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <a class="back"><img src="../../../static/img/back.png"/></a>
+        <h1 class="head_title">今日推送</h1>
+    </div>
+    <div style="position:relative">
+        <img src="../../../static/img/push/bg-1.png" class="bg1"/>
+        <div class="photoBox">
+            <div class="imageBox">
+                 
+            </div>
+            <div class="title">
+                <!--<p>火爆朋友圈的网红</p>
+                <p>百事蓝色可乐450ml，</p>
+                <p>圣诞送好礼</p>-->
+            </div>
+        </div>
+        <img src="../../../static/img/push/bg-2.png" class="bg2"/>
+    </div>
+    <div class="button">
+        <div class="btn">点击跳转</div>
+    </div>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>  
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js"></script>
+    <script type="text/javascript">
+        var myObject=myObject;
+        var host=myObject.host;
+        var chanel=AppHelper.YzAppGetChannel();
+        var verCode=AppHelper.YzAppGetVerCode();
+        var uuid=AppHelper.YzAppGetUUID();
+        var land_id=myObject.GetQueryString("land_id");
+        var base = new Base64();    
+        myObject.commonAjax(host+'/index.php/index/Land/landinfo','GET',{
+            'chanel':chanel,
+            'verCode':verCode,
+            'land_id':land_id
+        }, function(data){
+            console.log(data);
+            if(data.state==1){
+                var content=base.decode(data.content);
+                var imgStr='<img src="'+data.img+'"/>';
+                $(".imageBox").html(imgStr);
+                var name=base.decode(data.name);
+                $(".head_title").html(name);
+                $(".title").html(content);
+                console.log(data.url)
+                if(data.goods_id==0){
+                    $(".btn").attr("data-url","0");
+                }else{
+                    $(".btn").attr("data-url",data.url);
+                }
+                
+            }else{
+                myObject.alert(data.msg)
+            }
+            
+            
+        },function(){
+        
+        });
+
+        $(".back").click(function(){
+            window.Auction.back();
+            
+        })
+
+        $(".btn").click(function(){
+            var pageUrl=$(".btn").attr("data-url");
+            if(pageUrl=="0"){
+                window.Auction.back();
+            }else{
+                window.location.href=pageUrl;
+            }
+
+            var Op = "",clickJson = "";
+            clickJson={
+                "actionId":5,
+                "uuid":uuid,
+                "openId":store.get('openid'),
+                "ident":"100319",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":land_id
+            };
+            Op={
+                "ot":"3"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+            
+        })
+
+        function Base64() {  
+       
+        // private property  
+        _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";  
+       
+        // public method for encoding  
+        this.encode = function (input) {  
+            var output = "";  
+            var chr1, chr2, chr3, enc1, enc2, enc3, enc4;  
+            var i = 0;  
+            input = _utf8_encode(input);  
+            while (i < input.length) {  
+                chr1 = input.charCodeAt(i++);  
+                chr2 = input.charCodeAt(i++);  
+                chr3 = input.charCodeAt(i++);  
+                enc1 = chr1 >> 2;  
+                enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);  
+                enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);  
+                enc4 = chr3 & 63;  
+                if (isNaN(chr2)) {  
+                    enc3 = enc4 = 64;  
+                } else if (isNaN(chr3)) {  
+                    enc4 = 64;  
+                }  
+                output = output +  
+                _keyStr.charAt(enc1) + _keyStr.charAt(enc2) +  
+                _keyStr.charAt(enc3) + _keyStr.charAt(enc4);  
+            }  
+            return output;  
+        }  
+       
+        // public method for decoding  
+        this.decode = function (input) {  
+            var output = "";  
+            var chr1, chr2, chr3;  
+            var enc1, enc2, enc3, enc4;  
+            var i = 0;  
+            input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");  
+            while (i < input.length) {  
+                enc1 = _keyStr.indexOf(input.charAt(i++));  
+                enc2 = _keyStr.indexOf(input.charAt(i++));  
+                enc3 = _keyStr.indexOf(input.charAt(i++));  
+                enc4 = _keyStr.indexOf(input.charAt(i++));  
+                chr1 = (enc1 << 2) | (enc2 >> 4);  
+                chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);  
+                chr3 = ((enc3 & 3) << 6) | enc4;  
+                output = output + String.fromCharCode(chr1);  
+                if (enc3 != 64) {  
+                    output = output + String.fromCharCode(chr2);  
+                }  
+                if (enc4 != 64) {  
+                    output = output + String.fromCharCode(chr3);  
+                }  
+            }  
+            output = _utf8_decode(output);  
+            return output;  
+        }  
+       
+        // private method for UTF-8 encoding  
+        _utf8_encode = function (string) {  
+            string = string.replace(/\r\n/g,"\n");  
+            var utftext = "";  
+            for (var n = 0; n < string.length; n++) {  
+                var c = string.charCodeAt(n);  
+                if (c < 128) {  
+                    utftext += String.fromCharCode(c);  
+                } else if((c > 127) && (c < 2048)) {  
+                    utftext += String.fromCharCode((c >> 6) | 192);  
+                    utftext += String.fromCharCode((c & 63) | 128);  
+                } else {  
+                    utftext += String.fromCharCode((c >> 12) | 224);  
+                    utftext += String.fromCharCode(((c >> 6) & 63) | 128);  
+                    utftext += String.fromCharCode((c & 63) | 128);  
+                }  
+       
+            }  
+            return utftext;  
+        }  
+       
+        // private method for UTF-8 decoding  
+        _utf8_decode = function (utftext) {  
+            var string = "";  
+            var i = 0;  
+            var c = c1 = c2 = 0;  
+            while ( i < utftext.length ) {  
+                c = utftext.charCodeAt(i);  
+                if (c < 128) {  
+                    string += String.fromCharCode(c);  
+                    i++;  
+                } else if((c > 191) && (c < 224)) {  
+                    c2 = utftext.charCodeAt(i+1);  
+                    string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));  
+                    i += 2;  
+                } else {  
+                    c2 = utftext.charCodeAt(i+1);  
+                    c3 = utftext.charCodeAt(i+2);  
+                    string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));  
+                    i += 3;  
+                }  
+            }  
+            return string;  
+        }  
+
+        } 
+
+
+
+        var Op = "",clickJson = "";
+        clickJson={
+            "actionId":3,
+            "uuid":uuid,
+            "openId":store.get('openid'),
+            "ident":"100318",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":land_id
+        };
+        Op={
+            "ot":"3"
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+    </script>
+</body>
+</html>
+
+    

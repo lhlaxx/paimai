@@ -1,0 +1,1124 @@
+*{padding:0;margin:0}
+body,html{font-family:Helvetica;font-weight:500;width:100%;height:100%}
+body{background:#f2f2f2}
+h1{font-size:.48rem;text-align:center}
+input{border:0}
+a{text-decoration:none}
+a:hover{text-decoration:none}
+input{-webkit-tap-highlight-color: transparent;}
+input::-webkit-input-placeholder,textarea::-webkit-input-placeholder{color:#f2f2f2}input:-moz-placeholder,textarea:-moz-placeholder{color:#f2f2f2}
+input::-moz-placeholder,textarea::-moz-placeholder{color:#f2f2f2}input:-ms-input-placeholder,textarea:-ms-input-placeholder{color:#f2f2f2}
+/*.tips{width:7.2rem;background:rgba(4,12,69,.9);text-align:center;color:#fefefe;border-radius:.133333rem;position:fixed;top:1.333333rem;left:50%;margin-left:-3.6rem;z-index:99999999999;box-sizing:border-box;font-size:.426667rem;line-height:.6rem;padding:.4rem}*/
+.tips{width:7.2rem;background: rgba(0, 0, 0, .7);text-align: center;color: #fefefe;border-radius: .133333rem;position: fixed;top: 1.333333rem;z-index: 99999999999;box-sizing: border-box;font-size: .426667rem;padding: .4rem;left:50%;margin-left:-3.6rem;}
+.pull-left{float:left}
+.pull-right{float:right}
+.clear{clear:both}
+.navbar{height:1.2rem;line-height:1.2rem;background:#fe4141;color:#fff;padding:0 .4rem;position:fixed;z-index:9;width:100%;box-sizing:border-box;top:0}
+.navbar a.back{position:absolute;width:.253333rem;display:table-cell;vertical-align:middle}
+.navbar a.back img{vertical-align:middle;width:100%}
+.navbar a.save{position:absolute;color:#fff;font-size:.4rem;right:.4rem}
+.mainContent{position:relative;top:1.2rem;}
+.messageBox{height:1.2rem;padding:0 .4rem}
+.messageBox .messageBox_left{height:100%;text-align:center;display:table-cell;width:5%;text-align:center;vertical-align:middle}
+.messageBox .messageBox_left img{width:.426667rem;vertical-align:middle;line-height:1.2rem}
+.messageBox .messageBox_left span{height:1.2rem;line-height:1.2rem}
+.messageBox .messageBox_right{height:100%;width:95%}
+.messageBox .messageBox_right li,.messageBox .messageBox_right ul{height:100%}
+.messageBox .messageBox_right ul li{color:#333;font-size:.373333rem;line-height:1.2rem}
+.messageBox .colorRed{color:#ff3838}
+.dealContent .dealRecord{padding:.213333rem .4rem;overflow:hidden;background:#fff;border-bottom:1px solid #eee}
+.dealRecord .goods{width:73.5%}
+.dealRecord .discount{width:26.5%;text-align:center}
+.dealRecord .colorGrey{color:#999;font-size:.32rem}
+.dealRecord .discount dl,.dealRecord .goods dl{overflow:hidden}
+.dealRecord .discount>dl>dd,.dealRecord .goods>dl>dd{overflow:hidden}
+.dealRecord .dealImg{position:relative;width:2.13rem;height:2.13rem;display:table-cell;box-sizing:border-box;text-align:center;vertical-align:middle}
+.dealRecord .dealImg img{vertical-align:middle}
+.dealRecord .dealImg span{height:2.13rem;line-height:2.13rem}
+.dealRecord .dealImg span>img{opacity:.8;filter:alpha(opacity=80);position:absolute;width:100%}
+.dealRecord .dealImg .traded{position:absolute;left:0;width:100%}
+.dealRecord .colorBlack{color:#333;font-size:.35rem;line-height:.4rem;height:.4rem;display:inline-block;vertical-align:bottom}
+.dealInformation dl dd:nth-of-type(1) .colorBlack:nth-of-type(2){width:68%;white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.dealRecord .colorBlack:nth-of-type(1){width:32%}.dealRecord .dealInformation{height:2.13rem;padding-left:.32rem;overflow:hidden;width:4.2rem}
+.dealRecord .dealInformation dd{padding:.12rem 0 .26rem;height:.35rem}
+.discount .discountRate{color:#fe4141;font-size:.8rem;font-weight:700;line-height:1.2rem}
+.discount .joinNext{background:#fe4141;display:inline-block;font-size:.4rem;color:#fff;width:100%;padding:.146667rem .013333rem;border-radius:.106667rem;box-sizing:border-box}
+.portrait_and_recharge{padding:.533333rem;overflow:hidden;border-bottom:1px solid #eee;background:#fff}
+.protrait{width:22%;height:1.866667rem;display:inline-block}
+.protrait img{width:100%;border-radius:50%}
+.username{display:inline-block;color:#333;font-size:.48rem;padding:0 0.333333rem;box-sizing: border-box;width: 56%;}
+.recharge{text-align:center;color:#fff;background:#fe4141;border-radius:.106667rem;margin:.56rem 0;width: 22%;padding:0.186667rem 0;}
+#recharge{font-size:.4rem;display:inline-block;height:.4rem;line-height:normal;color:#fff;}
+.bind{font-size: 0.32rem;width:85%;color:#fff;background: #fe4141;border-radius: 0.24rem;text-align: center;margin-top: 0.173333rem;line-height: 0.56rem}
+.bind a{color: #fff}
+.mycenterList{background:#fff}
+.mycenterList ul li{overflow:hidden;padding-left:.533333rem}
+.mycenterList ul li a{overflow:hidden;display:block}
+.mycenterList .mycenterList_label{margin-left:5%;width:81.1%;height:1.28rem;line-height:1.28rem;font-size:.426667rem;color:#333;border-bottom:1px solid #eee}
+.mycenterList .icon{width:.613333rem;width:6.5%;border-bottom:1px solid transparent;height:1.28rem;line-height:1.28rem;display:table-cell;vertical-align:middle}
+.mycenterList .goto,.myaccount .goto{border-bottom:1px solid #eee;width:1.8%;padding-right:5.6%;line-height:1.28rem;height:1.28rem;display:table-cell;vertical-align:middle}
+.mycenterList .goto span{height:1.28rem;line-height:1.28rem}
+.mycenterList .icon span{height:1.28rem;line-height:1.28rem}
+.mycenterList .goto span img{vertical-align:middle;width:100%}
+.mycenterList .icon span img{vertical-align:middle;width:100%}
+.mycenterList ul li:last-child .goto{border:0}
+.mycenterList ul li:last-child .mycenterList_label{border:0}
+.myaccount ul li:last-child .goto{border:0}
+.myaccount ul li:last-child .mycenterList_label{border:0}
+.myaccount{padding-left:.533333rem;background:#fff}
+.myaccount a{overflow:hidden;display:block}
+.myaccount .mycenterList_label{margin-left:5%;width:81.1%;height:1.28rem;line-height:1.28rem;font-size:.426667rem;color:#333}
+.myaccount .icon{width:.613333rem;width:6.5%;height:1.28rem;line-height:1.28rem;display:table-cell;vertical-align:middle}
+.myaccount .goto{width:1.8%;padding-right:5.6%;line-height:1.28rem;height:1.28rem;display:table-cell;vertical-align:middle}
+.myaccount .goto span:last-child{height:1.28rem;line-height:1.28rem}
+.myaccount .goto span:first-child{position:absolute;right:1rem;color:#fe4141;font-size:.48rem}
+.myaccount .icon span{height:1.28rem;line-height:1.28rem}
+.myaccount .goto span img{vertical-align:middle;width:100%}
+.myaccount .icon span img{vertical-align:middle;width:100%}
+.line{width:100%;height:.266667rem;background:#eee}
+.logout{width:100%;height:1.28rem;line-height:1.28rem;background:#fff;font-size:.426667rem;color:#333;text-align:center}
+.logout a{display:block;width:100%}
+.addressContent{background:#fff;position:relative;top:1.2rem}
+.addressContent ul li{border-bottom:1px solid #eee;height:1.28rem;line-height:1.28rem;padding:0 .4rem}
+.addressContent ul li span{width:2rem;display:inline-block;font-size:.4rem;color:#333}
+.addressContent ul li input{font-size:.4rem;color:#333}
+.recordContent{overflow:hidden;background:#f2f2f2}
+.recordContent .record{overflow:hidden;padding-bottom: 0;background-color: #ffffff;margin-bottom: 0.133334rem}
+.recordContent .record-inner{padding:.277778rem .4rem;overflow: hidden;}
+.record .goods{width:73.5%}
+.record .recordOperation{width:26.5%;text-align:center}
+.record .colorGrey{color:#999;font-size:.32rem}
+.record .goods dl,.record .recordOperation dl{overflow:hidden}
+.record .goods>dl>dd,.record .recordOperation>dl>dd{overflow:hidden}
+.record .recordImg{position:relative;width:2.13rem;height:2.13rem;display:table-cell;box-sizing:border-box;text-align:center;vertical-align:middle}
+.record .recordImg img{vertical-align:middle}
+.record .recordImg span{height:2.13rem;line-height:2.13rem}
+.record .recordImg span>img{opacity:.4;filter:alpha(opacity=40);position:absolute;width:100%}
+.recordNow .recordImg span>img{opacity:1}
+.record .recordImg .traded{position:absolute;left:0;width:100%}
+.record .colorBlack{color:#333;font-size:.35rem;line-height:.35rem;height:.35rem;display:inline-block}
+.record .colorRed{color:#fe4141;font-size:.35rem;line-height:.35rem;height:.35rem;display:inline-block}
+.record .recordInformation{height:2.13rem;padding-left:.32rem}
+.record .recordInformation dd{padding:.1rem 0 .26rem;height:.35rem;color:#333;font-size: .35rem}
+.recordOperation .recordStatus{color:#333;font-size:.48rem;font-weight:700;line-height:1.2rem}
+.recordOperation .twoButton .recordStatus{line-height: 0.7rem}
+.recordOperation .recordGoto-00{display:inline-block;font-size:.4rem;color:#fe4141;width:100%;padding:.146667rem .213333rem;border-radius:.106667rem;box-sizing:border-box;border: 1.5px solid #fe4141;white-space:nowrap}
+.recordOperation .recordGoto{display:inline-block;font-size:.4rem;color:#FFFFFF;width:100%;padding:.146667rem .213333rem;border-radius:.106667rem;box-sizing:border-box;background-color:#fe4141;white-space:nowrap}
+.goodsAuction{overflow:hidden;border-bottom:1px solid #eee;padding:.4rem .4rem .266667rem .266667rem}
+.goodsAuction .goodsAuction_details .goodsAuction_name{font-size:.373333rem;color:#333;line-height:1.43;text-align:left;display:inline-block;height:1.066667rem;overflow:hidden}
+.goodsAuction .goodsAuction_details .goodsAuction_price{font-size:.533333rem;color:#fe4141;line-height:.72rem;}
+.goodsAuction .goodsAuction_details .goodsAuction_title{font-size:.3rem;color:#fe4141;margin-top:.3rem}
+.goodsAuction .goodsAuction_details .goodsAuction_bidding{font-size:.4rem;color:#fff;background:#fe4141;border-radius:.053333rem;padding:.16rem .426667rem}
+.loginCover{width:100%;height:100%;position:absolute;left:0;top:0;display:none;background: #fff;
+    z-index: 9;}
+.loginInner{position:absolute;bottom:0;width:100%;background:#fff}
+.loginInner .loginButton{text-align:center;font-size:.32rem;color:#999}
+/*.loginInner .loginButton img{width:43.2%}*/
+.loginInner{padding:0 0 .4rem 0}
+.loginInner>div{overflow:hidden;padding:0.4rem;text-align:center;color:#666;font-size:0.4rem}
+.loginInner>div>img{position:absolute;right:.4rem;width:.533333rem;margin-top:-.025rem}
+.loginInner dl{padding-top:.8rem}
+.emptyBox{text-align:center;height:100%;width:100%}
+.emptyBox img{vertical-align:middle;width:43.2%}
+.tabs-underline .tabs-content-placeholder div p.emptyContent,.tabs-vertical .tabs-content-placeholder div p.emptyContent{font-size:.4rem;color:#999;text-align:center;margin:.5rem 0}
+.bgWhite{background:#fff}
+.help{padding:0 .4rem}
+.helpicon{display:inline-block;width:.413333rem;height:.64rem;position:absolute;text-align:center;vertical-align:middle;display:block}
+.helpicon img{width:100%;vertical-align:middle}
+.helpicon span{height:100%;display:inline-block;vertical-align:middle}
+.helpContent p{margin-left:.6rem;line-height:.64rem}
+.helpContent .question{font-size:.373333rem;color:#000}
+.helpContent .answer{font-size:.32rem;color:#999}
+.help ul li{padding:.44rem 0}
+.vip{margin-top:.2rem}
+.vip span{font-size:.346667rem;color:#666}
+.dealRecord>.goods>a>dl>dd:nth-of-type(2){margin-top:.3rem}
+.discount>dl>dd:nth-of-type(1){margin-top:.25rem}
+.dealRecord .colorRed{color:#fe4141}
+.goodsAuction_details>dl{text-align:left;padding-left:.5em}
+.corner{position:absolute;width:.6rem}
+.colorRed{color:#fe4141}
+.symbol{font-size:.4rem;line-height:.72rem;}
+.clock{width:.426667rem;margin-top:.33rem}
+.left-time{color:#fe4141;font-size:.533333rem;margin-top: 0.2rem;margin-left: 0.1rem;}
+.emptyContent{font-size:.4rem;color:#999;text-align:center;margin:.5rem 0}
+.goodsAuction_details>dl>dd:nth-of-type(2){overflow: hidden;margin-top: 0.2rem}   
+.dealRecord .dealInformation dl>dd:nth-of-type(1){height:0.42rem;line-height: 0.42rem;} 
+.dealRecord .dealInformation dl>dd:nth-of-type(1) .colorBlack:nth-of-type(2){height:0.42rem;line-height: 0.42rem;position: relative;top:-0.01rem;} 
+/*登录中转页*/
+.logPage{background: #fff;}
+.logPage .bottom{text-align: center;position: fixed;width:100%;bottom:0}
+.logPage .bottom img{width: 9.333333rem}
+.logPage .logoLog{text-align: center;padding:1.693333rem 0 0.8rem 0;}
+.logPage .logoLog img{width:2.133333rem;}
+.logPage .logoLog a img{position: absolute;width: 0.5rem;top: 0.5rem;left: 0.5rem;}
+
+
+.loginCover .logoLog{text-align: center;padding:1.693333rem 0 0.8rem 0;}
+.loginCover .logoLog img{width:2.133333rem;}
+.loginCover .logoLog a img{position: absolute;width: 0.5rem;top: 0.5rem;left: 0.5rem;}
+
+.loginInner .line_{border-top: 1px solid #eee;width:25%;display: inline-block;height:0.2rem;}
+.logContent .loginInner dl{padding-top:0.4rem;}
+.logContent ul{padding:0 1.8rem;}
+.logContent ul li{width:100%;font-size: 0.426667rem;margin-top:0.2rem;line-height: normal;padding:0.173333rem 0;}
+.logContent .info{border-bottom:1px solid #eee;}
+.logButton{background: #fe4141;color:#fff;width:100%;padding:0.32rem;border:0;font-size: 0.426667rem;border-radius: 0.773333rem;}
+.forgetPass{font-size: 0.373333rem;color:#666;}
+.regNow{font-size: 0.4rem;color:#fe4141;}
+
+.help ul li.helpTitle{padding:0 0 0 0;font-weight: bold;font-size: 0.373333rem;color:#000;}
+.help ul li.helpTitle:first-child{padding-top: 0.44rem}
+
+.loginButton{cursor: pointer;}
+
+input::-webkit-input-placeholder, textarea::-webkit-input-placeholder {
+	color: #ccc;
+}
+input:-moz-placeholder, textarea:-moz-placeholder {
+	color:#ccc;
+}
+input::-moz-placeholder, textarea::-moz-placeholder {
+	color:#ccc;
+}
+input:-ms-input-placeholder, textarea:-ms-input-placeholder {
+	color:#ccc;
+}
+
+.regContent{position: relative;top:1.2rem;}
+.regContent ul{padding:0 0.4rem;}
+.regContent ul .info{border-bottom: 1px solid #eee;padding:0.626667rem 0 0.173333rem 0;}
+.regContent ul .info input{font-size: 0.426667rem;text-indent:1em}
+.regButton{background: #fe4141;color: #fff;width: 100%;padding: 0.32rem;border: 0;font-size: 0.426667rem;border-radius: 0.773333rem;}
+
+.regPage{background: #fff}
+.regPage .loginInner{position: relative;}
+.regBlock{padding:0 0.4rem;overflow: hidden;}
+.regBlock button{margin:0.533333rem 0; }
+.regBlock .pull-left input{width:0.4rem;height:0.4rem;}
+.regBlock .pull-left{font-size: 0.373333rem;color:#999;}
+.regBlock .pull-left a{color: #fe4141}
+.regBlock .pull-right {color:#666;font-size: 0.373333rem}
+
+.sendCode{font-size: 0.32rem;color:#fe4141;float:right;}
+
+
+.setBoard{background: #fff}
+.setBoard li{overflow: hidden;padding:0 0.4rem;border-bottom:1px solid #eee;}
+.setBoard li .pull-left{width: 81.1%;height: 1.28rem;line-height: 1.28rem;font-size: .426667rem;color: #333;}
+.setBoard li .pull-right{width: 1.8%;line-height: 1.28rem;height: 1.28rem;display: table-cell;vertical-align: middle;}    
+.setBoard li .pull-right img{vertical-align: middle;width: 100%;}
+.setBoard li:last-child{border:none;}
+button.sendCode{border:1px solid #fe4141;color:#fe4141;background: none;position: absolute;font-size: 0.32rem;margin-top: 0.346667rem;
+    padding: 0.213333rem 0.4rem;right: 0.4rem;margin-top: -0.2rem;border-radius: 0.106667rem}
+button.sendCode_{margin-top: -0.45rem}    
+.changepassBoard{background: #fff}
+.changepassBoard li{overflow: hidden;padding:0.533333rem 0.4rem;border-bottom:1px solid #eee;font-size: .426667rem;color: #333;}
+.changepassBoard li:last-child{border:none;}
+
+.myaccount ul li:first-child .mycenterList_label{border-bottom:1px solid #eee}
+.notReceived{font-size: 0.32rem;color: #666;margin: 0.48rem 0;float: right;margin-right: 0.4rem;}
+.clearboth{clear:both;overflow: hidden}
+.confirm{padding:0 0.4rem;}
+.confirm button{width:100%;background: #fe4141;color:#fff;text-align: center;border-radius: 0.106667rem;border:0;padding:0.36rem 0;font-size:0.48rem }
+
+#myCheck{display: none}
+#myCheck + label{
+    background-color:#fe4141;
+    border-radius: 0.106667rem;
+    width:0.4rem;
+    height:0.4rem;
+    display: inline-block;
+    text-align: center;
+    vertical-align: middle;
+    line-height: 0.4rem
+}
+#myCheck:checked + label{
+    background-color: #fe4141;
+}
+#myCheck:checked + label:after{
+    content:"\2714";
+    color:#fff;
+}
+
+.alertbg{ position: fixed;width: 100%;height: 100%;background: rgba(0,0,0,0.6);z-index: 9;top:0;}
+.alertBox{width:70%;background: #fff;margin:0 auto;position: relative;border-radius: 0.266667rem;overflow: hidden}
+.inviteBox .close img{width: 0.32rem;float:right;margin-top: 0.32rem;margin-right: 0.32rem}
+.inviteBox h1{font-weight: bold;margin:0.146667rem 0.666667rem;}
+.inviteBox .ib1{color:#999;font-size: 0.373333rem;margin-bottom: 0.4rem;margin-left: 1.066667rem}
+.inputLabel{border:1px solid #333333;width: 70%;margin:0 auto;border-radius: 0.106667rem;height:0.88rem;}
+.inputLabel input{color:#333;height: 0.48rem;margin: 0.2rem 0;width: 100%;text-align: center;font-size: 0.48rem;font-weight: bold;}
+.inviteBox .ib2{color:#999;font-size: 0.373333rem;margin:0.48rem 0 0.48rem 1.066667rem}
+.inviteBox .alert button{width:80%;background: #ccc;color:#fff;font-size: 0.48rem;text-align: center;border:0;margin:0 auto;height:0.96rem;display:block;border-radius: 0.106667rem}
+.inviteBox .ib3{color:#999;font-size: 0.32rem;margin-left: 1.066667rem;margin-top: 0.266667rem;margin-bottom: 0.266667rem}
+.inviteBox .master{font-size: 0.48rem;color:#999;text-align: center;line-height: 0.6rem;color:#333;font-weight: bold;padding-bottom: 0.5rem}
+.inviteBox .alertline{position: relative;height:0.506666rem;}
+.inviteBox .alertline::before{position: absolute;content: '';width: 0.506666rem;height: 0.506666rem;border-radius: 100%;left: -0.253333rem;background: rgba(0,0,0,0.5)}
+.inviteBox .alertline::after{position: absolute;content: '';width: 0.506666rem;height: 0.506666rem;border-radius: 100%;right: -0.253333rem;background: rgba(0,0,0,0.5)}
+.inviteBox .lineinside{border:1px dotted #ccc;position: relative;top:0.253333rem;width: 92.692307%;text-align: center;margin: 0 auto;}
+
+.rule1{padding:0 0.4rem;}
+.rule1 h1{font-size: 0.426667rem;text-align: left;color:#333;font-weight: bold;padding:0.48rem 0;}
+.rule1 p{font-size: 0.373333rem;color:#333;line-height: 0.64rem;padding-bottom: 0.2rem}
+
+.ruleBg{background: #fff}
+
+.loading_bg{background:rgba(247,248,252,.8);width:100%;height:100%;position:fixed;z-index:99999;top:0}
+.loading_bg div{display:inline-block;left:50%;top:50%;position:absolute;width:1.466667rem;margin-top:-.2rem;margin-left:-.7333335rem}
+.loading_bg div img{width:100%}
+
+.shai{margin-bottom:0.1rem;}
+
+
+.goods-logistics{  float: left;  line-height: 0.77rem;  font-size: 0.32rem;  color: #666666; margin-right: 0.05rem;padding: 0 0.4rem;box-sizing: border-box }
+.goods-logistics .associator-rule{ float: right;  color: #017fe1;  text-decoration-line: underline;  }
+
+
+.box{display:flex;display:-webkit-flex;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;}
+.box .loginButton{flex:1;width: 0}
+.box .loginButton img{width:60%;max-width:1.4rem }
+.tipBox{width: 100%;height: 100%;position: fixed;background: rgba(0,0,0,0.5);top:0;display: none}
+.tipBox_inner{width: 8rem;background: #fff;border-radius: 0.266667rem;top: 50%;position: absolute;left: 50%;margin-left: -4rem;margin-top: -1.85rem; }
+.tipBox_inner p{border-bottom:1px solid #eee;font-size: 0.4rem;font-weight: bold;line-height: 0.7rem;padding: 0.9rem 0.1rem 0.9rem 0.4rem;text-align: left;}
+.tipBox_inner>div{display:flex;display:-webkit-flex;flex-direction:row;flex-wrap:nowrap;justify-content:space-around;}
+.tipBox_inner .go{display: inline-block;width: 50%;font-size: 0.4rem;color:#666;border-right:1px solid #eee;box-sizing:border-box;text-align: center;padding:0.4rem 0;}
+.tipBox_inner .accountLog{display: inline-block;width: 50%;color:#007aff;font-weight:bold;font-size: 0.4rem;text-align: center;padding:0.4rem 0;}
+.clear-input{display: none;position: absolute;}
+.name-input:valid + .clear-input {display: inline-block;}
+
+.record-bottom{
+    width: 100%;
+    height: 1.06rem;
+    line-height: 1.06rem;
+    border-top: 1px solid #dddddd;
+    float: left;
+    margin-top: 0.1rem;
+    padding: 0 0.4rem;
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    box-sizing: border-box;
+}
+.record-bottom .diffPrice-pb{
+    height: 100%;
+    font-size: 0.3466667rem;
+    color: #666666;
+    box-sizing: border-box;
+    text-overflow: ellipsis;
+    width:72%;
+}
+.record-bottom .diffPrice-btn{
+    width: 2.4rem;
+    height: 0.813334rem;
+    border-radius: .106667rem;
+    -moz-border-radius: .106667rem;
+    -webkit-border-radius: .106667rem;
+    background-color: #fe4141;
+    font-size: .4rem;
+    text-align: center;
+    line-height: 0.813334rem;
+    color: #ffffff;
+    box-sizing: border-box;
+}
+.record-bottom .diffPrice-btn2{
+    width: 2.4rem;
+    height: 0.813334rem;
+    border-radius: .106667rem;
+    -moz-border-radius: .106667rem;
+    -webkit-border-radius: .106667rem;
+    background-color: #fff;
+    border: 1.5px solid #FE9343;
+    font-size: .4rem;
+    text-align: center;
+    line-height: 0.813334rem;
+    color: #FE9343;
+    box-sizing: border-box;
+    
+    /*display: inline-block;
+    font-size: .4rem;
+    color: #fe4141;
+    width: 100%;
+    padding: .146667rem .213333rem;
+    border-radius: .106667rem;
+    box-sizing: border-box;
+    border: 1.5px solid #fe4141;
+    white-space: nowrap;*/
+}
+.record-bottom .diffPrice-btn3{
+    width: 2.4rem;
+    height: 0.813334rem;
+    border-radius: .106667rem;
+    -moz-border-radius: .106667rem;
+    -webkit-border-radius: .106667rem;
+    background-color: #FE4141;
+    /* border: 3px solid #FE9343; */
+    font-size: .4rem;
+    text-align: center;
+    line-height: 0.813334rem;
+    color: #fff;
+    box-sizing: border-box;
+}
+
+
+/*抽奖页面 start*/
+.lty{
+    width:100%;
+}
+.lty .bg{
+    width:100%;
+    position: relative;
+    border:2px solid green;
+}
+.lty .circle{
+    position: relative;
+    padding-top:60%;
+    /*padding-left:2%;*/
+    font-size:16px;
+    color:#fff;
+}
+
+
+.lty .circle .prize06{
+    position: absolute;
+    display: block;
+    width: 18%;
+    top: 29%;
+    left: 20%;
+    transform:rotate(300deg);
+    -webkit-transform:rotate(300deg);  /*兼容-webkit-引擎浏览器*/
+    -moz-transform:rotate(300deg);     /*兼容-moz-引擎浏览器*/
+}
+.lty .circle .index01{position:absolute; top: 12%; left: 43%; color:#eb1926;}
+.lty .circle .index02{position:absolute; top: 29%; left: 76%; 
+    transform: rotate(60deg);
+    -webkit-transform: rotate(60deg);
+    -moz-transform: rotate(60deg);
+    color:#eb1926;
+}
+.lty .circle .index03{position:absolute; top: 67%; left: 75%;
+    transform: rotate(125deg);
+    -webkit-transform: rotate(125deg);
+    -moz-transform: rotate(125deg);
+    color:#eb1926;
+}
+.lty .circle .index04{position:absolute; top: 84%; left: 44%;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+    color:#eb1926;
+}
+.lty .circle .index05{position:absolute; top: 65%; left: 12%;
+    transform: rotate(245deg);
+    -webkit-transform: rotate(245deg);
+    -moz-transform: rotate(245deg);
+    color:#eb1926;
+}
+
+.lty .circle .prize01{
+    position: absolute;
+    display: block;
+    width: 16%;
+    top: 19%;
+    left: 42%;
+}
+.lty .circle .prize02{
+    position: absolute;
+    display: block;
+    width: 16%;
+    top: 31%;
+    right: 19%;
+    transform: rotate(60deg);
+    -webkit-transform: rotate(60deg);
+    -moz-transform: rotate(60deg);
+}
+.lty .circle .prize03{
+    position: absolute;
+    display: block;
+    width: 16%;
+    top: 57%;
+    right: 20%;
+    transform: rotate(125deg);
+    -webkit-transform: rotate(125deg);
+    -moz-transform: rotate(125deg);
+}
+.lty .circle .prize04{
+    position: absolute;
+    display: block;
+    width: 16%;
+    top: 70%;
+    left: 42%;
+    transform: rotate(180deg);
+    -webkit-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
+}
+.lty .circle .prize05{
+    position: absolute;
+    display: block;
+    width: 16%;
+    top: 58%;
+    left: 20%;
+    transform: rotate(245deg);
+    -webkit-transform: rotate(245deg);
+    -moz-transform: rotate(245deg);
+}
+.lty .rule{
+   position: relative;
+   display: block;
+   width:90%;
+   top:94%;
+   margin:40px auto;
+   color:#FFF2B9;
+   font-size:16px;
+   line-height: 26px;
+   color: #FFF8DA;
+   background: #ec3038;
+   border:2px dotted #fda6aa;
+   padding:30px 10px;
+}
+.lty .rule .title{
+    position: absolute;
+    top:-24px;
+    left:27%;
+}
+.lty .rule hr{
+    opacity:0.2;
+    margin-top:20px;
+    margin-bottom: 20px;
+}
+.lty footer{
+    width:100%;
+    text-align: center;
+    margin-top:40px;
+    margin-bottom:20px;
+    color:#FFF8DA;
+    font-size:14px;
+    background: none;
+}
+.tank{
+    width: 86%;
+    margin: 0 auto;
+    text-align: center;
+    background: #FFF1D5;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    line-height: 30px;
+    position: relative;
+    padding: 20px;
+    left: 0%;
+    top:-100px;
+}
+.tank p{
+    color:#D00000;
+    font-size:18px;
+    font-weight:600;
+}
+.tank .font01{
+    color:#FF6825;
+}
+.tank .font02{
+    color:#FF6825;
+}
+.tank a{
+    display: block;
+    background: #FFBD1F;
+    position: absolute;
+    bottom: -60px;
+    color: #EB1A26;
+    width: 100%;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    -moz-border-radius: 30px; 
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    left:0; 
+}
+.tank .title{
+    display: block;
+    width:256px;
+    position: absolute;
+    top: -102px;
+    left: 1%;
+}
+.tank .bor{
+    border:2px dotted #f9d6b0;
+    -moz-border-radius: 4px; 
+    -webkit-border-radius: 4px;
+    border-radius: 4px; 
+}
+.tank small{
+    color:#7E2700;
+}
+.tank2{
+    width: 86%;
+    margin: 0 auto;
+    text-align: center;
+    background: #FFF1D5;
+    -moz-border-radius: 4px;
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    line-height: 30px;
+    position: relative;
+    padding: 20px;
+    left: 0%;
+   /* top:-100px;*/
+}
+.tank2 p{
+    color:#D00000;
+    font-size:18px;
+    font-weight:600;
+}
+.tank2 .font01{
+    color:#FF6825;
+}
+.tank2 .font02{
+    color:#FF6825;
+}
+.tank2 a{
+    display: block;
+    background: #FFBD1F;
+    position: absolute;
+    bottom: -60px;
+    color: #EB1A26;
+    width: 100%;
+    line-height: 50px;
+    font-size: 18px;
+    font-weight: 600;
+    -moz-border-radius: 30px; 
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    left:0; 
+}
+.tank2 .title{
+    /*display: block;
+    width:256px;
+    position: absolute;
+    top: -102px;
+    left: 1%;*/
+    display: block;
+    width: 256px;
+    position: absolute;
+    /* top: -102px; */
+    /* left: 1%; */
+    left: 0;
+    right: 0;
+    margin: auto;
+    bottom: 0;
+    top: -263px;
+}
+.tank2 .bor{
+    border:2px dotted #f9d6b0;
+    -moz-border-radius: 4px; 
+    -webkit-border-radius: 4px;
+    border-radius: 4px; 
+}
+.tank2 small{
+    color:#7E2700;
+}
+.lottery .layui-layer-page .layui-layer-content{
+    overflow:inherit;
+}
+.lottery .layui-layer{
+    background: none;
+}
+.lottery .layui-layer-setwin .layui-layer-close2{
+    display: none;
+}
+
+.g-content {
+        width: 100%;
+        /*background: #fbe3cc;*/
+        height: auto;
+        font-family: "微软雅黑", "microsoft yahei";
+      }
+      .g-content .g-lottery-case {
+        /*width: 500px;*/
+        /*height: 445px;*/
+        margin: 0px auto;
+        overflow: hidden;
+      }
+      
+      .g-content .g-lottery-case .g-left h2 {
+        font-size: 20px;
+        line-height: 32px;
+        font-weight: normal;
+        margin-left: 20px;
+      }
+      
+      .g-content .g-lottery-case .g-left {
+        /*width: 450px;
+        float: left;*/
+      }
+      
+      .g-lottery-box {
+       /* width: 400px;
+        height: 400px;
+        position: relative;
+        background: url(../../../static/img/lottery/ly-plate-c.gif) no-repeat;
+        background-size:100%;*/
+      }
+      
+      /*.g-lottery-box .g-lottery-img {*/
+        /*width: 340px;*/
+        /*height: 340px;*/
+        /*position: relative;*/
+        /*background: url(../../../static/img/lottery/bg-lottery.png) no-repeat;*/
+        /*background-size:100%;*/
+        /*top:0;*/
+        /*left:0;*/
+        /*right:0;*/
+        /*bottom:0;*/
+        /*margin:auto;*/
+      /*} */
+      .g-lottery-box .g-lottery-img{
+          width: 400px;
+          height: 400px;
+          position: relative;
+          background: url(../img/lottery/bg-lottery5.png) no-repeat;
+          background-size:100%;
+          top:0;
+          left:0;
+          right:0;
+          bottom:0;
+          margin:auto;
+      }
+      
+      /*.g-lottery-box .playbtn {*/
+        /*width: 138px;*/
+        /*height: 138px;*/
+        /*position: absolute;*/
+        /*top: 100px;*/
+        /*left: 100px;*/
+        /*background: url(../../../static/img/lottery/playbtn.png) no-repeat;*/
+        /*background-size: 100%;*/
+      /*}*/
+      .g-lottery-box .playbtn {
+      width: 138px;
+      height: 138px;
+      position: absolute;
+      top: 133px;
+      left: 133px;
+      background: url(../img/lottery/playbtn.png) no-repeat;
+      background-size: 100%;
+      }
+
+/*抽奖页面 end*/
+
+
+/*中奖纪录 start*/
+.listW1{
+
+}
+.listW1 .tabs-underline ul li{
+    width:33%;
+    text-align: center;
+}
+.listW1 .lists{
+    background: #fff;
+    overflow: hidden;
+    width:100%;
+    display:flex;
+    margin-top:10px;
+    padding:10px;
+}
+.listW1 .lists img{
+    width:100%;
+    /*height:150px;*/
+    /*border:1px solid #ccc;*/
+}
+.listW1 .lists .li01{
+    width:22%; 
+    padding:10px;
+    align-self:center;
+    float:left;}
+.listW1 .lists .li02{
+    width:55%; 
+    align-self:center;
+
+    float:left;}
+.listW1 .lists .li03{
+    width:22%; 
+    font-size:22px;
+    font-weight:600;
+    align-self:center;
+
+    float:left;}
+.listW1 .nav-tabs{
+    border:none;
+}
+.listW1 .recordContent{
+    margin-top:2px;
+    width:100%;
+}
+.listW1 .tabs-underline ul{
+    position: relative;
+    border:none;
+}
+.listW1 .nav-tabs>li.active>a, .listW .nav-tabs>li.active>a:focus, .listW  .nav-tabs>li.active>a:hover{
+    border:none;
+    border-bottom: 4px solid red;
+}
+.listW1 .navbar{
+    background: #fd4141;
+}
+/*中奖纪录 end*/
+
+/*中奖纪录 start*/
+.listW{
+    background: #f2f2f2;
+}
+.listW .tabs-underline ul li{
+    width:33%;
+    text-align: center;
+}
+.listW .lists{
+    background: #fff;
+    overflow: hidden;
+    width:100%;
+    display:flex;
+    padding:10px;
+    margin-bottom: 10px;
+}
+.listW .lists img{
+    width:82%;
+    /*height:150px;*/
+    /*border:1px solid #ccc;*/
+    position: absolute;
+    left: 0;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    margin: auto;
+}
+.listW small{
+    background: #fff;
+    width: 100%;
+    display: block;
+    padding-left: 10%;
+    padding-bottom: 10px;
+
+}
+.listW .lists .li01{
+    /*width:22%; */
+    width:80px;
+    height:80px;
+    padding:10px;
+    align-self:center;
+    /*float:left;*/
+    position: relative;
+}
+.listW .lists .li02{
+    width:55%; 
+    /*align-self:center;*/
+    float:left;
+    margin-top:4px;
+}
+.listW .lists .li03{
+    width:22%; 
+    font-size:22px;
+    font-weight:600;
+    /*align-self:center;*/
+    margin-top:4px;
+
+    float:left;}
+.listW .nav-tabs{
+    border:none;
+}
+.listW .tabInfo{
+    background: #fff;
+    margin-bottom: 10px;
+}
+.listW .recordContent{
+    margin-top:2px;
+}
+.listW .tabs-underline ul{
+    position: relative;
+    border:none;
+    background: #fff;
+}
+.listW .nav-tabs>li.active>a, .listW .nav-tabs>li.active>a:focus, .listW  .nav-tabs>li.active>a:hover{
+    border:none;
+    border-bottom: 4px solid red;
+    color:#666;
+}
+.listW .newbar{
+    background: #fd4141;
+    height:40px;
+    line-height: 40px;
+    color:#fff;
+    font-size:20px;
+    overflow: hidden;
+    text-align: center;
+     padding-left:10px;
+}
+.listW  .newbar a{
+    float:left;
+
+}
+.listW  .newbar a img{
+    width:10px;
+
+}
+.listW .nav-tabs>li>a{
+    color:#666;
+}
+/*中奖纪录 end*/
+
+
+/*iphone6及其以下*/
+@media only screen and (max-width: 400px){
+    .g-lottery-box .g-lottery-img{
+        width:360px;
+        height:360px;
+        background: url(../img/lottery/bg-lottery2.png) no-repeat;
+    }
+    .g-lottery-box .playbtn{
+        top:110px;
+        left:110px;
+    }
+}
+
+.layui-layer{
+    box-shadow:none!important;
+}
+
+
+/*有奖分享 start*/
+.share{
+    color:#fff;
+    font-size: 14px;
+}
+.share .area01 img{
+    width:100%;
+}
+.share .width90{
+    width:90%;
+    margin:20px auto;
+}
+.share .icon{
+    width:44%;
+    float:left;
+    padding:3%;
+}
+.share .icon img{width:100%;}
+.share .area02{text-align: center;}
+.share .btn1{
+    padding:10px;
+    display: block;
+    -moz-border-radius: 30px; 
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    margin-top:20px;
+    background: #ffe02e;
+    color:#ed2d27;
+    font-weight: 600;
+    font-size:16px;
+    text-align: center;
+}
+.share .btn2{
+    padding:10px;
+    display: block;
+    -moz-border-radius: 30px; 
+    -webkit-border-radius: 30px;
+    border-radius: 30px;
+    margin-top:20px;
+    color:#fff;
+    font-weight: 600;
+    font-size:16px;
+    border:1px solid #fff;
+    text-align: center;
+}
+.share .area03{
+    color:#ffe02e;
+    line-height: 22px;
+}
+.share .font01{
+    font-size: 18px;
+    text-align: left;
+    margin-left:20px;
+    margin-top:20px;
+}
+.share .font01 span{
+    ilter:alpha(opacity=50);
+    -moz-opacity:0.6;
+    opacity:0.6;
+    font-size:16px;
+    margin-left:10px;
+}
+.share .mode01 img{
+    width:100%;
+}
+.share .mode01 p{
+    text-align: center;
+    background: #cc3b36;
+    height:30px;
+    line-height: 30px;
+}
+.share .mode01 p span{
+    color:#fbe633;
+}
+.share .mode02{
+    position: relative;
+}
+.share #con1 li span{
+    color:#fbe633;
+}
+.share .mode02 img{
+    width:100%;
+}
+.share .mode03 p{
+    text-align: center;
+    ilter:alpha(opacity=70);
+    -moz-opacity:0.7;
+    opacity:0.7;
+    margin-top:20px;
+}
+
+/*有奖分享  end*/
+
+
+/*新手专区  start*/
+.new .dom01{
+    padding-top:40px;
+}
+.new .dom01 img{
+    width:100%;
+}
+.new .width90{
+    width:98%;
+    margin:20px auto;
+    color:#fff;
+    font-size:14px;
+}
+.new .dom02{
+    text-align: center;
+}
+.new .dom02 .time{
+    margin-top:40px;
+}
+.new .dom02 span{
+    font-size:28px;
+    background-color:rgba(25, 24, 24, 0.5);
+    -moz-border-radius: 8px; 
+    -webkit-border-radius: 8px;
+    border-radius: 8px; 
+    padding:2px 10px;
+}
+.new .dom03{
+    overflow: hidden;
+}
+.new .dom03 ul{
+    text-align: center;
+}
+.new .dom03 .pro{
+    width:30%;
+    display:inline-block; 
+    float:none;
+    background: #fff;
+    color: #333;
+    padding-bottom: 10px;
+    -moz-border-radius: 4px; 
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    margin:1%;
+}
+.new .dom03 .pro p{
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
+.new .dom03 .pro img{
+    width:100%;
+    margin-bottom: 10px;
+    -moz-border-radius: 4px 4px 0 0; 
+    -webkit-border-radius: 4px 4px 0 0;
+    border-radius: 4px 4px 0 0;
+}
+.new .btnGray{
+    background:#adadad;
+    color:#fff; 
+    -moz-border-radius: 4px; 
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    padding:6px 16px;
+    margin-top:12px;
+    display: inline-block; 
+}
+.new .btnRed{
+    background:#ff3b37;
+    color:#fff;
+    -moz-border-radius: 4px; 
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    padding:6px 16px;
+    margin-top:12px;
+    display: inline-block; 
+}
+.new .dom04{
+    width:94%;
+    margin:0 auto;
+    /*position: relative;*/
+    background: #fff;
+    -moz-border-radius: 4px; 
+    -webkit-border-radius: 4px;
+    border-radius: 4px;
+    color:#333;
+    margin-bottom: 80px;
+    line-height: 22px;
+}
+.new .titledom04{
+    margin-top:20px;
+    display: block;
+    overflow: hidden;
+}
+.new .titledom04 img{
+    width:60%;
+    display: block;
+    margin:20px auto;
+}
+.new .dom04 img{
+    border:1px solid red;
+}
+.new .dom04 .text{
+    padding:20px;
+}
+/*新手专区  end*/
+
+footer {
+    width: 100%;
+    height: 1.346667rem;
+    position: fixed;
+    left: 0;
+    bottom: 0;
+    z-index: 9999;
+    box-sizing: border-box;
+    border-top: 1px solid #cecece;
+    text-align: center;
+    display: flex;
+    display: -webkit-flex;
+}
+
+footer .fItem {
+    width: 25%;
+    height: 100%;
+    display: flex;
+    display: -webkit-flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    align-content: space-around;
+    font-size: .266667rem;
+    line-height: .56rem;
+    color: #929292
+}
+
+footer .active {
+    color: #fe4141
+}
+
+footer .fItem .icon {
+    width: .56rem;
+    height: .56rem
+}
+.wx-footer{ background-color: #fff;}

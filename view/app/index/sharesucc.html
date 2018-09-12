@@ -1,0 +1,316 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title></title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/css/sharesucc.css?0.10"/>
+    <style>
+        .cover{
+            background: rgba(0,0,0,0.8);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            display: none;
+        }
+        .cover img{
+            position: absolute;
+            width: 3.69rem;
+            top: 0.08rem;
+            right: 1.15rem;
+        }
+        .cover>div {
+            margin-top: 4.31rem;
+        }
+        .cover p {
+            font-size: .48rem;
+            line-height: 2;
+            text-align: center;
+            color: #fefefe;
+        }
+        .cover .close{
+            margin-top: 0.2rem;
+        }
+        #selector{
+            -webkit-user-select: text;
+        }
+        .load-btn{
+            -webkit-user-select: text;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <div id="scroll">
+        <!--<h3 class="share-title">我在极速拍卖花<span class="pm-price">188元</span>中了价值<span class="goods-price">6888元</span>的iphone7 plus 128G ,你也赶紧来看看！</h3>-->
+        <!--<div class="share-des">-->
+            <!--<div class="share-des-top">-->
+                <!--<a class="goods-img-wrap" href="javascript:void(0);">-->
+                    <!--<img class="goods-img"-->
+                         <!--src="http://egoures.tt286.com/market/indiana/goods2017/06/30/bzhlodqam3/1498806562925.jpg">-->
+                <!--</a>-->
+                <!--<div class="share-details">-->
+                    <!--<div class="share-info">-->
+                        <!--<p class="goods-name">苹果7【应该对对对对对对对多多多多多多多多多多多多多多咕咕咕咕</p>-->
+                        <!--<div class="name-price">-->
+                            <!--<p class="goods-price">￥<span>88.8</span></p>-->
+                            <!--<p class="winter-name">许卡通</p>-->
+                        <!--</div>-->
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="share-ping">用了快俩黄相对来说7的屏幕</div>-->
+        <!--</div>-->
+    </div>
+
+</div>
+<div class="fix-content" style="display: none">
+    <!--<div class="invite-code">我的邀请码：<span id="selector">BCE57WC</span></div>-->
+    <!--<div class="share-btn load-btn">打开极速拍卖</div>-->
+</div>
+<div class="cover">
+    <img src="../../../static/img/open-browser.png"/>
+    <div>
+        <p>点击右上角，选择在浏览器中打开
+        <p>即可正常下载</p>
+        <p class="close">点击关闭</p>
+    </div>
+</div>
+
+<!--<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>-->
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/ua-parser.min.js"></script>
+<script src="../../../static/js/iscroll-probe.js"></script>
+<script type="text/javascript" src="../../../static/js/AppHelper.js"></script>
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+ <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<!--<script src="http://pv.sohu.com/cityjson?ie=utf-8"></script>-->
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var openid="";
+    var uuid="";
+    try {
+        openid=store.get('openid');
+        if(openid==undefined){
+            openid="";
+        }
+        uuid=window.Auction.getUUID();
+    }catch (err){
+       
+
+    }
+    var sharesuccEvent = {
+        shareCode:fnBase.getUrlPar("shareCode"),
+        showid:fnBase.getUrlPar("showid"),
+        goodsId:fnBase.getUrlPar("goodsId"),
+        gid:fnBase.getUrlPar("gid"),
+        shareData:fnBase.getUrlPar("shareData"),
+        ChannelId:fnBase.getUrlPar("ChannelId"),
+        init:function(){
+            this.addGetShareEvent();
+            this.addLoadBtn();
+            fnBase.addCopyEvent("#copy","selector");
+        },
+        addGetShareEvent:function(){
+            var that = this;
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Shareview/getShareData",{
+                "scode":sharesuccEvent.shareCode , "gid": sharesuccEvent.gid
+            },function(res){
+                that.setShareHtml(res.data)
+            })
+        },
+        addEnterCopyEvent:function(selectorHtml){
+
+            var u = navigator.userAgent;
+            if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+                var aux = document.createElement("input");
+                aux.setAttribute("value", document.getElementById(selectorHtml).innerHTML);
+                document.body.appendChild(aux);
+                aux.select();
+                var successful = document.execCommand("copy");
+                try {
+                    console.log('Oops, unable to copy');
+                    var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+//                    fnBase.alert(msg);
+                    console.log(msg);
+                } catch(err) {
+                    console.log(err);
+                }
+                document.body.removeChild(aux);
+            } else if (u.indexOf('iPhone') > -1) {
+                var copyDOM = document.querySelector('#'+selectorHtml);
+                var range = document.createRange();
+                range.selectNode(copyDOM);
+                window.getSelection().addRange(range);
+                var successful = document.execCommand('copy');
+                try {
+                    var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+                    console.log('Oops, unable to copy');
+                    console.log('Copy email command was ' + msg);
+//                    fnBase.alert(msg);
+
+                } catch(err) {
+                    console.log('Oops, unable to copy');
+                }
+                window.getSelection().removeAllRanges();
+            }
+        },
+        setShareHtml:function(data){
+            var htmlStr ='<h3 class="share-title">我在极速拍卖花<span class="pm-price">'+data.bidPrice+'元</span>中了价值<span class="goods-price">'+data.dealPrice+'元</span>的'+data.goodsName+',你也赶紧来看看！</h3>'
+                        +'<div class="share-des">'
+                        +   '<div class="share-des-top">'
+                        +       '<a class="goods-img-wrap" href="javascript:void(0);">'
+                        +           '<img class="goods-img" src="'+data.imgUrl[0]+'"/>'
+                        +       '</a>'
+                        +       '<div class="share-details">'
+                        +           '<div class="share-info">'
+                        +               '<p class="goods-name">'+data.goodsName+'</p>'
+                        +               '<div class="name-price">'
+                        +                   '<p class="goods-price">￥<span>'+data.bidPrice+'</span></p>'
+                        +                   '<p class="winter-name">'+data.nickName+'</p>'
+                        +               '</div>'
+                        +           '</div>'
+                        +       '</div>'
+                        +   '</div>'
+                        +'<div class="share-ping">'+data.shareDes+'</div>';
+
+                        $("#scroll").append(htmlStr);
+
+                        var playAppTip = '',u = navigator.userAgent;
+                        if(u.indexOf('iPhone') > -1){
+                            playAppTip = '打开欢乐拍拍';//iPhone手机
+                            document.title = '欢乐拍拍';
+                        }else {
+                            playAppTip = '打开极速拍卖';//安卓手机
+                            document.title = '极速拍卖';
+                        }
+                        var fixHtml = '<div class="invite-code">我的邀请码：<div id="selector" style="display: inline-block">'+sharesuccEvent.shareCode+'</div></div>'
+                                + '<button class="share-btn load-btn">'+playAppTip+'</button>';
+                        $(".fix-content").html(fixHtml);
+                        $(".fix-content").show();
+
+            if(fnBase.mobileType=="WeChat"&&u.indexOf('iPhone') == -1) {
+                $(".cover").css("display","block");
+            }
+            $(".close").click(function(){
+                $(".cover").css("display","none");
+            })
+
+        },
+        addLoadBtn:function(){
+            $(document).on("click",".load-btn",function(){
+                console.log("点击下载");
+                //统计——分享接收页点击下载
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":uuid,
+                    "openId":openid,
+                    "ident":"100143",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"分享接收页点击下载"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+                sharesuccEvent.addEnterCopyEvent("selector");
+                fnBase.addDownLoadAppEvent(sharesuccEvent.ChannelId)//跳转链接
+            })
+        },
+        addPostDeviceInfo:function(){
+            var parser = new UAParser();
+            var us = navigator.userAgent;
+            parser.setUA(us);
+            var r = parser.getResult();
+            var type = r.os.name;
+            var pt = '';
+            if(type.indexOf("iOS")>-1){
+                pt = 'I'
+            }else if(type.indexOf("Android")>-1){
+                pt = 'A'
+            }
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/Index/Frame/bindDevice",{
+                "pt":pt,
+                "sys":r.os.version,
+                "screenWidth":screen.width,
+                "sharecode":sharesuccEvent.shareCode
+            },function(res){
+                console.log(res)
+            })
+        }
+    };
+    sharesuccEvent.init();
+    sharesuccEvent.addPostDeviceInfo();
+
+    $(document).on("click","#copy",function(){
+        //统计——分享接收页点击复制
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":5,
+            "uuid":uuid,
+            "openId":openid,
+            "ident":"100142",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"分享接收页点复制"
+        };
+        fnBase.addStatisticsEvent(Op,clickJson);
+    })
+    $(document).on("click",".share-des",function(){
+        //统计——分享接收页点击复制
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":5,
+            "uuid":uuid,
+            "openId":openid,
+            "ident":"100144",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"分享接收页点商品"
+        };
+        fnBase.addStatisticsEvent(Op,clickJson);
+        fnBase.addDownLoadAppEvent(sharesuccEvent.ChannelId)
+    })
+
+    var Op = "",clickJson = "";
+    Op={
+        "ot":"3"
+    };
+    clickJson={
+        "actionId":3,
+        "uuid":uuid,
+        "openId":openid,
+        "ident":"100213",
+        "date":parseInt(new Date().getTime() / 1000),
+        "name":"分享接收页到达"
+    };
+    fnBase.addStatisticsEvent(Op,clickJson);
+</script>
+</body>
+</html>

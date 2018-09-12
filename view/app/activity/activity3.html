@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="拍卖">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/activitypage.css?0.100">
+    <style>
+        #selector{
+            -webkit-user-select: text;
+            position: absolute;
+            top:0;
+            z-index:-1;
+
+        }
+        #selector1{
+            -webkit-user-select: text;
+            position: absolute;
+            position: absolute;
+            top:0;
+            z-index:-1;
+        }
+        .button{
+            -webkit-user-select: text;
+        }
+        body{
+            height: auto
+        }
+        .cover{
+            background: rgba(0,0,0,0.8);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            display: none;
+        }
+        .cover img{
+            position: absolute;
+            width: 3.69rem;
+            top: 0.08rem;
+            right: 1.15rem;
+        }
+        .cover>div {
+            margin-top: 4.31rem;
+        }
+        .cover p {
+            font-size: .48rem;
+            line-height: 2;
+            text-align: center;
+            color: #fefefe;
+        }
+        .cover .close{
+            margin-top: 0.2rem;
+        }
+    </style>
+</head>
+<body>
+    <img src="../../../static/img/activity/banner1.png" class="bannerImg"/>
+    <div class="container">
+        <div class="goods">
+            <dl >
+                <dd class="pic"><img src="../../../static/img/activity/goods10.png"/></dd>
+                <dd class="goodsName">天梭(TISSOT)手表&nbsp;力洛克系...</dd>
+                <dd class="price">成交价:￥<span class="priceNum"><strong>25.01</strong></span></dd>
+                <dd><button class="button">去竞拍</button></dd>
+            </dl>
+        </div>
+        <div class="goods">
+            <dl >
+                <dd class="pic"><img src="../../../static/img/activity/goods9.png"/></dd>
+                <dd class="goodsName">惠普(HP)畅游人Pavilion...</dd>
+                <dd class="price">成交价:￥<span class="priceNum"><strong>12.43</strong></span></dd>
+                <dd><button class="button">去竞拍</button></dd>
+            </dl>
+        </div>
+        <div class="goods">
+            <dl >
+                <dd class="pic"><img src="../../../static/img/activity/goods3.png"/></dd>
+                <dd class="goodsName">索尼(SONY)ILCE-6000...</dd>
+                <dd class="price">成交价:￥<span class="priceNum"><strong>20.29</strong></span></dd>
+                <dd><button class="button">去竞拍</button></dd>
+            </dl>
+        </div>
+        <div class="goods">
+            <dl >
+                <dd class="pic"><img src="../../../static/img/activity/goods4.png"/></dd>
+                <dd class="goodsName">联想游戏机腾讯王者荣耀智能...</dd>
+                <dd class="price">成交价:￥<span class="priceNum"><strong>3.01</strong></span></dd>
+                <dd><button class="button">去竞拍</button></dd>
+            </dl>
+        </div>
+        <div class="goods">
+            <dl >
+                <dd class="pic"><img src="../../../static/img/activity/goods5.png"/></dd>
+                <dd class="goodsName">香奈儿(Chanel)香水女士...</dd>
+                <dd class="price">成交价:￥<span class="priceNum"><strong>4.41</strong></span></dd>
+                <dd><button class="button">去竞拍</button></dd>
+            </dl>
+        </div>
+        <div class="goods">
+            <dl >
+                <dd class="pic"><img src="../../../static/img/activity/goods6.png"/></dd>
+                <dd class="goodsName">全网通100元话费充值(移动/...</dd>
+                <dd class="price">成交价:￥<span class="priceNum"><strong>0.52</strong></span></dd>
+                <dd><button class="button">去竞拍</button></dd>
+            </dl>
+        </div>
+        <div class="goods">
+            <dl >
+                <dd class="pic"><img src="../../../static/img/activity/goods7.png"/></dd>
+                <dd class="goodsName">百草味&nbsp;坚果礼盒&nbsp;送礼8袋装干...</dd>
+                <dd class="price">成交价:￥<span class="priceNum"><strong>1.65</strong></span></dd>
+                <dd><button class="button">去竞拍</button></dd>
+            </dl>
+        </div>
+        <div class="goods">
+            <dl >
+                <dd class="pic"><img src="../../../static/img/activity/goods8.png"/></dd>
+                <dd class="goodsName">俏苏阁&nbsp;阳澄湖大闸蟹礼券...</dd>
+                <dd class="price">成交价:￥<span class="priceNum"><strong>2.07</strong></span></dd>
+                <dd><button class="button">去竞拍</button></dd>
+            </dl>
+        </div>
+    </div>
+    <div class="line" style="height:180px;background:#fff;display:none"></div>
+    <span id="selector">3ET45CD</span>
+    <span id="selector1">F55MDBA</span>
+    <div class="cover">
+        <img src="../../../static/img/open-browser.png"/>
+        <div>
+            <p>点击右上角，选择在浏览器中打开
+            <p>即可正常下载</p>
+            <p class="close">点击关闭</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script> 
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../static/js/ua-parser.min.js"></script>
+    
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+
+    <script type="text/javascript">
+        var myObject=myObject;
+        
+        var channel=myObject.GetQueryString("channel_id");
+        var name;
+        var name1;
+        console.log(channel);
+
+        var fnBase = fnBase;
+        fnBase.init();
+
+        var u = navigator.userAgent;
+        var openid="";
+        var uuid="";
+        try {
+            openid=store.get('openid');
+            if(openid==undefined){
+                openid="";
+            }
+            uuid=window.Auction.getUUID();
+        }catch (err){
+           
+
+        }
+
+        if(channel=="SDOppo01"){
+            $(".line").show();
+            name="SDOppo01一元竞拍落地页到达";
+            name1="SDOppo01一元竞拍落地页点击去竞拍按钮";
+        }else if(channel=="SDXiaomi1"){
+            name="SDXiaomi1一元竞拍落地页到达";
+            name1="SDXiaomi1一元竞拍落地页点击去竞拍按钮";
+        }else if(channel=="ATengxun01"){
+            name="ATengxun01一元竞拍落地页到达";
+            name1="ATengxun01一元竞拍落地页点击去竞拍按钮";
+        }else if(channel=="DSPMengju1"){
+            name="DSPMengju1一元竞拍落地页到达";
+            name1="DSPMengju1一元竞拍落地页点击去竞拍按钮";
+        }else if(channel=="SDQutoutiao1"){
+            name="SDQutoutiao1一元竞拍落地页到达";
+            name1="SDQutoutiao1一元竞拍落地页点击去竞拍按钮";
+        }else if(channel=="SDTuia1"){
+            name="SDTuia1一元竞拍落地页到达";
+            name1="SDTuia1一元竞拍落地页点击去竞拍按钮";
+        }else if(channel=="SDYidianzixun1"){
+            name="SDYidianzixun1一元竞拍落地页到达";
+            name1="SDYidianzixun1一元竞拍落地页点击去竞拍按钮";
+        }else if(channel=="AXyjp_Zycp"){
+            name="AXyjp_Zycp一元竞拍落地页到达";
+            name1="AXyjp_Zycp一元竞拍落地页点击去竞拍按钮";
+        }else if(channel=="AXyjp_Dsztc"){
+            name="AXyjp_Dsztc一元竞拍落地页到达";
+            name1="AXyjp_Dsztc一元竞拍落地页点击去竞拍按钮";
+        }
+        else{
+
+        }
+        //页面到达
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"4"
+        };
+        clickJson={
+            "actionId":3,
+            "uuid":"",
+            "openId":"",
+            "ident":"100215",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":name
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+
+        $(".button").click(function(){
+            console.log(name1)
+            var Op1 = "",clickJson1 = "";
+            Op1={
+                "ot":"4"
+            };
+            clickJson1={
+                "actionId":5,
+                "uuid":"",
+                "openId":"",
+                "ident":"100216",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":name1
+            };
+            myObject.addStatisticsEvent(Op1,clickJson1);
+
+
+            
+            if(browser.versions.ios){
+            
+                if(channel=="AXyjp_Zycp"){
+                    sharesuccEvent.addEnterCopyEvent("selector");
+                }else{
+                    sharesuccEvent.addEnterCopyEvent("selector1");
+                }
+                window.location.href="https://itunes.apple.com/cn/app/%E5%B0%8F%E6%98%93%E7%AB%9E%E6%8B%8D-%E4%B8%80%E7%AB%99%E5%BC%8F%E5%A8%B1%E4%B9%90%E4%BA%92%E8%81%94%E7%BD%91%E8%B4%AD%E7%89%A9%E5%B9%B3%E5%8F%B0/id1300440000?mt=8";
+
+            }else if(browser.versions.android){
+                if(u.indexOf('MicroMessenger') > -1){
+                    $(".cover").css("display","block");
+                }else{
+                    if(channel=="SDOppo01"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/11/28/jspm_oppo/JiSuPaiMai_SDOppo01.apk";
+                    }else if(channel=="SDXiaomi1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/11/28/jspm_mi/JiSuPaiMai_SDXiaomi1.apk";
+                    }else if(channel=="ATengxun01"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_atengxun01/JiSuPaiMai_V10.2.1_113__ATengxun01.apk";
+                    }else if(channel=="DSPMengju1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_dspmengju1/JiSuPaiMai_V10.2.1_113__DSPMengju1.apk";
+                    }else if(channel=="SDQutoutiao1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_sdqutoutiao1/JiSuPaiMai_V10.2.1_113__SDQutoutiao1.apk";
+                    }else if(channel=="SDTuia1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_sdtuia1/JiSuPaiMai_V10.2.1_113__SDTuia1.apk";
+                    }else if(channel=="SDYidianzixun1"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_sdyidianzixun1/JiSuPaiMai_V10.2.1_113__SDYidianzixun1.apk";
+
+                    }else if(channel=="AXyjp_Zycp"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/22/xyjp_axyjp_zycp/XiaoYiJingPai_V10.2.1_113__AXyjp_Zycp.apk";
+                    }else if(channel=="AXyjp_Dsztc"){
+                        window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/26/xyjp_axyjp_dsztc/XiaoYiJingPai_V10.2.1_113__AXyjp_Dsztc.apk";
+                    }
+                    else{
+                        
+                    }
+                }
+                
+            }  
+           
+            
+        })
+
+        $(".close").click(function(){
+            $(".cover").css("display","none");
+        })
+        
+
+
+        var sharesuccEvent = {
+            addEnterCopyEvent:function(selectorHtml){
+
+                var u = navigator.userAgent;
+                if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+                    var aux = document.createElement("input");
+                    aux.setAttribute("value", document.getElementById(selectorHtml).innerHTML);
+                    document.body.appendChild(aux);
+                    aux.select();
+                    var successful = document.execCommand("copy");
+                    try {
+                        console.log('Oops, unable to copy');
+                        var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+    //                    fnBase.alert(msg);
+                        console.log(msg);
+                    } catch(err) {
+                        console.log(err);
+                    }
+                    document.body.removeChild(aux);
+                } else if (u.indexOf('iPhone') > -1) {
+                    var copyDOM = document.querySelector('#'+selectorHtml);
+                    var range = document.createRange();
+                    range.selectNode(copyDOM);
+                    window.getSelection().addRange(range);
+                    var successful = document.execCommand('copy');
+                    try {
+                        var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+                        console.log('Oops, unable to copy');
+                        console.log('Copy email command was ' + msg);
+    //                    fnBase.alert(msg);
+
+                    } catch(err) {
+                        console.log('Oops, unable to copy');
+                    }
+                    window.getSelection().removeAllRanges();
+                }
+            },
+            addPostDeviceInfo:function(){
+                var parser = new UAParser();
+                var us = navigator.userAgent;
+                parser.setUA(us);
+                var r = parser.getResult();
+                var type = r.os.name;
+                var pt = '';
+                if(type.indexOf("iOS")>-1){
+                    pt = 'I'
+                }else if(type.indexOf("Android")>-1){
+                    pt = 'A'
+                }
+                var sharecode;
+                if(channel=="AXyjp_Zycp"){
+                    sharecode="3ET45CD";
+                }else{
+                    sharecode="F55MDBA";
+                }
+                fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/Index/Frame/bindDevice",{
+                    "pt":pt,
+                    "sys":r.os.version,
+                    "screenWidth":screen.width,
+                    "sharecode":sharecode
+                },function(res){
+                    console.log(res)
+                })
+            }
+        }
+        
+        if(browser.versions.ios){
+            sharesuccEvent.addPostDeviceInfo();
+        }
+
+    </script>
+    
+</body>
+</html>
+
+    

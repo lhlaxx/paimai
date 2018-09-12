@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/refundrule.css"/>
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>返币规则</h2>
+</header>
+<div class="container">
+    <div class="rule rule-01">
+        <h2>参与条件</h2>
+        <p>平台所有首次参与活动用户</p>
+    </div>
+    <div class="rule rule-02">
+        <h2>参与方式</h2>
+        <p>用户在<span class="iosShentxt3">不中必返</span>活动页面点击参与72小时内</p>
+    </div>
+    <div class="rule rule-03">
+        <h2>活动细则</h2>
+        <div class="p">
+            <span>1.</span>
+            <p>用户参与的<span class="iosShentxt3">不中必返</span>模块中的所有商品<span class="iosShentxt4">竞拍</span>，只要没拍到相对应的商品，参与<span class="iosShentxt4">竞拍</span>的所有拍币将全额返还；</p>
+        </div>
+        <div class="p">
+            <span>2.</span>
+            <p>拍币将直接返还到账号余额中；</p>
+        </div>
+        <div class="p">
+            <span>3.</span>
+            <p>每期<span class="iosShentxt4">竞拍</span>结束后，系统将返20%拍币，剩余40%拍币<span class="iosShenhide">中将</span>按以下方式返还到账户余额中；</p>
+        </div>
+        <div class="refund-details">
+            <!-- 表格 -->
+            <table class="table">
+                <thead>
+                <tr>
+                    <th>时间</th>
+                    <th>返还比例</th>
+                </tr>
+                </thead>
+                <tbody class="rateData">
+                <tr>
+                    <td>竞拍结束当天</td>
+                    <td>30%</td>
+                </tr>
+                <tr>
+                    <td>竞拍结束第三天</td>
+                    <td>20%</td>
+                </tr>
+                <tr>
+                    <td>竞拍结束第七天</td>
+                    <td>50%</td>
+                </tr>
+                <tr>
+                    <td>合计</td>
+                    <td>100%</td>
+                </tr>
+                </tbody>
+            </table>
+            <!--说明-->
+            <div class="refund-eg">举例：参与商品<span class="iosShentxt4">竞拍</span>100元，没拍到，<span class="iosShentxt4">竞拍</span>结束后系统将先返100*20%=20元，第三天返100*10%=10元，第七天返100*30%=30元，合计总共返60元。</div>
+        </div>
+        <!--<div class="p iosShenhide">-->
+            <!--<span>4.</span>-->
+            <!--<p>参与金额少于10元的用户不参与此次活动；</p>-->
+        <!--</div>-->
+        <div class="p">
+            <span class="numchange">5.</span>
+            <p>只有倒计时内的消费才计算入<span class="iosShentxt3">不中必返</span>活动中。</p>
+        </div>
+    </div>
+</div>
+
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="../../../static/js/AppHelper.js?0.100"></script> 
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    
+        var AppHelper=AppHelper;
+        var channel=AppHelper.YzAppGetChannel();
+        var verCode=AppHelper.YzAppGetVerCode(); 
+        var buyName2;
+        if((channel=='Ios1'||channel=='Ios2'||channel=='IosJsjx'||channel=='IosXyjp')&&verCode==111){
+            var buyName;
+            buyName="购买";
+            $(".iosShenhide").hide();
+            $(".refund-eg").html("举例：参与商品"+buyName+"100元，没拍到，"+buyName+"结束后系统将先返100*30%=30元，次日返70*20%=14元，第三天返70*30%=21元，第七天返70*50%=35元，合计总共返100元。");
+            $(".numchange").html("4.");
+            $(".iosShentxt3").html("该");
+            $(".rule-01").hide();
+            $(".rule-02").hide();
+            $(".iosShentxt4").html("购买");
+            buyName2="抢购";
+        }else{
+            buyName2="竞拍";
+        }
+
+    
+    var fnBase = fnBase;
+    fnBase.init();
+    var refundRuleEvent = {
+        act_id:fnBase.getUrlPar("act_id"),
+        source:fnBase.getUrlPar("source"),
+        init:function(){
+            this.addMainClickEvent();
+            this.addGetRateInfo()
+        },
+        addMainClickEvent:function(){
+            $(document).on("click",".back_arrow",function(){
+                if(refundRuleEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back();
+                }
+            });
+        },
+        rateAllVal:0,
+        rateTdHtml:[buyName2+"结束当天",buyName2+"结束第三天",buyName2+"结束第七天"],
+        addGetRateInfo:function(){
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Paybackactivity/rule",{
+                "act_id":refundRuleEvent.act_id,
+                "channel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode
+            },function(res){
+                var rate = res.data.rate,rateHtml="";
+                if(res.state == 1){
+                    for(var i= 0,len=rate.length;i<len;i++){
+                        rateHtml+='<tr>'
+                                +   '<td>'+refundRuleEvent.rateTdHtml[i]+'</td>'
+                                +   '<td>'+rate[i]+'</td>'
+                                +'</tr>';
+                        refundRuleEvent.rateAllVal += parseInt(rate[i])
+                    }
+                    rateHtml += '<tr>'
+                            +     '<td>合计</td>'
+                            +     '<td>'+refundRuleEvent.rateAllVal+'%</td>'
+                            + '</tr>';
+
+                }else {
+                    rateHtml+='<tr>'
+                            +   '<td>'+refundRuleEvent.rateTdHtml[0]+'</td>'
+                            +   '<td>'+'暂无'+'</td>'
+                            +'</tr>';
+                    rateHtml += '<tr>'
+                            +     '<td>合计</td>'
+                            +     '<td>'+'暂无'+'</td>'
+                            + '</tr>';
+
+                }
+                $(".rateData").html(rateHtml)
+            });
+        }
+
+    };
+    refundRuleEvent.init()
+</script>
+</body>
+</html>

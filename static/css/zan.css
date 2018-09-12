@@ -1,0 +1,220 @@
+.zan-icon .animation{
+    animation: myfirst 0.5s;
+    -moz-animation: myfirst 0.5s;	/* Firefox */
+    -webkit-animation: myfirst 0.5s;	/* Safari 和 Chrome */
+    -o-animation: myfirst 0.5s;	/* Opera */
+}
+.add-num{
+    display:none;
+    /*position: relative;*/
+    z-index: 10;
+}
+.add-num .add-animation{
+    color: #000;
+    position:absolute;
+    top: -60px;
+    left: 0;
+    z-index: 1000;
+    font-size: 0.4rem;
+    opacity: 0;
+    filter: Alpha(opacity=0);
+    -moz-opacity:0;
+    animation: mypraise 0.5s ;
+    -moz-animation: mypraise 0.5s ;	/* Firefox */
+    -webkit-animation: mypraise 0.5s ;	/* Safari 和 Chrome */
+    -o-animation: mypraise 0.5s ;	/* Opera */
+    font-style:normal;
+}
+/*点赞图标放大动画开始*/
+@keyframes myfirst
+{
+    0%{
+        width:.4rem;
+
+    }
+    50%{
+        width:.7rem;
+
+    }
+    100% {
+        width:.4rem;
+    }
+}
+
+@-moz-keyframes myfirst /* Firefox */
+{
+    0%{
+        width:.4rem;
+    }
+    50%{
+        width:.7rem;
+    }
+    100% {
+        width:.4rem;
+    }
+}
+
+@-webkit-keyframes myfirst /* Safari 和 Chrome */
+{
+    0%{
+        width:.4rem;
+    }
+    50%{
+        width:.7rem;
+    }
+    100% {
+        width:.4rem;
+    }
+}
+
+@-o-keyframes myfirst /* Opera */
+{
+    0%{
+        width:.4rem;
+    }
+    50%{
+        width:.7rem;
+    }
+    100% {
+        width:.4rem;
+    }
+}
+/*点赞图标放大动画结束*/
+/*点赞数量加减动画开始*/
+@keyframes mypraise
+{
+    0%{
+        top:-90px;
+        opacity: 0;
+        filter: Alpha(opacity=0);
+        -moz-opacity:0;
+    }
+    25%{
+        top:-155px;
+        opacity: 0.5;
+        filter: Alpha(opacity=50);
+        -moz-opacity:0.5;
+    }
+    50%{
+        top:-160px;
+        opacity: 1;
+        filter: Alpha(opacity=100);
+        -moz-opacity:1;
+    }
+    75%{
+        top:-165px;
+        opacity: 0.5;
+        filter: Alpha(opacity=50);
+        -moz-opacity:0.5;
+    }
+    100% {
+        top:-360px;
+        opacity: 0;
+        filter: Alpha(opacity=0);
+        -moz-opacity:0;
+    }
+}
+
+/*@-moz-keyframes mypraise !* Firefox *!*/
+/*{*/
+    /*0%{*/
+        /*top:-15px;*/
+        /*opacity: 0;*/
+        /*filter: Alpha(opacity=0);*/
+        /*-moz-opacity:0;*/
+    /*}*/
+    /*25%{*/
+        /*top:-20px;*/
+        /*opacity: 0.5;*/
+        /*filter: Alpha(opacity=50);*/
+        /*-moz-opacity:0.5;*/
+    /*}*/
+    /*50%{*/
+        /*top:-25px;*/
+        /*opacity: 1;*/
+        /*filter: Alpha(opacity=100);*/
+        /*-moz-opacity:1;*/
+    /*}*/
+    /*75%{*/
+        /*top:-30px;*/
+        /*opacity: 0.5;*/
+        /*filter: Alpha(opacity=50);*/
+        /*-moz-opacity:0.5;*/
+    /*}*/
+    /*100% {*/
+        /*top:-35px;*/
+        /*opacity: 0;*/
+        /*filter: Alpha(opacity=0);*/
+        /*-moz-opacity:0;*/
+    /*}*/
+/*}*/
+
+/*@-webkit-keyframes mypraise !* Safari 和 Chrome *!*/
+/*{*/
+    /*0%{*/
+        /*top:-15px;*/
+        /*opacity: 0;*/
+        /*filter: Alpha(opacity=0);*/
+        /*-moz-opacity:0;*/
+    /*}*/
+    /*25%{*/
+        /*top:-20px;*/
+        /*opacity: 0.5;*/
+        /*filter: Alpha(opacity=50);*/
+        /*-moz-opacity:0.5;*/
+    /*}*/
+    /*50%{*/
+        /*top:-25px;*/
+        /*opacity: 1;*/
+        /*filter: Alpha(opacity=100);*/
+        /*-moz-opacity:1;*/
+    /*}*/
+    /*75%{*/
+        /*top:-30px;*/
+        /*opacity: 0.5;*/
+        /*filter: Alpha(opacity=50);*/
+        /*-moz-opacity:0.5;*/
+    /*}*/
+    /*100% {*/
+        /*top:-35px;*/
+        /*opacity: 0;*/
+        /*filter: Alpha(opacity=0);*/
+        /*-moz-opacity:0;*/
+    /*}*/
+/*}*/
+
+/*@-o-keyframes mypraise !* Opera *!*/
+/*{*/
+    /*0%{*/
+        /*top:-15px;*/
+        /*opacity: 0;*/
+        /*filter: Alpha(opacity=0);*/
+        /*-moz-opacity:0;*/
+    /*}*/
+    /*25%{*/
+        /*top:-20px;*/
+        /*opacity: 0.5;*/
+        /*filter: Alpha(opacity=50);*/
+        /*-moz-opacity:0.5;*/
+    /*}*/
+    /*50%{*/
+        /*top:-25px;*/
+        /*opacity: 1;*/
+        /*filter: Alpha(opacity=100);*/
+        /*-moz-opacity:1;*/
+    /*}*/
+    /*75%{*/
+        /*top:-30px;*/
+        /*opacity: 0.5;*/
+        /*filter: Alpha(opacity=50);*/
+        /*-moz-opacity:0.5;*/
+    /*}*/
+    /*100% {*/
+        /*top:-35px;*/
+        /*opacity: 0;*/
+        /*filter: Alpha(opacity=0);*/
+        /*-moz-opacity:0;*/
+    /*}*/
+/*}*/
+/*点赞数量加减动画结束*/
+/*动态点赞结束*/

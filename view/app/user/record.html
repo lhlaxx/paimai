@@ -1,0 +1,327 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script type="text/javascript" src="../../../static/js/flexible.js"></script>
+    <script type="text/javascript" src="../../../static/js/flexible_css.js"></script>
+    
+    <link rel="stylesheet" type="text/css" href="../../../static/css/tabs-underlined.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/dropload.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css?0.101">
+</head>
+<body>
+    <div class="navbar">
+        <a class="back"><img src="../../../static/img/back.png"/></a>
+        <h1>我的<span class="iostxt">拍卖</span></h1>
+    </div>
+    <div class="tabs-underline">
+        <ul>
+            <li>
+                <a  class="tab-active" data-index="0" href="#">未拍中</a>
+            </li>
+            <li>
+                <a data-index="1" href="#">正在拍</a>
+            </li>
+            <li>
+                <a data-index="2" href="#">已拍中</a><span style="width:0.16rem;height:0.16rem;border-radius:50%;background:#fe4141;position:absolute;margin-top:0.3rem;display:none" class="signal1"></span>
+            </li>
+            <li>
+                <a data-index="3" href="#">已付款</a><span style="width:0.16rem;height:0.16rem;border-radius:50%;background:#fe4141;position:absolute;margin-top:0.3rem;display:none" class="signal2"></span>
+            </li>
+            
+        </ul>
+        
+        <div class="tabs-content-placeholder">
+            <div class="tab-content-active content">
+                <div class="recordContent">
+                    <div class="lists"> 
+                    </div>
+                </div>
+            </div>
+            <div class="content">
+                <div class="recordContent">
+                    <div class="lists"> 
+                    </div>
+                </div> 
+            </div>
+            <div class="content">
+                <div class="recordContent">
+                    <div class="lists">
+                    </div>
+                </div> 
+            </div>
+            <div class="content">
+                <div class="recordContent">
+                    <div class="lists" id="hadPay">
+                    </div>
+                </div> 
+            </div>
+        </div>
+        
+    </div>
+    <!--<script type="text/javascript" src="../../../static/js/jquery-2.2.3.min.js"></script>-->
+    <script type="text/javascript" src="../../../static/js/zepto.min.js"></script>
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script>
+    <script src="../../../static/js/dropload.min.js"></script>
+    <script type="text/javascript" src="../../../static/js/AppHelper.js?0.100"></script>
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../static/js/dropload.min.js"></script>
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+    <script type="text/javascript">
+        if(browser.versions.ios){
+            $(".iostxt").html("购买记录");
+            $(".tabs-underline ul li:nth-of-type(1) a").html("未抢中");
+            $(".tabs-underline ul li:nth-of-type(2) a").html("正在抢");
+            $(".tabs-underline ul li:nth-of-type(3) a").html("已抢中");
+
+        }else{
+
+        }
+        var myObject=myObject;
+        var host=myObject.host;
+        var openid=store.get('openid');
+        //var openid=openid="wx_5e6cfe2cd2ac13997b403144";
+        var verCode=store.get('verCode');
+        //var openid="wx_89af34c5bd55965fa1549758";
+        var marginTop=0.5*($(window).height()-$(".navbar").height()-$(".tabs-underline ul").height()-$(window).width()*0.4);
+
+        var loc=window.location.href;
+        var r = window.location.search;
+        r = r.substring(r.indexOf("?"),r.length);
+        
+        if(r.indexOf("dotType=0")>=0){
+
+        }
+        else if(r.indexOf("dotType=1")>=0){
+            $(".signal1").show();
+            $(".signal1").addClass("show");
+        }else if(r.indexOf("dotType=2")>=0){
+            $(".signal2").show();
+            $(".signal2").addClass("show");
+        }else if(r.indexOf("dotType=3")>=0){
+            $(".signal1").show();
+            $(".signal2").show();
+            $(".signal1").addClass("show");
+            $(".signal2").addClass("show");
+        }
+
+
+        $(document).ready(function(){
+            var loc=window.location.href;
+            if(loc.indexOf("recordType=3")>=0){
+                $(".tabs-underline ul li").eq(3).find("a").trigger("click");
+                /*setTimeout(function(){
+                    $(".tabs-underline ul li").eq(3).find("a").trigger("click");
+                    myObject.alert(111);
+                },1000);*/
+                
+            }
+        })
+
+        $(".back").click(function(){
+            window.Auction.back();
+        })
+        $(".lists").on("click",".recordGoto",function(){
+            var href1=$(this).attr("data-href");
+            if(href1==""){
+                myObject.alert("还没有下一期哦，敬请关注更多同类商品");
+            }
+            var content1=$(this).html();
+            if(content1=="继续拍"){
+                //统计——我的拍卖点击继续拍
+                var ident="100037";
+                var name="我的拍卖点击继续拍";
+
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":AppHelper.YzAppGetUUID(),
+                    "openId":openid,
+                    "ident":ident,
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":name
+                };
+                myObject.addStatisticsEvent(Op,clickJson);
+
+            }else if(content1=="去付款"){
+                //统计——我的拍卖点击去付款
+                var ident="100038";
+                var name="我的拍卖点击去付款";
+
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":AppHelper.YzAppGetUUID(),
+                    "openId":openid,
+                    "ident":ident,
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":name
+                };
+                myObject.addStatisticsEvent(Op,clickJson);
+
+            }else if(content1=="参与下一期"){
+                //统计——我的拍卖点击参与下一期
+                var ident="100039";
+                var name="我的拍卖点击参与下一期";
+
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":AppHelper.YzAppGetUUID(),
+                    "openId":openid,
+                    "ident":ident,
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":name
+                };
+                myObject.addStatisticsEvent(Op,clickJson);
+
+            }else{
+
+            }
+            
+        })  
+            
+        //统计——我的拍卖记录页面到达数
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":3,
+            "uuid":AppHelper.YzAppGetUUID(),
+            "openId":openid,
+            "ident":"100018",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"我的拍卖记录页面到达数"
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+
+        $(".lists").on("click",".shai a",function(){
+            var shaicontent=$(this).data("href");
+            var content=JSON.stringify(shaicontent);
+            console.log(content);
+            window.Auction.writeOrder(content);
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100145",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"晒单入口我的拍卖"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+        })
+        $(".lists").on("click",".recordGoto",function(){
+            var content=$(this).html();
+            console.log(content);
+            if(content.indexOf("分享赚更多")>=0){
+                //统计——我的拍卖点击分享
+                
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":AppHelper.YzAppGetUUID(),
+                    "openId":openid,
+                    "ident":"100147",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"我的拍卖点击分享"
+                };
+                
+                myObject.addStatisticsEvent(Op,clickJson);
+            }else if(content.indexOf("修改晒单")>=0){
+                //统计——我的拍卖点击修改晒单
+
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":AppHelper.YzAppGetUUID(),
+                    "openId":openid,
+                    "ident":"100148",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"我的拍卖点击修改晒单"
+                };
+                myObject.addStatisticsEvent(Op,clickJson);
+            }
+        })
+    
+        $(document).ready(function(){
+            if(loc.indexOf("recordType=3")>=0){
+                $(".tabs-underline ul li").eq(3).find("a").trigger("click");
+            }
+        })
+
+        $(".lists").on("click",".share-btn",function(){
+            /*var str=$(this).parent().siblings(".shai").find(".recordGoto").data("href");
+            var showid=str.showid;
+            myObject.loadShow();
+            myObject.commonJsonpAjax(host+'/index.php/index/Share/mkShareCode',{
+            'recid':showid,
+            }, function(data){
+                if(data.state==1){
+                    var datas=data.data;
+                    if(datas==""){
+                        myObject.alert("您还没有晒单,请先去晒单");
+                    }else{
+                        window.location.href=host+'/front/view/app/index/sharepage.html?showid='+showid;
+                    }
+                }else{
+                    myObject.alert(data.cause);
+                }
+            },function(){
+            
+            });*/
+        })
+
+        $(".lists").on("click",".diffPrice-btn",function(){
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100337",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"点击差价购按钮"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+        })
+            
+    </script>
+    <script type="text/javascript" src="../../../src/js/data1.js?0.116"></script>
+</body>
+</html>
+
+    

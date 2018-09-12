@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/sharepage.css?0.08"/>
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>分享</h2>
+</header>
+<div class="container">
+    <div id="scroll">
+        <h3 class="share-title">分享赚拍币</h3>
+        <!--<p class="share-rule">您即将分享链接给您的朋友，新用户注册时输入您的专属邀请码，他将成为您的徒弟，您的徒弟充值，您将获得一定比例的返币</p>-->
+        <!--<div class="share-des">-->
+            <!--<div class="share-des-top">-->
+                <!--<a class="goods-img-wrap" href="javascript:void(0);">-->
+                    <!--<img class="goods-img" src="http://egoures.tt286.com/market/indiana/goods2017/06/30/bzhlodqam3/1498806562925.jpg">-->
+                <!--</a>-->
+                <!--<div class="share-details">-->
+                    <!--<div class="share-info">-->
+                        <!--<p class="goods-name">苹果7【应该对对对对对对对多多多多多多多多多多多多多多咕咕咕咕</p>-->
+                        <!--<div class="name-price">-->
+                            <!--<p class="goods-price">￥<span>88.8</span></p>-->
+                            <!--<p class="winter-name">许卡通</p>-->
+                        <!--</div>-->
+
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<div class="share-ping">用了快俩黄相对来说7的屏幕</div>-->
+        <!--</div>-->
+    </div>
+</div>
+<div class="fix-content" style="display: none">
+    <!--<div class="invite-code">我的邀请码：<span>BCE57WC</span></div>-->
+    <!--<div class="share-btn">立即赚拍币</div>-->
+</div>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/clipboard.min.js"></script>
+ <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var sharePageEvent={
+        shareCode:"",
+        showid:fnBase.getUrlPar("showid"),
+        goodsId:fnBase.getUrlPar("goodsId"),
+        source:fnBase.getUrlPar("source"),
+        agid:fnBase.getUrlPar("agid"),
+        init:function(){
+            this.addBackEvent();
+            this.addGetShareEvent();
+            this.addCopyEvent();
+            this.addShareApp()
+        },
+        addBackEvent:function(){
+            $(".back_arrow").click(function(){
+                if(sharePageEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back();
+                }
+                //统计——分享页点击返回
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100138",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"分享中转页点击返回"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+            })
+        },
+        addGetShareEvent:function(){
+            var that = this;
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Share/mkShareCode",{
+                "recid":sharePageEvent.showid,
+                "gid":sharePageEvent.goodsId,
+                "agid":sharePageEvent.agid
+            },function(res){
+                console.log(res.data);
+                sharePageEvent.shareCode = res.share_code;
+                that.setShareHtml(res.data)
+            })
+        },
+        setShareHtml:function(data){
+            data.content = "您即将分享链接给您的朋友，新用户注册时输入您的专属邀请码，他将成为您的徒弟，您的徒弟充值，您将获得一定比例的返币";
+            var htmlStr = '<p class="share-rule">'+data.content+'</p>'
+                        +  '<div class="share-des">'
+                        +       '<div class="share-des-top">'
+                        +           '<a class="goods-img-wrap" href="javascript:void(0);">'
+                        +               '<img class="goods-img" src="'+data.imgUrl[0]+'"/>'
+                        +           '</a>'
+                        +           '<div class="share-details">'
+                        +               '<div class="share-info">'
+                        +                   '<p class="goods-name">'+data.goodsName+'</p>'
+                        +                   '<div class="name-price">'
+                        +                       '<p class="goods-price">￥<span>'+data.bidPrice+'</span></p>'
+                        +                       '<p class="winter-name">'+data.nickName+'</p>'
+                        +                   '</div>'
+                        +               '</div>'
+                        +           '</div>'
+                        +       '</div>'
+                        +       '<div class="share-ping">'+data.shareDes+'</div>'
+                        +   '</div>';
+            $("#scroll").append(htmlStr);
+            var fixHtml = '<div class="invite-code">我的邀请码：<span>'+sharePageEvent.shareCode+'</span></div>'
+                        + '<div class="share-btn">立即赚拍币</div>';
+            $(".fix-content").html(fixHtml);
+            $(".fix-content").show();
+
+            var shareUrls,shareTitleArr,shareTitle;
+            var host=window.location.host;
+            console.log(host);
+            if(host=="10.20.40.230:8089"||host=="61.152.66.114:8089"){
+                shareUrls=fnBase.source_url;
+            }else{
+                shareUrls="http://pm.yz314.com";
+            }
+            shareTitleArr = [
+                '我在这儿花1块钱买了个iphone，推荐你也来看一下',
+                '线上2元店开张啦！快来找找儿时的记忆',
+                '当我总忍不住要给你发“吃了么？”“在干嘛”等等有的没得无聊的分享时，我就知道你都懂',
+                '这个冬天我不冷，极速拍卖暖身暖肺暖人心',
+                '要么不分享，分享起来就是一堆好东西，还在等什么'
+            ];
+            shareTitle = shareTitleArr[Math.floor(Math.random() * shareTitleArr.length)];
+            var shareData = {
+                "title":shareTitle,
+                "content":"分享完成收徒，徒弟的每次交易都会赠送给您一定数量的拍币。详情请查阅分享规则。",
+                "actionUrl":shareUrls+"/front/view/app/index/sharesucc.html?shareCode="+sharePageEvent.shareCode+"&aid="+fnBase.addGetAppIdEvent()+"&ChannelId="+fnBase.ChannelId,
+                "imgUrl":shareUrls+"/front/static/img/share_icon_com.png",
+                "ruleUrl":shareUrls+"/front/view/app/index/shituRule.html"
+            };
+            window.Auction.share(JSON.stringify(shareData))
+        },
+        addCopyEvent:function(){
+            $(document).on("click","#copy",function(){
+                //统计——分享页点击复制
+                var Op = "",clickJson = "";
+                Op={
+                    "ot" : "3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100141",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"分享中转页点复制"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+
+                var u = navigator.userAgent;
+                if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+                    var aux = document.createElement("input");
+                    aux.setAttribute("value", document.getElementById("selector").innerHTML);
+                    document.body.appendChild(aux);
+                    aux.select();
+                    var successful = document.execCommand("copy");
+                    try {
+                        var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+                        fnBase.alert(msg);
+                        console.log(msg);
+                    } catch(err) {
+                        console.log(err);
+                    }
+                    document.body.removeChild(aux);
+                } else if (u.indexOf('iPhone') > -1) {
+                    var copyDOM = document.querySelector('#selector');
+                    var range = document.createRange();
+                    range.selectNode(copyDOM);
+                    window.getSelection().addRange(range);
+                    var successful = document.execCommand('copy');
+                    try {
+                        var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+                        fnBase.alert(msg);
+                        console.log('Copy email command was ' + msg);
+                    } catch(err) {
+                        console.log('Oops, unable to copy');
+                    }
+                    window.getSelection().removeAllRanges();
+                }
+            });
+        },
+        addShareApp:function(){
+            $(document).on("click",".share-btn",function(){
+                //统计——分享页点击分享
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100140",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"分享页点击分享"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+
+                var shareUrls,shareTitleArr,shareTitle;
+                var host=window.location.host;
+                if(host=="10.20.40.230:8089"||host=="61.152.66.114:8089"){
+                    shareUrls=fnBase.source_url;
+                }else{
+                    shareUrls="http://pm.yz314.com";
+                }
+                shareTitleArr = [
+
+                    '我在这儿花1块钱买了个iphone，推荐你也来看一下',
+                    '线上2元店开张啦！快来找找儿时的记忆',
+                    '当我总忍不住要给你发“吃了么？”“在干嘛”等等有的没得无聊的分享时，我就知道你都懂',
+                    '这个冬天我不冷，极速拍卖暖身暖肺暖人心',
+                    '要么不分享，分享起来就是一堆好东西，还在等什么'
+
+                ];
+                shareTitle = shareTitleArr[Math.floor(Math.random() * shareTitleArr.length)];//随机取标题
+                var shareData = {
+                    "title":shareTitle,
+                    "content":"分享完成收徒，徒弟的每次交易都会赠送给您一定数量的拍币。详情请查阅分享规则。",
+                    "actionUrl":shareUrls+"/front/view/app/index/sharesucc.html?goodsId=" + sharePageEvent.goodsId + "&shareCode="+sharePageEvent.shareCode+"&aid="+fnBase.addGetAppIdEvent()+"&ChannelId="+fnBase.ChannelId,
+                    "imgUrl":shareUrls+"/front/static/img/share_icon_com.png",
+                    "ruleUrl":shareUrls+"/front/view/app/index/shituRule.html"
+                };
+                window.Auction.share(JSON.stringify(shareData))
+            })
+        }
+    };
+    sharePageEvent.init();
+
+    var Op = "",clickJson = "";
+    clickJson={
+        "actionId":3,
+        "uuid":fnBase.UUID,
+        "openId":store.get('openid'),
+        "ident":"100271",
+        "date":parseInt(new Date().getTime() / 1000),
+        "name":"分享页面到达",
+    };
+    Op={
+        "ot":"3"
+    };
+    fnBase.addStatisticsEvent(Op,clickJson);
+
+    if (window.history && window.history.pushState)
+        {
+            $(window).on('popstate', function() {
+                var hashLocation = location.hash;
+                var hashSplit = hashLocation.split("#!/");
+                var hashName = hashSplit[1];
+                if (hashName !== '') {
+                    var hash = window.location.hash;
+                    if (hash === '') {
+                        //统计——分享页点击硬件返回
+                        var Op = "",clickJson = "";
+                        Op={
+                            "ot":"3"
+                        };
+                        clickJson={
+                            "actionId":5,
+                            "uuid":fnBase.UUID,
+                            "openId":store.get('openid'),
+                            "ident":"100139",
+                            "date":parseInt(new Date().getTime() / 1000),
+                            "name":"分享页点击硬件返回"
+                        };
+                        fnBase.addStatisticsEvent(Op,clickJson);
+                    }
+                }
+            });
+         //window.history.pushState('forward', null, './#forward');
+        }
+    
+</script>
+</body>
+</html>

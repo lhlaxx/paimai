@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script type="text/javascript" src="../../../static/js/flexible.js"></script>
+    <script type="text/javascript" src="../../../static/js/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+    <script type="text/javascript" src="../../../static/js/jquery-1.12.3.min.js"></script>
+</head>
+<body class="ruleBg">
+    <div class="navbar">
+        <a class="back"><img src="../../../static/img/back.png"/></a>
+        <h1>师徒规则</h1>
+    </div>
+    <div class="mainContent">
+        <div class="rule1">
+            <h1>人物关系</h1>
+            <p>师父：邀请人</p>
+            <p>徒弟：通过师父分享的邀请码登录的用户</p>
+            <p>徒孙：通过徒弟分享的邀请码登录的用户</p>
+        </div>
+        <div class="rule1">
+            <h1>师徒收益</h1>
+            <p>邀请好友建立师徒关系后，可获得如下奖励：</p>
+            <p>1.师父将获得5元现金,徒弟将获得8元现金。</p>
+            <p>2、师父可以收到徒弟充值金额的10%的收益。</p>
+            <p>3、师父可以收到徒孙充值金额的5%的收益。</p>
+            <p>4、徒弟首次充值，师父将获得5元现金。</p>
+            <p>5、徒弟首次拍中，师父将获得10元现金。</p>
+            <p>说明：获得的收益将以拍币的形式直接存入您的账户中，收益记录将会记录在“师徒记录”中。(恶意刷师徒分享将不会获得赠送)</p>
+        </div>
+        <div class="rule1">
+            <h1>参与方式：</h1>
+            <p>通过“师徒晒单”专区的“分享”按钮进行分享。</p>
+        </div>
+        <div class="rule1">
+            <h1>举个例子</h1>
+            <p>邀请人A(师父)分享了链接给好友,好友B通过链接进来注册并登陆,那么好友B则成为A的徒弟，A将获得5元现金,B将获得5元现金;</p>
+            <p>B首次充值了5元拍币及以上，则A可以获得5*10%的师徒收益；</p>
+            <p><img src="../../../static/img/picRule2_2.png" style="width:100%"/></p>
+            <p>这时B收了个徒弟C，B和C都将获得5元现金，如果C首次充值了5元及以上，则B可以获得5*10%师徒收益；而A可以额外获得5*5%的师徒收益。</p>
+            <p><img src="../../../static/img/picRule3_2.png" style="width:100%"/></p>
+        </div>
+        
+        
+    </div>
+    <script type="text/javascript" src="../../../static/js/jquery-1.12.3.min.js"></script>  
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.200"></script>
+    <script type="text/javascript">
+        var loc=window.location.href;
+        $(".back").click(function(){
+            if(loc.indexOf("source=web")>=0){
+                window.history.go(-1);
+            }else{
+                window.Auction.back();
+            }
+        })
+    </script>
+</body>
+</html>
+
+    

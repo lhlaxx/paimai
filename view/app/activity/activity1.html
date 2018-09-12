@@ -1,0 +1,282 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/activity.css">
+    <style type="text/css">
+        .cover{
+            background: rgba(0,0,0,0.8);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            display: none;
+        }
+        .cover img{
+            position: absolute;
+            width: 3.69rem;
+            top: 0.08rem;
+            right: 1.15rem;
+        }
+        .cover>div {
+            margin-top: 4.31rem;
+        }
+        .cover p {
+            font-size: .48rem;
+            line-height: 2;
+            text-align: center;
+            color: #fefefe;
+        }
+        .cover .close{
+            margin-top: 0.2rem;
+        }
+    </style>
+</head>
+<body class="actBg">
+    <div class="navbar">
+        <a class="back"><img src="../../../static/img/back.png"/></a>
+    </div>
+    <div class="mainContent">
+        <h1>抢先获得新产品</h1>
+        <img src="../../../static/img/activity/iphone8.png" class="goods"/>
+        <h2>新一代iPhone</h2>
+        <h3>iphone&nbsp;8/8 Plus预购,发售当天即可拿货</h3>
+        <ul class="selectOpt">
+            <li>
+                <div class="options active" data-type="1">
+                    <p>iPhone 8</p>
+                    <p>64G</p>
+                    <p>￥6888</p>
+                </div>
+            </li>
+            <li>
+                <div class="options" data-type="2">
+                    <p>iPhone 8</p>
+                    <p>256G</p>
+                    <p>￥8188</p>
+                </div>
+            </li>
+            <li>
+                <div class="options" data-type="3">
+                    <p>iPhone 8 Plus</p>
+                    <p>64G</p>
+                    <p>￥7688</p>
+                </div>
+            </li>
+            <li>
+                <div class="options" data-type="4">
+                    <p>iPhone 8 Plus</p>
+                    <p>256G</p>
+                    <p>￥8988</p>
+                </div>
+            </li>
+        </ul>
+        <div class="wannaBuy">
+            <button>我要买&nbsp;!</button>
+        </div>
+        <div class="tryPai">
+            <button>太贵了&nbsp;!&nbsp;我要拍卖</button>
+        </div>
+    </div>
+    <div class="cover">
+        <img src="../../../static/img/open-browser.png"/>
+        <div>
+            <p>点击右上角，选择在浏览器中打开
+            <p>即可正常下载</p>
+            <p class="close">点击关闭</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script> 
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.200"></script>
+    <script type="text/javascript">
+        var myObject=myObject;
+        var host=myObject.host;
+        var verCode=AppHelper.YzAppGetVerCode();
+        var goodstype=1;
+        var loc=window.location.href;
+        $(".back").click(function(){
+            if(loc.indexOf("source=web")>=0){
+                window.history.go(-1);
+            }else{
+                window.Auction.back();
+            }
+        })
+        $(".options").click(function(){
+            $(this).parent().siblings().find(".options").removeClass("active");
+            $(this).addClass("active");
+            goodstype=$(".active").data("type");
+            console.log(goodstype);
+        })
+        $(".wannaBuy button").click(function(){
+            var openid=store.get('openid');
+            
+            if(verCode==""){
+                if(browser.versions.mobile){
+                    if(browser.versions.android){
+                        var loc=window.location.href;
+                        var channelType=myObject.GetQueryString("channel_id");
+                        console.log(channelType);
+                        if(channelType=="PTiebaRuanguang1"){
+                            window.location.href="http://droimarket.droicdn.com/180/apk/2017/09/28/jspm_rg1/JiSuPaiMai_PTiebaRuanguang1.apk";
+                        }else if(channelType=="PTiebaRuanguang2"){
+                            window.location.href="http://droimarket.droicdn.com/180/apk/2017/09/28/jspm_rg2/JiSuPaiMai_PTiebaRuanguang2.apk";
+                        }else if(channelType=="PTiebaYingguang1"){
+                            window.location.href="http://droimarket.droicdn.com/180/apk/2017/09/28/jspm_yg1/JiSuPaiMai_PTiebaYingguang1.apk";
+                        }else if(channelType=="PTiebaYingguang2"){
+                            window.location.href="http://droimarket.droicdn.com/180/apk/2017/09/28/jspm_yg2/JiSuPaiMai_PTiebaYingguang2.apk";
+                        }else{
+                            window.location.href="http://droimarket.droicdn.com/180/apk/2017/09/28/jspm_iphonex/JiSuPaiMai_Aiphonex1.apk";
+                        }
+                    }else if(browser.versions.ios){
+                        window.location.href="https://itunes.apple.com/cn/app/%E6%9E%81%E9%80%9F%E6%8B%8D%E5%8D%96/id1257603232?mt=8";
+                    }
+                }
+            }else{
+                /*if(openid==undefined){
+                    if(browser.versions.mobile){
+                        if(browser.versions.android){
+                            window.location.href=myObject.host+'/front/view/app/login/index.html?from=iphoneAct';
+                        }else if(browser.versions.ios){
+                            window.Auction.backPage(4);
+                        }
+                    }
+                    
+                }else{*/
+
+                    if(openid==undefined){
+                        myObject.alert("请先登录再前往Iphone直售专区继续完成购买！")
+                    }else{
+                        
+                        myObject.loadShow();
+                    var type;
+                    switch(goodstype)
+                    {
+                        case 1:
+                            type="type/1/pid/1";
+                            break;
+                        case 2:
+                            type="type/2/pid/1";
+                            break;
+                        case 3:
+                            type="type/1/pid/2";
+                            break;
+                        case 4:
+                            type="type/2/pid/2";
+                            break;
+                        case 5:
+                            type="type/1/pid/3";
+                            break;
+                        case 6:
+                            type="type/2/pid/3";
+                            break;           
+                    }
+                    myObject.commonAjax(host+'/index.php/index/Tradeinfo/order/'+type,'GET','',function(data){
+                        if(data.state==1){
+                            var order_id=data.data.order_id;
+                            var openid=data.data.openid;
+                            store.set('openid',openid);
+
+                            window.location.href=host+"/front/view/app/index/order.html?order_id="+order_id;
+                           
+                        }else if(data.state==0){
+                            myObject.alert(data.cause);
+                            
+                        }
+                    },function(){
+                    
+                    });
+                    }
+                    
+                //}
+                
+                
+            }
+        })
+        $(".tryPai").click(function(){
+            if(verCode==""){
+                if(browser.versions.mobile){
+                    if(browser.versions.android){
+                        var loc=window.location.href;
+                        var channelType=myObject.GetQueryString("channel_id");
+                        console.log(channelType);
+                        if(channelType=="PTiebaRuanguang1"){
+                            window.location.href="http://droimarket.droicdn.com/180/apk/2017/09/28/jspm_rg1/JiSuPaiMai_PTiebaRuanguang1.apk";
+                        }else if(channelType=="PTiebaRuanguang2"){
+                            window.location.href="http://droimarket.droicdn.com/180/apk/2017/09/28/jspm_rg2/JiSuPaiMai_PTiebaRuanguang2.apk";
+                        }else if(channelType=="PTiebaYingguang1"){
+                            window.location.href="http://droimarket.droicdn.com/180/apk/2017/09/28/jspm_yg1/JiSuPaiMai_PTiebaYingguang1.apk";
+                        }else if(channelType=="PTiebaYingguang2"){
+                            window.location.href="http://droimarket.droicdn.com/180/apk/2017/09/28/jspm_yg2/JiSuPaiMai_PTiebaYingguang2.apk";
+                        }else{
+                            window.location.href="http://droimarket.droicdn.com/180/apk/2017/09/28/jspm_iphonex/JiSuPaiMai_Aiphonex1.apk";
+                        }
+                    }else if(browser.versions.ios){
+                        window.location.href="https://itunes.apple.com/cn/app/%E6%9E%81%E9%80%9F%E6%8B%8D%E5%8D%96/id1257603232?mt=8";
+                    }
+                }
+            }else{
+                myObject.loadShow();
+                myObject.commonAjax(host+'/index.php/index/Tradeinfo/getIds','GET','',function(data){
+                    if(data.state==1){
+                        var goods1=data.data.goods_id_1;
+                        var goods2=data.data.goods_id_2;
+                        var goods3=data.data.goods_id_3;
+                        var goods4=data.data.goods_id_4;
+                        var goods5=data.data.goods_id_5;
+                        var goods6=data.data.goods_id_6;
+                        var goodsid;
+                        switch(goodstype)
+                        {
+                            case 1:
+                                goodsid=goods1;
+                                break;
+                            case 2:
+                                goodsid=goods2;
+                                break;
+                            case 3:
+                                goodsid=goods3;
+                                break;
+                            case 4:
+                                goodsid=goods4;
+                                break;
+                            case 5:
+                                goodsid=goods5;
+                                break;
+                            case 6:
+                                goodsid=goods6;
+                                break;           
+                        }
+                        window.location.href=host+"/front/view/app/index/details.html?goodsid="+goodsid;
+                    }else if(data.state==0){
+                        myObject.alert(data.cause);
+                        
+                    }
+                },function(){
+                
+                });
+            } 
+        })
+    </script>     
+</body>
+</html>
+
+    

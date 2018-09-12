@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>好礼相送</title>
+    <meta name="description" content="好礼相送">
+    <meta name="keywords" content="好礼相送">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <style>
+        html,body{
+            height:100%;
+            width:100%;
+        }
+        body{
+            background:url(../../../static/img/activity/bg1.png);
+            background-size:100% 100%;
+            position: relative;
+            z-index:1;
+
+        }
+        #selector{
+            -webkit-user-select: text;
+            position: absolute;
+            top:0;
+            z-index:-1;
+            color:transparent;
+        }
+        #selector1{
+            -webkit-user-select: text;
+            position: absolute;
+            position: absolute;
+            top:0;
+            z-index:-1;
+            color:transparent;
+        }
+        #selector2{
+            -webkit-user-select: text;
+            position: absolute;
+            position: absolute;
+            top:0;
+            z-index:-1;
+            color:transparent;
+        }
+        #selector3{
+            -webkit-user-select: text;
+            position: absolute;
+            position: absolute;
+            top:0;
+            z-index:-1;
+            color:transparent;
+        }
+        #selector4{
+            -webkit-user-select: text;
+            position: absolute;
+            position: absolute;
+            top:0;
+            z-index:-1;
+            color:transparent;
+        }
+        .button{
+            -webkit-user-select: text;
+            border: none;
+            background: transparent;
+        }
+        .banner img{
+            width: 100%;
+            position: relative;
+            z-index:1;
+        }
+        .main{
+            width: 100%;
+            padding:0 0.4rem 0.4rem 0.4rem;
+            box-sizing:border-box;
+            position: relative;
+            z-index:1;
+            height: calc(100% - 2.22rem);
+            overflow-y:scroll;
+        }
+        .cover{
+            background: rgba(0,0,0,0.8);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            display: none;
+            z-index: 99999999
+        }
+        .cover img{
+            position: absolute;
+            width: 3.69rem;
+            top: 0.08rem;
+            right: 1.15rem;
+        }
+        .cover>div {
+            margin-top: 4.31rem;
+        }
+        .cover p {
+            font-size: .48rem;
+            line-height: 2;
+            text-align: center;
+            color: #fefefe;
+        }
+        .cover .close{
+            margin-top: 0.2rem;
+        }
+        .ThreeGifts img{
+            width: 100%;
+            margin-top:0.2rem;
+        }
+        .hints{
+            font-size: 0.293333rem;
+            color:#999;
+            text-align: center;
+            padding:0.2rem 0;
+        }
+        .download{
+            padding: 0 0.4rem 0.4rem 0.4rem;
+            width: 100%;
+            box-sizing:border-box;
+            position: fixed;
+            bottom: 0;
+            z-index:2;
+            height:2.22rem;
+        }
+        button{
+            width:100%;
+            background:#c30d23;
+            color: #fff;
+            font-size: 0.48rem;
+            line-height: 0.48rem;
+            padding:0.32rem 0;
+            border-radius: 0.56rem;
+            -moz-box-shadow:0 0 0.3rem #c30d23;
+            -webkit-box-shadow:0 0 0.3rem #c30d23;
+            box-shadow:0 0 0.3rem #c30d23;
+            border:none;
+        }
+    </style>
+</head>
+<body>
+<div class="main">
+    <div class="banner">
+        <img src="../../../static/img/activity/banner6.png"/>
+    </div>
+
+    <div class="ThreeGifts">
+        <img src="../../../static/img/activity/gifts1.png?v=1"/>
+        <img src="../../../static/img/activity/gifts6.png?v=1"/>
+        <!--<img src="../../../static/img/activity/gifts3.png"/>-->
+    </div>
+
+    <span id="selector">3ET45CD</span>
+    <span id="selector1">F55MDBA</span>
+    <span id="selector2">QRDKHKT</span>
+    <span id="selector3">6K477HF</span>
+    <span id="selector4">5RGEHMF</span>
+</div>
+<div class="download">
+    <p class="hints">app下载，具体活动图内容请在app广告栏内领取</p>
+    <button id="regNow">立即下载</button>
+</div>
+<div class="cover">
+    <img src="../../../static/img/open-browser.png"/>
+    <div>
+        <p>点击右上角，选择在浏览器中打开
+        <p>即可正常下载</p>
+        <p class="close">点击关闭</p>
+    </div>
+</div>
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
+<script src='https://cdnjs.cloudflare.com/ajax/libs/jquery/3.1.1/jquery.js'></script>
+<script type="text/javascript" src="../../../static/js/store-json2.min.js"></script>
+<script type="text/javascript" src="../../../static/js/AppHelper.js"></script>
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+<script src="../../../static/js/ua-parser.min.js"></script>
+
+	<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+
+<script>
+
+    var myObject=myObject;
+    var fnBase = fnBase;
+    fnBase.init();
+    var u = navigator.userAgent;
+    var openid="";
+    var uuid="";
+    try {
+        openid=store.get('openid');
+        if(openid == undefined){
+            openid="";
+        }
+        uuid=window.Auction.getUUID();
+    }catch (err){
+
+
+    }
+    var channel=myObject.GetQueryString("channel_id");
+
+    $("#regNow").click(function(){
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"4"
+        };
+        clickJson={
+            "actionId":5,
+            "uuid":"",
+            "openId":"",
+            "ident":"100321",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":channel+"新年豪礼免费送点击立即下载按钮"
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+
+        if(browser.versions.ios){
+            if(channel=="AXyjp_Zycp"){
+                sharesuccEvent.addEnterCopyEvent("selector");
+            }else if(channel=="AXyjp_Ly"){
+                sharesuccEvent.addEnterCopyEvent("selector2");
+            }else if(channel=="AXyjp_Ly1"){
+                sharesuccEvent.addEnterCopyEvent("selector3");
+            } else if (channel == 'Ajspm_zycp') {
+                sharesuccEvent.addEnterCopyEvent("selector4");
+            }else{
+                sharesuccEvent.addEnterCopyEvent("selector1");
+            }
+            window.location.href="https://itunes.apple.com/cn/app/%E6%AC%A2%E4%B9%90%E6%8B%8D%E6%8B%8D-%E7%BD%91%E8%B4%AD%E7%9C%81%E9%92%B1%E8%BF%94%E5%88%A9%E7%AB%9E%E6%8B%8D%E8%BD%AF%E4%BB%B6/id1297877313?mt=8"
+        }else if(browser.versions.android){
+            if(u.indexOf('MicroMessenger') > -1){
+                $(".cover").css("display","block");
+            }else{
+                if(channel=="SDXiaomi1"){
+                    window.location.href="http://droimarket.droicdn.com/180/apk/2017/11/28/jspm_mi/JiSuPaiMai_SDXiaomi1.apk";
+                }else if(channel=="ATengxun01"){
+                    window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_atengxun01/JiSuPaiMai_V10.2.1_113__ATengxun01.apk";
+                }else if(channel=="DSPMengju1"){
+                    window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_dspmengju1/JiSuPaiMai_V10.2.1_113__DSPMengju1.apk";
+                }else if(channel=="SDQutoutiao1"){
+                    window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_sdqutoutiao1/JiSuPaiMai_V10.2.1_113__SDQutoutiao1.apk";
+                }else if(channel=="SDTuia1"){
+                    window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_sdtuia1/JiSuPaiMai_V10.2.1_113__SDTuia1.apk";
+                }else if(channel=="SDYidianzixun1"){
+                    window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/20/jspm_sdyidianzixun1/JiSuPaiMai_V10.2.1_113__SDYidianzixun1.apk";
+                }else if(channel=="Afenxiang1"){
+                    window.location.href="http://droimarket.droicdn.com/180/apk/2018/01/19/xyjp_fenxiang/XiaoYiJingPai_AXyjp_Fenxiang.apk"
+                }else if(channel=="AXyjp_Zycp"){
+                    window.location.href="http://droimarket.droicdn.com/180/apk/2018/01/19/xyjp_zycp/XiaoYiJingPai_AXyjp_Zycp.apk";
+                } else if(channel=="Ajspm_zycp") {
+                    window.location.href="http://p9qbq4tie.bkt.clouddn.com/jisupaimai_10.4.3_115_A0001.apk";
+                } else if(channel=="AXyjp_Dsztc"){
+                    window.location.href="http://droimarket.droicdn.com/180/apk/2018/01/19/xyjp_dsztc/XiaoYiJingPai_AXyjp_Dsztc.apk";
+                } else if(channel=="AXyjp_bose"){
+                    window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/14/xyjp_aXyjp_bose/XiaoYiJingPai.apk";
+                }else if(channel=="AXyjp_Ly"){
+                    window.location.href="http://droimarket.droicdn.com/180/apk/2018/01/19/xyjp_ly/XiaoYiJingPai_AXyjp_Ly.apk";
+                }else if(channel=="AXyjp_Ly1"){
+                    window.location.href="http://droimarket.droicdn.com/180/apk/2018/01/19/xyjp_ly1/XiaoYiJingPai_AXyjp_Ly1.apk";
+                } else{
+                    window.location.href="http://p9qbq4tie.bkt.clouddn.com/jisupaimai_10.4.3_115_Aduanxin0001.apk";
+                }
+            }
+        }
+    })
+
+    $(".close").click(function(){
+        $(".cover").css("display","none");
+    })
+
+    $(".ruleBox-close").click(function(){
+        $(".hide").hide();
+
+    })
+    //页面到达
+    var Op = "",clickJson = "";
+    Op={
+        "ot":"4"
+    };
+    clickJson={
+        "actionId":3,
+        "uuid":"",
+        "openId":"",
+        "ident":"100320",
+        "date":parseInt(new Date().getTime() / 1000),
+        "name":channel+"新年豪礼免费送落地页到达"
+    };
+    myObject.addStatisticsEvent(Op,clickJson);
+
+    var sharesuccEvent = {
+
+        addEnterCopyEvent:function(selectorHtml){
+
+            var u = navigator.userAgent;
+            if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+                var aux = document.createElement("input");
+                aux.setAttribute("value", document.getElementById(selectorHtml).innerHTML);
+                document.body.appendChild(aux);
+                aux.select();
+                var successful = document.execCommand("copy");
+                try {
+                    console.log('Oops, unable to copy');
+                    var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+                    //                    fnBase.alert(msg);
+                    console.log(msg);
+                } catch(err) {
+                    console.log(err);
+                }
+                document.body.removeChild(aux);
+            } else if (u.indexOf('iPhone') > -1) {
+                var copyDOM = document.querySelector('#'+selectorHtml);
+                var range = document.createRange();
+                range.selectNode(copyDOM);
+                window.getSelection().addRange(range);
+                var successful = document.execCommand('copy');
+                try {
+                    var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+                    console.log('Oops, unable to copy');
+                    console.log('Copy email command was ' + msg);
+                    //                    fnBase.alert(msg);
+
+                } catch(err) {
+                    console.log('Oops, unable to copy');
+                }
+                window.getSelection().removeAllRanges();
+            }
+        },
+        addPostDeviceInfo:function(){
+            var parser = new UAParser();
+            var us = navigator.userAgent;
+            parser.setUA(us);
+            var r = parser.getResult();
+            var type = r.os.name;
+            var pt = '';
+            if(type.indexOf("iOS")>-1){
+                pt = 'I'
+            }else if(type.indexOf("Android")>-1){
+                pt = 'A'
+            }
+            var sharecode;
+
+            if(channel=="AXyjp_Zycp") {
+                sharecode="3ET45CD";
+            } else if (channel=="AXyjp_Ly") {
+                sharecode="QRDKHKT";
+            } else if (channel=="AXyjp_Ly1") {
+                sharecode="6K477HF";
+            } else if (channel == "Ajspm_zycp") {
+                sharecode = '5RGEHMF';
+            } else {
+                sharecode="F55MDBA";
+//                sharecode = '5RGEHMF';
+            }
+
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/Index/Frame/bindDevice",{
+                "pt":pt,
+                "sys":r.os.version,
+                "screenWidth":screen.width,
+                "sharecode":sharecode
+            },function(res){
+                console.log(res)
+            })
+        }
+    };
+
+    if(browser.versions.ios){
+        sharesuccEvent.addPostDeviceInfo();
+    }
+</script>
+
+</body>
+</html>
+
+

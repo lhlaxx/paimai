@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimun-scale=1.0,user-scalable=yes">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>有奖分享</title>
+    <meta name="description">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+    <style>
+        body{
+            font-family: "微软雅黑";
+            background: url(../../../static/img/share/body_bg.jpg) no-repeat;
+            background-size:100%;
+        }
+        div {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);/* 点击无阴影 */
+        }
+        .scroll{
+            overflow-y:hidden;
+        }
+        .newbar{
+            background: #fd4141;
+            height: 40px;
+            line-height: 40px;
+            color: #fff;
+            font-size: 20px;
+            overflow: hidden;
+            text-align: center;
+            padding-left: 10px;
+            position: fixed;
+            width:100%;
+            z-index: 999;
+        }
+        .newbar a{
+            float:left;
+
+        }
+        .newbar a img{
+            width:10px;
+
+        }
+    </style>
+</head>
+
+<body  class="share">
+
+
+<div class="newbar">
+    <a class="back back_arrow"><img src="../../../static/img/back.png"/></a>
+    邀请好友赚现金
+</div>
+<div class="area01">
+    <img src="../../../static/img/share/banner01.jpg"/>
+    <p class="font01"><img src="../../../static/img/share/gift2.png" style="vertical-align:text-top; width:26px; margin-right:10px;" />邀请可得<span>每邀请一位好友都将获得</span></p>
+</div>
+<div class="area02 width90">
+
+    <div class="icon"><img src="../../../static/img/share/icon01.png"/></div>
+    <div class="icon"><img src="../../../static/img/share/icon02.png"/></div>
+    <div class="icon"><img src="../../../static/img/share/icon03.png"/></div>
+    <div class="icon"><img src="../../../static/img/share/icon04.png"/></div>
+    <p>已累计送出<span style="color: #ffe02e"><span class="money"></span>元现金</span></p>
+    <a class="btn1 share-btn">立即邀请赚钱</a>
+    <a class="btn2">查看收益</a>
+</div>
+<div class="area03 width90">
+    <h5>活动规则</h5>
+    <p>1. 1.每邀请一个好友累计可获得20元，还有充值分成可以拿哦~</p>
+    <p>2. 赠送的现金即时到账，您可以在“拍币-账户明细”中查看。</p>
+    <p>3. 请通过正常方式邀请好友，恶意刷用户将不予发货并直接封号处理。</p>
+</div>
+
+
+
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<!--<script src="../../../static/js/lazysizes.js"></script>-->
+<script src="../../../static/js/store-json2.min.js"></script>
+<!--<script src="../../../static/js/clipboard.min.js"></script>-->
+<!--<script src="../../../static/js/iscroll-probe.js"></script>-->
+<!--<script src="../../../static/js/MobileDetect.js"></script>-->
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var openid="";
+    var uuid="";
+    var channel="";
+    try {
+        openid=store.get('openid');
+        if(openid==undefined){
+            openid="";
+        }
+        uuid=window.Auction.getUUID();
+
+    }catch (err){
+
+
+    }
+    if(fnBase.getUrlPar("channel_id")){
+        channel=fnBase.getUrlPar("channel_id");
+    }else if(fnBase.getUrlPar("ChannelId")){
+        channel=fnBase.getUrlPar("ChannelId");
+    }
+
+
+    var newShareEvent = {
+        source:fnBase.getUrlPar("source"),
+        shareCode:"",
+        init:function () {
+            this.addMainClickEvent();
+            if(store.get("openid")){
+                this.addGetShareEvent()
+            }
+        },
+        addMainClickEvent:function () {
+            var timestamp1 = parseInt(Date.parse( new Date()) / 3000000);
+            console.log(timestamp1)
+            var money = 1000 + timestamp1;
+            $('.money').html(money);
+            $(".back_arrow").click(function(){
+                if(newShareEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back()
+                }
+            });
+            $(document).on("click",".btn2",function(){
+//                $(".select-cash-bg").show();
+                window.Auction.openUrl(fnBase.source_url+'/front/view/app/index/sharegets.html');
+
+            });
+            $(document).on("click",".share-btn",function(){
+                if(!store.get('openid')){
+                    window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index.html")
+                }else {
+                    var shareTitleArr,shareTitle;
+//                    shareTitleArr = [
+//                        '想知道月薪3k和3w的区别吗？点击查看',
+//                        '月薪低于一万的，你凭啥不干副业，点我赚钱来',
+//                        '提高起征点，这事能和我有点关系么?',
+//                        '半个月赚了3000块，我都经历了什么',
+//                        '神预测：未来3天在中国最赚钱的事情',
+//                        '你以为你很富，其实是你圈子太小，不服点击来战！',
+//                        '哪八个字，能让男人风雨无阻！一个电话就到！……赚钱赚到手抽筋',
+//                        '我能想到最开心的事情，就是和你一起领888元现金',
+//                        '发红包啦，邀请好友一起领取888元，快和我一起来玩耍吧！',
+//                        '10秒带你解锁领红包的新姿势'
+//                    ];
+//                    shareTitle = shareTitleArr[Math.floor(Math.random() * shareTitleArr.length)];
+
+                    var shareData = {
+                        "title":"给你赠送了一个大礼包，我已经领到了~",
+                        "content":"现金红包，话费充值卡，iphone手机更多好货等你来抢。。。",
+                        "actionUrl":fnBase.source_url+"/front/view/app/share/after.html?shareCode="+newShareEvent.shareCode+"&ChannelId="+fnBase.ChannelId+"&aid="+fnBase.addGetAppIdEvent(),
+                        "imgUrl":fnBase.source_url+"/front/static/img/share-shitu-ico.png",
+                        "ruleUrl":fnBase.source_url+"/front/view/app/index/shituRule.html"
+                    };
+                    console.log(shareData);
+                    window.Auction.share(JSON.stringify(shareData))
+                }
+
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":uuid,
+                    "openId":openid,
+                    "ident":"100351",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":channel+"分享页点击分享"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+
+            });
+        },
+        addGetShareEvent:function(){
+            var that = this;
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Share/mkShareCode",{
+
+            },function(res){
+                console.log(res.data);
+                newShareEvent.shareCode = res.share_code;
+            })
+        }
+    };
+    newShareEvent.init();
+    //    var myScroll = null;
+    //    myScroll = new IScroll('#wrapper', {
+    //        probeType: 3,
+    //        mouseWheel: true,
+    //        scrollbars: true,
+    //        preventDefault: true,
+    //        fadeScrollbars: true,
+    //        tap: 'myCustomTapEvent'
+    //    });
+    //    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+    var Op = "",clickJson = "";
+    Op={
+        "ot":"3"
+    };
+    clickJson={
+        "actionId":3,
+        "uuid":uuid,
+        "openId":openid,
+        "ident":"100353",
+        "date":parseInt(new Date().getTime() / 1000),
+        "name":channel+"分享页页面到达"
+    };
+    fnBase.addStatisticsEvent(Op,clickJson);
+
+</script>
+</body>
+</html>

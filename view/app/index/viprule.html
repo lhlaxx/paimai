@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/swiper.min.css"/>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/css/viprule.css?0.01"/>
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>使用方法</h2>
+</header>
+<div class="container">
+    <div class="tabs">
+        <div class="tabs-item active">优酷会员卡</div>
+        <div class="tabs-item">爱奇艺会员卡</div>
+    </div>
+    <div class="swiper-container swiper-banner">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide">
+                <div class="title-item">
+                    <h3>1.电脑端登录优酷账号</h3>
+                    <div class="h3-img"><img style="width: 4.88rem" src="../../../static/img/active/youku-h1.png"></div>
+                </div>
+                <div class="title-item">
+                    <h3>2.进入会员-会员卡页面激活</h3>
+                    <div class="h3-img"><img style="width: 100%" src="../../../static/img/active/youku-h2.png"></div>
+                </div>
+                <div class="title-item">
+                    <h3>3. 输入兑换码和验证码：</h3>
+                    <div class="h3-img"><img style="width: 6.69rem" src="../../../static/img/active/youku-h3.png"></div>
+                </div>
+                <div class="title-item">
+                    <h3>4.激活成功</h3>
+                    <div class="h3-img"><img style="width: 4.53rem" src="../../../static/img/active/youku-h4.png"></div>
+                </div>
+                <div class="title-details">
+                    <div class="title-details-h3">注</div>
+                    <ol>
+                        <li>本商品为优酷VIP会员卡（卡密充值），激活成功后享受优酷VIP会员特权相对应期限。</li>
+                        <li>优酷账号为个人专属，请勿分享他人，以免造成永久封号。</li>
+                    </ol>
+                </div>
+            </div>
+            <div class="swiper-slide">
+                <div class="title-item">
+                    <h3>1.电脑端登录爱奇艺账号</h3>
+                    <div class="h3-img"><img style="width: 5.41rem" src="../../../static/img/active/aqiyi-h1.png"></div>
+                </div>
+                <div class="title-item">
+                    <h3>2. 点击个人中心-VIP俱乐部：</h3>
+                    <div class="h3-img"><img style="width: 5.59rem" src="../../../static/img/active/aqiyi-h2.png"></div>
+                </div>
+                <div class="title-item">
+                    <h3>3. 点击激活会员卡：</h3>
+                    <div class="h3-img"><img style="width: 4.81rem" src="../../../static/img/active/aqiyi-h3.png"></div>
+                </div>
+                <div class="title-item">
+                    <h3>4. 输入兑换码和验证码：</h3>
+                    <div class="h3-img"><img style="width: 6.67rem" src="../../../static/img/active/aqiyi-h4.png"></div>
+                </div>
+                <div class="title-item">
+                    <h3>5. 激活成功：</h3>
+                    <div class="h3-img"><img style="width: 6.67rem" src="../../../static/img/active/aqiyi-h5.png"></div>
+                </div>
+                <div class="title-details">
+                    <div class="title-details-h3">注</div>
+                    <ol>
+                        <li>本商品为爱奇艺黄金会员卡（卡密充值），激活成功后享受爱奇艺会员特权相对应期限。</li>
+                        <li>爱奇艺账号为个人专属，请勿分享他人，以免造成永久封号。</li>
+                    </ol>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/swiper.jquery.min.js"></script>
+ <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+    var vipRuleEvent = {
+        source:fnBase.getUrlPar("source"),
+        init:function(){
+            this.addMainClickEvent()
+        },
+        addMainClickEvent:function(){
+            $(".back_arrow").click(function(){
+                if(vipRuleEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back()
+                }
+            });
+        }
+
+    };
+
+    vipRuleEvent.init();
+
+
+    var tabsSwiper = new Swiper('.swiper-container',{
+        speed:500,
+        onSlideChangeStart: function(){
+            $(".tabs .active").removeClass('active');
+            $(".tabs .tabs-item").eq(tabsSwiper.activeIndex).addClass('active')
+        }
+    });
+    $(".tabs .tabs-item").on('touchstart mousedown',function(e){
+        e.preventDefault();
+        $(".tabs .active").removeClass('active');
+        $(this).addClass('active');
+        tabsSwiper.slideTo( $(this).index() )
+    });
+    $(".tabs .tabs-item").click(function(e){
+        e.preventDefault()
+    })
+</script>
+</body>
+</html>

@@ -1,0 +1,148 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/dropload.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/perstrategy.css"/>
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>个人攻略</h2>
+</header>
+<div class="container">
+    <div class="personal-strategy">
+        <!--<div class="strategy-name">-->
+            <!--<div class="strategy-username">许卡通</div>-->
+            <!--<div class="strategy-username-id">1431324154</div>-->
+        <!--</div>-->
+        <!--<div class="strategy-all">-->
+            <!--<div class="strategy-all-01">总中奖次数<div class="winning-counts strategy-all-main">2</div></div>-->
+            <!--<div class="strategy-all-02">总商品价值<div class="all-goods-value strategy-all-main">21541421</div></div>-->
+        <!--</div>-->
+    </div>
+    <div class="strategy-list">
+        <ul>
+            <!--<li class="strategy-list-item">-->
+                <!--<div class="strategy-list-item-top">-->
+                    <!--<div class="strategy-title">这是攻略标题</div>-->
+                    <!--<div class="strategy-time">2017-11-08 13:54</div>-->
+                <!--</div>-->
+                <!--<div class="strategy-list-item-center">-->
+                    <!--<div class="strategy-list-item-center-01">用户昵称<div class="nickname ">181****3149</div></div>-->
+                    <!--<div class="strategy-list-item-center-02">当周中奖次数<div class="week-counts">65</div></div>-->
+                    <!--<div class="strategy-list-item-center-03">当周商品价值<div class="week-goods-value">100230.00</div></div>-->
+                <!--</div>-->
+                <!--<div class="strategy-list-item-bottom">-->
+                    <!--<div class="strategy-list-item-bottom-title">正文</div>-->
+                    <!--<div class="strategy-list-item-bottom-content">打开极速开发的风景阿范德萨哈哈哈哈哈哈哈哈哈哈哈哈哈或或或或或或或或或我的新号付女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女</div>-->
+                    <!--<div class="strategy-list-item-bottom-footer">-->
+                        <!--<div class="strategy-list-item-bottom-earn">获得打赏拍币：<span>32</span></div>-->
+                        <!--<div class="strategy-list-item-bottom-read">阅读详情</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+        </ul>
+    </div>
+</div>
+
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/dropload.min.js"></script>
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+    var perStrategyEvent = {
+        source:fnBase.getUrlPar("source"),
+        openid:fnBase.getUrlPar("openid"),
+        init:function(){
+            this.addMainClickEvent();
+            this.addGetStrategyEvent()
+        },
+        addMainClickEvent:function(){
+            $(document).on("click",".back_arrow",function(){
+                if(perStrategyEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back();
+                }
+            });
+
+            $(document).on("click",".strategy-list-item-bottom-read",function(){
+                //fnBase.addLocationHref("strategydetails.html?source=web&strategyId="+$(this).attr("data-strategyId"))
+                console.log("strategydetails.html?strategyId="+$(this).attr("data-strategyId"));
+                window.Auction.openUrl(fnBase.source_url+"/front/view/app/index/strategydetails.html?strategyId="+$(this).attr("data-strategyId"));
+            });
+        },
+        addGetStrategyEvent:function(){
+            var that = this;
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Godlist/personalStrategy",{
+                "openid":perStrategyEvent.openid
+            },function(res){
+                if(res.state == 1){
+                    that.addStrategyHtml(res)
+                }else {
+                    fnBase.alert(res.msg)
+                }
+            })
+        },
+        addStrategyHtml:function(data){
+            var StrategyHtml='',resultHtml='';
+            StrategyHtml = '<div class="strategy-name">'
+                            +   '<div class="strategy-username">'+data.name+'</div>'
+                            +   '<div class="strategy-username-id">ID:'+data.ID+'</div>'
+                            +'</div>'
+                            +'<div class="strategy-all">'
+                            +   '<div class="strategy-all-01">总中奖次数<div class="winning-counts strategy-all-main">'+data.count+'</div></div>'
+                            +   '<div class="strategy-all-02">总商品价值<div class="all-goods-value strategy-all-main">￥'+data.price+'</div></div>'
+                            +'</div>';
+            $(".personal-strategy").empty();
+            $(".personal-strategy").html(StrategyHtml);
+            console.log(data);
+            var data = data.strategy;
+            for (var i = 0, len = data.length; i < len; i++) {
+                resultHtml += '<li class="strategy-list-item">'
+                        + '<div class="strategy-list-item-top">'
+                        + '<div class="strategy-title">' + data[i].title + '</div>'
+                        + '<div class="strategy-time">' + data[i].time + '</div>'
+                        + '</div>'
+                        + '<div class="strategy-list-item-center">'
+                        + '<div class="strategy-list-item-center-01">用户昵称<div class="nickname ">' + data[i].name + '</div></div>'
+                        + '<div class="strategy-list-item-center-02">当周中奖次数<div class="week-counts">' + data[i].count + '</div></div>'
+                        + '<div class="strategy-list-item-center-03">当周商品价值<div class="week-goods-value">￥' + data[i].price + '</div></div>'
+                        + '</div>'
+                        + '<div class="strategy-list-item-bottom">'
+                        + '<div class="strategy-list-item-bottom-title">正文</div>'
+                        + '<div class="strategy-list-item-bottom-content">' + data[i].content + '</div>'
+                        + '<div class="strategy-list-item-bottom-footer">'
+                        + '<div class="strategy-list-item-bottom-earn">获得打赏拍币：<span>' + data[i].tip_price + '</span></div>'
+                        + '<div class="strategy-list-item-bottom-read" data-strategyId="'+data[i].strategyId+'">点击阅读详情</div>'
+                        + '</div>'
+                        + '</div>'
+                        + '</li>'
+            }
+            $(".strategy-list ul").html(resultHtml)
+        }
+    };
+    perStrategyEvent.init()
+</script>
+
+</body>
+</html>

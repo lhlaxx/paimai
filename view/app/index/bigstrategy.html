@@ -1,0 +1,335 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/dropload.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/bigstrategy.css"/>
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>大神攻略</h2>
+    <div class="write-strategy">写攻略</div>
+</header>
+<div class="container">
+    <div class="container-title" style="display: none">
+        <!--<div class="text">您的文章正在审核中</div>-->
+        <!--<div class="modify">修改</div>-->
+    </div>
+    <div class="container-main">
+        <!--<div class="container-main-title">上周大神榜第一名</div>-->
+        <!--<div class="strategy-name">-->
+            <!--<div class="strategy-username">许卡通</div>-->
+            <!--<div class="strategy-username-id">1431324154</div>-->
+        <!--</div>-->
+        <!--<div class="strategy-all">-->
+            <!--<div class="strategy-all-01">总中奖次数-->
+                <!--<div class="winning-counts strategy-all-main">2</div>-->
+            <!--</div>-->
+            <!--<div class="strategy-all-02">总商品价值-->
+                <!--<div class="all-goods-value strategy-all-main">21541421</div>-->
+            <!--</div>-->
+        <!--</div>-->
+        <!--<div class="see-more">查看更多</div>-->
+    </div>
+    <div class="strategy-list">
+        <ul>
+            <!--<li class="strategy-list-item">-->
+                <!--<div class="strategy-list-item-top">-->
+                    <!--<div class="strategy-title">这是攻略标题</div>-->
+                    <!--<div class="strategy-time">2017-11-08 13:54</div>-->
+                <!--</div>-->
+                <!--<div class="strategy-list-item-center">-->
+                    <!--<div class="strategy-list-item-center-01">用户昵称<div class="nickname ">181****3149</div></div>-->
+                    <!--<div class="strategy-list-item-center-02">当周中奖次数<div class="week-counts">65</div></div>-->
+                    <!--<div class="strategy-list-item-center-03">当周商品价值<div class="week-goods-value">100230.00</div></div>-->
+                <!--</div>-->
+                <!--<div class="strategy-list-item-bottom">-->
+                    <!--<div class="strategy-list-item-bottom-title">正文</div>-->
+                    <!--<div class="strategy-list-item-bottom-content">打开极速开发的风景阿范德萨哈哈哈哈哈哈哈哈哈哈哈哈哈或或或或或或或或或我的新号付女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女女</div>-->
+                    <!--<div class="strategy-list-item-bottom-footer">-->
+                        <!--<div class="strategy-list-item-bottom-earn">获得打赏拍币：<span>32</span></div>-->
+                        <!--<div class="strategy-list-item-bottom-read">点击阅读详情</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+            <!--</li>-->
+        </ul>
+    </div>
+</div>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/dropload.min.js"></script>
+
+<script src="../../../src/js/util.js"></script>
+<script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var bigStrategyEvent = {
+        source:fnBase.getUrlPar("source"),
+        init:function(){
+            this.addMainClickEvent();
+            this.addGetDataEvent();
+            if(store.get("openid")){
+
+            }
+        },
+        addMainClickEvent:function(){
+            $(document).on("click",".back_arrow",function(){
+                if(bigStrategyEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back();
+                }
+            });
+            $(document).on("click",".write-strategy",function(){
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100287",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"点击写攻略次数(只为按钮点击数)",
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+
+                console.log(bigStrategyEvent.isGod);
+                if(store.get('openid')){
+                    if(bigStrategyEvent.isGod){
+                        if(bigStrategyEvent.isWrited){
+                            if(bigStrategyEvent.status == 2){
+                                fnBase.alert("你的攻略正在审核中,暂时不能填写")
+                            }else if(bigStrategyEvent.status == 1 || bigStrategyEvent.status == 3){
+                                fnBase.addLocationHref("writestrategy.html?source=web&strategyId="+bigStrategyEvent.strategyId);
+                                //window.Auction.openUrl(fnBase.source_url+"/front/view/app/index/writestrategy.html?strategyId="+bigStrategyEvent.strategyId);
+                            }else {
+                                fnBase.alert("你本周已经写过攻略了")
+                            }
+                        }else {
+                            fnBase.addLocationHref("writestrategy.html?source=web&strategyId="+bigStrategyEvent.strategyId);
+                            //window.Auction.openUrl(fnBase.source_url+"/front/view/app/index/writestrategy.html?strategyId="+bigStrategyEvent.strategyId);
+                        }
+                    }else {
+                        fnBase.alert("你不在大神榜内,暂时不能填写攻略")
+                    }
+                }else {
+                    window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index.html?from=refund");
+                }
+            });
+            $(document).on("click",".modify",function(){
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100289",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"写攻略-点击修改按钮次数(只为按钮点击数)",
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+
+                fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/writestrategy.html?source=web&strategyId="+bigStrategyEvent.strategyId);
+            });
+            $(document).on("click",".strategy-list-item-bottom-read",function(){
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100265",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"点击阅读攻略详情",
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+                window.Auction.openUrl(fnBase.source_url+"/front/view/app/index/strategydetails.html?strategyId="+$(this).attr("data-strategyId"));
+            });
+            $(document).on("click",".see-more span",function(){
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100261",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"点击查看当周大神排行榜",
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+
+                fnBase.addLocationHref("greatlist.html?source=web")
+            });
+        },
+        isEnd:false,
+        lastId:0,
+        isGod:false,
+        isWrited:false,
+        strategyId:0,
+        status:0,
+        addGetDataEvent:function(){
+            var that = this;
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Godlist/godStrategy",{
+                "openid":store.get("openid"),
+                "lastId":bigStrategyEvent.lastId,
+                "size":5
+            },function(res){
+                if(res.state == 1){
+                    bigStrategyEvent.isGod = res.isGod;
+                    bigStrategyEvent.isWrited = res.isWrited;
+                    bigStrategyEvent.strategyId = res.strategyId;
+                    bigStrategyEvent.status = res.status;
+                    that.addContainerHtml(res)
+                }else {
+                    fnBase.alert(res.msg)
+                }
+            })
+        },
+        addContainerHtml:function(data){
+            if(store.get("openid") && data.status != 0){
+                $(".container-title").show();
+                if(data.status == 1){
+                    $(".container-title").html('<div class="text">您撰写的文章正在编辑中,请确认发布</div>');
+                }else if(data.status == 2){
+                    $(".container-title").html('<div class="text">您的文章正在审核中</div>')
+                }else if(data.status == 3){
+                    $(".container-title").html('<div class="text">您撰写的文章未通过审核,请点击修改</div><div class="modify">修改</div>')
+                }
+            }
+            var container_main_html ='<div class="container-main-title">上周大神榜第一名</div>'
+                                    +'<div class="strategy-name">'
+                                    +   '<div class="strategy-username">'+data.name+'</div>'
+                                    +   '<div class="strategy-username-id">ID:'+data.ID+'</div>'
+                                    +'</div>'
+                                    +'<div class="strategy-all">'
+                                    +   '<div class="strategy-all-01">当周中奖次数'
+                                    +       '<div class="winning-counts strategy-all-main">'+data.count+'</div>'
+                                    +   '</div>'
+                                    +   '<div class="strategy-all-02">当周商品价值'
+                                    +       '<div class="all-goods-value strategy-all-main">￥'+data.price+'</div>'
+                                    +   '</div>'
+                                    +'</div>'
+                                    +'<div class="see-more"><span>查看更多</span></div>';
+            $(".container-main").html(container_main_html);
+            if(data.strategy.length > 0){
+                this.addStrategyListEvent()
+            }
+        },
+        addStrategyListEvent:function(){
+            $('.container').dropload({
+                scrollArea : window,
+                domDown : {
+                    domClass   : 'dropload-down',
+                    domRefresh : '<div class="dropload-refresh">↑继续上拉显示下一条</div>',
+                    domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+                    domNoData  : '<div class="dropload-noData">无更多数据了</div>'
+                },
+                loadDownFn : function(me){
+                    // 拼接HTML
+                    var result = '',that = this;
+                    fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Godlist/godStrategy",{
+                        "openid":store.get("openid"),
+                        "lastId":bigStrategyEvent.lastId,
+                        "size":5
+                    },function(res){
+                        if(bigStrategyEvent.isEnd){
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData();
+                        }else {
+                            bigStrategyEvent.isEnd = res.end;
+                            bigStrategyEvent.lastId = res.lastId;
+                            var data = res.strategy;
+                            for(var i= 0,len=data.length; i<len; i++){
+                                var cornerImg='',titleImg='';
+                                if(data[i].essenceUrl){
+                                    cornerImg+='<img class="corner-icon essenceUrl" src="'+data[i].essenceUrl+'">'
+                                }
+                                if(data[i].topUrl){
+                                    cornerImg+='<img class="corner-icon topUrl" src="'+data[i].topUrl+'">'
+                                }
+                                if(data[i].content.indexOf('图片') > -1){
+                                    titleImg = '【图片】'
+                                }
+                                result += '<li class="strategy-list-item">'
+                                        +   '<div class="strategy-list-item-top">'
+                                        +       '<div class="strategy-title">'+data[i].title+'</div>'
+                                        +       '<div class="strategy-time">'+data[i].time+'</div>'
+                                        +   '</div>'
+                                        +   '<div class="strategy-list-item-center">'
+                                        +       '<div class="strategy-list-item-center-01">用户昵称<div class="nickname ">'+data[i].name+'</div></div>'
+                                        +       '<div class="strategy-list-item-center-02">当周中奖次数<div class="week-counts">'+data[i].count+'</div></div>'
+                                        +       '<div class="strategy-list-item-center-03">当周商品价值<div class="week-goods-value">￥'+data[i].price+'</div></div>'
+                                        +   '</div>'
+                                        +   '<div class="strategy-list-item-bottom">'
+                                        +       '<div class="strategy-list-item-bottom-title">正文'+titleImg+'</div>'
+                                        +               '<div class="corner">'
+                                        +                   cornerImg
+                                        +               '</div>'
+                                        +       '<div class="strategy-list-item-bottom-content">'+data[i].content+'</div>'
+                                        +       '<div class="strategy-list-item-bottom-footer">'
+                                        +           '<div class="strategy-list-item-bottom-earn">获得打赏拍币：<span>'+data[i].tip_price+'</span></div>'
+                                        +           '<div class="strategy-list-item-bottom-read" data-strategyId="'+data[i].strategyId+'">点击阅读详情</div>'
+                                        +       '</div>'
+                                        +   '</div>'
+                                        +'</li>'
+                            }
+                        }
+                        // 为了测试，延迟1秒加载
+                        setTimeout(function(){
+                            // 插入数据到页面，放到最后面
+                            $('.strategy-list ul').append(result);
+                            // 每次数据插入，必须重置
+                            me.resetload();
+                        },300);
+                    })
+                }
+            });
+        }
+    };
+    bigStrategyEvent.init();
+
+
+    var Op = "",clickJson = "";
+    clickJson={
+        "actionId":3,
+        "uuid":fnBase.UUID,
+        "openId":store.get('openid'),
+        "ident":"100260",
+        "date":parseInt(new Date().getTime() / 1000),
+        "name":"大神攻略页面到达",
+    };
+    Op={
+        "ot":"3"
+    };
+    fnBase.addStatisticsEvent(Op,clickJson);
+</script>
+</body>
+</html>

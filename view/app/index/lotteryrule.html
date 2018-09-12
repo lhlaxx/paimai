@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <style>
+        body, html {
+            background-color: #FFFFFF;
+        }
+        div, footer, h1, h2, h3, h4, h5, h6, b,header, li, ul {
+            box-sizing: border-box
+        }
+        header {
+            width: 100%;
+            height: 1.2rem;
+            text-align: center;
+            line-height: 1.2rem;
+            background-color: #fe4141;
+            color: #fff;
+            font-size: .48rem;
+            position: fixed;
+            z-index: 10;
+        }
+
+        header .back_arrow {
+            width: 1.5rem;
+            height: 100%;
+            position: absolute;
+            left: 0;
+            top: 0;
+            background-image: url(data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAABMAAAAfCAYAAAAFkva3AAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAAAyJpVFh0WE1MOmNvbS5hZG9iZS54bXAAAAAAADw/eHBhY2tldCBiZWdpbj0i77u/IiBpZD0iVzVNME1wQ2VoaUh6cmVTek5UY3prYzlkIj8+IDx4OnhtcG1ldGEgeG1sbnM6eD0iYWRvYmU6bnM6bWV0YS8iIHg6eG1wdGs9IkFkb2JlIFhNUCBDb3JlIDUuMy1jMDExIDY2LjE0NTY2MSwgMjAxMi8wMi8wNi0xNDo1NjoyNyAgICAgICAgIj4gPHJkZjpSREYgeG1sbnM6cmRmPSJodHRwOi8vd3d3LnczLm9yZy8xOTk5LzAyLzIyLXJkZi1zeW50YXgtbnMjIj4gPHJkZjpEZXNjcmlwdGlvbiByZGY6YWJvdXQ9IiIgeG1sbnM6eG1wPSJodHRwOi8vbnMuYWRvYmUuY29tL3hhcC8xLjAvIiB4bWxuczp4bXBNTT0iaHR0cDovL25zLmFkb2JlLmNvbS94YXAvMS4wL21tLyIgeG1sbnM6c3RSZWY9Imh0dHA6Ly9ucy5hZG9iZS5jb20veGFwLzEuMC9zVHlwZS9SZXNvdXJjZVJlZiMiIHhtcDpDcmVhdG9yVG9vbD0iQWRvYmUgUGhvdG9zaG9wIENTNiAoV2luZG93cykiIHhtcE1NOkluc3RhbmNlSUQ9InhtcC5paWQ6NUVDM0RGOTI2MkMxMTFFNzkxOTNDRjRCNzE2RTk5RDIiIHhtcE1NOkRvY3VtZW50SUQ9InhtcC5kaWQ6NUVDM0RGOTM2MkMxMTFFNzkxOTNDRjRCNzE2RTk5RDIiPiA8eG1wTU06RGVyaXZlZEZyb20gc3RSZWY6aW5zdGFuY2VJRD0ieG1wLmlpZDo1RUMzREY5MDYyQzExMUU3OTE5M0NGNEI3MTZFOTlEMiIgc3RSZWY6ZG9jdW1lbnRJRD0ieG1wLmRpZDo1RUMzREY5MTYyQzExMUU3OTE5M0NGNEI3MTZFOTlEMiIvPiA8L3JkZjpEZXNjcmlwdGlvbj4gPC9yZGY6UkRGPiA8L3g6eG1wbWV0YT4gPD94cGFja2V0IGVuZD0iciI/PmmuaL0AAAGySURBVHjapJZNKARhGMffNjcucnOjnOQjkXLxVb4iqz3IQRIlpbhQcpiZkpMSDoSDg0TJV8mWfKQoisTByWFTKDdFOY3/sz2jx7TZnWef+rXvf5p+886+H/Ma27aN67pa8kDM5cow+ioD5yCT80FIKaoBV0IUdRynVSPrBKfAe6tFiJqpEVTWBzZEngaDXggiGwUrIo/ztd9KdQDmwZDI3WDNf1MqslXQI3IY7CW6MZksChq5/Q0aeDqYIDIa8mNQyfkdVIPH/56cSJbNc6iA8zNLX5P9H/7RLAIPQnQBilMR+XtWAS7FtTNQG2QSej1rAtdCtB1UFJdZlkXL45DzF7BARLNgQ74e0PDPaLcRko2BfTGSL6BKJcOK/8BvO890qiwexbCmZ171gjmRd0CXVkY1DEZEXgcTWhnVLBgQeZJRyaiWQIfI1LtlrYxqF9TxdKHqp4+GVmZ4r6dl9sm5hXcTlczwwi8ET5ypt3cgRyOjioEScMOZ2vcgXyMz/Krl4IRzLgtLNTKv6sGm2JFvsVm0xVMaZ40F929FtMcDwx/fKZG30jm4eJP5jXeeox8BBgC438JBIrTVzwAAAABJRU5ErkJggg==);
+            background-repeat: no-repeat;
+            background-size: .266667rem .48rem;
+            background-position: .4rem center;
+            cursor: pointer;
+        }
+        .container{
+            width: 100%;
+            position: absolute;
+            top:1.2rem;
+            padding: 0 0.4rem;
+            padding-top: .48rem;
+            color: #333333;
+        }
+        .container .rule{
+            margin-bottom: .6rem;
+        }
+        .container .rule h2,b{
+            font-size: .4266667rem;
+            font-weight: bold;
+        }
+        .container .rule p{
+            font-size: .3733334rem;
+            line-height: 1.71;
+            padding-top: 0.2rem;
+        }
+        .container .rule .p{
+            line-height: 1.71;
+            padding-top: 0.2rem;
+        }
+        .container .rule .p span{
+            width: 5%;
+        }
+        .container .rule .p p{
+            padding: 0;
+        }
+        .container .refund-details{
+            width: 100%;
+            padding: 0 .88rem;
+            margin-top: 0.31rem;
+        }
+        .container .table{
+            width: 100%;
+        }
+        .container .table th,td{
+            width: 50%;
+            height: .8rem;
+            border: 1px solid #cccccc;
+            font-size: .346667rem;
+            line-height: .8rem;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            white-space: nowrap;
+            text-align: center;
+        }
+        .container .refund-details .refund-eg{
+            margin-top: 0.31rem;
+            font-size: .346667rem;
+            line-height: 1.54;
+            text-align: justify;
+            color: #666666;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>活动规则</h2>
+</header>
+<div class="container">
+    <div class="rule">
+        <h2>活动说明：</h2>
+        <div class="p">
+            <p>满足参与条件用户将进入抽奖名单，平台将于次日下午3点整公布幸运用户名单；</p>
+        </div>
+    </div>
+    <div class="rule">
+        <div class="p">
+            <p><b>活动时间：</b>2018.4.4-2018.4.8</p>
+        </div>
+    </div>
+    <div class="rule">
+        <div class="p">
+            <p><b>活动对象：</b>当日充值金额满15元以上用户</p>
+        </div>
+    </div>
+    <div class="rule">
+        <div class="p">
+            <p><b>活动奖品：</b>100元话费</p>
+        </div>
+    </div>
+    <div class="rule">
+        <h2>温馨提示：</h2>
+        <div class="p">
+            <p>请用户提前在“我的-收货地址”中填写相关信息，以便奖品发放。</p>
+        </div>
+    </div>
+</div>
+
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+    var lotteryRuleEvent = {
+        source: fnBase.getUrlPar("source"),
+        init: function () {
+            this.addMainClickEvent()
+        },
+        addMainClickEvent:function(){
+            $(document).on("click",".back_arrow",function(){
+                if(lotteryRuleEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back();
+                }
+            });
+        }
+    };
+    lotteryRuleEvent.init()
+</script>
+</body>
+</html>

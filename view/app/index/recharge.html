@@ -1,0 +1,532 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/css/recharge.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>充值</h2>
+</header>
+<div class="content">
+    <div class="recharge-warpper">
+        <ul>
+            <!--<li class="recharge-item recharge-active"><span>5元</span></li>-->
+            <!--<li class="recharge-item"><span>10元</span></li>-->
+            <!--<li class="recharge-item"><span>20元</span></li>-->
+            <!--<li class="recharge-item recharge-pai"><span>50元</span><span>送5拍币</span></li>-->
+            <!--<li class="recharge-item recharge-pai"><span>100元</span><span>送20拍币</span></li>-->
+            <!--<li class="recharge-item recharge-pai"><span>200元</span><span>送60拍币</span></li>-->
+            <!--<li class="recharge-item recharge-pai"><span>500元</span><span>送200拍币</span></li>-->
+        </ul>
+    </div>
+    <div class="recharge-act" style="display: none"></div>
+    <div class="select-colorGray select-colorGray-mar" style="display: none">
+        <ul class="select">
+            <!--<li class="selected select-item" data-channel="alipay">-->
+            <!--<span><img src="../../../static/img/pay-ali.png" /></span>-->
+            <!--<label>支付宝</label>-->
+            <!--<span></span>-->
+            <!--</li>-->
+
+        </ul>
+    </div>
+
+    <div style="height: 20px;">&nbsp;</div>
+
+    <div style="width: 100%">
+        <!--<h4 style="height: 0.6rem;font-size: .4rem;color: #333;line-height: 0.6rem;text-align: center">支付有问题？请立即联系客服</h4>-->
+        <div style="margin: 0 auto;padding: 0 10px;text-align: center; height: 0.6rem;font-size: .4rem;color: #333;line-height: 0.6rem;">
+            <!--<p style="">TEL：13022164481</p>-->
+            <p>充值>=50的用户，每天随机抽取20名幸运用户赠送100元话费。更多福利见首页 “欢乐竞拍三重礼” 活动详情</p>
+           <!--<p>每天单次充值金额>=100元，</p><p>第77次,177次, 777次充值用户可获得100元话费，</p>
+           <p>第1314次充值用户可获iphone256G一台</p>-->
+            <p style="">QQ：3428314804</p>
+            <p style="">微信：uzikefu</p>
+        </div>
+    </div>
+</div>
+<footer class="pay-btn">确认支付</footer>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/pingpp.js"></script>
+<script type="text/javascript" src="../../../static/js/AppHelper.js"></script>
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+    var op = 'wx_89af34c5bd55965fa1549758';
+    var openid=store.get('openid');
+    var myObject=myObject;
+    if(openid==undefined){
+        window.location.href=myObject.host+'/front/view/app/login/index.html';
+    }
+    var myObject=myObject;
+    myObject.init();
+    myObject.isNew();
+    var host=myObject.host;
+    var rechargeEvent={
+        source:fnBase.getUrlPar("source"),
+        success_url:"",
+        cancel_url:"",
+        backurl:"",
+        init:function(){
+            this.addBackEvent();
+            this.addSetSelectEvent();
+            this.addPayBtnClick();
+            if(store.get('detailsUrl')){
+                rechargeEvent.backurl = store.get('detailsUrl');
+                store.remove("detailsUrl")
+            }
+            this.addGetChargeInfo()
+        },
+        addBackEvent:function(){
+            $(".back_arrow").click(function(){
+                if(rechargeEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back();
+                }
+                //统计——充值页点击返回
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100068",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"充值页点击返回"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+            })
+        },
+        if_first:false,
+        addGetChargeInfo:function(){
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/Index/Member/getPayconfig",{
+                openid:store.get('openid')
+            },function(res){
+                if(res.state==1){
+                    rechargeEvent.if_first = res.if_first;
+                    var rechargeStr = "";
+                    for (var i=0;i<res.data.length;i++){
+                        var backClass="",backPaiStr="";
+                        if(res.data[i].back){
+                            backClass = "recharge-pai";
+                            backPaiStr = "<span>送"+res.data[i].back+"拍币</span>";
+                            $("header h2").text('专享充值优惠')
+                        }
+                        rechargeStr+='<li class="recharge-item '+backClass+'"><span>'+res.data[i].charge+'元</span>'+backPaiStr+'</li>'
+                    }
+                    $(".recharge-warpper ul").append(rechargeStr);
+                    $(".recharge-warpper ul li").eq(0).addClass("recharge-active");
+                    if(rechargeEvent.if_first == true){
+                        $(".recharge-act").html(res.content);
+                        $(".recharge-act").show();
+                        $(".select-colorGray").removeClass("select-colorGray-mar");
+                    }
+                    rechargeEvent.addGetPayChanel();
+                    rechargeEvent.addIsIosHIde();
+                    // if(fnBase.VersionCode==109&&fnBase.ChannelId=="Ios1"){
+                    //   $(".select-wx").hide();
+                    // }
+                }else {
+                    alert(res.msg)
+                }
+            })
+        },
+        addGetPayChanel:function(){
+            fnBase.commonJsonpAjax(fnBase.source_url+'/index.php/index/Godlist/payChanel',{
+                "chanel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode
+            },function(res){
+                if(res.state == 1){
+                    var payChannel = '';
+                    if(res.payMsg.length > 0){
+                        for(var i= 0,len=res.payMsg.length;i<len;i++){
+                            payChannel += '<li class="select-item" data-channel="'+res.payMsg[i].type+'">'
+                                +   '<span><img src="'+res.payMsg[i].payUrl+'" /></span>'
+                                +   '<label>'+res.payMsg[i].name+'</label>'
+                                +   '<span></span>'
+                                +'</li>'
+                        }
+                        $(".select-colorGray .select").html(payChannel);
+                        $(".select li").eq(0).addClass('selected');
+                        $(".select-colorGray").show();
+                    }
+                }else {
+                    fnBase.alert(res.msg)
+                }
+            })
+        },
+        addSetSelectEvent:function(){
+            $("body").on("click",".recharge-item",function(){
+                $(this).addClass("recharge-active").siblings().removeClass("recharge-active");
+                console.log(parseInt($(".recharge-active span").first().html()))
+            });
+            $("body").on("click",".select-item",function(){
+                $(this).addClass("selected").siblings().removeClass("selected");
+            })
+        },
+        addPayBtnClick:function(){
+            $(".pay-btn").click(function(){
+                rechargeEvent.addRechargeStatistics();
+                fnBase.loadShow();
+                var channel = $(".selected").attr("data-channel"),pay_type ="",devicetype="";
+                if(channel == 'wx'){
+                    pay_type = "haonuo"
+                   // pay_type = "wxpay"
+                }else if(channel == 'yeepay'){
+                    pay_type = "Yeepay"
+                }else{
+                    pay_type = "ping";
+                    if(fnBase.ChannelId == "IosJsjx"){
+                        channel = "alipay_wap"
+                    }
+                }
+                if(fnBase.mobileType == "android"){
+                    devicetype = "AND"
+                }else {
+                    devicetype = "IOS"
+                }
+                console.log(devicetype);
+                fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Pay/pay",{
+                    "pay_type":pay_type,
+                    "show_data_type":"json",
+                    "channel":channel,
+                    "openid":store.get('openid'),
+                    "amount":parseInt($(".recharge-active span").first().html())*10,
+                    "payflg":2,
+                    "goods_name":"充值",
+                    "backurl":encodeURIComponent(rechargeEvent.backurl),
+                    "devicetype":devicetype,
+                    "diffAppScheme":fnBase.diff
+                },function(res){
+                    //window.location.href=res.json_dt.datas.mweb_url;
+                    //alert(JSON.stringify(res.json_dt.datas.mweb_url));
+                    //alert(JSON.stringify(res.state));
+                    if(res.state == 1){
+                        //alert(JSON.stringify(res.state));
+                        rechargeEvent.success_url = decodeURIComponent(res.return_url.success_url);
+                        rechargeEvent.cancel_url = decodeURIComponent(res.return_url.cancel_url);
+                        if(channel == 'yeepay'){
+
+                        }else {
+                            if(rechargeEvent.success_url.indexOf('?') >= 0){
+                                rechargeEvent.success_url=rechargeEvent.success_url+"&channel="+channel
+                            }else {
+                                rechargeEvent.success_url=rechargeEvent.success_url+"?channel="+channel
+                            }
+                        }
+
+                        if(channel == 'wx'){
+                            /*
+                            H5支付1
+                            */
+                            var timerWXorder = setInterval(function(){
+
+
+                                fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Pingpay/getWxorder",{
+                                    "recharge_id":res.recharge_id,
+                                    "show_data_type":"json",
+                                },function(rees){
+                                    if(rees.state==1){
+                                        clearInterval(timerWXorder);
+                                        window.location.href=res.return_url.success_url
+
+                                    }
+                                });
+
+                                },2000);
+                            window.location.href=res.paycode;
+                            /*
+                            h5支付2
+                            */
+//                            window.location.href=fnBase.source_url+"/front/view/app/index/wxpay.html?rechargeid="+res.recharge_id+"&backurl="+res.datas.mweb_url+"&success_url="+res.return_url.success_url;
+
+
+
+
+//                            window.Auction.thirdPay(rechargeEvent.success_url)
+//                            alert(decodeURIComponent(res.return_url.success_url));
+                            //window.Auction.thirdPay(JSON.stringify(res.datas));
+                            //window.Auction.thirdPay(res.paycode);
+                        }else if(channel == 'yeepay'){
+                            //alert("success_url:"+rechargeEvent.success_url);
+                            rechargeEvent.isPaySuccess(1,"")
+                        }else{
+                            if(fnBase.mobileType == "ios"){
+                                console.log(res.json_dt);
+                                var json_dt = JSON.stringify(res.json_dt);
+                                //window.location.href="rechargetest.html?json_dt="+res.json_dt;
+                                if(fnBase.ChannelId == "IosJsjx"){
+                                    window.Auction.turnBrowser(fnBase.source_url+"/front/view/app/index/rechargetest.html?json_dt="+json_dt+"&diffAppScheme="+fnBase.diff)
+                                }else {
+                                    window.Auction.aliPay(JSON.stringify({"callBack":"rechargeEvent.isPaySuccess","ali":res.json_dt}))
+                                }
+                            }else {
+                                window.Auction.pingPay("rechargeEvent.isPaySuccess",res.json_dt)
+                            }
+                        }
+                    }else {
+                        fnBase.alert(res.cause)
+                    }
+                },3000)
+            })
+        },
+        isPaySuccess:function(resultCode,resultMsg){
+            if(resultCode == 1){
+                fnBase.addLocationHref(rechargeEvent.success_url)
+            }else if(resultCode==-1){
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100073",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"充值页支付宝支付失败"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+                fnBase.alert(JSON.parse(resultMsg).resultMsg);
+                setTimeout(function(){
+                    window.Auction.backPage(3)
+                },2000)
+
+
+            }else if(resultCode==-2){
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100072",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"充值页支付宝支付取消"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+                fnBase.alert(JSON.parse(resultMsg).resultMsg);
+                setTimeout(function(){
+                    window.Auction.backPage(3)
+                },2000)
+
+            }
+        },
+        addRechargeStatistics:function(){
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":fnBase.UUID,
+                "openId":store.get('openid'),
+                "ident":"100028",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"点击确认支付"
+            };
+            fnBase.addStatisticsEvent(Op,clickJson);
+
+            var ident = 0,clickName = "";
+            if($(".selected").attr("data-channel") == "alipay"){
+                ident = 100027;
+                clickName = "支付渠道勾选支付宝"
+            }else {
+                ident = 100026;
+                clickName = "支付渠道勾选微信"
+            }
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":fnBase.UUID,
+                "openId":store.get('openid'),
+                "ident":ident,
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":clickName
+            };
+            fnBase.addStatisticsEvent(Op,clickJson);
+
+            var moneyCount = parseInt($(".recharge-active span").first().html());
+            switch (moneyCount){
+                case 5:
+                    ident = 100029;
+                    clickName = "支付金额5元";
+                    break;
+                case 10:
+                    ident = 100030;
+                    clickName = "支付金额10元";
+                    break;
+                case 20:
+                    ident = 100031;
+                    clickName = "支付金额20元";
+                    break;
+                case 30:
+                    ident = 100032;
+                    clickName = "支付金额30元";
+                    break;
+                case 50:
+                    ident = 100033;
+                    clickName = "支付金额50元";
+                    break;
+                case 100:
+                    ident = 100034;
+                    clickName = "支付金额100元";
+                    break;
+                case 200:
+                    ident = 100035;
+                    clickName = "支付金额200元";
+                    break;
+                case 500:
+                    ident = 100036;
+                    clickName = "支付金额500元";
+                    break
+            }
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":fnBase.UUID,
+                "openId":store.get('openid'),
+                "ident":ident,
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":clickName
+            };
+            fnBase.addStatisticsEvent(Op,clickJson)
+        },
+        addIsIosHIde:function(){
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/Index/Frame/getDisableCh",{
+                "chanel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode
+            },function(res){
+                if(res.state == 1){
+                    if(res.ifdisable){
+                        $(".select-wx").hide();
+                    }else {
+                        $(".select-wx").show();
+                    }
+                }else {
+                    console.log(res.msg)
+                }
+            })
+        }
+    };
+    rechargeEvent.init();
+
+
+    function getChannel(payStr){
+        if(payStr.indexOf("支付宝")){
+            return 'alipay'
+        }
+        if(payStr.indexOf("微信")){
+            return 'wx'
+        }
+        return 'alipay'
+    }
+
+    var loc=window.location.href;
+    if(loc.indexOf("source")>=0){
+        //统计——充值页到达
+        /*var clickJson = {}, actionid = 0,Op={};
+         actionid =3;
+         clickJson={
+         "actionId":actionid,
+         "uuid":AppHelper.YzAppGetUUID(),
+         "openId":openid,
+         "ident":"100046",
+         "date":parseInt(new Date().getTime() / 1000),
+         "name":"充值页到达"
+         }
+         Op={
+         "ot":"3"
+         }
+         $.post(host+'/index.php/index/Pinglog/Plog', {
+         "V":"1",
+         "L":"INFO",
+         "Aid":"auction",
+         "Op":JSON.stringify(Op),
+         "Et":"0",
+         "M": JSON.stringify(clickJson),
+         }, function (data) {
+
+         });*/
+    }else{
+        //统计——首页充值页到达
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":3,
+            "uuid":fnBase.UUID,
+            "openId":store.get('openid'),
+            "ident":"100045",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"首页充值页到达"
+        };
+        fnBase.addStatisticsEvent(Op,clickJson);
+    }
+    var loc=window.location.href;
+    if(loc.indexOf("from=homeRecharge")>=0){
+        if (window.history && window.history.pushState)
+        {
+            $(window).on('popstate', function() {
+                var hashLocation = location.hash;
+                var hashSplit = hashLocation.split("#!/");
+                var hashName = hashSplit[1];
+                if (hashName !== '') {
+                    var hash = window.location.hash;
+                    if (hash === '') {
+                        var Op = "",clickJson = "";
+                        Op={
+                            "ot":"3"
+                        };
+                        clickJson={
+                            "actionId":5,
+                            "uuid":fnBase.UUID,
+                            "openId":store.get('openid'),
+                            "ident":"100069",
+                            "date":parseInt(new Date().getTime() / 1000),
+                            "name":"充值页点击硬件返回"
+                        };
+                        fnBase.addStatisticsEvent(Op,clickJson);
+                        //window.Auction.back(); 
+                    }
+                }
+            });
+            //window.history.pushState('forward', null, './#forward');
+        }
+    }
+</script>
+</body>
+</html>

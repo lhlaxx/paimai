@@ -1,0 +1,11 @@
+html,body{max-width: 1080px;margin:0 auto;font-family: 'microsoft yahei'}
+body{background: #bb6bf5;width: 100%;height:100%;margin:0 auto;}
+.bannerImg{width:100%;}
+.container{padding:2% 4% 4% 4%;display: flex;flex-direction: row;align-items: center;flex-wrap:wrap;justify-content: space-between;}
+.goods{width:45%;background: #6d17ab;margin-top:0.2rem;}
+.priceNum{font-size: 0.48rem;color:#eeef32;}
+.price{font-size: 0.32rem;color:#eeef32;margin:0.1rem 0;text-align: center;line-height: 0.6rem}
+.goods{padding:0.106667rem;}
+.pic img{width: 100%}
+.button{background: #6d17ab;font-size: 0.4rem;color:#fff;width:100%;border:2px solid #fff;box-sizing:border-box;text-align: center;padding:0.266667rem 0;margin-bottom: 0.1rem}
+.goodsName{font-size: 0.293333rem;color:#fff;text-align: center;line-height: 0.6rem;word-break:keep-all;white-space:nowrap;}

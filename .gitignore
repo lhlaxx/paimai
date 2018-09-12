@@ -1,0 +1,41 @@
+# ---> Linux
+*~
+
+# KDE directory preferences
+.directory
+runtime
+tags
+rest/database.php
+mobile/database.php
+cli/database.php
+H5/database.php
+public/updata/
+public/padmin
+public/H5
+public/deploy.php
+.idea/
+.project
+view/app/index/json
+view/app/index/test
+gulpfile.js
+node_modules/
+package.json
+package-lock.json
+extend/util/net/cookie.txt
+
+
+*.swp
+*.sql
+*.vi*
+*.swn
+*.swm
+*.swo
+.vimrc
+
+public/mobile
+public/rest
+public/cli
+
+# Linux trash folder which might appear on any partition or disk
+.Trash-*
+

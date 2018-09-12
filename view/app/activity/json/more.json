@@ -1,0 +1,345 @@
+{
+    "lists": [
+        {
+            "p_time": "10.29-11.024",
+            "p_title": "万圣节",
+            "p_status": 2,
+            "p_desc": "活动1111111",
+            "p_img": "",
+            "p_colour":"",
+            "p_rule":"111111",
+            "p_list": [
+                {
+                    "list_type": 1,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "1",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "已结束"
+                        }
+                    ]
+                },
+                {
+                    "list_type": 2,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "2",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "已结束"
+                        },
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "2",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "已结束"
+                        }
+                    ]
+                },
+                {
+                    "list_type": 3,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "3",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "已结束"
+                        },
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "3",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "已结束"
+                        },
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "3",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "已结束"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "p_time": "12.9-12.14",
+            "p_title": "双十二",
+            "p_status": 1,
+            "p_desc": "活动22222",
+            "p_img": "../../../static/img/activity/1212.png",
+            "p_colour":"#5783fb",
+            "p_rule":"2222222",
+            "p_list": [
+                {
+                    "list_type": 1,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "1",
+                            "p_list_img": "22222",
+                            "p_list_url": "232313",
+                            "p_list_button": "立即参加"
+                        }
+                    ]
+                },
+                {
+                    "list_type": 2,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "2",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "立即参加"
+                        },
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "2",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "立即参加"
+                        }
+                    ]
+                },
+                {
+                    "list_type": 3,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "3",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "立即参加"
+                        },
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "3",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "立即参加"
+                        },
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "3",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "立即参加"
+                        }
+                    ]
+                },
+                {
+                    "list_type": 1,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "1",
+                            "p_list_img": "22222",
+                            "p_list_url": "232313",
+                            "p_list_button": "立即参加"
+                        }
+                    ]
+                },
+                {
+                    "list_type": 2,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "2",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "立即参加"
+                        },
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "2",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "立即参加"
+                        }
+                    ]
+                },
+                {
+                    "list_type": 3,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "3",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "立即参加"
+                        },
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "3",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "立即参加"
+                        },
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "3",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "立即参加"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "p_time": "1.2-2.14",
+            "p_title": "年货街",
+            "p_status": 1,
+            "p_desc": "活动333333",
+            "p_img": "",
+            "p_colour":"",
+            "p_rule":"33333",
+            "p_list": [
+                {
+                    "list_type": 1,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "1",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "未开启"
+                        }
+                    ]
+                },
+                {
+                    "list_type": 1,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "1",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "未开启"
+                        }
+                    ]
+                },
+                {
+                    "list_type": 2,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "2",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "未开启"
+                        },
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "2",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "未开启"
+                        }
+                    ]
+                },
+                {
+                    "list_type": 3,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "3",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "未开启"
+                        },
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "3",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "未开启"
+                        },
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "3",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "未开启"
+                        }
+                    ]
+                }
+            ]
+        },
+        {
+            "p_time": "2.15-2.21",
+            "p_title": "过年七天乐",
+            "p_status": 2,
+            "p_desc": "活动44444",
+            "p_img": "",
+            "p_colour":"",
+            "p_rule":"444444",
+            "p_list": [
+                {
+                    "list_type": 1,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "1",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "已结束"
+                        }
+                    ]
+                },
+                {
+                    "list_type": 2,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "2",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "已结束"
+                        },
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "2",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "已结束"
+                        }
+                    ]
+                },
+                {
+                    "list_type": 3,
+                    "list_data": [
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "3",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "已结束"
+                        },
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "3",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "已结束"
+                        },
+                        {
+                            "p_list_desc": "111111111111",
+                            "p_list_type": "3",
+                            "p_list_img": "",
+                            "p_list_url": "",
+                            "p_list_button": "已结束"
+                        }
+                    ]
+                }
+            ]
+        }
+    ]
+}

@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en" >
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link href="//cdn.bootcss.com/Swiper/3.4.2/css/swiper.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="../../../static/css/index.css">
+    <style>
+        html，body{
+            width:100%;
+        }
+        #content{
+            z-index:-1;
+        }
+        #scroller{
+            position:absolute;
+            z-index:1;
+            width:100%;
+            padding:0;
+        }
+        *{
+            margin:0;
+            padding: 0;
+        }
+        .pop_wrap{
+            background:rgba(0,0,0,0.6);
+            width:100%;
+            height:100%;
+            position: absolute;
+        }
+        .pop{
+            position:relative;
+            top:10%;
+            width:100%;
+            height:80%px;
+        }
+        .pop_show{
+            height:100% !important;
+        }
+        .hongbao{
+            display: block;
+            width:100%;
+            height:100%;
+        }
+        .close {
+            position: absolute;
+            z-index:5;
+            width:24px;
+            height:24px;
+            color:#fff;
+            font-size: 24px;
+            text-align: center;
+            line-height: 24px;
+            font-weight: 100;
+            /*border:1px solid #fff;*/
+            border-radius: 50%;
+            right: 17%;
+            top: 15%;
+        }
+        .button{
+            position: absolute;
+            width:40%;
+            height:80px;
+            display: block;
+            top:66%;
+            left: 50%;
+            right:50%;
+            margin-left: -20%;
+        }
+        .login{
+            width:20%;
+            height:72px;
+            position: absolute;
+            left:50%;
+            top:78%;
+            right:50%;
+            margin-left:-10%;
+        }
+        .pop_wrap1{
+            background:rgba(0,0,0,0.6);
+            width:100%;
+            height:100%;
+            position: absolute;
+        }
+        .pop1{
+            position:relative;
+            top:10%;
+            width:100%;
+            height:500px;
+        }
+        .button1{
+            position: absolute;
+            width:50%;
+            height:36px;
+            display: block;
+            top:400px;
+            left: 50%;
+            right:50%;
+            margin-left: -27%;
+        }
+
+    </style>
+</head>
+<body style="height: 100%;">
+<header>
+    <h2>小易拍卖</h2>
+</header>
+<div class="content" id="content">
+    <div id="scroller">
+        <div class="swiper-container swiper-banner">
+            <div class="swiper-wrapper">
+                <!--<div class="swiper-slide">-->
+                <!--<a><img src="http://sjdcmp.droibank.tt286.com/public/images/26/24/43/650eb020cd2f3ac0955fb2baa1108b5c87e21932.png"></a>-->
+                <!--</div>-->
+            </div>
+            <div class="swiper-pagination"></div>
+        </div>
+        <div class="news" id="news">
+            <div class="news_left">
+                <img src="../../../static/img/speaker.png" alt="">
+            </div>
+            <div class="news_right">
+                <div class="swiper-container swiper-news">
+                    <div class="swiper-wrapper">
+                        <!--<div class="swiper-slide">恭喜<span>123****1021</span>以<span>￥54</span>拍得<em>移动充值卡5sssssssssssssssssss0元</em></div>-->
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="record">
+            <ul>
+                <!--<li>-->
+                <!--<img src="http://egoures.tt286.com/market/indiana/goods2017/06/30/bzhlodqam3/1498806562925.jpg" />-->
+                <!--<p class="price"><span>￥2562.50</span></p>-->
+                <!--<p class="user-phone">181****3149</p>-->
+                <!--<div class="deal"></div>-->
+                <!--</li>-->
+                <!--<li>-->
+                <!--<img src="http://egoures.tt286.com/market/indiana/goods2017/06/30/bzhlodqam3/1498806562925.jpg" />-->
+                <!--<p class="price"><span>￥2562.50</span></p>-->
+                <!--<p class="user-phone">181****3149</p>-->
+                <!--<div class="deal"></div>-->
+                <!--</li>-->
+            </ul>
+        </div>
+        <div class="goods">
+            <div class="goods-tab">
+                <div class="goods-tab-item goods-tab-active">热拍中</div>
+                <div class="goods-tab-item">我在拍</div>
+            </div>
+            <div class="content-slide">
+                <div class="ul" style="display: block">
+                    <ul>
+                        <!--<li class="goods-item">-->
+                        <!--<h3 class="goods-name">iPhone7 128G</h3>-->
+                        <!--<a class="goods-img" href="details.html">-->
+                        <!--<img src="http://egoures.tt286.com/market/indiana/goods2017/06/30/bzhlodqam3/1498806562925.jpg">-->
+                        <!--</a>-->
+                        <!--<div class="goods-time"><span>00</span>:<span>00</span>:<span class="miao">10</span></div>-->
+                        <!--<p class="goods-price">￥149.00</p>-->
+                        <!--<p class="goods-user">卓易</p>-->
+                        <!--<button class="join-btn">参与竞拍</button>-->
+                        <!--</li>-->
+                    </ul>
+                </div>
+                <div class="ul" style="display: none">
+                    <ul>
+                        <!--<li class="goods-item">-->
+                        <!--<h3 class="goods-name">iPhone7 128G</h3>-->
+                        <!--<a class="goods-img">-->
+                        <!--<img src="http://egoures.tt286.com/market/indiana/goods2017/06/30/bzhlodqam3/1498806562925.jpg">-->
+                        <!--</a>-->
+                        <!--<div class="goods-time"><span>00</span>:<span>00</span>:<span>00</span></div>-->
+                        <!--<p class="goods-price">￥149.00</p>-->
+                        <!--<p class="goods-user">卓易</p>-->
+                        <!--<button class="join-btn">参与竞拍</button>-->
+                        <!--</li>-->
+                        <!--无拍卖纪录-->
+                        <li class="no-record">
+                            <img src="../../../static/img/no-record.png" alt=""/>
+                            <p>您还没有正在拍的商品</p>
+                        </li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!--<div class="pop-show" style="height:100%;display:none;">-->
+<!--<div class="pop_wrap"></div>-->
+<!--<div class="pop">-->
+<!--<img class="hongbao" src="../../../static/img/share/register.png" alt="">-->
+<!--<span class="button-reg button"></span>-->
+<!--<span class="login"></span>-->
+<!--</div>-->
+<!--</div>-->
+
+<!--<div class="pop_wrap1" style="display:none">-->
+<!--<div class="pop1">-->
+<!--<img class="hongbao" src="../../../static/img/share/pop.png" alt="">-->
+<!--<span class="close"></span>-->
+<!--<img class="button1" src="../../../static/img/share/button.png" alt="">-->
+<!--</div>-->
+<!--</div>-->
+<footer>
+    <a class="fItem active" href="javascript:;">
+        <img class="icon" src="../../../static/img/tab-icon/index-icon.png"/>
+        <span class="navTitle">首页</span>
+    </a>
+    <a class="fItem indexUplimit" href="recentdeal.html">
+        <img class="icon" src="../../../static/img/tab-icon/new-icon.png"/>
+        <span class="navTitle">最新成交</span>
+    </a>
+    <a class="fItem userIndex" href="goodslists.html">
+        <img class="icon" src="../../../static/img/tab-icon/list-icon.png"/>
+        <span class="navTitle">商品列表</span>
+    </a>
+    <a class="fItem userIndex" href="../user/index.html">
+        <img class="icon" src="../../../static/img/tab-icon/user-icon.png"/>
+        <span class="navTitle">我的</span>
+    </a>
+</footer>
+<!--<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>-->
+
+<script src="../../../static/js/jquery-1.12.3.min.js"></script>
+<script src="//cdn.bootcss.com/Swiper/3.4.2/js/swiper.jquery.min.js"></script>
+
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/iscroll.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<!--<script src="../../../static/js/AppHelper.js"></script>-->
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+<script src="../../../src/js/util.js"></script>
+<script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+<script>
+    var fnBase =fnBase;
+    fnBase.init()
+    var storeOpenid = store.get('openid');
+    var source = fnBase.getUrlPar("source");
+    var source_url=fnBase.source_url
+    var isNew=store.get('isNew');
+    var Auction=Auction
+    //    if(isNew==true){
+    if(true){
+        setTimeout(function(){
+            alertYDbox();
+            store.set('isNew',false);
+        },1000)
+    }
+    function alertYDbox(){
+        $('.pop_wrap1').show();
+    }
+
+    $('.close').click(function(){
+        $('.pop_wrap1').hide();
+    })
+    $('.button1').click(function(){
+        if(source == "web"){
+            window.location.href = host+"/front/view/app/share/new.html";
+        }else {
+            window.Auction.openUrl(host+"/front/view/app/share/new.html");
+        }
+    })
+
+
+    if(!storeOpenid){
+        $('.pop_wrap').show();
+        $('.pop').show();
+    }
+
+    $('.pop_wrap').click(function(){
+        hideYD();
+    })
+    $('.button-reg').click(function(){
+        if(source == "web"){
+            window.location.href = host+"/front/view/app/login/reg.html";
+        }else {
+            window.Auction.openUrl(host+"/front/view/app/login/reg.html");
+        }
+
+    })
+
+    $('.login').click(function(){
+        if(source == "web"){
+            window.location.href = host+"/front/view/app/login/index.html";
+        }else {
+            window.Auction.openUrl(host+"/front/view/app/login/index.html");
+        }
+    })
+
+
+
+    function hideYD(){
+        $('.pop_wrap').hide();
+        $('.pop').hide();
+    }
+
+    function hideYD(){
+        console.log('pop_wrap')
+        document.getElementsByClassName('pop_wrap')[0].style.display="none"
+        document.getElementsByClassName('pop')[0].style.display="none"
+    }
+    var indexEvent={
+        timeouts:[],
+        init:function(){
+            this.addSetClickEvent();
+            this.addAjaxTop();
+            this.addHotGoods();
+            this.alertYD();
+//           this.addOnAuction()
+        },
+        alertYD:function(){
+
+        },
+        addSetClickEvent:function(){
+            $(".goods-tab .goods-tab-item").click(function () {
+                $(this).addClass("goods-tab-active").siblings().removeClass("goods-tab-active");
+                $(".goods .content-slide .ul").eq($(this).index()).show().siblings().hide();
+                var $this=$(this).index()
+                if($this==1){
+                    $('#scroller').css({"position":"unset","top":0})
+                }else {
+                    $('#scroller').css("position","absolute")
+                }
+            });
+            var testtop = $(".goods-tab").offset().top;
+            var headerHeight = $("header").height();
+            $(".content-slide >ul >li:even").addClass("lieven");
+            $(".content").scroll(function(){
+                var st=$(this).scrollTop();
+                console.log(st)
+
+                if(st >= testtop- headerHeight){
+                    $(".content .goods .goods-tab").addClass("goods-tab-fixed")
+                }
+                else {
+                    $(".content .goods .goods-tab").removeClass("goods-tab-fixed")
+                }
+            })
+        },
+        addAjaxTop:function(){
+//          fnBase.commonAjax("http://10.20.40.230:8089/index.php/index/Frame/loanFrame","get",{
+//              "chanel":fnBase.ChannelId,
+//              "verCode":fnBase.VersionCode
+//          },function(res){
+//              indexEvent.addSetBanner(res.banner);
+//              indexEvent.addSetNotice(res.notice);
+//              indexEvent.addSetwinBid(res.winBid)
+//          });
+//            fnBase.commonJsonpAjax("http://10.20.40.230:8089/index.php/index/Frame/loanFrame",{
+            fnBase.commonJsonpAjax(source_url+"/index.php/index/Frame/loanFrame",{
+                "chanel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode,
+                "openid":localStorage.getItem("openid"),
+                "uuid":fnBase.UUID,
+                "isNew":localStorage.getItem("isNew")
+            },function(res){
+                indexEvent.addSetBanner(res.banner);
+                indexEvent.addSetNotice(res.notice);
+                indexEvent.addSetwinBid(res.winBid)
+            });
+//            fnBase.commonAjax("json/indexbanner.json","get",null,function(res){
+//                indexEvent.addSetBanner(res.banner);
+//                indexEvent.addSetNotice(res.notice);
+//                indexEvent.addSetwinBid(res.winBid)
+//            })
+        },
+        addSetBanner:function(oBanner){
+            if(oBanner){
+                var htmlstr='',len=oBanner.length;
+                for (var i=0;i<len;i++){
+                    var bannerHref = oBanner[i].webUrl?oBanner[i].webUrl:"#";
+                    htmlstr += '<div class="swiper-slide" data="'+JSON.stringify(oBanner[i])+'">'
+                        +       '<a href="'+bannerHref+'"><img data-src="'+oBanner[i].picUrl+'" class="lazyload"></a>'
+                        +   '</div>'
+                }
+                $(".swiper-banner .swiper-wrapper").html(htmlstr);
+                var mySwiper = new Swiper (".swiper-banner", {
+                    loop: true,
+                    autoplay : 5000,
+                    speed:300,
+                    pagination: '.swiper-pagination',
+                    paginationBulletRender: function (swiper, index, className) {
+                        return '<span class="' + 'swiper-pagination-bullet' + '">' + '</span>';
+                    }
+                });
+            }else {
+                $(".swiper-banner .swiper-wrapper").html("<span style=''>banner数据加载失败,请刷新重新加载</span>");
+            }
+        },
+        addSetNotice:function(notice){
+            if(notice.length > 0){
+                var htmlstr='',len=notice.length;
+                for (var i=0;i<len;i++){
+                    htmlstr += '<div class="swiper-slide">恭喜<span>'+notice[i].nickName+'</span>以<span>'+notice[i].bidPrice+'</span>拍得<em>'+notice[i].goodsName+'</em></div>'
+                }
+                $(".swiper-news .swiper-wrapper").html(htmlstr);
+                var mySwiper = new Swiper (".swiper-news", {
+                    loop: true,
+                    autoplay : 2000,
+                    speed:300,
+                    direction : 'vertical'
+                });
+            }else {
+                $(".swiper-news .swiper-wrapper").html("中奖信息数据加载失败,请刷新重新加载")
+            }
+        },
+        addSetwinBid:function(winBid){
+            if(winBid.length > 0){
+                var htmlstr='',len=winBid.length;
+                for(var i=0;i<len;i++){
+                    htmlstr += '<li>'
+                        +       '<img src="'+winBid[i].picUrl+'" />'
+                        +       '<p class="price"><span>'+winBid[i].bidPrice+'</span></p>'
+                        +       '<p class="user-phone">'+winBid[i].nickName+'</p>'
+                        +       '<div class="deal"></div>'
+                        + '</li>'
+                }
+                $(".record ul").html(htmlstr);
+            }else {
+                $(".record ul").html("成交记录信息数据加载失败,请刷新重新加载");
+            }
+        },
+        addClearAllTimeout:function (timeouts) {
+            for (var i in timeouts) {
+                clearTimeout(timeouts[i]);
+            }
+            timeouts = [];
+        },
+        addGetRTimeEvent:function(elem,sLimitTime){
+            var timeEnd = parseInt(sLimitTime*1);
+            setTime();
+            function setTime() {
+                if (timeEnd <= 1) {
+                    indexEvent.addClearAllTimeout(indexEvent.timeouts);
+                    indexEvent.addHotGoods();
+                    return false;
+                }else {
+                    indexEvent.timeouts.push(setTimeout(function () {
+                        setTime();
+                    }, 1000));
+                }
+                timeEnd = toZero(timeEnd);
+                $(elem).children(".goods-time").html("<span>" + "00" + "</span>:<span>" + "00" + "</span>:<span>" + timeEnd + "</span>");
+                timeEnd --;
+            }
+            function toZero(num) {
+                if (num <= 9) {
+                    return "0" + num;
+                } else {
+                    return "" + num;
+                }
+            }
+        },
+        addHotGoods:function(){
+//            fnBase.commonJsonpAjax('http://10.20.40.230:8089/index.php/index/Frame/hotGoods',null,
+            fnBase.commonJsonpAjax(source_url+'index.php/index/Frame/hotGoods',{
+                    "chanel":Auction.getChannelId,
+                    "verCode":fnBase.VersionCode,
+                    "openid":localStorage.getItem('openid'),
+                    "uuid":fnBase.UUID,
+                    "isNew":localStorage.getItem('isNew')
+                },
+                function(res) {
+                    if (res) {
+                        var res = res.goods;
+                        var htmlstr = '', len = res.length;
+                        var sLimitTime = [];
+                        for (var i = 0; i < res.length; i++) {
+                            var badTime = res[i].bidTime?res[i].bidTime:"10";
+                            htmlstr += '<li class="goods-item item' + res[i].goodsId + '"data-goodid="' + res[i].goodsId + '">'
+                                + '<h3 class="goods-name">' + res[i].goodsName + '</h3>'
+                                + '<a class="goods-img">'
+                                + '<img data-src="' + res[i].picUrl + '" class="lazyload">'
+                                + '</a>'
+                                + '<div class="goods-time"><span>00</span>:<span>00</span>:<span class="miao">10</span></div>'
+                                + '<p class="goods-price">' + res[i].bidPrice + '</p>'
+                                + '<p class="goods-user">' + res[i].nickName + '</p>'
+                                + '<button class="join-btn">参与竞拍</button>'
+                                + '</li>';
+                            sLimitTime.push('{"id": "item' + res[i].goodsId + '","time":' + badTime + '}');
+                        }
+                        $(".content-slide ul").eq(0).html(htmlstr);
+                        var htmlstrLast = '<li class="see-more-goods"><a href="goodslists.html">点击查看更多</a></li>';
+                        $(".content-slide ul").eq(0).append(htmlstrLast);
+                        $('.goods-item').on('click', function () {
+                            var goodid = $(this).attr("data-goodid");
+                            fnBase.addLocationHref('details.html?goodid=' + goodid)
+                        });
+                        setTimeout(function () {
+                            myScroll.refresh();
+                        }, 0);
+                        var lenLimit = sLimitTime.length;
+                        for (var j = 0; j < lenLimit; j++) {
+                            var oCal = JSON.parse(sLimitTime[j]);
+                            var obj = "." + oCal.id;
+                            //indexEvent.addGetRTimeEvent(obj, oCal.time);
+                        }
+                    } else {
+                        alert("商品列表数据加载失败,请刷新重新加载");
+                    }
+                }
+            );
+//            fnBase.commonAjax('http://10.20.40.230:8089/index.php/index/Frame/hotGoods',"get",null,function(res){
+//                if(res){
+//                    var res=res.goods;
+//                    var htmlstr='',len=res.length;
+//                    var sLimitTime = [];
+//                    for (var i=0;i<20;i++){
+//                        console.log(res[0]);
+//                        var badTime = res[i].bidTime?res[i].bidTime:"10";
+//                        htmlstr += '<li class="goods-item item'+res[i].goodsId+'"data-goodid="'+res[i].goodsId+'">'
+//                                +       '<h3 class="goods-name">'+res[i].goodsName+'</h3>'
+//                                +           '<a class="goods-img">'
+//                                +               '<img data-src="'+res[i].picUrl+'" class="lazyload">'
+//                                +           '</a>'
+//                                +           '<div class="goods-time"><span>00</span>:<span>00</span>:<span class="miao">10</span></div>'
+//                                +       '<p class="goods-price">'+res[i].bidPrice+'</p>'
+//                                +       '<p class="goods-user">'+res[i].nickName+'</p>'
+//                                +       '<button class="join-btn">参与竞拍</button>'
+//                                +   '</li>';
+//                        sLimitTime.push('{"id": "item' + res[i].goodsId + '","time":' + badTime + '}');
+//                    }
+//                    $(".content-slide ul").eq(0).html(htmlstr);
+//                    var htmlstrLast = '<li class="see-more-goods"><a href="goodslists.html">点击查看更多</a></li>';
+//                    $(".content-slide ul").eq(0).append(htmlstrLast);
+//                    $('.goods-item').on('click', function () {
+//                        console.log('goods click');
+//                        var goodid = $(this).attr("data-goodid");
+//                        fnBase.addLocationHref('details.html?goodid='+goodid)
+//                    });
+//                    var lenLimit = sLimitTime.length;
+//                    console.log(sLimitTime);
+//                    for(var j=0; j<lenLimit/2; j++){
+//                        var oCal = JSON.parse(sLimitTime[j]);
+//                        var obj = "." + oCal.id;
+//                        indexEvent.addGetRTimeEvent(obj, oCal.time);
+//                    }
+//                    for(var k=lenLimit/2; k<lenLimit; k++){
+//                        var oCal2 = JSON.parse(sLimitTime[k]);
+//                        var obj2 = "." + oCal.id;
+//                        indexEvent.addGetRTimeEvent(obj, oCal.time);
+//                    }
+//                }else {
+//                    alert("商品列表数据加载失败,请刷新重新加载");
+//                }
+//            })
+        },
+        addOnAuction:function(){
+            fnBase.commonJsonpAjax(source_url+"index.php/index/Frame/onAuction",{
+                "chanel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode,
+                "openid":"",
+                "lastId":""
+            },function(res){
+                var htmlstr='',len=res.length;
+                for (var i=0;i<len;i++){
+                    htmlstr += '<li class="goods-item">'
+                        +       '<h3 class="goods-name">'+res[i].goodsName+'</h3>'
+                        +           '<a class="goods-img" href="details.html">'
+                        +               '<img src="'+res[i].picUrl+'">'
+                        +           '</a>'
+                        +           '<div class="goods-time">'+_formatDate(res[i].bidTime)+'</div>'
+                        +       '<p class="goods-price">'+res[i].bidPrice+'</p>'
+                        +       '<p class="goods-user">'+res[i].nickName+'</p>'
+                        +       '<button class="join-btn">参与竞拍</button>'
+                        +   '</li>'
+                }
+                $(".content-slide ul").eq(1).html(htmlstr);
+            })
+        }
+    };
+    indexEvent.init();
+    document.addEventListener('DOMContentLoaded', function () { setTimeout(myScroll = new iScroll('content', {
+
+    }), 200); }, false);
+</script>
+</body>
+</html>

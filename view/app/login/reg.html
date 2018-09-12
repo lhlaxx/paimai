@@ -1,0 +1,176 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script type="text/javascript" src="../../../static/js/flexible.js"></script>
+    <script type="text/javascript" src="../../../static/js/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css?0.100">
+</head>
+<body class="regPage">
+    <div class="navbar">
+        <a class="back"><img src="../../../static/img/back.png"/></a>
+        <h1>注册</h1>
+    </div>
+    <div class="regContent">
+        <ul>
+            <li class="info">
+                <input type="tel" class="name-input" required="required" placeholder="请输入手机号" maxlength="11" onkeyup="if (this.value != this.value.replace(/\D/g,'')) this.value=this.value.replace(/\D/g,'')" id="username" oninput="if(value.length>11)value=value.slice(0,11)"/>
+                <a href="javascript:;" class="clear-input">
+                   <img src="../../../static/img/delete-icon.png" class="clear-input-img" alt="" style="width:0.4rem"/>
+                </a>
+            </li>
+            <li class="info">
+                <input type="tel" class="name-input" required="required" placeholder="请输入验证码" maxlength="6" id="ecode" onkeyup="if (this.value != this.value.replace(/\D/g,'')) this.value=this.value.replace(/\D/g,'')"/>
+                <a href="javascript:;" class="clear-input">
+                   <img src="../../../static/img/delete-icon.png" class="clear-input-img" alt="" style="width:0.4rem"/>
+                </a>
+                <button class="sendCode sendCode_" type="button">发送验证码</button>
+            </li>
+            <li class="info">
+                <input type="password" class="name-input" required="required" placeholder="输入密码" maxlength="16" id="password"/>
+                <a href="javascript:;" class="clear-input">
+                   <img src="../../../static/img/delete-icon.png" class="clear-input-img" alt="" style="width:0.4rem"/>
+                </a>
+            </li>
+        </ul>
+        <div class="regBlock">
+            <button type="button" class="logButton">注册</button>
+            <div class="pull-left">
+                <input type="checkbox" name="value1" vlaue="value1" checked="checked"  id="myCheck"/>
+                <label for="myCheck"></label>
+            <span>我已同意</span><a class="agreement">用户协议</a></div>
+            <a class="helpCode pull-right">收不到验证码?</a>
+        </div>    
+    </div>
+    <script type="text/javascript" src="../../../static/js/jquery-1.12.3.min.js"></script>  
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js?0.100"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+    <script type="text/javascript">
+        var myObject=myObject;
+        var host=myObject.host;
+        myObject.init();
+        var openid=store.get('openid');
+        $(".sendCode").click(function(){
+            var username=$("#username").val();
+            myObject.validateReg(username,'Register');
+        })
+        var loc=window.location.href;
+        $(".logButton").click(function(){
+            var phone=$("#username").val();
+            var verifyCode=$("#ecode").val();
+            var password=$("#password").val();
+            myObject.OnRegister(phone,verifyCode,password);
+        })
+        $(".agreement").click(function(){
+            pageUrl=host+'/front/view/app/login/agreement.html';
+            window.Auction.openUrl(pageUrl);
+        })
+        $(".helpCode").click(function(){
+            pageUrl=host+'/front/view/app/login/helpcode.html';
+            window.Auction.openUrl(pageUrl);
+        })
+        $(".back").click(function(){
+            if(loc.indexOf("source=web")>=0){
+                window.history.go(-1);
+            }else{
+                window.Auction.back();
+            }
+        })
+        //统计——注册页到达数
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":3,
+            "uuid":AppHelper.YzAppGetUUID(),
+            "openId":openid,
+            "ident":"100095",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"注册页到达数"
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+
+
+        $(".back").click(function(){
+            //统计——注册页点击返回
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100096",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"注册页点击返回"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+
+        })
+
+        if (window.history && window.history.pushState) 
+        { 
+            $(window).on('popstate', function() { 
+                var hashLocation = location.hash; 
+                var hashSplit = hashLocation.split("#!/");
+                var hashName = hashSplit[1]; 
+                if (hashName !== '') { 
+                    var hash = window.location.hash; 
+                    if (hash === '') {  
+                        //统计——注册页点击硬件返回
+                        var Op = "",clickJson = "";
+                        Op={
+                            "ot":"3"
+                        };
+                        clickJson={
+                            "actionId":5,
+                            "uuid":AppHelper.YzAppGetUUID(),
+                            "openId":openid,
+                            "ident":"100097",
+                            "date":parseInt(new Date().getTime() / 1000),
+                            "name":"注册页点击硬件返回"
+                        };
+                        myObject.addStatisticsEvent(Op,clickJson);
+                    } 
+                } 
+            });
+         //window.history.pushState('forward', null, './#forward'); 
+        }
+
+        $(".logButton").click(function(){
+            //统计——注册页点击注册
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100098",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"注册页点击注册"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+        })
+    </script>
+</body>
+</html>
+
+    

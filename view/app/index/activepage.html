@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <style>
+        body, html {
+            background-color: #fffaf3
+        }
+
+        div, footer, h1, h2, h3, h4, h5, h6, header, li, ul,p,span {
+            box-sizing: border-box
+        }
+    </style>
+</head>
+<body>
+<!--<div class="container" style="width: 100%;background: #fffaf3;text-align: center;position: absolute;top: 0;bottom: 0;overflow: auto;">-->
+    <!--<img class="close-btn" style="position: absolute;right: .36rem;top: .36rem;cursor: pointer;width: .64rem;" src="data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAADAAAAAwCAYAAABXAvmHAAAAGXRFWHRTb2Z0d2FyZQBBZG9iZSBJbWFnZVJlYWR5ccllPAAABUhJREFUeNrMmotzElcUxiHZCKTmqTWtDTqtJiYVTBq1zrT/fqfTTNBpWnw/Uq0aEmiiSYAFgfRc5nenx+1CdmEJ2ZlPwvt8937nO+cejOdyuYlYLHYsaArq3J6165xgVjApiAsOBfuCliP/JHjRJ4I/iwRGIDEOAbPQo+ZvQ+AeLzoQvBVsC9wzFLwJ+JJgVbDA/ZeCTUHNELgNwwO2yPxdEJTPQPBmlS8S+F1BhtU3JF4LqobAl4IxQVowLTgveCTYEhwNMXgT01eCZcEdgp8T7JKzbRgCe4IkLM1WXeB+HRL1IRG4QNA/CW4JZgg+L3hO3HVD4DHJYbZqkR1osPomod+ZrTrFwK0qbiDvVRZ2R5ATrAueQabtQk9Y8WmIXGY3GjjU7+xE9ZQ0/zUrb4JfEUwJioI/BRvcFq1bGgJv0NsYVvqD4FvenEJrNcHfA5ZTHBUsIZtVgjcr/YfgPmopaat3KAjWW8tq5b9jG6s852Cz5QHJZo7vMwmbRTZFgv8FpewS32dvtBndrmwUjBTPGzl9z+vGsditiOtEnOBXscosct5BLvcJfps4/8dcXwdkeJyVNx94HRcYJfAaiV2L0Odv8F13cJsdAs8hm6Jf8H4EzIv+oQ7U+AKzG1dIbBdyCQpJJUKfzxL8B6xyndtit/bG6fD4R6SSUsk9z5ckIWA+9K8+Elv7vJZNHrexmm+dlDyxLiSeEGCVL7pGTjRZ/VYPdaKTzxeQzW+Cp5BpBfmwTlcLOX3ivt2NyxS8Zg91opvP59H8Q4I/DroaJ10msV/hTobMmqoTyRB1IozPH4fZziDXHoldVSsfpk707PNREQhTJ1767ITt539EPoF9PioCYepEhZ1oKrexPn87rM9HTaBTnUgjqTJ5ksDPU+TLXXZqKqzPR02gU52oIacMEjOBvueEl1E+X2DFA/v8oAjoOlHj7HCPap0hH95BZAEZbSOZXBifHyQBWydqqoNNUbGXaD/O8fge/r6B65SibGP7vY44UzxixcdJ7DT5YHbiBXp/BelI5y1RXC4O9QF3Mp/7hSp+H0GlV7cZNIFJOss0NtlgpcvsyDdgNqJdj0xCIyToArXAaH+ChLU2OoOVHvGYy/O1YRPQ/fwaBGZJ2McUsymeT9MA1nlfnla8MkwCtp//WXATGW3THmzi+edpQdYgcYvcSCKzfs4TPRPw9vMr3C/QWv/K3OYAC91Xw9jrVOQW+dHLeaIvArafz7Kqtp8v4fMPkM8ury+jdYfdSPjMnTap6pVBE7D9/DL9/Aqy2aE42eC9Pl8mwESH80QMkm96kZMT4nVzSjZZZOPt5zs1Zt3OE66SWOi5kxNw5fXcJoNsCriJ7ud7OU8sq/PEKNXajYqA39xm2qefD9rb2PNETJ0nrrGj9jzh0sm6/RLwm8/PsJJ5pgcPvbPKgOeJhpKNyYOrOJR1o8B1wgno81mPbDZoiXd77G30ecKB0Dx1IhmmTjgBff4SGrdzm2d9BO83d3I9c6fAdcLxue/n8965Tb/BnzR3ClwnHE9jpuc2Xp+3blOKRdsSnzR36lon7O/E9qfMRTXiDuPz/V6d6sSiqhN27lTRR1GHDnLM4/Od5jaDurrViSXVijxAToeawCRvWKCrnIv994PaRkifj0JO3epElR2ww+U2gbhCXY2419mBUuz0/vuBt044alBwhQU+YqeMnNq/Uh6SJC9Ucj6PyCr7sdgtda6uUETnee7QOpj9kW8Eu3pNwHtDDF6TeIoz7ZMLUxxZJ8jb9g401YjcTg3qUQydIqgTDTVvdWn4PlvUfwUYADnYF+3+6fDiAAAAAElFTkSuQmCC">-->
+    <!--<h3 style="width: 100%;padding-top: 1.493334rem;"><img style="width: 6.52rem;" src="../../../static/img/active/first-recharge.png"></h3>-->
+    <!--<div class="div-img" style="width: 100%;padding-top: 1.12rem;">-->
+        <!--<img style="width: 7.85rem" src="../../../static/img/active/active-01.png">-->
+    <!--</div>-->
+    <!--<div class="div-p" style="margin-top: .9rem;">-->
+        <!--<p style="font-size: .64rem;line-height: 1.5;color: #000000;">充多少，我们赠多少</p>-->
+        <!--<p style="font-size: .64rem;line-height: 1.5;color: #000000;">还等什么，赶快抢心仪的商品吧</p>-->
+    <!--</div>-->
+
+    <!--<div class="click-btn" style="width: 9.06rem;height: 1.44rem;line-height: 1.44rem;border-radius: .72rem;background-color: #fe4040;margin: 0 auto;margin-top: 2.52rem;cursor: pointer;font-size: .67rem;color: #fffefe;">获赠拍币</div>-->
+<!--</div>-->
+
+<script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+
+<script src="../../../src/js/util.js"></script>
+<script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var activePageEvent={
+        activity_id:fnBase.getUrlPar("activity_id"),
+        init:function(){
+            this.addGetHtml();
+            this.addMainClick()
+        },
+        addGetHtml:function(){
+            fnBase.loadShow();
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/Index/Frame/getActivity",{
+                "openid":store.get('openid'),
+                "activity_id":activePageEvent.activity_id,
+                "chanel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode
+            },function(res){
+                if(res.state == 1){
+                    $("body").html(res.html)
+                }else {
+                    fnBase.alert(res.msg)
+                }
+            })
+        },
+        addMainClick:function(){
+            $(document).on("click",".close-btn",function(){
+                var data = {
+                    type:0
+                };
+                window.Auction.dimissDialog(JSON.stringify(data))
+            });
+            $(document).on("click",".click-btn",function(){
+                var data = {
+                    type:1,
+                    url:fnBase.source_url+"/front/view/app/index/recharge.html"
+                };
+                window.Auction.dimissDialog(JSON.stringify(data))
+            });
+        }
+    };
+    activePageEvent.init()
+</script>
+</body>
+</html>

@@ -1,0 +1,232 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/css/paywait.css"/>
+</head>
+<body>
+<header>
+    <h2>确认支付</h2>
+</header>
+<div class="content">
+    <img class="ios-hide" id="pay-img" src="../../../static/img/pay-wait.gif">
+    <p class="ios-hide" id="pay-p">支付结果确认中</p>
+    <div class="ios-btn" style="display: none">返回app查看支付结果</div>
+</div>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="../../../static/js/store-json2.min.js"></script>
+<script type="text/javascript" src="../../../static/js/AppHelper.js"></script>
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+    var myObject=myObject;
+    var backurl=fnBase.getUrlPar("backurl");
+//    var backurl= myObject.host+'/front/view/app/index/account.html';
+
+    var paywaitEvent = {
+        num:1,
+        recharge_id:fnBase.getUrlPar("recharge_id"),
+        backurl:decodeURIComponent(backurl),
+        init:function(){
+            this.addIosBtnEvent();
+            if(fnBase.mobileType == "ios"){
+                var isHide = false;
+                try{
+                    isHide = window.Auction.wxiOSPayHidden();
+                }catch(err) {
+                    console.log(err)
+                }
+                if(isHide){
+                    this.isWaitOver()
+                }else {
+                    $(".ios-hide").hide();
+                    $(".ios-btn").show();
+                }
+            }else {
+                this.isWaitOver()
+            }
+        },
+        addIosBtnEvent:function(){
+            var diffAppScheme=getUrlPar("diffAppScheme");
+            $(document).on("click",".ios-btn",function(){
+                var diffAppScheme=getUrlPar("diffAppScheme");
+                var reg = new RegExp("=","g");
+                diffAppScheme = diffAppScheme.replace(reg,"");
+                var location_href = decodeURIComponent(window.location.href);
+                if(diffAppScheme==""){
+                    window.location.href="uziwxpayauction://"+"?"+location_href;
+                }else{
+                    var t_href=diffAppScheme+"://";
+                    window.location.href=t_href+"?"+location_href;
+                }
+
+            })
+        },
+        isWaitOver:function(){
+            var time = 3;
+            var timerJiShiQi=setInterval(function () {
+                time-=1;
+                if(time <= 0){
+                    clearInterval(timerJiShiQi);
+                    paywaitEvent.isPaySucc()
+                }
+            },1000)
+        },
+        isPaySucc:function(){
+            paywaitEvent.num++;
+            console.log(paywaitEvent.num);
+            if(paywaitEvent.num <= 3){
+                fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Pay/getPayNotifyresult/pay_type/ping",{
+                    "recharge_id":paywaitEvent.recharge_id
+                },function(res){
+                    if(res.state == 0){
+                        $("#pay-img").attr("src","../../../static/img/pay-wait.gif");
+                        paywaitEvent.isWaitOver()
+                    }else if(res.state == 1){
+                        $("#pay-img").attr("src","../../../static/img/pay-succ.gif");
+                        $("#pay-p").text("支付成功");
+                        setTimeout(function(){
+                            if(paywaitEvent.backurl){
+                                switchBackURL();
+                            }else {
+                                if(fnBase.VersionCode == '108'){
+                                    window.Auction.refreshPage(3)
+                                }else {
+                                    window.Auction.refreshPage(4)
+                                }
+                            }
+                        },2000)
+                    }else {
+
+                        $("#pay-img").attr("src","../../../static/img/pay-fail.gif");
+                        $("#pay-p").text("支付失败:"+res.cause);
+                        var r = window.location.search;
+                        r = r.substring(r.indexOf("?"),r.length);
+                        
+                        if(r.indexOf("wx")>=0){
+                            var ident="100071";
+                            var name="充值页微信支付失败";
+                        }else if(r.indexOf("alipay")>=0){
+                            var ident="100073";
+                            var name="充值页支付宝支付失败";
+                        }
+                        var Op = "",clickJson = "";
+                        Op={
+                            "ot":"3"
+                        };
+                        clickJson={
+                            "actionId":5,
+                            "uuid":fnBase.UUID,
+                            "openId":store.get('openid'),
+                            "ident":ident,
+                            "date":parseInt(new Date().getTime() / 1000),
+                            "name":name,
+                        };
+                        fnBase.addStatisticsEvent(Op,clickJson);
+                        setTimeout(function(){
+                            if(paywaitEvent.backurl){
+                                switchBackURL();
+                            }else {
+                                if(fnBase.VersionCode == '108'){
+                                    window.Auction.refreshPage(3)
+                                }else {
+                                    window.Auction.refreshPage(4)
+                                }
+                            }
+                        },2000)
+
+                    }
+                });
+            }else {
+                $("#pay-img").attr("src","../../../static/img/pay-fail.gif");
+                $("#pay-p").text("支付失败:请重新支付");
+                var r = window.location.search;
+                r = r.substring(r.indexOf("?"),r.length);
+                if(r.indexOf("wx")>=0){
+                    var ident="100071";
+                    var name="充值页微信支付失败";
+                }else if(r.indexOf("alipay")>=0){
+                    var ident="100073";
+                    var name="充值页支付宝支付失败";
+                }
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":ident,
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":name,
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+                setTimeout(function(){
+                    if(paywaitEvent.backurl){
+                        switchBackURL();
+                    }else {
+                        if(fnBase.VersionCode == '108'){
+                            window.Auction.refreshPage(3)
+                        }else {
+                            window.Auction.refreshPage(4)
+                        }
+                    }
+                },2000)
+
+                
+            }
+        }
+    };
+    function switchBackURL(){
+        var needchange=myObject.GetQueryString("needchange");
+        if(needchange=="1"){
+            var backurl=fnBase.getUrlPar("backurl");
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/Index/Frame/getRealUrl",{
+              "backurl_id":backurl
+            },function(res){
+                if(res.state==1){
+                    var backurl=res.realurl;
+                    paywaitEvent.backurl=decodeURIComponent(backurl);
+                    fnBase.addLocationHref(paywaitEvent.backurl);
+
+                }else{
+                    myObject.alert(res.msg)
+                }        
+            });
+            
+        }else{
+            var backurl=fnBase.getUrlPar("backurl");
+            paywaitEvent.backurl=decodeURIComponent(backurl);
+            fnBase.addLocationHref(paywaitEvent.backurl);
+        }
+    }
+    paywaitEvent.init();
+    function getUrlPar(name){
+        var _reg = new RegExp("(^|&)" + name + "=([^&]*)(&|$)", "i"),
+                _regNext = decodeURIComponent(window.location.search).substr(1).match(_reg);
+        if (_regNext != null) return decodeURI(_regNext[2]) || '';
+        else return '';
+    }
+</script>
+</body>
+</html>

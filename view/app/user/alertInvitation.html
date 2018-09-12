@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en" lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script type="text/javascript" src="../../../static/js/flexible.js"></script>
+    <script type="text/javascript" src="../../../static/js/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+</head>
+<body>
+    <div class="alertBox inviteBox">
+        <div class="close">
+            <img src="../../../static/img/close.png"/>
+        </div>
+        <div class="clear"></div>
+        <div>
+            <h1 id="test">您已登录成功</h1>
+            
+            <p class="ib1">是否输入邀请码成为他人徒弟</p>
+            <div class="inputLabel">
+                <input type="text" maxLength="7" id="ycode"/>
+            </div>
+            <p class="ib2">您的师傅是:</p>
+            <div class="master">
+                
+            </div>
+            
+        </div>
+        <div class="alertline"><div class="lineinside"></div></div>
+            <div class="alert"><button disabled="disabled" type="button">确认</button></div>
+            <p class="ib3">输入邀请码只有一次机会，请确认</p>
+    </div>
+    <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+    <script>
+        var myObject=myObject;
+        //var host=myObject.host;
+        var host="http://101.95.97.178:8089";
+
+        myObject.alertPosition();
+        $("#ycode").on("input propertychange", function() {
+            var valuecode=$("#ycode").val();
+
+            var length=valuecode.length;
+            if(length==7){
+                
+
+                console.log(valuecode);
+                myObject.loadShow();
+                myObject.commonJsonpAjax(host+'/index.php/index/Share/mkTree',{
+                'scode':valuecode,
+                }, function(data){
+                    console.log(data);
+                    $(".alert button").attr("disabled",false);
+                    $(".alert button").css("background","#fe4141");
+                },function(){
+                
+                });
+            }
+        });
+
+        $(".alert button").click(function(){
+            myObject.loadShow();
+            myObject.commonJsonpAjax(host+'/index.php/index/Share/mkTree',{
+            'scode':valuecode,
+            }, function(data){
+                console.log(data);
+            },function(){
+            
+            });
+        })
+    </script>
+</body>
+</html>
+
+    

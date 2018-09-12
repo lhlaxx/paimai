@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script type="text/javascript" src="../../../static/js/flexible.js"></script>
+    <script type="text/javascript" src="../../../static/js/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css?0.100">
+    <script type="text/javascript" src="../../../static/js/jquery-1.12.3.min.js"></script>
+    
+</head>
+<body>
+    <div class="navbar">
+        <a class="back"><img src="../../../static/img/back.png"/></a>
+        <h1>设置</h1>
+    </div>
+    <div class="mainContent">
+        <ul class="setBoard">
+            <li class="update">
+                <a>
+                    <div class="pull-left">
+                        检查更新
+                    </div>
+                    <div class="goto pull-right">
+                        <span><img src="../../../static/img/usercenter/icon_goto.png"/></span>
+                    </div>
+                </a>
+            </li>
+            <li class="changeUname">
+                <a>
+                    <div class="pull-left" >
+                        修改昵称
+                    </div>
+                    <div class="goto pull-right">
+                        <span><img src="../../../static/img/usercenter/icon_goto.png"/></span>
+                    </div>
+                </a>
+            </li>
+            <li class="changePass">
+                <a>
+                    <div class="pull-left" >
+                        修改密码
+                    </div>
+                    <div class="goto pull-right">
+                        <span><img src="../../../static/img/usercenter/icon_goto.png"/></span>
+                    </div>
+                </a>
+            </li>
+            <li class="statement" style="display:none">
+                <a>
+                    <div class="pull-left" >
+                        声明
+                    </div>
+                    <div class="goto pull-right">
+                        <span><img src="../../../static/img/usercenter/icon_goto.png"/></span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    
+    <script type="text/javascript" src="../../../static/js/jquery-1.12.3.min.js"></script>  
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js?0.100"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+    <script type="text/javascript">
+        $(".update").click(function(){
+            window.Auction.about();
+        })
+        $(".back").click(function(){
+            window.Auction.back();
+        })
+        var myObject=myObject;
+        var host=myObject.host;
+        var verCode=AppHelper.YzAppGetVerCode();
+        var isSDK=myObject.GetQueryString("isSDK");
+        var channel=AppHelper.YzAppGetChannel();
+        if(isSDK){
+            if(channel=="ABose01"){
+                $(".update").hide();
+            }
+        }
+        var openid=store.get('openid');
+        if(browser.versions.mobile){
+            if(browser.versions.ios){
+               $(".update").hide();
+               $(".statement").show();
+            }
+        }
+        //修改昵称
+        $(".changeUname").click(function(){
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100094",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"点击修改昵称"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+
+//            var isNew=store.get('isBind');
+//            if(isNew){
+            window.location.href=host+'/front/view/app/user/changeUname.html';
+//            }else{
+//                myObject.alert("请去绑定手机号");
+//            }
+        })
+
+        //修改密码
+        $(".changePass").click(function(){
+            //统计——点击修改密码
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100094",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"点击修改密码"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+
+            var isNew=store.get('isBind');
+            if(isNew){
+                window.location.href=host+'/front/view/app/user/changePass.html';
+            }else{
+                myObject.alert("请去绑定手机号");
+            }
+        })
+        $(".statement").click(function(){
+            window.location.href=host+'/front/view/app/user/statement.html';
+        })
+    </script>
+
+</body>
+</html>
+
+    

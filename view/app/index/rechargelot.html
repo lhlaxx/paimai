@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/css/rechargelot.css"/>
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>充值抽奖</h2>
+    <div class="recharge-rule">活动规则</div>
+</header>
+<div class="container" id="content">
+    <div class="container-wrap">
+        <div class="lottery-container">
+            <!--<h3 class="lottery-title">每日24点钱对对对对对对对多多多多多多发反反复复付付付付付付付付付付付付多不</h3>-->
+            <!--<div class="lottery-goods">本期奖品：Kindle Oasis顶配电子书阅读器</div>-->
+            <!--<div class="lottery-img"><img src="http://10.20.40.229:8080/nhd/1509703751073.png"></div>-->
+            <!--<div class="left-time">-->
+                <!--<p class="p">开奖倒计时</p>-->
+                <!--<div class="time">-->
+                    <!--<div class="hour time-item">00</div>-->
+                    <!--:-->
+                    <!--<div class="minute time-item">00</div>-->
+                    <!--:-->
+                    <!--<div class="second time-item">00</div>-->
+                <!--</div>-->
+            <!--</div>-->
+        </div>
+        <div class="lottery-list">
+            <div class="lottery-list-title tab">
+                <span class="lottery-list-title-l item cur">本期入围</span>
+                <span class="lottery-list-title-r item">往期中奖</span>
+            </div>
+            <div class="lottery-list-main">
+                <div class="lottery-list-wrapper">
+                    <div class="lists-div">
+                        <ul class="lists">
+                            <!--<li class="lottery-list-item lottery-list-item-first">-->
+                            <!--<div>用户昵称</div>-->
+                            <!--<div>最后充值时间</div>-->
+                            <!--<div>单日充值金额</div>-->
+                            <!--</li>-->
+                        </ul>
+                        <ul class="lists">
+                            <!--<li class="lottery-list-item lottery-list-item-first">-->
+                            <!--<div>用户昵称</div>-->
+                            <!--<div>最后充值时间</div>-->
+                            <!--<div>单日充值金额</div>-->
+                            <!--</li>-->
+
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/iscroll-probe.js"></script>
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var rechargeLotEvent = {
+        source:fnBase.getUrlPar("source"),
+        init:function(){
+            this.addMainClickEvent();
+            this.addGetDataEvent();
+        },
+        addMainClickEvent:function() {
+            $(document).on("click", ".back_arrow", function () {
+                if (rechargeLotEvent.source == "web") {
+                    window.history.go(-1)
+                } else {
+                    window.Auction.back();
+                }
+            });
+            $(document).on("click", ".recharge-rule", function () {
+                fnBase.addLocationHref('lotteryrule.html?source=web')
+            });
+            $(document).on("myCustomTapEvent", ".tab .item", function () {
+                var $this = $(this);
+                itemIndex = $this.index();
+                $this.addClass('cur').siblings('.item').removeClass('cur');
+                $('.lists').eq(itemIndex).show().siblings('.lists').hide();
+                if(itemIndex == '0'){
+                    // 如果数据没有加载完
+                    if(!rechargeLotEvent.tab1LoadEnd){
+                        rechargeLotEvent.getSelectedData(0)
+                    }else{
+                        setTimeout(function () {
+                            myScroll.refresh();
+                        }, 0);
+                    }
+                    // 如果选中菜单二
+                }else if(itemIndex == '1'){
+                    if(!rechargeLotEvent.tab2LoadEnd){
+                        rechargeLotEvent.getSelectedData(1)
+                    }else{
+                        setTimeout(function () {
+                            myScroll.refresh();
+                        }, 0);
+                    }
+                }
+            });
+            $(document).on("myCustomTapEvent", ".lottery-list-item-bottom-btnF", function () {
+                // 如果数据没有加载完
+                if(!rechargeLotEvent.tab1LoadEnd){
+                    rechargeLotEvent.getSelectedData(0)
+                }else{
+
+                }
+            });
+            $(document).on("myCustomTapEvent", ".lottery-list-item-bottom-btnT", function () {
+                // 如果数据没有加载完
+                if(!rechargeLotEvent.tab2LoadEnd){
+                    // 解锁
+                    rechargeLotEvent.getSelectedData(1)
+                }else{
+
+                }
+            });
+        },
+        addGetDataEvent:function(){
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Lottery/draw",{
+                "chanel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode
+            },function(res){
+                if(res.state == 1){
+                    rechargeLotEvent.addLotteryMainHtml(res.content)
+                }else {
+                    fnBase.alert(res.msg)
+                }
+            })
+        },
+        leftTime:0,
+        addLotteryMainHtml:function(data){
+            var lotteryMainHtml='',left_time_html='';
+            if(data.win_name == ""){
+                left_time_html = '<p class="p">开奖倒计时</p>'
+                                +'<div class="time">'
+                                +'<div class="hour time-item">00</div>'
+                                +    ':'
+                                +'<div class="minute time-item">00</div>'
+                                +   ':'
+                                +'<div class="second time-item">00</div>'
+                                +'</div>';
+            }else {
+                left_time_html = '<p class="p">本期中奖</p>'
+                        +'<div class="win_name time">'+data.win_name+'<div>'
+            }
+            lotteryMainHtml    = '<h3 class="lottery-title">每日24点前累计充值超过'+data.total_moey+'元用户，次日'+data.start_time+'将会抽取一位幸运用户，获得实物礼品</h3>'
+                                +   '<div class="lottery-goods">本期奖品：'+data.goods_name+'</div>'
+                                +   '<div class="lottery-img"><img src="'+data.goods_img+'"></div>'
+                                +   '<div class="left-time">'
+                                +           left_time_html
+                                +   '</div>';
+            $('.lottery-container').empty();
+            $('.lottery-container').html(lotteryMainHtml);
+            if(data.win_name == ""){
+                rechargeLotEvent.leftTime = data.count_time;
+                time();
+            }
+            rechargeLotEvent.getSelectedData(0);
+            setTimeout(function () {
+                myScroll.refresh();
+            }, 0);
+        },
+        tab1LoadEnd:false,
+        tab2LoadEnd:false,
+        lastIdFir:0,
+        lastIdTwo:0,
+        getSelectedData:function(itemIndex) {
+            if (itemIndex == '0') {
+                selected()
+            } else if (itemIndex == '1') {
+                lotteryPast()
+            }
+        }
+    };
+    rechargeLotEvent.init();
+
+    //本期入围
+    function selected(){
+        fnBase.commonJsonpAjax(fnBase.source_url + '/index.php/index/Lottery/selected', {
+            "chanel": fnBase.ChannelId,
+            "verCode": fnBase.VersionCode,
+            "lastId": rechargeLotEvent.lastIdFir,
+            "pageSize": 10
+        }, function (res) {
+            var result = '';
+            if (rechargeLotEvent.lastIdFir == '0') {
+                result += '<li class="lottery-list-item lottery-list-item-first">'
+                        + '<div>用户昵称</div>'
+                        + '<div>最后充值时间</div>'
+                        + '<div>单日充值金额</div>'
+                        + '</li>'
+            }
+            if (res.state == 1) {
+                var lastHtml = '';
+                if (res.end) {
+                    lastHtml += '<li class="lottery-list-item lottery-list-item-bottom">'
+                            + '无更多数据了'
+                            + '</li>'
+                } else {
+                    lastHtml+= '<li class="lottery-list-item lottery-list-item-bottom lottery-list-item-bottom-btnF">'
+                            + '点击加载更多'
+                            + '</li>'
+                }
+                var data = res.now_lottery;
+                if (data.length > 0) {
+                    for (var i = 0, len = data.length; i < len; i++) {
+                        result += '<li class="lottery-list-item">'
+                                + '<div>' + data[i].nickname + '</div>'
+                                + '<div>' + data[i].last_recharge_t + '</div>'
+                                + '<div>￥' + data[i].total_money + '</div>'
+                                + '</li>'
+                    }
+                }
+                $('.lottery-list-wrapper .lists-div .lists:eq(0) .lottery-list-item-bottom').remove();
+                result += lastHtml;
+                rechargeLotEvent.tab1LoadEnd = res.end;
+                rechargeLotEvent.lastIdFir = res.lastId;
+                $('.lottery-list-wrapper .lists-div .lists').eq(0).append(result);
+                setTimeout(function () {
+                    myScroll.refresh();
+                }, 0);
+            } else {
+                fnBase.alert(res.msg)
+            }
+        });
+    }
+
+    //往期中奖
+    function lotteryPast() {
+        fnBase.commonJsonpAjax(fnBase.source_url + '/index.php/index/Lottery/past', {
+            "chanel": fnBase.ChannelId,
+            "verCode": fnBase.VersionCode,
+            "lastId": rechargeLotEvent.lastIdTwo,
+            "pageSize": 10
+        }, function (res) {
+            var result = '';
+            if (rechargeLotEvent.lastIdTwo == '0') {
+                result += '<li class="lottery-list-item lottery-list-item-first">'
+                        + '<div>用户昵称</div>'
+                        + '<div>中奖日期</div>'
+                        + '<div>中奖商品</div>'
+                        + '</li>'
+            }
+            if (res.state == 1) {
+                var lastHtml = '';
+                if (res.end) {
+                    lastHtml += '<li class="lottery-list-item lottery-list-item-bottom">'
+                            + '无更多数据了'
+                            + '</li>'
+                } else {
+                    lastHtml+= '<li class="lottery-list-item lottery-list-item-bottom lottery-list-item-bottom-btnT">'
+                            + '点击加载更多'
+                            + '</li>'
+                }
+                var data = res.past_lottery;
+                console.log(data);
+                if (data.length > 0) {
+                    for (var i = 0, len = data.length; i < len; i++) {
+                        result += '<li class="lottery-list-item">'
+                                + '<div>' + data[i].nickname + '</div>'
+                                + '<div>' + data[i].lottery_date + '</div>'
+                                + '<div>' + data[i].goods_name + '</div>'
+                                + '</li>'
+                    }
+                }
+
+                $('.lottery-list-wrapper .lists-div .lists:eq(1) .lottery-list-item-bottom').remove();
+                result += lastHtml;
+                rechargeLotEvent.tab2LoadEnd = res.end;
+                rechargeLotEvent.lastIdTwo = res.lastId;
+                $('.lottery-list-wrapper .lists-div .lists').eq(1).append(result);
+                setTimeout(function () {
+                    myScroll.refresh();
+                }, 0);
+            } else {
+                fnBase.alert(res.msg)
+            }
+        });
+    }
+
+    var myScroll = null;
+    myScroll = new IScroll('#content', {
+        probeType: 3,
+        mouseWheel: true,
+        scrollbars: true,
+        preventDefault: true,
+        fadeScrollbars: true,
+        tap: 'myCustomTapEvent'
+    });
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+    function formatSeconds(value) {
+        var theTimeS = parseInt(value);// 秒
+        var theTimeM = 0;// 分
+        var theTimeH = 0;// 小时
+        if(theTimeS >= 60) {
+            theTimeM = parseInt(theTimeS/60);
+            theTimeS = parseInt(theTimeS%60);
+            if(theTimeM >= 60) {
+                theTimeH = parseInt(theTimeM/60);
+                theTimeM = parseInt(theTimeM%60);
+            }
+        }
+        var result = ""+toZero(parseInt(theTimeS));
+        if(theTimeM >= 0) {
+            result = ""+toZero(parseInt(theTimeM))+":"+result;
+        }
+        if(theTimeH >= 0) {
+            result = ""+toZero(parseInt(theTimeH))+":"+result;
+        }
+        return result;
+    }
+
+
+    function time(){
+        $(".time").html(formatSeconds(rechargeLotEvent.leftTime));
+        if (rechargeLotEvent.leftTime == 0) {
+            rechargeLotEvent.addGetDataEvent()
+        }else{
+            rechargeLotEvent.leftTime--;
+            //定时器，每秒重新计算
+            setTimeout(function() {
+                time();
+            },1000)
+        }
+    }
+    function toZero(num) {
+        if (num <= 9) {
+            return '<div class="time-item">0'+num+'</div>';
+        } else {
+            var arr = String(num).split(""),resultHtml = '';
+            for(var i = 0; i < arr.length ; i++ ) {
+                var temp = arr[i];
+                resultHtml = resultHtml + temp;
+            }
+            return '<div class="time-item">'+resultHtml+'</div>';
+        }
+    }
+</script>
+</body>
+</html>

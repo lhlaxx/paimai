@@ -1,0 +1,254 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimun-scale=1.0,user-scalable=yes">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>抽奖</title>
+    <meta name="description">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css?0.106">
+    <link rel="stylesheet" href="https://cdn.bootcss.com/bootstrap/3.3.7/css/bootstrap.min.css">
+    <script src="https://cdn.bootcss.com/jquery/2.1.1/jquery.min.js"></script>
+    <script src="https://cdn.bootcss.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+    <script src="../../../static/js/iscroll.js"></script>
+    <script src="../../../src/js/main.js"></script>
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script>
+    <script type="text/javascript" src="../../../static/js/AppHelper.js?0.100"></script>
+    <style>
+        .tab-content>.tab-pane{display: block;}
+    </style>
+</head>
+<body class="listW">
+<div class="newbar">
+    <a class="back" href=""><img src="../../../static/img/back.png"/></a>
+    中奖纪录
+</div>
+<!--  此处外部放隐藏域 记录当前页码 最大页码 类型-->
+<div style="display: none;">
+    <p><input type="hidden" name="page" id="page" value="1"> </p>
+    <p><input type="hidden" name="pagecount" id="pagecount"></p>
+    <p><input type="hidden" name="type" id="type" value="2"></p>
+</div>
+
+<div class="tabs-underline">
+    <ul id="myTab" class="nav nav-tabs">
+        <li class="draw-frame" data-draw-type="1">
+            <a href="#" data-toggle="tab">未中奖</a>
+        </li>
+        <li class="draw-frame active"  data-draw-type="2">
+            <a href="#" data-toggle="tab">已中奖</a>
+        </li>
+        <li class="draw-frame" data-draw-type="3">
+            <a href="#" data-toggle="tab">已发奖</a>
+        </li>
+    </ul>
+
+    <div id="myTabContent" class="tab-content">
+        <div class="tab-pane" id="home">
+            <div class="recordContent" id="myData">
+
+                <div class="lists" >
+                    <div class="li01"><img src="../../../static/img/lottery/jiangpin01.png"/></div>
+                    <div class="li02">期号：2543569457821254</div>
+                    <div class="li03">未中奖</div>
+                </div>
+                <div class="lists">
+                    <div class="li01"><img src="../../../static/img/lottery/jiangpin01.png"/></div>
+                    <div class="li02">期号：2543569457821254</div>
+                    <div class="li03">未中奖</div>
+                </div>
+                <div class="lists">
+                    <div class="li01"><img src="../../../static/img/lottery/jiangpin01.png"/></div>
+                    <div class="li02">期号：2543569457821254</div>
+                    <div class="li03">未中奖</div>
+                </div>
+
+
+            </div>
+        </div>
+    </div>
+
+    <div id="pull-down" style="width: 100%;text-align: center">
+        下一页
+    </div>
+
+
+</div>
+
+<script type="text/javascript">
+
+    var page = 1;
+    var pageCount = 10;
+    var appname = AppHelper.YzAppGetPackageName();
+    var win_type = 2;
+    var nowHost = 'http://' + window.location.host;
+
+    var openid = store.get('openid');
+//    var openid = 'wx_cc58924d441768071b2c7994';
+
+    //动态设置头部的颜色
+
+    $(document).ready(function () {
+
+        $(".back").click(function(){
+            window.Auction.back();
+        });
+
+        $("#myData").html('');
+
+        getWinrecord();
+
+        $('.draw-frame').click(function () {
+            win_type = $(this).attr('data-draw-type');
+//            alert(win_type);
+            page = 1;
+            pageCount = 10;
+            $("#myData").html('');
+
+            getWinrecord();
+        });
+
+        $("#pull-down").click(function () {
+            getWinrecord();
+        });
+
+        //动态改变头部颜色
+        if (appname.indexOf('xyjp') >= 0) {
+            $('.newbar').css('background', '#1f9add');//小易竞拍
+        } else if (appname.indexOf('hlpm') >= 0) {
+            $('.newbar').css('background', '#fc549f');//欢乐拍卖
+        } else if(appname.indexOf('hlpp') >= 0) {
+            $('.newbar').css('background', '#ff4045');//欢乐拍卖 ios
+        }else {
+            $('.newbar').css('background', '#fd4141');//大红
+        }
+    });
+
+    function getWinrecord()
+    {
+        var url = nowHost + "/index.php/index/DrawPrize/drawList?openid=" + openid + "&page=" + page + "&state=" + win_type;
+
+        if (page  >= pageCount){
+            $("#pull-down").html('这已经是最后一页了');
+            return;
+        }
+
+        $.ajax({
+            type : "get",
+            url : url,
+            dataType : "jsonp",
+            jsonp: "callback",//服务端用于接收callback调用的function名的参数
+            jsonpCallback: "showData",  //指定回调函数名称
+            success : function(data){
+                console.log(data);
+                var drawlist = data.data.drawlist;
+                //填充分页信息
+                page = data.data.pageinfo.page;
+                pageCount = data.data.pageinfo.pagecount;
+                var divhtml = '';
+
+                for(var i=0; i < drawlist.length; i++) {
+                    var prizeLevel= numberTostr(drawlist[i].prizeLevel);
+                    switch (data.data.type)
+                    {
+                        case 1:
+                            divhtml +='<div class="lists"> ';
+                            divhtml +='<div class="li01"><img src="../../../static/img/lottery/wei.png"/></div>';
+                            divhtml +='<div class="li02">期号：'+ drawlist[i].issueId +'</div>';
+                            divhtml +='<div class="li03">未中奖</div>';
+                            divhtml +='</div>';
+                            break;
+                        case 2:
+                            divhtml +='<div class="tabInfo">';
+                            divhtml +='<div class="lists"> ';
+                            divhtml +='<div class="li01"><img src="'+ drawlist[i].picUrl +'"/></div>';
+                            divhtml +='<div class="li02">期号：'+ drawlist[i].issueId +'<p>价格：'+ drawlist[i].prizePrice +'</p></div>';
+                            divhtml +='<div class="li03">已中奖<p style="color:#d9d9d9;">'+prizeLevel+'等奖</p></div>';
+                            divhtml +='</div>';
+                            divhtml +='</div>';
+                            break;
+                        case 3:
+                            divhtml += '<div class="tabInfo">';
+                            divhtml += '<div class="lists"> ';
+                            divhtml += '<div class="li01"><img src="'+ drawlist[i].picUrl +'"/></div>';
+                            divhtml += '<div class="li02">期号：'+ drawlist[i].issueId +'<p>价格：'+ drawlist[i].prizePrice +'</p></div>';
+                            divhtml += '<div class="li03">已发奖<p style="color:#d9d9d9;">'+prizeLevel+'等奖</p></div>';
+                            divhtml += '</div>';
+                            divhtml += '<small>快递单号：'+ drawlist[i].kuaidiNum +'</small>';
+                            divhtml += '</div>';
+                            break;
+                        default:
+                            divhtml +='<div class="lists"> ';
+                            divhtml +='<div class="li01"><img src="'+ drawlist[i].picUrl +'"/></div>';
+                            divhtml +='<div class="li02">期号：'+ drawlist[i].issueId +'</div>';
+                            divhtml +='<div class="li03">未中奖....</div>';
+                            divhtml +='</div>';
+                            break;
+                    }
+                }
+
+                page++;
+
+                $("#myData").append(divhtml);
+
+                if (page >= pageCount)
+                {
+                    $("#pull-down").html('这已经是最后一页了');
+                } else {
+                    $("#pull-down").html('下一页');
+                }
+            },
+            error:function(){
+                alert('fail1');
+            }
+        });
+
+        function numberTostr(section) {
+            var chnNumChar = ["零","一","二","三","四","五","六","七","八","九"];
+            var chnUnitSection = ["","万","亿","万亿","亿亿"];
+            var chnUnitChar = ["","十","百","千"];
+
+            var strIns = '', chnStr = '';
+            var unitPos = 0;
+            var zero = true;
+
+            while(section > 0){
+                var v = section % 10;
+                if(v === 0){
+                    if(!zero){
+                        zero = true;
+                        chnStr = chnNumChar[v] + chnStr;
+                    }
+                }else{
+                    zero = false;
+                    strIns = chnNumChar[v];
+                    strIns += chnUnitChar[unitPos];
+                    chnStr = strIns + chnStr;
+                }
+                unitPos++;
+                section = Math.floor(section / 10);
+                return chnStr;
+            }
+        }
+    }
+    //封装的整体的js加载数据的方法
+</script>
+</body>
+</html>
+
+    
+            
+                
+                
+                
+            

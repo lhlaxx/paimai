@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/dropload.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/strategydetails.css">
+    <style>
+        .dropload-down{
+            width: 100%;
+            height: 1.32rem;
+            line-height: 1.32rem;
+            background-color: #f5f5f5;
+            text-align: center;
+            font-size: .4rem;
+            color: #999999;
+            overflow: hidden;
+        }
+         .dropload-noData{
+            height: 1.32rem;
+            line-height: 1.32rem;
+        }
+    </style>
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>攻略详情</h2>
+</header>
+<div class="container">
+    <div class="container-title">
+        <div class="img"></div>
+        <div class="text">收到徒弟更有持续收益</div>
+        <div class="share-btn">分享</div>
+    </div>
+    <div class="container-details">
+        <!--<ul>-->
+            <!--<li class="container-details-item">-->
+                <!--<div class="user-name">用户名</div>-->
+                <!--<div>注册时间：2017-11-08</div>-->
+            <!--</li>-->
+            <!--<li class="container-details-item">-->
+                <!--<div>累计中奖次数：<span>30次</span></div>-->
+                <!--<div>中奖商品总价值：<span>￥100023.55</span></div>-->
+            <!--</li>-->
+            <!--<li class="container-details-item">-->
+                <!--<div>大神榜历史最好成绩：<span class="score">第一名</span></div>-->
+            <!--</li>-->
+        <!--</ul>-->
+    </div>
+    <div class="strategy-main">
+        <!--<h3 class="strategy-main-title">攻略正文</h3>-->
+        <!--<div class="strategy-content">-->
+            <!--<p>用了快俩月了，用的硅胶壳，后边有那种亮点，可能是脏东西磨的，另外，屏幕不太亮，家里哥用的6s和6sp ，相对来说7的屏幕暗黄相对来说7的屏幕暗黄相对来说7的屏幕暗黄相对来说7的屏幕暗黄</p>-->
+            <!--<img src="http://egoures.tt286.com/market/indiana/goods2016/11/22/ekpyon3ue0/1479784188197.png">-->
+        <!--</div>-->
+        <!--<div class="reward">-->
+            <!--<div class="reward-btn"></div>-->
+            <!--<div class="reward-money">累计被打赏<span>16</span>拍币</div>-->
+        <!--</div>-->
+    </div>
+    <div class="reward-list">
+        <div class="reward-list-title" style="display: none">
+            <span class="sun-list-title-l">打赏记录</span>
+        </div>
+        <div class="reward-list-wrapper">
+            <ul>
+                <!--<li class="reward-list-item">-->
+                    <!--<div class="reward-list-item-name">崔晓辉</div>-->
+                    <!--<div class="reward-list-item-time">11-14 15:55:30</div>-->
+                    <!--<div class="reward-list-item-money">打赏<span>1</span>拍币</div>-->
+                <!--</li>-->
+                <!--<li class="reward-list-item">-->
+                    <!--<div class="reward-list-item-name">崔晓辉</div>-->
+                    <!--<div class="reward-list-item-time">11-14 15:55:30</div>-->
+                    <!--<div class="reward-list-item-money">打赏<span>1</span>拍币</div>-->
+                <!--</li>-->
+                <!--<li class="reward-list-item">-->
+                    <!--<div class="reward-list-item-name">崔晓辉</div>-->
+                    <!--<div class="reward-list-item-time">11-14 15:55:30</div>-->
+                    <!--<div class="reward-list-item-money">打赏<span>1</span>拍币</div>-->
+                <!--</li>-->
+                <!--<li class="reward-list-item">-->
+                    <!--<div class="reward-list-item-name">崔晓辉</div>-->
+                    <!--<div class="reward-list-item-time">11-14 15:55:30</div>-->
+                    <!--<div class="reward-list-item-money">打赏<span>1</span>拍币</div>-->
+                <!--</li>-->
+                <!--<li class="reward-list-item">-->
+                    <!--<div class="reward-list-item-name">崔晓辉</div>-->
+                    <!--<div class="reward-list-item-time">11-14 15:55:30</div>-->
+                    <!--<div class="reward-list-item-money">打赏<span>1</span>拍币</div>-->
+                <!--</li>-->
+            </ul>
+        </div>
+    </div>
+</div>
+<div class="select-cash-bg" style="display: none">
+    <div class="select-cash">
+        <a class="select-close"><img src="../../../static/img/close_enterpass.png"/></a>
+        <img class="red-pak" src="../../../static/img/strategy/red-pak.png"/>
+        <h4>不要吝啬手中的拍币哦</h4>
+        <ul>
+            <li class="recharge-item recharge-active">1</li>
+            <li class="recharge-item">2</li>
+            <li class="recharge-item">3</li>
+            <li class="recharge-item">5</li>
+        </ul>
+        <div class="confirm-btn">打赏</div>
+    </div>
+</div>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/dropload.min.js"></script>
+ <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var strategyDetailsEvent = {
+        source:fnBase.getUrlPar("source"),
+        strategyId:fnBase.getUrlPar("strategyId"),
+        init:function(){
+            this.addMainClickEvent();
+            this.addGetInfoEvent()
+        },
+        addMainClickEvent:function(){
+            $(document).on("click",".back_arrow",function(){
+                if(strategyDetailsEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back();
+                }
+            });
+            $(document).on("click",".share-btn",function(){
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100270",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"点击分享次数",
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+                console.log("点击分享功能");
+                if(store.get('openid')){
+                    fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/sharepage.html?source=web");
+                }else {
+                    window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index.html");
+                }
+            });
+            $(document).on("click",".reward-btn",function(){
+                var Op = "",clickJson = "";
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100267",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"打赏次数(圆形按钮)",
+                };
+                Op={
+                    "ot":"3"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+                if(store.get('openid')){
+                    $(".select-cash-bg").show();
+                }else {
+                    window.Auction.openUrl(fnBase.source_url+"/front/view/app/login/index.html?from=refund");
+                }
+            });
+            $("body").on("click",".recharge-item",function(){
+                $(this).addClass("recharge-active").siblings().removeClass("recharge-active");
+            });
+            $("body").on("click",".select-close",function(){
+                $(".select-cash-bg").hide();
+            });
+            $("body").on("click",".confirm-btn",function(){
+                console.log($(".recharge-active").html());
+                strategyDetailsEvent.addTakeMoneyEvent(parseInt($(".recharge-active").html()))
+            });
+        },
+        isEnd:false,
+        lastId:0,
+        addGetInfoEvent:function(){
+            var that = this;
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Godlist/strategyDetail",{
+                "strategyId":strategyDetailsEvent.strategyId,
+                "lastId":strategyDetailsEvent.lastId,
+                "size":10
+            },function(res){
+                if(res.state == 1){
+                    that.addDetailsTop(res)
+                }else {
+                    fnBase.alert(res.msg)
+                }
+            })
+        },
+        addTakeMoneyEvent:function(price){
+            fnBase.loadShow();
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Paybackjoin/tipMoney",{
+                "strategyId":strategyDetailsEvent.strategyId,
+                "openid":store.get("openid"),
+                "price":price,
+                "deviceid":fnBase.DeviceId
+            },function(res){
+                if(res.state == 1){
+                    fnBase.alert(res.msg);
+                    $(".select-cash-bg").hide();
+                    $(".reward-money span").html(res.totalprice);
+                    $(".reward-list-wrapper ul").empty();
+                    $(".dropload-down").hide();
+
+                    var Op = "",clickJson = "";
+                    clickJson={
+                        "actionId":5,
+                        "uuid":fnBase.UUID,
+                        "openId":store.get('openid'),
+                        "ident":"100268",
+                        "date":parseInt(new Date().getTime() / 1000),
+                        "name":"打赏成功次数",
+                    };
+                    Op={
+                        "ot":"3"
+                    };
+                    fnBase.addStatisticsEvent(Op,clickJson);
+
+                    var extra={
+                        'price':price
+                    };
+                    var Op1 = "",clickJson1 = "";
+                    clickJson1={
+                        "actionId":5,
+                        "uuid":fnBase.UUID,
+                        "openId":store.get('openid'),
+                        "ident":"100269",
+                        "date":parseInt(new Date().getTime() / 1000),
+                        "name":"打赏成功金额",
+                        "extra":JSON.stringify(extra)
+                    };
+                    Op1={
+                        "ot":"3"
+                    };
+                    fnBase.addStatisticsEvent(Op1,clickJson1);
+
+                    var listHtml = '';
+                    if(res.tipRecord.length > 0){
+                        var listHtmlLast = '<li class="reward-list-item" style="display:block;text-align: center">来一拍币，才能继续撩我哦</li>';
+                        for(var i= 0,len=res.tipRecord.length; i<len; i++){
+                            listHtml += '<li class="reward-list-item">'
+                                    +   '<div class="reward-list-item-name">'+res.tipRecord[i].name+'</div>'
+                                    +   '<div class="reward-list-item-time">'+res.tipRecord[i].time+'</div>'
+                                    +   '<div class="reward-list-item-money">打赏<span>'+res.tipRecord[i].tip_price+'</span>拍币</div>'
+                                    +'</li>'
+                        }
+                        listHtml+=listHtmlLast;
+                        strategyDetailsEvent.isEnd = true;
+                        $(".reward-list-wrapper ul").empty();
+                        $(".reward-list-wrapper ul").html(listHtml)
+                    }
+                }else if(res.state == 3){
+                    fnBase.alert(res.msg);
+                    setTimeout(function(){
+                        store.set('detailsUrl',window.location.href);
+                        fnBase.addLocationHref(fnBase.source_url+"/front/view/app/index/recharge.html?source=web")
+                    },2000)
+                }else {
+                    fnBase.alert(res.cause?res.cause:res.msg)
+                }
+            })
+        },
+        addDetailsTop:function(res){
+            var DetailsTopHtml='',DetailsMainHtml='';
+            DetailsTopHtml = '<ul>'
+                            +   '<li class="container-details-item">'
+                            +       '<div class="user-name">'+res.name+'</div>'
+                            +       '<div>注册时间：'+res.time+'</div>'
+                            +   '</li>'
+                            +   '<li class="container-details-item">'
+                            +       '<div>累计中奖次数：<span>'+res.count+'次</span></div>'
+                            +       '<div>中奖商品总价值：<span>￥'+res.price+'</span></div>'
+                            +   '</li>'
+                            +   '<li class="container-details-item">'
+                            +       '<div>大神榜历史最好成绩：<span class="score">'+res.ranking+'</span></div>'
+                            +   '</li>'
+                            +'</ul>';
+            $(".container-details").html(DetailsTopHtml);
+            DetailsMainHtml = '<h3 class="strategy-main-title">攻略正文</h3>'
+                            + '<div class="strategy-content">'
+                            +   '<p>'+res.content+'</p>'
+                            + '</div>'
+                            + '<div class="reward">'
+                            +   '<div class="reward-btn"></div>'
+                            +   '<div class="reward-money">累计被打赏<span>'+res.tip_price+'</span>拍币</div>'
+                            + '</div>';
+            $(".strategy-main").html(DetailsMainHtml);
+            if(res.tipRecord.length > 0){
+                this.addGetInfoHtml()
+            }
+        },
+        addGetInfoHtml:function(){
+            $(".reward-list-title").show();
+            $('.container').dropload({
+                scrollArea : window,
+                domDown : {
+                    domClass   : 'dropload-down',
+                    domRefresh : '<div class="dropload-refresh">↑继续上拉显示下一条</div>',
+                    domLoad    : '<div class="dropload-load"><span class="loading"></span>加载中...</div>',
+                    domNoData  : '<div class="dropload-noData">来一拍币，才能继续撩我哦</div>'
+                },
+                loadDownFn : function(me){
+                    console.log("这个正在请求了");
+                    // 拼接HTML
+                    var result = '',that = this;
+                    fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Godlist/strategyDetail",{
+                        "strategyId":strategyDetailsEvent.strategyId,
+                        "lastId":strategyDetailsEvent.lastId,
+                        "size":10
+                    },function(res){
+                        if(strategyDetailsEvent.isEnd){
+                            // 锁定
+                            me.lock();
+                            // 无数据
+                            me.noData();
+                        }else {
+                            strategyDetailsEvent.isEnd = res.end;
+                            strategyDetailsEvent.lastId = res.lastId;
+                            var data = res.tipRecord;
+                            console.log(data.length)
+                            for(var i= 0,len=data.length; i<len; i++){
+                                result += '<li class="reward-list-item">'
+                                        +   '<div class="reward-list-item-name">'+data[i].name+'</div>'
+                                        +   '<div class="reward-list-item-time">'+data[i].time+'</div>'
+                                        +   '<div class="reward-list-item-money">打赏<span>'+data[i].tip_price+'</span>拍币</div>'
+                                        +'</li>';
+
+                            }
+                        }
+                        // 为了测试，延迟1秒加载
+                        setTimeout(function(){
+                            // 插入数据到页面，放到最后面
+                            $('.reward-list-wrapper ul').append(result);
+                            // 每次数据插入，必须重置
+                            me.resetload();
+                        },300);
+                    })
+                }
+            });
+        }
+
+    };
+    strategyDetailsEvent.init();
+
+    var Op = "",clickJson = "";
+    clickJson={
+        "actionId":3,
+        "uuid":fnBase.UUID,
+        "openId":store.get('openid'),
+        "ident":"100266",
+        "date":parseInt(new Date().getTime() / 1000),
+        "name":"攻略详情页面到达",
+    };
+    Op={
+        "ot":"3"
+    };
+    fnBase.addStatisticsEvent(Op,clickJson);
+</script>
+
+</body>
+</html>

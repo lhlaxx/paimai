@@ -1,0 +1,113 @@
+header{
+    background-color:#fc5ca4
+}
+.price-wrap .price-wrap-l{
+    background-color:#fc5ca4
+}
+footer {
+    background-color: #fc5ca4;
+}
+footer .footer-r{
+    background-color:#fc5ca4
+}
+.refund .refund-details .refund-start-btn {
+    background-color:#fc5ca4;
+}
+.price-wrap .price-wrap-r {
+    color: #fc5ca4;
+}
+.navbar {
+    background: #fc5ca4;
+}
+.discount .discountRate {
+    color: #fc5ca4;
+}
+.discount .joinNext {
+    color: #fc5ca4;
+    border-radius: .2rem;
+    border: 1px solid #fc5ca4;
+    background: none;
+    margin-bottom: 0.1rem;
+}
+/*.dealRecord .colorRed {
+    color: #fc5ca4;
+}
+.left-time {
+    color: #fc5ca4;
+}*/
+.goodsAuction .goodsAuction_details .goodsAuction_bidding {
+    font-size: .4rem;
+    color: #fc5ca4;
+    background: none;
+    border-radius: .2rem;
+    border: 1px solid #fc5ca4;
+    padding: .16rem .426667rem;
+    margin-bottom: 0.1rem;
+}
+/*.goodsAuction .goodsAuction_details .goodsAuction_price {
+    color: #fc5ca4;
+}*/
+.recharge {
+    width: 1.8rem;
+    color: #fff;
+    background: #fc5ca4;
+    border-radius: .206667rem;
+    border: 1px solid #fc5ca4;
+}
+.logButton {
+    background: #fc5ca4;
+}
+.regNow {
+    color: #fc5ca4;
+}
+.bind {
+    background: #fc5ca4;
+}
+.recordOperation .recordGoto {
+    background: #fc5ca4;
+}
+.fix-content .share-btn {
+    background: #fc5ca4;
+}
+.myaccount .goto span:first-child {
+    color: #fc5ca4;
+}
+.container .refund-goods ul .goods-item .join-btn {
+    background-color: #fc5ca4;
+}
+.container .refund-main .refund-btn {
+    background-color: #fc5ca4;
+}
+.container-title .share-btn {
+    background-color: #fc5ca4;
+}
+.goods-details .goods-details-bottom ul .goods-item:nth-child(2n) span:nth-child(2) {
+    color: #fc5ca4;
+}
+.container .earning .code .copy-code {
+    background-color: #fc5ca4;
+}
+button.sendCode {
+    border: 1px solid #fc5ca4;
+    color: #fc5ca4;
+}
+.confirm button {
+    background: #fc5ca4;
+}
+.select-cash-bg .select-cash .confirm-btn {
+
+    background-color: #fc5ca4;
+}
+.select-cash-bg .select-cash .confirm-btn {
+
+    background-color: #fc5ca4;
+    color: #FFFFFF;
+}
+.select-cash-bg .select-cash .confirm-btn-no{
+    background-color: #dddddd;
+    color: #666666;
+}
+.price-wrap .price-wrap-r {
+    border-bottom: 1px solid #fc5ca4;
+    border-top: 1px solid #fc5ca4;
+}

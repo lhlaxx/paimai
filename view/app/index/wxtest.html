@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+<a href="" id="pay">微信已支付</a>
+<a href="#" id="gopay">去支付</a>
+
+</body>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../src/js/common.js"></script>
+<script type="text/javascript" src="../../../static/js/AppHelper.js"></script>
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+</html>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+    var success_url=fnBase.getUrlPar("success_url");
+    var backurl=fnBase.getUrlPar("backurl");
+    var recharge_id=fnBase.getUrlPar("rechargeid");
+    $("#checkpay").hide();
+
+    alert(recharge_id);
+    //window.location.href=backurl;
+    $(document).ready(function(){
+        $('#pay').attr('href',success_url);
+        var nowHost = 'http://' + window.location.host;//当前主机地址
+        var url= fnBase.source_url + "/index.php/index/Pingpay/getWxorder?recharge_id="+recharge_id;
+        //alert(url);
+        //var url= nowHost + "/index.php/index/Drawprize/judgeDraw?openid="+openid+"&goodsId="+goodsId+"&state=200";
+        $.ajax({
+            type : "get",
+            async:false,
+            url : url,
+            dataType : "jsonp",
+            jsonp: "callback",//服务端用于接收callback调用的function名的参数
+            jsonpCallback: "showData",  //指定回调函数名称
+            success : function(res){
+                alert(res.state);
+                if (res.state == 3) {
+                    //window.location.href=backurl;
+                    window.Auction.thirdPay(backurl);
+
+                } else if (res.state == 1) {
+                    window.location.href=success_url;
+                }
+            },
+            error:function(){
+                alert('fail');
+            }
+        });
+
+    });
+
+    $('#gopay').click(function () {
+        alert(21);
+        window.Auction.thirdPay(backurl);
+    })
+
+</script>

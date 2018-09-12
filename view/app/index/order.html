@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/css/order.css?0.08">
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>订单确认</h2>
+</header>
+<div class="content">
+    <div class="user-info">
+        <!--<div class="gps-icon"></div>-->
+        <!--<div class="info-details user-info-center">-->
+        <!--<div class="user-name-tel">-->
+        <!--<p class="user-name"></p>-->
+        <!--<p class="user-tel"></p>-->
+        <!--</div>-->
+        <!--<div class="user-address"></div>-->
+        <!--</div>-->
+        <!--<div class="no-info-details user-info-center">请输入收货地址</div>-->
+        <!--<a class="ads-edit" href="../user/address.html?source=web"></a>-->
+
+        <!--<div class="gps-icon gps-icon-tel"></div>-->
+        <!--<div class="user-info-center">-->
+        <!--<div class="user-tel user-tel-no">点击输入要充值的号码</div>-->
+        <!--<div class="tel-tip">我们将会在第二个工作日将话费充值到您确认的手机号中</div>-->
+        <!--</div>-->
+        <!--<a class="ads-edit" href="javascript:void (0)"></a>-->
+    </div>
+    <div class="goods-info">
+        <a class="goods-img" href="#"><img src=""></a>
+        <p class="goods-name"></p>
+        <div class="goods-price"></div>
+    </div>
+    <div class="select-colorGray" style="display: none">
+        <ul class="select">
+            <!--<li class="selected select-item" data-channel="alipay">-->
+            <!--<span><img src="../../../static/img/pay-ali.png" /></span>-->
+            <!--<label>支付宝</label>-->
+            <!--<span></span>-->
+            <!--</li>-->
+
+            <!--<li class="select-item" data-channel="wx">-->
+            <!--<span><img src="../../../static/img/pay-wechat.png" /></span>-->
+            <!--<label>微信</label>-->
+            <!--<span></span>-->
+            <!--</li>-->
+        </ul>
+    </div>
+</div>
+<footer id="pay-sure" class="no-sure">确认支付</footer>
+
+<div class="select-cash-bg">
+    <div class="select-cash">
+        <a class="select-close"><img src="../../../static/img/close_enterpass.png"/></a>
+        <div class="input-cash">
+            <input type="tel" placeholder="请输入手机号" maxlength="11" class="cash-input" autofocus="autofocus">
+        </div>
+
+        <div class="confirm-btn confirm-btn-no">确定</div>
+    </div>
+</div>
+
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script type="text/javascript" src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var orderEvent = {
+        source:fnBase.getUrlPar("source"),
+        order_id:fnBase.getUrlPar("order_id"),
+        amount:'',
+        goodsId:"",
+        success_url:"",
+        cancel_url:"",
+        user_phone:"",
+        init:function(){
+            this.addBackEvent();
+            this.addMainClickEvent();
+            this.addSetSelectEvent();
+            this.addGetGoodInfo();
+            this.addSurePay();
+        },
+        addBackEvent:function(){
+            $(".back_arrow").click(function(){
+                if(orderEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back()
+                }
+            })
+        },
+        isUserPayBtn:false,
+        isUserPhoneBtn:false,
+        addMainClickEvent:function(){
+            $("body").on("click",".user-telPhone",function(){
+                $(".select-cash-bg").show();
+                $(".cash-input").trigger("click").focus();
+                if(orderEvent.user_phone){
+                    $(".cash-input").val(orderEvent.user_phone);
+                    $(".confirm-btn").removeClass("confirm-btn-no");
+                    orderEvent.isUserPhoneBtn = true
+                }else {
+
+                }
+            });
+            $("body").on("input",".cash-input",function(){
+                if($(this).val().length == 11){
+                    $(".confirm-btn").removeClass("confirm-btn-no");
+                    orderEvent.isUserPhoneBtn = true
+                }else {
+                    $(".confirm-btn").addClass("confirm-btn-no");
+                    orderEvent.isUserPhoneBtn = false
+                }
+            });
+            $("body").on("click",".select-close",function(){
+                $(".select-cash-bg").hide();
+            });
+            $("body").on("click",".confirm-btn",function(){
+                if(orderEvent.isUserPhoneBtn){
+                    if(/^1[0-9]{10}$/.test($(".cash-input").val()) == false ){
+                        fnBase.alert("请输入有效的手机号");
+                        return;
+                    }
+                    fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Paybackjoin/confirmRecharge",{
+                        openId:store.get("openid"),
+                        order:orderEvent.order_id,
+                        goodsId:orderEvent.goodsId,
+                        phone:$(".cash-input").val()
+                    },function(res){
+                        if(res.state == 1){
+                            $(".select-cash-bg").hide();
+                            $(".user-telPhone").html($(".cash-input").val());
+                            $(".user-telPhone").removeClass("user-tel-no");
+                            $("#pay-sure").removeClass("no-sure");
+                            orderEvent.isUserPayBtn = true;
+                        }else {
+                            fnBase.alert(res.cause)
+                        }
+                    })
+                }else {
+
+                }
+            });
+        },
+        addSetSelectEvent:function(){
+            $(".recharge-item").click(function(){
+                $(this).addClass("recharge-active").siblings().removeClass("recharge-active");
+            });
+            $("body").on("click",".select-item",function(){
+                $(this).addClass("selected").siblings().removeClass("selected");
+            })
+            /*$(".select-item").click(function(){
+             $(this).addClass("selected").siblings().removeClass("selected");
+             })*/
+        },
+        addGetGoodInfo:function(){
+            fnBase.loadShow();
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/User/getUserOrder",{
+                "openid":store.get('openid'),
+                "order_id":orderEvent.order_id
+            },function(res){
+                var infoHtmlStr = '';
+                if(res.state == 1){
+                    if(res.data.type == 1){
+                        infoHtmlStr = '<div class="gps-icon gps-icon-tel"></div>'
+                                +   '<div class="user-info-center">'
+                                +       '<div class="user-telPhone user-tel-no">点击输入要充值的号码</div>'
+                                +       '<div class="tel-tip">我们将会在第二个工作日将话费充值到您确认的手机号中</div>'
+                                +   '</div>'
+                                +'<a class="ads-edit" href="javascript:void (0)"></a>';
+                        $(".user-info").html(infoHtmlStr);
+                        $("#pay-sure").addClass("no-sure")
+                    }else if(res.data.type == 0){
+                        infoHtmlStr = '<div class="gps-icon"></div>'
+                                + '<div class="info-details user-info-center">'
+                                +   '<div class="user-name-tel">'
+                                +       '<p class="user-name"></p>'
+                                +       '<p class="user-tel"></p>'
+                                +   '</div>'
+                                +   '<div class="user-address"></div>'
+                                + '</div>'
+                                + '<div class="no-info-details user-info-center">请输入收货地址</div>'
+                                + '<a class="ads-edit" href="../user/address.html?source=web"></a>';
+                        $(".user-info").html(infoHtmlStr);
+                        if(res.data.address){
+                            $(".no-info-details").hide();
+                            $(".info-details").show();
+                            $(".info-details .user-name").html(res.data.name);
+                            $(".info-details .user-tel").html(res.data.phone);
+                            $(".info-details .user-address").html(res.data.address);
+                        }
+                        $("#pay-sure").removeClass("no-sure");
+                        orderEvent.isUserPayBtn = true;
+                    }
+                    $(".goods-img img").attr("src",res.data.picUrl);
+                    $(".goods-name").html(res.data.goodsName);
+                    $(".goods-price").html('成交价<span>'+res.data.bidPrice+'元</span>');
+                    orderEvent.amount = res.data.amount;
+                    orderEvent.goodsId = res.data.goods_id;
+                    orderEvent.user_phone = res.data.phone;
+                    orderEvent.addGetPayChanel()
+                }else {
+                    fnBase.alert(res.cause)
+                }
+            })
+        },
+        addGetPayChanel:function(){
+            fnBase.commonJsonpAjax(fnBase.source_url+'/index.php/index/Godlist/payChanel',{
+                "chanel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode
+            },function(res){
+                if(res.state == 1){
+                    var payChannel = '';
+                    if(res.payMsg.length > 0){
+                        for(var i= 0,len=res.payMsg.length;i<len;i++){
+                            payChannel += '<li class="select-item" data-channel="'+res.payMsg[i].type+'" onclick="">'
+                                    +   '<span><img src="'+res.payMsg[i].payUrl+'" /></span>'
+                                    +   '<label>'+res.payMsg[i].name+'</label>'
+                                    +   '<span></span>'
+                                    +'</li>'
+                        }
+                        $(".select-colorGray .select").html(payChannel);
+                        $(".select li").eq(0).addClass('selected');
+                        $(".select-colorGray").show();
+                    }
+                }else {
+                    fnBase.alert(res.msg)
+                }
+            })
+        },
+        addSurePay:function(){
+            $("#pay-sure").click(function(){
+                if(orderEvent.isUserPayBtn){
+                    orderEvent.addOrderStatistics();
+                    fnBase.loadShow();
+                    var channel = $(".selected").attr("data-channel"),pay_type ="",devicetype="";
+                    if(channel == 'wx'){
+                        pay_type = "haonuo"
+                       // pay_type = "wxpay"
+                    }else{
+                        pay_type = "ping";
+                        if(fnBase.ChannelId == "IosJsjx"){
+                            channel = "alipay_wap"
+                        }
+                    }
+                    if(fnBase.mobileType == "android"){
+                        devicetype = "AND"
+                    }else {
+                        devicetype = "IOS"
+                    }
+                    fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Pay/pay",{
+                        "pay_type":pay_type,
+                        "show_data_type":"json",
+                        "channel":channel,
+                        "openid":store.get('openid'),
+                        "amount":orderEvent.amount,
+                        "payflg":2,
+                        "goods_name":"充值",
+                        "order_id":orderEvent.order_id,
+                        "goodsId":orderEvent.goodsId,
+                        "backurl":"",
+                        "devicetype":devicetype,
+                        "diffAppScheme":fnBase.diff
+                    },function(res){
+                        if(res.state == 1){
+                            orderEvent.success_url = decodeURIComponent(res.return_url.success_url);
+                            orderEvent.cancel_url = decodeURIComponent(res.return_url.cancel_url);
+                            if(channel == 'wx'){
+//                                window.Auction.thirdPay(orderEvent.success_url);
+                                //window.Auction.thirdPay(JSON.stringify(res.datas));
+
+                                var timerWXorder = setInterval(function(){
+
+
+                                    fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/index/Pingpay/getWxorder",{
+                                        "recharge_id":res.recharge_id,
+                                        "show_data_type":"json",
+                                    },function(rees){
+                                        if(rees.state==1){
+                                            clearInterval(timerWXorder);
+                                            window.location.href=res.return_url.success_url
+
+                                        }
+                                    });
+
+                                },2000);
+                                window.location.href=res.paycode;
+
+                                /*
+                                 h5支付2
+                                 */
+//                                window.location.href=fnBase.source_url+"/front/view/app/index/wxpay.html?rechargeid="+res.recharge_id+"&backurl="+res.datas.mweb_url+"&success_url="+res.return_url.success_url;
+                            }else{
+                                if(fnBase.mobileType == "ios"){
+                                    var json_dt = JSON.stringify(res.json_dt);
+                                    if(fnBase.ChannelId == "IosJsjx"){
+                                        window.Auction.turnBrowser(fnBase.source_url+"/front/view/app/index/rechargetest.html?json_dt="+json_dt+"&diffAppScheme="+fnBase.diff)
+                                    }else {
+                                        window.Auction.aliPay(JSON.stringify({"callBack":"orderEvent.isPaySuccess","ali":res.json_dt}))
+                                    }
+                                }else {
+                                    window.location.href=res.return_url.success_url
+                                    //window.Auction.pingPay("orderEvent.isPaySuccess",res.json_dt)
+                                }
+                            }
+                        }else {
+                            fnBase.alert(res.cause)
+                        }
+                    },3000)
+                }
+
+            })
+        },
+        isPaySuccess:function(resultCode,resultMsg){
+            if(resultCode == 1){
+                fnBase.addLocationHref(orderEvent.success_url)
+            }else {
+                fnBase.alert(JSON.parse(resultMsg).resultMsg);
+                setTimeout(function(){
+                    fnBase.addLocationHref(orderEvent.cancel_url)
+                },2000)
+            }
+        },
+        addOrderStatistics:function(){
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":fnBase.UUID,
+                "openId":store.get('openid'),
+                "ident":"100028",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"点击确认支付"
+            };
+            fnBase.addStatisticsEvent(Op,clickJson);
+            var ident = 0,clickName = "";
+            if($(".selected").attr("data-channel") == "alipay"){
+                ident = 100027;
+                clickName = "支付渠道勾选支付宝"
+            }else {
+                ident = 100026;
+                clickName = "支付渠道勾选微信"
+            }
+            clickJson={
+                "actionId":5,
+                "uuid":fnBase.UUID,
+                "openId":store.get('openid'),
+                "ident":ident,
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":clickName
+            };
+            Op={
+                "ot":"3"
+            };
+            fnBase.addStatisticsEvent(Op,clickJson);
+        }
+    };
+    orderEvent.init();
+</script>
+</body>
+</html>

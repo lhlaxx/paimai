@@ -1,0 +1,280 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>极速拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/newhand.css?0.3">
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>新手专区</h2>
+</header>
+<div class="container">
+    <div class="container-title">
+        <!--<div class="container-title-p">为您精选3件商品</div>-->
+        <!--<div class="container-title-p">&nbsp;</div>-->
+    </div>
+
+    <div class="container-wrap">
+        <div class="left-time">
+            <p>&nbsp;</p>
+            <p class="p"></p>
+            <div class="time">
+                <div class="hour time-item"><span>0</span><span>0</span></div>
+                :
+                <div class="minute time-item"><span>0</span><span>0</span></div>
+                :
+                <div class="second time-item"><span>0</span><span>0</span></div>
+            </div>
+        </div>
+        <div class="goods">
+            <ul class="goods-list">
+                <!--<li class="goods-item goods-state">-->
+                <!--<a class="goods-img"><img data-src="http://10.20.40.229:8080/hd/1501057470349.jpg" class=" lazyloaded" src="http://10.20.40.229:8080/hd/1501057470349.jpg"></a>-->
+                <!--<h3 class="goods-name">古驰 罪爱女用淡香水-50ml</h3>-->
+                <!--<div class="goods-item-deal"></div>-->
+                <!--</li>-->
+                <!--<li class="goods-item">-->
+                <!--<a class="goods-img"><img data-src="http://10.20.40.229:8080/hd/1501057470349.jpg" class=" lazyloaded" src="http://10.20.40.229:8080/hd/1501057470349.jpg"></a>-->
+                <!--<h3 class="goods-name">古驰 罪爱女用淡香水-50ml</h3>-->
+                <!--</li>-->
+                <!--<li class="goods-item">-->
+                <!--<a class="goods-img"><img data-src="http://10.20.40.229:8080/hd/1501057470349.jpg" class=" lazyloaded" src="http://10.20.40.229:8080/hd/1501057470349.jpg"></a>-->
+                <!--<h3 class="goods-name">古驰 罪爱女用淡香水-50ml</h3>-->
+                <!--</li>-->
+            </ul>
+        </div>
+        <div class="strategy-btn click-btn">看看大神攻略，学习下大神怎么拍更容易中</div>
+        <div class="sunlist-btn click-btn">查看晒单，瞻仰一下别的幸运儿</div>
+    </div>
+</div>
+
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/dropload.min.js"></script>
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+    var newHandEvent = {
+        source:fnBase.getUrlPar("source"),
+        init:function(){
+            this.addMainClickEvent();
+            this.addGetDataEvent()
+        },
+        addMainClickEvent:function(){
+            $(document).on("click",".back_arrow",function(){
+                if(newHandEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back();
+                }
+            });
+
+            $(document).on("click",".strategy-btn",function(){
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100293",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"点击查看大神攻略"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+
+                fnBase.addLocationHref("bigstrategy.html?source=web")
+            });
+            $(document).on("click",".sunlist-btn",function(){
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100294",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"点击查看商品晒单"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+
+                if(fnBase.VersionCode == '108'){
+                    fnBase.alert("请更新版本进行体验")
+                }else {
+                    window.Auction.backPage(2)
+                }
+            });
+            $(document).on("click",".goods-item",function(){
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":fnBase.UUID,
+                    "openId":store.get('openid'),
+                    "ident":"100295",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"点击商品按钮"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+
+
+                var status = $(this).attr("data-status"),isGet = $(this).attr("data-isGet");
+                if(status == 1){
+                    window.Auction.openUrl($(this).attr("data-goodsUrl"))
+                }else {
+                    if(isGet == 'true'){
+                        fnBase.alert('你已经中过奖，不能再参与该件商品')
+                    }else {
+                        fnBase.alert('你的经验已相当丰富，不能再参与该件商品活动')
+                    }
+                }
+            });
+        },
+        addGetDataEvent:function(){
+            var that = this;
+            fnBase.commonJsonpAjax(fnBase.source_url+'/index.php/index/Newhand/activity',{
+                "uuid":fnBase.UUID,
+                "chanel":fnBase.ChannelId,
+                "verCode":fnBase.VersionCode
+            },function(res){
+                if(res.state == 1){
+                    that.addMainHtmlEvent(res)
+                }else {
+                    fnBase.alert(res.msg)
+                }
+            })
+        },
+        leftTime:0,
+        addMainHtmlEvent:function(data){
+            if(data.if_finish == 0){
+                $(".left-time .p").text('倒计时');
+                if(data.count_down === -1){
+                    newHandEvent.leftTime = 0;//活动剩余时间
+                }else {
+                    newHandEvent.leftTime = data.count_down;//活动剩余时间
+                }
+                time();
+            }else if(data.if_finish == 1){
+                $(".left-time .p").text('本次活动已经结束');
+            }else if(data.if_finish == 2){
+                $(".left-time .p").text('本次活动尚未开始');
+            }else {
+
+            }
+            $(".time").css({"opacity":1});
+
+            if(data.goodsMsg.length > 0){
+                var goods_list_html = '',goods_item_state='',goods_item_state_html='';
+                for(var i= 0,len=data.goodsMsg.length;i<len;i++){
+                    goods_item_state = '';
+                    goods_item_state_html='';
+                    if(data.goodsMsg[i].isGet){
+                        goods_item_state = 'goods-state';
+                        goods_item_state_html = '<div class="goods-item-deal"></div>';
+                    }
+                    goods_list_html += '<li class="goods-item '+goods_item_state+'" data-isGet="'+data.goodsMsg[i].isGet+'" data-goodsUrl="'+data.goodsMsg[i].goods_url+'" data-status="'+data.goodsMsg[i].status+'">'
+                        +   '<a class="goods-img"><img src="'+data.goodsMsg[i].picUrl+'"></a>'
+                        +   '<h3 class="goods-name">'+data.goodsMsg[i].goodsName+'</h3>'
+                        +   goods_item_state_html
+                        +  '</li>'
+                }
+                $(".goods-list").html(goods_list_html);
+                $(".click-btn").show();
+            }
+        }
+    };
+    newHandEvent.init();
+
+
+    function formatSeconds(value) {
+        var theTimeS = parseInt(value);// 秒
+        var theTimeM = 0;// 分
+        var theTimeH = 0;// 小时
+        if(theTimeS >= 60) {
+            theTimeM = parseInt(theTimeS/60);
+            theTimeS = parseInt(theTimeS%60);
+            if(theTimeM >= 60) {
+                theTimeH = parseInt(theTimeM/60);
+                theTimeM = parseInt(theTimeM%60);
+            }
+        }
+        var result = ""+toZero(parseInt(theTimeS));
+        if(theTimeM >= 0) {
+            result = ""+toZero(parseInt(theTimeM))+":"+result;
+        }
+        if(theTimeH >= 0) {
+            result = ""+toZero(parseInt(theTimeH))+":"+result;
+        }
+        return result;
+    }
+
+    function time(){
+        $(".time").html(formatSeconds(newHandEvent.leftTime));
+
+//        var ttime = newHandEvent.leftTime;
+
+        if (newHandEvent.leftTime == 0) {
+            $(".left-time .p").text('本次活动已经结束');
+            $(".time").hide();
+            $(".goods-list").empty()
+        }else{
+            newHandEvent.leftTime--;
+            //定时器，每秒重新计算
+            setTimeout(function() {
+                time();
+            },1000)
+        }
+    }
+    function toZero(num) {
+        if (num <= 9) {
+            return '<div class="time-item"><span>0</span>' + '<span>'+num+'</span></div>';
+        } else {
+            var arr = String(num).split(""),resultHtml = '';
+            for(var i = 0; i < arr.length ; i++ ) {
+                var temp = '<span>'+arr[i]+'</span>';
+                resultHtml = resultHtml + temp;
+            }
+            return '<div class="time-item">'+resultHtml+'</div>';
+        }
+    }
+
+    var Op = "",clickJson = "";
+    Op={
+        "ot":"3"
+    };
+    clickJson={
+        "actionId":3,
+        "uuid":fnBase.UUID,
+        "openId":store.get('openid'),
+        "ident":"100292",
+        "date":parseInt(new Date().getTime() / 1000),
+        "name":"新手专区页面到达"
+    };
+    fnBase.addStatisticsEvent(Op,clickJson);
+
+</script>
+</body>
+</html>

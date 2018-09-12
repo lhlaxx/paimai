@@ -1,0 +1,470 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,maximum-scale=1.0,minimun-scale=1.0,user-scalable=yes">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>抽奖</title>
+    <meta name="description">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <!-- <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script> -->
+    <link rel="stylesheet" type="text/css" href="../../../static/css/reset.css">
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+    <style>
+        body{
+            background-color: #ea1a25;
+            background-image: url(../../../static/img/lottery/lt_bg01.png);
+            background-size: 100%;
+            font-family: "微软雅黑";
+            background-repeat: no-repeat;
+        }
+        div {
+            -webkit-tap-highlight-color: rgba(0, 0, 0, 0);/* 点击无阴影 */
+        }
+        .scroll{
+          overflow-y:hidden;
+        }
+        .newbar{
+            background: #fd4141;
+            height: 40px;
+            line-height: 40px;
+            color: #fff;
+            font-size: 20px;
+            overflow: hidden;
+            text-align: center;
+            padding-left: 10px;
+        }
+        .newbar a{
+            float:left;
+
+        }
+        .newbar a img{
+            width:10px;
+
+        }
+    </style>
+</head>
+
+<body  class="lottery">
+
+
+<div class="newbar">
+    <a class="back"><img src="../../../static/img/back.png"/></a>
+    幸运大转盘
+</div>
+
+<div><input type="hidden" id="drawId">  </div>
+<div class="lty">
+    <!-- <img class="bg" src="../../../static/img/lottery/lt_bg01.png"/> -->
+    <div class="circle">
+        <div class="g-content">
+            <div class="g-lottery-case">
+                <div class="g-left">
+                    <!-- <h2>您已拥有<span class="playnum"></span>次抽奖机会，点击立刻抽奖！~</h2> -->
+                    <div class="g-lottery-box">
+                        <div class="g-lottery-img">
+                            <div id="imglist">
+                                <img src="../../../static/img/lottery/jiangpin01.png" class="prize01"/>
+                                <img src="../../../static/img/lottery/jiangpin01.png" class="prize02"/>
+                                <img src="../../../static/img/lottery/jiangpin01.png" class="prize03"/>
+                                <img src="../../../static/img/lottery/jiangpin01.png" class="prize04"/>
+                                <img src="../../../static/img/lottery/jiangpin01.png" class="prize05"/>
+                                <img src="../../../static/img/lottery/jiangpin01.png" class="prize06"/>
+                            </div>
+                            <a class="playbtn" href="javascript:;" title="开始抽奖"></a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="rule">
+        <div class="title"><img src="../../../static/img/lottery/ruler.png"/></div>
+        <h3>活动奖品</h3>
+        <div id="list">
+            <p>一等奖：5000元京东E卡</p>
+            <p>二等奖：1000元京东E卡</p>
+            <p>三等奖：200元京东E卡</p>
+            <p>四等奖：50元京东E卡</p>
+            <p>五等奖：20拍币</p>
+        </div>
+        <hr>
+        <!--<h3>活动时间</h3>
+        <p>2018年8月23  12:31 - 2018年8月23  12:31</p>
+        <hr>-->
+        <h3>活动规则：</h3>
+        <p>1.抽奖前记得去"我的-收货地址”中完善您的收货地址哦~</p>
+        <p>2.点击'"开始"，转盘指针开始转动，最终指针所指即为您的奖品。</p>
+        <p>3.每当您参与竞拍未拍中时，您将获得一次抽奖机会！</p>
+        <p>4.抽中实物奖品，我们会在工作日9:00-19:00当天为您发出。法定假日及周末照常发货！抽中虚拟商品(如拍币)，将会及时为您充值到帐。您可以在我的-拍币-账户明细中查看充值记录。</p>
+        <p>5.您可以在我的-我的抽奖记录查看您的抽奖记录。</p>
+    </div>
+    <footer>本次抽奖最终解释权归本公司所有</footer>
+
+</div>
+<!-- <div class="tank">
+  <img class="title" src="../../../static/img/lottery/Winning.png"/>
+  <br>
+  <br>
+  <h1>中奖啦</h1>
+  <p>恭喜您，</p>
+  <p>获得1000元京东E卡！</p>
+  <small>您也可以在个人中心--抽奖记录查看奖品</small>
+  <a>查看产品详情</a>
+</div> -->
+<script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
+<script type="text/javascript" src="../../../static/js/store-json2.min.js"></script>
+<script type="text/javascript" src="../../../static/js/AppHelper.js"></script>
+<script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+<script type="text/javascript" src="../../../static/js/jQueryRotate.js"></script>
+<!-- <script type="text/javascript" src="../../../src/js/index.js"></script> -->
+<script type="text/javascript" src="../../../src/js/jquery.rotate.min.js"></script>
+<script src="layer/layer.js"></script>
+
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var goodsId = fnBase.getUrlPar("goodsId");
+    var openid  = store.get("openid");
+    var goods_id = 0;
+    var nowHost = 'http://' + window.location.host;//当前主机地址
+
+    function gotogoods(openid, host) {
+        //添加跳转链接
+        fnBase.addLocationHref(host + '/front/view/app/lottery/winrecord2.html?from=drawPage&openid='+ openid);
+    }
+    $(function() {
+
+        $(document).ready(function(){
+            $(".back").click(function () {
+                window.Auction.back();
+            });
+            var url= nowHost + "/index.php/index/Drawprize/judgeDraw?openid="+openid+"&goodsId="+goodsId;
+            //var url= nowHost + "/index.php/index/Drawprize/judgeDraw?openid="+openid+"&goodsId="+goodsId+"&state=200";
+            $.ajax({
+                type : "get",
+                async:false,
+                url : url,
+                dataType : "jsonp",
+                jsonp: "callback",//服务端用于接收callback调用的function名的参数
+                jsonpCallback: "showData",  //指定回调函数名称
+                success : function(json){
+                    console.log(json);
+                    var listhtml="";
+                    var listhtml2="";
+                    if(json.state == 200 ){
+
+                        // data=JSON.stringify(json);
+                        var dataArray = json['prize'];
+                        var prizeLevel = json['data']['prizeLevel'];
+                        goodsId = json['data']['goodsId'];
+                        var drawId = json['data']['drawId'];
+                        goods_id = json.data.goods_id;
+                        $("#drawId").val(drawId);
+
+                        $.each(dataArray,function(n,value){
+//                                  listhtml+='<img src="'+value.picUrl+'class="prize0'+n+'/>';
+                                listhtml+='<p class="index0'+(value.prizeLevel)+'">'+(intToChinese(value.prizeLevel))+'等奖</p>';
+                                listhtml+='<img src="'+value.picUrl+'" class="prize0'+(value.prizeLevel)+'">';
+                                number=intToChinese(value.prizeLevel);
+                                listhtml2+=' <p>'+number+'等奖：'+value.prizeName+'</p>';
+                            }
+                        );
+                        //console.log(data);
+                        $("#imglist").html(listhtml);
+                        $("#list").html(listhtml2);
+
+
+
+                        var $btn = $('.playbtn');
+                        var playnum = 1; //初始次数，由后台传入
+                        $('.playnum').html(playnum);
+                        var isture = 0;
+                        var clickfunc = function() {
+                            var geturl= nowHost + "/index.php/index/Drawprize/doDraw?openid="+openid+"&drawId="+drawId;
+                            $.ajax({
+                                type : "get",
+                                async:false,
+                                url : geturl,
+                                dataType : "jsonp",
+                                jsonp: "callback",//服务端用于接收callback调用的function名的参数
+                                jsonpCallback: "showData",  //指定回调函数名称
+                                success : function(jsondata){
+                                    console.log(jsondata);
+                                    var listhtml="";
+                                    if(jsondata.state == 200 && jsondata.data.hasWin==1){
+
+                                        data = Number(jsondata['data']['prizeLevel']);
+                                        //console.log(prizeLevel);
+
+                                        $.each(dataArray,function(n,value2){
+                                                // console.log(value2.prizeLevel);
+                                                if(data==value2.prizeLevel) {
+                                                    console.log(value2.prizeName);
+                                                    rotateFunc((n), (n) * 60, '恭喜您获得' + value2.prizeName,value2.picUrl,goodsId,1);
+                                                }
+                                            }
+                                        );
+
+                                        /*switch(data) {
+                                         case 1:
+                                         rotateFunc(1, 0, '恭喜您获得2000元京东E卡!');
+                                         break;
+                                         case 2:
+                                         rotateFunc(2, 60, '谢谢参与~再来一次吧~');
+                                         break;
+                                         case 3:
+                                         rotateFunc(3, 120, '恭喜您获得500元京东E卡!');
+                                         break;
+                                         case 4:
+                                         rotateFunc(4, 180, '恭喜您获得800元京东E卡!');
+                                         break;
+                                         case 5:
+                                         rotateFunc(5, 240, '谢谢参与~再来一次吧~');
+                                         break;
+                                         case 6:
+                                         rotateFunc(6, 300, '恭喜您获得1000元京东E卡!');
+                                         break;
+                                         }*/
+
+
+
+                                    }else if(jsondata.state == 200 && jsondata.data.hasWin!=1) {
+                                        rotateFunc(6, 300, '','','',2);
+                                    } else if(jsondata.state == 103) {
+                                        rotateFunc(6, 300, '','','',3);
+                                    } else
+                                    {
+                                        //alert(jsondata.cause);
+                                        //$("#imglist").html('');
+                                        $(".rule h3").html('');
+                                        $("#list").html('继续竞拍!赢得抽奖机会！');
+                                        $("body").addClass("scroll");//弹出框时，背景滚动条禁止滚动；
+                                        layer.open({
+                                                                type: 1,
+                                                                skin: 'layui-layer-demo', //样式类名
+                                                                title: false,
+                                                                content: '浏览器滚动条已锁',
+                                                                scrollbar: false,
+                                                                anim: 2,
+                                                                skin: 'yourclass',
+                                                                content: '<div class="tank">'
+                                                                +'<div class="bor">'
+                                                                +'<br>'
+                                                                +'<img class="" style="width:200px;" src="../../../static/img/lottery/defeat2.png"/>'
+                                                                +'<p class="font01">继续参与竞拍，赢取抽奖机会！</p>'
+                                                                +'<small class="font02"></small>'
+                                                                +'<br>'
+                                                                +'<a href="'+ nowHost + '/front/view/app/index/details.html?goodsid=' + goodsId + '>参与竞拍</a>'
+                                                                +'</div>'
+                                                                +'</div>'
+                                                            });
+                                        
+                                    }
+                                },
+                                error:function(){
+                                    alert('fail');
+                                }
+                            });
+
+
+
+
+
+                            //var data = [1, 2, 3, 4, 5, 6];
+                            //data为随机出来的结果，根据概率后的结果
+                            //data = data[Math.floor(Math.random() * data.length)];
+
+                        };
+                        $btn.click(function() {
+                            if(isture) return; // 如果在执行就退出
+                            isture = true; // 标志为 在执行
+                            //先判断是否登录,未登录则执行下面的函数
+                            if(1 == 2) {
+                                $('.playnum').html('0');
+                                alert("请先登录");
+                                isture = false;
+                            } else { //登录了就执行下面
+                                if(playnum <= 0) { //当抽奖次数为0的时候执行
+                                    alert("没有次数了");
+                                    $('.playnum').html(0);
+                                    isture = false;
+                                } else { //还有次数就执行
+                                    playnum = playnum - 1; //执行转盘了则次数减1
+                                    if(playnum <= 0) {
+                                        playnum = 0;
+                                    }
+                                    $('.playnum').html(playnum);
+                                    clickfunc();
+                                }
+                            }
+                        });
+                        var rotateFunc = function(awards, angle, text,img,goodsid,type) {
+                            isture = true;
+                            $btn.stopRotate();
+                            $btn.rotate({
+                                angle: 0,
+                                duration: 3000, //旋转时间
+                                animateTo: angle + 1440, //让它根据得出来的结果加上1440度旋转
+                                callback: function() {
+                                    isture = false; // 标志为 执行完毕
+                                    if(type==1){
+                                        $("body").addClass("scroll");//弹出框时，背景滚动条禁止滚动；
+                                        layer.open({
+                                            type: 1,
+                                            skin: 'layui-layer-demo', //样式类名
+                                            title: false,
+                                            content: '浏览器滚动条已锁',
+                                            scrollbar: false,
+                                            anim: 2,
+                                            skin: 'yourclass',
+                                            content: '<div class="tank2">'
+                                            +'<div class="bor">'
+                                            +'<img class="title" src="../../../static/img/lottery/Winning.png"/>'
+                                            +'<br>'
+                                            +'<img class="" style="width:200px;" src="'+img+'"/>'
+                                            +'<p>恭喜您，</p>'
+                                            +'<p>'+text+'！</p>'
+                                            +'<small>您也可以在个人中心--抽奖记录查看奖品</small>'
+                                            +'<br>'
+                                            +'<a onclick="gotogoods(openid, nowHost)" href="#">查看产品详情</a>'
+                                            +'</div>'
+                                            +'</div>'
+                                        });
+                                    }else if(type==2){
+                                        $("body").addClass("scroll");//弹出框时，背景滚动条禁止滚动；
+                                        layer.open({
+                                            type: 1,
+                                            skin: 'layui-layer-demo', //样式类名
+                                            title: false,
+                                            content: '浏览器滚动条已锁',
+                                            scrollbar: false,
+                                            anim: 2,
+                                            skin: 'yourclass',
+                                            content: '<div class="tank">'
+                                            +'<div class="bor">'
+                                            +'<img class="title" src="../../../static/img/lottery/noWinning.png" style="top:-28px;"/>'
+                                            +'<br>'
+                                            +'<img class="" style="width:200px;" src="../../../static/img/lottery/defeat.png"/>'
+                                            +'<p class="font01">参与竞拍，赢取抽奖机会！</p>'
+                                            +'<small class="font02"></small>'
+                                            +'<br>'
+                                            +'<a href="' + nowHost + "/front/view/app/index/details.html?goodsid=" + goodsId + '">继续竞拍</a>'
+                                            +'</div>'
+                                            +'</div>'
+                                        });
+                                    }else if(type==3){
+                                        $("body").addClass("scroll");//弹出框时，背景滚动条禁止滚动；
+                                        layer.open({
+                                            type: 1,
+                                            skin: 'layui-layer-demo', //样式类名
+                                            title: false,
+                                            content: '浏览器滚动条已锁',
+                                            scrollbar: false,
+                                            anim: 2,
+                                            skin: 'yourclass',
+                                            content: '<div class="tank">'
+                                            +'<div class="bor">'
+                                            +'<br>'
+                                            +'<img class="" style="width:200px;" src="../../../static/img/lottery/defeat2.png"/>'
+                                            +'<p class="font01">参与竞拍，赢取抽奖机会！</p>'
+                                            +'<small class="font02"></small>'
+                                            +'<br>'
+                                            +'<a href="' + nowHost + "/front/view/app/index/details.html?goodsid=" + goodsId +  '">参与竞拍</a>'
+                                            +'</div>'
+                                            +'</div>'
+                                        });
+                                    }
+
+                                }
+                            });
+                        };
+                    }else{
+					$("#imglist").html('');
+					$(".rule h3").html('');
+                    $("#list").html('继续竞拍!赢得抽奖机会！');
+                    $("body").addClass("scroll");//弹出框时，背景滚动条禁止滚动；
+					layer.open({
+                                            type: 1,
+                                            skin: 'layui-layer-demo', //样式类名
+                                            title: false,
+                                            content: '浏览器滚动条已锁',
+                                            scrollbar: false,
+                                            anim: 2,
+                                            skin: 'yourclass',
+                                            content: '<div class="tank">'
+                                            +'<div class="bor">'
+                                            +'<br>'
+                                            +'<img class="" style="width:200px;" src="../../../static/img/lottery/defeat2.png"/>'
+                                            +'<p class="font01">继续参与竞拍，赢取抽奖机会！</p>'
+                                            +'<small class="font02"></small>'
+                                            +'<br>'
+                                            +'<a href="'+ nowHost + '/front/view/app/index/details.html?goodsid="' + goodsId + '>参与竞拍</a>'
+                                            +'</div>'
+                                            +'</div>'
+                                        });
+                                        
+					}
+                },
+                error:function(){
+                    alert('fail');
+                }
+            });
+            (document).delegate(".playbtn","click",function(){
+                alert('事故发生点');
+            });
+        });
+
+
+    });
+</script>
+<script type="text/javascript">
+    function intToChinese ( str ) {
+        str = str+'';
+        var len = str.length-1;
+        var idxs = ['','十','百','千','万','十','百','千','亿','十','百','千','万','十','百','千','亿'];
+        var num = ['零','一','二','三','四','五','六','七','八','九'];
+        return str.replace(/([1-9]|0+)/g,function( $, $1, idx, full) {
+            var pos = 0;
+            if( $1[0] != '0' ){
+                pos = len-idx;
+                if( idx == 0 && $1[0] == 1 && idxs[len-idx] == '十'){
+                    return idxs[len-idx];
+                }
+                return num[$1[0]] + idxs[len-idx];
+            } else {
+                var left = len - idx;
+                var right = len - idx + $1.length;
+                if( Math.floor(right/4) - Math.floor(left/4) > 0 ){
+                    pos = left - left%4;
+                }
+                if( pos ){
+                    return idxs[pos] + num[$1[0]];
+                } else if( idx + $1.length >= len ){
+                    return '';
+                }else {
+                    return num[$1[0]]
+                }
+            }
+        });
+    }
+
+
+
+
+
+</script>
+</body>
+</html>

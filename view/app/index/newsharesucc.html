@@ -1,0 +1,227 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/common.css"/>
+    <link rel="stylesheet" href="../../../static/css/newshare.css"/>
+</head>
+<body>
+<header>
+    <div class="back_arrow"></div>
+    <h2>邀请好友瓜分现金</h2>
+</header>
+<div class="container" id="wrapper">
+    <div id="scroll">
+        <div class="img-bg"><img src="../../../static/img/active/newshare-bg.png"></div>
+        <div id="selector"></div>
+        <div id="outselector"></div>
+        <button class="share-btn">立即下载</button>
+        <div class="rule-enter"><a>具体活动规则参见app</a></div>
+        <div class="line">
+            <div class="line-width-left"><div class="line-width-inner"></div></div>
+            <div class="line-width-right"><div class="line-width-inner"></div></div>
+            <span class="progress progress-01"></span>
+            <span class="progress progress-02"></span>
+            <span class="progress progress-03"></span>
+        </div>
+        <div class="progress-details">
+            <div class="progress-details-01">
+                <h4>第一步</h4>
+                <p class="p">下载并注册</p>
+            </div>
+            <div class="progress-details-02">
+                <h4>第二步</h4>
+                <p class="p">进入活动</p>
+                <p class="p">邀请好友注册</p>
+            </div>
+            <div class="progress-details-03">
+                <h4>第三步</h4>
+                <p class="p">邀请成功</p>
+                <p class="p">获得现金红包</p>
+            </div>
+        </div>
+    </div>
+</div>
+<script src="../../../static/js/jquery-2.2.3.min.js"></script>
+<script src="../../../static/js/lazysizes.js"></script>
+<script src="../../../static/js/store-json2.min.js"></script>
+<script src="../../../static/js/ua-parser.min.js"></script>
+<script src="../../../static/js/clipboard.min.js"></script>
+<script src="../../../static/js/iscroll-probe.js"></script>
+
+<script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+<script>
+    var fnBase = fnBase;
+    fnBase.init();
+
+    var openid="";
+    var uuid="";
+    var channel="";
+    try {
+        openid=store.get('openid');
+        if(openid==undefined){
+            openid="";
+        }
+        uuid=window.Auction.getUUID();
+
+    }catch (err){
+       
+
+    }
+    if(fnBase.getUrlPar("channel_id")){
+        channel=fnBase.getUrlPar("channel_id");
+    }else if(fnBase.getUrlPar("ChannelId")){
+        channel=fnBase.getUrlPar("ChannelId");
+    }
+    
+
+    var newShareEvent = {
+        source:fnBase.getUrlPar("source"),
+        ChannelId:fnBase.getUrlPar("ChannelId"),
+        shareCode:fnBase.getUrlPar("shareCode"),
+        outshareCode:fnBase.getUrlPar("outshareCode"),
+        channel_id:fnBase.getUrlPar("channel_id"),
+        init:function () {
+            this.addMainClickEvent();
+            $("#selector").text(this.shareCode);
+            $("#outselector").text(this.outshareCode);
+            setTimeout(function () {
+                myScroll.refresh();
+            }, 0);
+        },
+        addMainClickEvent:function () {
+            $(".back_arrow").click(function(){
+                if(newShareEvent.source == "web"){
+                    window.history.go(-1)
+                }else {
+                    window.Auction.back()
+                }
+            });
+            $(document).on("myCustomTapEvent",".share-btn",function(){
+                if(newShareEvent.shareCode){
+                    newShareEvent.addEnterCopyEvent("selector");
+                }
+                if(newShareEvent.outshareCode){
+                    newShareEvent.addEnterCopyEvent("outselector");
+                }
+                if(newShareEvent.ChannelId){
+                    fnBase.addDownLoadAppEvent(newShareEvent.ChannelId);
+                }
+                if(newShareEvent.channel_id){
+                    fnBase.addDownLoadAppEvent(newShareEvent.channel_id);
+                }
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"4"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":uuid,
+                    "openId":openid,
+                    "ident":"100350",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":channel+"分享赚一元页面点击立即下载"
+                };
+                fnBase.addStatisticsEvent(Op,clickJson);
+            });
+        },
+        addEnterCopyEvent:function(selectorHtml){
+
+            var u = navigator.userAgent;
+            if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+                var aux = document.createElement("input");
+                aux.setAttribute("value", document.getElementById(selectorHtml).innerHTML);
+                document.body.appendChild(aux);
+                aux.select();
+                var successful = document.execCommand("copy");
+                try {
+                    console.log('Oops, unable to copy');
+                    var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+                    console.log(msg);
+                } catch(err) {
+                    console.log(err);
+                }
+                document.body.removeChild(aux);
+            } else if (u.indexOf('iPhone') > -1) {
+                var copyDOM = document.querySelector('#'+selectorHtml);
+                var range = document.createRange();
+                range.selectNode(copyDOM);
+                window.getSelection().addRange(range);
+                var successful = document.execCommand('copy');
+                try {
+                    var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+                    console.log('Oops, unable to copy');
+                    console.log('Copy email command was ' + msg);
+
+                } catch(err) {
+                    console.log('Oops, unable to copy');
+                }
+                window.getSelection().removeAllRanges();
+            }
+        },
+        addPostDeviceInfo:function(){
+            var parser = new UAParser();
+            var us = navigator.userAgent;
+            parser.setUA(us);
+            var r = parser.getResult();
+            var type = r.os.name;
+            var pt = '';
+            if(type.indexOf("iOS")>-1){
+                pt = 'I'
+            }else if(type.indexOf("Android")>-1){
+                pt = 'A'
+            }
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/Index/Frame/bindDevice",{
+                "pt":pt,
+                "sys":r.os.version,
+                "screenWidth":screen.width,
+                "sharecode":newShareEvent.shareCode
+            },function(res){
+                //console.log(res)
+            })
+        }
+    };
+    newShareEvent.init();
+    newShareEvent.addPostDeviceInfo();
+
+    var myScroll = null;
+    myScroll = new IScroll('#wrapper', {
+        probeType: 3,
+        mouseWheel: true,
+        scrollbars: true,
+        preventDefault: true,
+        fadeScrollbars: true,
+        tap: 'myCustomTapEvent'
+    });
+    document.addEventListener('touchmove', function (e) { e.preventDefault(); }, false);
+
+    var Op = "",clickJson = "";
+    Op={
+        "ot":"4"
+    };
+    clickJson={
+        "actionId":3,
+        "uuid":uuid,
+        "openId":openid,
+        "ident":"100349",
+        "date":parseInt(new Date().getTime() / 1000),
+        "name":channel+"分享赚一元（应用外）页面到达"
+    };
+    fnBase.addStatisticsEvent(Op,clickJson);
+</script>
+</body>
+</html>

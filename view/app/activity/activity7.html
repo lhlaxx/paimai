@@ -1,0 +1,475 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>愿旺成真</title>
+    <meta name="description" content="愿旺成真">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" href="../../../static/css/main.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/fullPage.js/2.9.2/jquery.fullPage.css">
+    <style>
+        html{
+            width: 100%;
+            height: auto;
+            background:url(../../../static/img/activity/bg5.png);
+            width:100%;
+            height: 100%;
+            background-repeat:repeat;
+        }
+        body{
+            font-family: 'microsoft yahei';
+            background:url(../../../static/img/activity/bg4.png);
+            width:100%;
+            height: 100%;
+            background-repeat:no-repeat;
+            background-size: 100%;
+            position: relative;
+        }
+        .pic{
+            width:100%;
+        }
+        .hide{
+            display: block;
+            position: absolute;
+            width: 7.733333rem;
+            height:auto;
+            background:#fff;
+            z-index:99;
+            top:50%;
+            margin:0 auto;
+            border-radius: 0.16rem;
+            margin-top:-4.5rem;
+            left:50%;
+            margin-left:-3.866667rem;
+        }
+        .regbutton{
+            position: relative;
+            margin: 0 auto;
+            display: block;
+            width:6.4rem;
+        }
+        #selector{
+            -webkit-user-select: text;
+            position: absolute;
+            top:0;
+            z-index:-1;
+            color:transparent;
+        }
+        #selector1{
+            -webkit-user-select: text;
+            position: absolute;
+            position: absolute;
+            top:0;
+            z-index:-1;
+            color:transparent;
+        }
+        #selector2{
+            -webkit-user-select: text;
+            position: absolute;
+            position: absolute;
+            top:0;
+            z-index:-1;
+            color:transparent;
+        }
+        #selector3{
+            -webkit-user-select: text;
+            position: absolute;
+            position: absolute;
+            top:0;
+            z-index:-1;
+            color:transparent;
+        }
+        #selector4{
+            -webkit-user-select: text;
+            position: absolute;
+            position: absolute;
+            top:0;
+            z-index:-1;
+            color:transparent;
+        }
+        .button{
+            -webkit-user-select: text;
+            border: none;
+            background: transparent;
+        }
+        .button img{
+            width: 100%
+        }
+        .cover{
+            background: rgba(0,0,0,0.8);
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            bottom: 0;
+            display: none;
+            z-index: 99999999
+        }
+        .cover img{
+            position: absolute;
+            width: 3.69rem;
+            top: 0.08rem;
+            right: 1.15rem;
+        }
+        .cover>div {
+            margin-top: 4.31rem;
+        }
+        .cover p {
+            font-size: .48rem;
+            line-height: 2;
+            text-align: center;
+            color: #fefefe;
+        }
+        .cover .close{
+            margin-top: 0.2rem;
+        }
+        .boxContent{
+            background: #1b463b;
+            margin:0 0.6rem;
+            border:0.133333rem solid #fbf7f7;
+            margin-top: -0.5rem;
+            min-height: 1.5rem;
+            padding-top: 0.4rem;
+            box-sizing:border-box;
+            padding-bottom: 0.4rem;
+        }
+        .boxContent .title{
+            font-size: 0.373333rem;
+            color: #fff;
+            text-align: center;
+        }
+        .bigtitle{
+            font-size: 0.48rem;
+            color:#fff;
+            position: absolute;
+            width: 100%;
+            text-align: center;
+            top:0.5rem;
+
+        }
+        .boxContent .p_left{
+            display:inline-block;
+            text-align: left;
+            float:left;
+        }
+        .boxContent .p_right{
+            display:inline-block;
+            text-align: left;
+            float:right;
+        }
+        .txt{
+            clear: both;
+            padding:0.2rem 0.4rem;
+            font-size: 0.373333rem;
+            color: #fff; 
+        }
+        .p_1{
+            position: absolute;
+            display: inline-block;
+        }
+        .p_2{
+            position: relative;
+            margin-left: 2.3rem;
+            display: inline-block;
+        }
+        .gotorule{
+            font-size: 0.4rem;
+            color: #fff;
+            position: absolute;
+            right:0.4rem;
+            top:5rem;
+            text-decoration: underline;
+        }
+        .regbutton p{
+            font-size: 0.25rem;
+            text-align: center;
+            color: #bdb9b9;
+            padding:0.15rem;
+        }
+        .pic1{
+            width: 95%;
+            margin:0 auto;
+            display: block;
+        }
+        .box1{
+            border:0.373333rem solid #e21a22;
+            border-top:0;
+            width:7.516666rem;
+            box-sizing:border-box;
+            margin:0 auto;
+            background: #fffee9;
+        }
+        .box2{
+            width:6.77rem;
+            border:0.186666rem solid #a50000;
+            border-top: 0;
+            min-height: 10rem;
+            box-sizing:border-box;
+            margin:0 auto;
+            background: url(../../../static/img/activity/borderStyle1.png);
+            background-repeat:no-repeat;
+            display: flex;
+            flex-direction: row;
+            flex-wrap: wrap;
+            justify-content: space-around;
+            align-items: center;
+            padding-top: 1.3rem;
+            padding-bottom: 0.3rem;
+            background-size: 100%;
+            position: relative;
+        }
+        .box2 img{
+            width: 2.88rem;
+            margin-top: 0.1rem
+        }
+        .box3{
+            width:9.626667rem;
+            margin:0 auto;
+        }
+        .box3 img{
+            width: 100%;
+        }
+        .bgbottom1{
+            width: 100%;
+            bottom:0;
+            position: absolute;
+        }
+        .coverbg{
+            width: 100%;
+            height: 100%;
+            background: rgba(0,0,0,0.5);
+        }
+        .title2{
+            padding-top: 0.733333rem;
+            padding-bottom:0.733333rem;
+            margin:0 auto;
+            display: block;
+            width: 4.586667rem;
+        }
+        .giftImg{
+            width: 3.333333rem;
+            margin:0 auto;
+            display: block;
+        }
+        .p1{
+            text-align: center;
+            color:#999999;
+            text-align: center;
+            font-size: 0.32rem;
+            padding:0.3rem 0;
+        }
+        .p2{
+            text-align: center;
+            font-size:0.506667rem;
+            color: #dc0e0c;
+            padding:0.1rem 0;
+        }
+    </style>
+</head>
+<body>
+    <div class="coverbg">
+        <div class="hide">
+            <img src="../../../static/img/activity/title2.png" class="title2 down"/>
+            <img src="../../../static/img/activity/blank.png" class="giftImg down"/>
+            <p class="p1 down">最低1元起</p>
+            <p class="p2 down">奖品仅剩<span class="num" data-num="888">888</span>份</p>
+            <button class="regbutton button">
+                <img src="../../../static/img/activity/regbutton2.png" class="down"/>
+            </button>
+        </div>
+        <img src="../../../static/img/activity/bgbottom1.png" class="bgbottom1"/>
+    </div>
+    <span id="selector">3ET45CD</span>
+    <span id="selector1">F55MDBA</span>
+    <span id="selector2">QRDKHKT</span>
+    <span id="selector3">6K477HF</span>
+    <span id="selector4">TMEGTCF</span>
+    <div class="cover">
+        <img src="../../../static/img/open-browser.png"/>
+        <div>
+            <p>点击右上角，选择在浏览器中打开
+            <p>即可正常下载</p>
+            <p class="close">点击关闭</p>
+        </div>
+    </div>
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script> 
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../static/js/ua-parser.min.js"></script>
+    
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/common.js?0.201"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+    
+    <script>
+    var myObject=myObject;
+    var fnBase = fnBase;
+    fnBase.init();
+    var u = navigator.userAgent;
+    var openid="";
+    var uuid="";
+    try {
+        openid=store.get('openid');
+        if(openid==undefined){
+            openid="";
+        }
+        uuid=window.Auction.getUUID();
+    }catch (err){
+
+    }
+    var channel=myObject.GetQueryString("channel_id");
+           
+    var random=Math.round(Math.random()*4+1);
+    var srcpath="../../../static/img/activity/ygifts"+random+".png";
+    $(".giftImg").attr("src",srcpath);
+           
+    $(".close").click(function(){
+        $(".cover").hide();
+    })
+             
+    
+    $(".down").click(function(){
+        
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"4"
+        };
+        clickJson={
+            "actionId":5,
+            "uuid":"",
+            "openId":"",
+            "ident":"100346",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":channel+"愿旺成真页面点击下载并领取"
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+        if(browser.versions.ios){
+            if(channel=="AXyjp_Zycp"){
+                sharesuccEvent.addEnterCopyEvent("selector");
+            }else if(channel=="AXyjp_Zh"){
+                sharesuccEvent.addEnterCopyEvent("selector4");
+            }
+            window.location.href="https://itunes.apple.com/cn/app/%E5%B0%8F%E6%98%93%E7%AB%9E%E6%8B%8D-%E4%B8%80%E7%AB%99%E5%BC%8F%E5%A8%B1%E4%B9%90%E4%BA%92%E8%81%94%E7%BD%91%E8%B4%AD%E7%89%A9%E5%B9%B3%E5%8F%B0/id1300440000?mt=8"
+        }else if(browser.versions.android){
+            if(u.indexOf('MicroMessenger') > -1){
+                $(".cover").css("display","block");
+            }else{
+                if(channel=="AXyjp_Zycp"){
+                    window.location.href="http://droimarket.droicdn.com/180/apk/2018/01/19/xyjp_zycp/XiaoYiJingPai_AXyjp_Zycp.apk";
+                }else if(channel=="AXyjp_Zh"){
+                    window.location.href="http://droimarket.droicdn.com/180/apk/2018/01/31/xyjp/XiaoYiJingPai_AXyjp_Zh.apk";
+                }
+            }  
+        } 
+        var num=$(".num").data("num");
+        num=num-1;
+        if(num<=0){
+            num=888;
+        }
+        console.log(num);
+        $(".num").data("num",num)
+        $(".num").html(num);
+
+    })   
+    //页面到达
+    var Op = "",clickJson = "";
+    Op={
+        "ot":"4"
+    };
+    clickJson={
+        "actionId":3,
+        "uuid":"",
+        "openId":"",
+        "ident":"100345",
+        "date":parseInt(new Date().getTime() / 1000),
+        "name":channel+"愿旺成真页面到达"
+    };
+    myObject.addStatisticsEvent(Op,clickJson);
+
+
+    var sharesuccEvent = {
+        addEnterCopyEvent:function(selectorHtml){
+
+            var u = navigator.userAgent;
+            if (u.indexOf('Android') > -1 || u.indexOf('Linux') > -1) {
+                var aux = document.createElement("input");
+                aux.setAttribute("value", document.getElementById(selectorHtml).innerHTML);
+                document.body.appendChild(aux);
+                aux.select();
+                var successful = document.execCommand("copy");
+                try {
+                    console.log('Oops, unable to copy');
+                    var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+
+                    console.log(msg);
+                } catch(err) {
+                    console.log(err);
+                }
+                document.body.removeChild(aux);
+            } else if (u.indexOf('iPhone') > -1) {
+                var copyDOM = document.querySelector('#'+selectorHtml);
+                var range = document.createRange();
+                range.selectNode(copyDOM);
+                window.getSelection().addRange(range);
+                var successful = document.execCommand('copy');
+                try {
+                    var msg = successful ? '复制成功' : '复制失败,请尝试手动长按进行复制';
+                    console.log('Oops, unable to copy');
+                    console.log('Copy email command was ' + msg);
+
+                } catch(err) {
+                    console.log('Oops, unable to copy');
+                }
+                window.getSelection().removeAllRanges();
+            }
+        },
+        addPostDeviceInfo:function(){
+            var parser = new UAParser();
+            var us = navigator.userAgent;
+            parser.setUA(us);
+            var r = parser.getResult();
+            var type = r.os.name;
+            var pt = '';
+            if(type.indexOf("iOS")>-1){
+                pt = 'I'
+            }else if(type.indexOf("Android")>-1){
+                pt = 'A'
+            }
+            var sharecode;
+            if(channel=="AXyjp_Zycp"){
+                sharecode="3ET45CD";
+            }else if(channel=="AXyjp_Zh"){
+                sharecode="TMEGTCF";
+            }
+            fnBase.commonJsonpAjax(fnBase.source_url+"/index.php/Index/Frame/bindDevice",{
+                "pt":pt,
+                "sys":r.os.version,
+                "screenWidth":screen.width,
+                "sharecode":sharecode
+            },function(res){
+                console.log(res)
+            })
+        }
+    }
+
+    if(browser.versions.ios){
+        sharesuccEvent.addPostDeviceInfo();
+    }
+    </script>
+    
+</body>
+</html>
+
+
+ 

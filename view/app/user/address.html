@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script type="text/javascript" src="../../../static/js/flexible.js"></script>
+    <script type="text/javascript" src="../../../static/js/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css?0.100">
+</head>
+<body>
+    <div class="navbar">
+        <a class="back"><img src="../../../static/img/back.png"/></a>
+        <a class="save">保存</a>
+        <h1>编辑收货地址</h1>
+
+    </div>
+    <div class="addressContent">
+        <ul>
+            <li><span>收货人</span><input type="text" placeholder="请输入真实姓名" id="name" maxlength="10"/></li>
+            <li><span>联系电话</span><input type="number" placeholder="请输入联系方式" id="phone" oninput="if(value.length>11)value=value.slice(0,11)"/></li>
+            <li style="padding-bottom:0.44rem;"><span class="pull-left">收货地址</span><textarea style="height:1rem;margin-top:0.4rem;font-size:0.4rem;resize:none;color:#333;width:70%;border:0;line-height:0.5rem;vertical-align:bottom"  placeholder="请输入收货地址" id="address" rows="2" maxlength="30"></textarea></li>    
+        </ul>
+    </div>
+    <script type="text/javascript" src="../../../static/js/jquery-1.12.3.min.js"></script>
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js?0.100"></script>
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+    <script type="text/javascript">
+        var myObject=myObject;
+        var host=myObject.host;
+        var openid=store.get('openid');
+        var url=window.location.href;
+
+        $(".back").click(function(){
+            if(url.indexOf("source=web")>=0){
+              window.history.go(-1);
+            }else{
+                window.Auction.back();
+            }
+            
+        })
+        //$(".back").trigger("click").blur();
+        
+        $(document).ready(function(){
+            var openid=store.get('openid');
+            var channel=store.get('channel');
+            var verCode=store.get('verCode');
+            $.ajax({
+                type: 'GET',
+                async: false,
+                url: host+'/index.php/index/User/getMemberInfo',
+                dataType: "jsonp",
+                jsonp: "callback",
+                data:{'openid':openid,'chanel':channel,'verCode':verCode},
+                success: function(data){
+                    if(data.state==1){
+                        var cname=data.data.cname;
+                        var phone=data.data.phone;
+                        var address=data.data.address;
+                        $("#name").val(cname);
+                        $("#phone").val(phone);
+                        $("#address").val(address);
+
+                    }else if(data.state==0){
+                        myObject.alert(data.cause);
+                    }else{
+
+                    }
+                },
+                error: function(xhr, type){
+                    myObject.alert('请求失败!');
+                }
+            });
+
+            $(".save").click(function(){
+                var name=$("#name").val();
+                var phone=$("#phone").val();
+                var address=$("#address").val();
+                $.ajax({
+                    type: 'GET',
+                    async: false,
+                    url: host+'/index.php/index/User/upAddress',
+                    dataType: "jsonp",
+                    jsonp: "callback",
+                    data:{'openid':openid,'name':name,'phone':phone,'address':address},
+                    success: function(data){
+                        if(data.state==1){
+                            myObject.alert("保存成功");
+                        }else if(data.state==0){
+                            myObject.alert(data.cause);
+                        }else{
+
+                        }
+                    },
+                    error: function(xhr, type){
+                        myObject.alert('请求失败!');
+                    }
+                });
+            }) 
+        })
+        
+        //统计——收货地址到达数
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":3,
+            "uuid":AppHelper.YzAppGetUUID(),
+            "openId":openid,
+            "ident":"100019",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"收货地址到达数"
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+    </script>
+</body>
+</html>
+
+    

@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script type="text/javascript" src="../../../static/js/flexible.js"></script>
+    <script type="text/javascript" src="../../../static/js/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+    <link rel="stylesheet" href="../../../static/css/minirefresh/minirefresh.css" />
+    <style>
+        #minirefresh{
+            top:2.0rem;
+        }
+        .mainContent{
+            position: static;
+        }
+    </style>
+</head>
+<body>
+    <div class="navbar">
+        <h1>最新成交</h1>
+    </div>
+    
+        
+    <div class="mainContent" data-endvalue="false">
+        <div style="font-size:0.3rem;color:#999;text-align:center;line-height:0.8rem;display:none;position: relative;top:1.2rem" class="hints">本平台抢购活动均与苹果公司（Apple Inc.）无关</div>
+        <div class="dealContent minirefresh-wrap" id="minirefresh">
+            <div class="lists minirefresh-scroll">
+                <ul id="listdata" class="data-list">
+                    
+                </ul>
+            </div>
+        </div>
+    </div>   
+    <!--<script type="text/javascript" src="../../../static/js/jquery-1.12.3.min.js"></script>-->
+    <script type="text/javascript" src="../../../static/js/zepto.min.js"></script>  
+    <script src="../../../static/js/dropload.js"></script>
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+    <script type="text/javascript">
+        var myObject=myObject;
+        var host=myObject.host;
+        var openid=store.get('openid'); 
+        var AppHelper=AppHelper;
+        var channel=AppHelper.YzAppGetChannel();
+        var verCode=AppHelper.YzAppGetVerCode();
+        var lastId=1;
+    </script>
+    <script type="text/javascript" src="../../../src/js/minirefresh/minirefresh.js"></script>
+    <script type="text/javascript">
+        
+        
+        
+    //var marginTop=0.5*($(window).height()-$(".navbar").height()-$(window).width()*0.3);
+
+    var namelabel;
+    if(browser.versions.ios){
+        $(".hints").show();
+        namelabel="买主";
+    }else{
+        namelabel="中标人";
+    }
+    
+    var appendTestData = Common.appendTestData;
+    // 记录一个最新
+    var listDom = document.querySelector('#listdata');
+    var requestDelayTime = 600;
+
+    var miniRefresh = new MiniRefresh({
+        container: '#minirefresh',
+        down: {
+            callback: function() {
+                setTimeout(function() {
+                    // 每次下拉刷新后，上拉的状态会被自动重置
+                    appendTestData(listDom, 20, true);
+                    miniRefresh.endDownLoading(true);
+                }, requestDelayTime);
+            }
+        },
+        up: {
+            isAuto:true,
+            callback: function() {
+                
+                setTimeout(function() {
+                    appendTestData(listDom, 20);
+                    var endValue=$(".mainContent").data("endvalue");
+                    console.log(endValue);
+                    if(endValue==true){
+                        endValue=true;
+                    }else{
+                        endValue=false;
+                    }
+                    miniRefresh.endUpLoading(false);
+                }, requestDelayTime);
+            }
+        }
+    });
+
+    $(".lists").on('click','.dealRecord>.goods>a',function(){
+        var pageUrl=$(this).attr("data-href");
+        window.Auction.openUrl(pageUrl);
+
+    })
+
+    $(".lists").on('click','.joinNext',function(){
+        var pageUrl=$(this).attr("data-href");
+        if(pageUrl==""||pageUrl==undefined){
+            myObject.alert("还没有下一期哦，敬请关注更多同类商品");
+        }else{
+            window.Auction.openUrl(pageUrl);
+        } 
+        //统计——最新成交点击参与下一次数
+
+        var Op = "",clickJson = "";
+        Op={
+            "ot":"3"
+        };
+        clickJson={
+            "actionId":5,
+            "uuid":AppHelper.YzAppGetUUID(),
+            "openId":openid,
+            "ident":"100015",
+            "date":parseInt(new Date().getTime() / 1000),
+            "name":"最新成交点击参与下一次数"
+        };
+        myObject.addStatisticsEvent(Op,clickJson);
+    })
+        
+        
+    </script>
+</body>
+</html>
+
+    

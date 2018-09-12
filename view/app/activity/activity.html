@@ -1,0 +1,996 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script src="../../../static/js/flexible_css.js"></script>
+    <script src="../../../static/js/flexible.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css">
+</head>
+<style>
+    html{
+        height: 100%;
+        width: 100%;
+        position: relative;
+    }
+    body{
+        width: 100%;
+        height: 100%;
+        position: relative;
+        overflow: hidden;
+    }
+    .navbar{
+        background: #fff;
+        color:#000;
+        z-index:9999;
+    }
+    .tab{
+        position: fixed;
+        top:1.2rem;
+        height:1.333333rem;
+        width:100%;
+        display: flex;
+        display: -webkit-flex; /* Safari */
+        flex-direction: row;
+        align-items: center;
+        justify-content:space-around;
+        z-index:9;
+        /*FILTER: progid:DXImageTransform.Microsoft.Gradient(gradientType=0,startColorStr=#820ee0,endColorStr=#b522ea); !*IE 6 7 8*! */
+
+        background: -ms-linear-gradient(top, #820ee0,  #b522ea);        /* IE 10 */
+
+        background:-moz-linear-gradient(top,#820ee0,#b522ea);/*火狐*/ 
+
+        background:-webkit-gradient(linear, 0% 0%, 0% 100%,from(#820ee0), to(#b522ea));/*谷歌*/ 
+
+        background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#820ee0), to(#b522ea));      /* Safari 4-5, Chrome 1-9*/
+
+        background: -webkit-linear-gradient(top, #820ee0, #b522ea);   /*Safari5.1 Chrome 10+*/
+
+        background: -o-linear-gradient(top,#820ee0, #b522ea);  /*Opera 11.10+*/
+    }
+    
+    .tabContent{
+        z-index:1;
+        height:calc(100% - 2.533333rem);
+        width: 100%;
+        box-sizing:border-box;
+        position: relative;
+        top:2.533333rem;
+        overflow:auto;
+    }
+    .tabContent .inner{
+        display: none;
+        height:100%;
+    }
+    .tabContent .active{
+        display: block;
+    }
+    .tab li{
+        display: inline-block;
+        text-align: center;
+    }
+    .tab li tr{
+        height:100%;
+    }
+    .tab li tr td{
+        display:block;
+    }
+    .tab li tr td.time{
+        font-size: 0.24rem;
+        color: rgba(255, 255, 255, 0.5);
+        padding-top:0.266667rem;
+        line-height: 0.24rem;
+        height:0.24rem;
+    }
+    .tab li tr td.title{
+        font-size: 0.373333rem;
+        color: rgba(255, 255, 255, 0.5);
+        padding-top: 0.2rem;
+    }
+    .tab li.active tr td.time{
+        font-weight: bolder;
+        color:#fff;
+    }
+    .tab li.active tr td.title{
+        font-weight: bolder;
+        color:#fff;
+    }
+    .tab li.going tr td.time{
+        color:#ffdf70;
+    }
+    .tab li.going tr td.title{
+        color:#ffdf70;
+    }
+    .gotoRule{
+        position: absolute;
+        top:0.453333rem;
+        right:0.293333rem;
+        text-decoration: underline;
+        color: #666;
+        font-size: 0.32rem;
+    }
+    .ruleBox-inner{
+        width:8rem;
+        height: 8.5rem;
+        top:50%;
+        left:50%;
+        margin-top: -4.25rem;
+        margin-left: -4rem;
+        position: relative;
+        background: #fff;
+        border-radius: 0.106667rem;
+        overflow: hidden;
+    }
+    .ruleBox-inner h1{
+        font-size: 0.48rem;
+        font-weight: bold;
+        text-align: center;
+        color:#333;
+        line-height: 0.48rem;
+        padding: 0.48rem 0;
+        border-bottom: 1px solid #eee;
+    }
+    .ruleBox{
+        width: 100%;
+        height: 100%;
+        background: rgba(0,0,0,0.5);
+        z-index: 99;
+        position: fixed;
+        top: 0;
+        display: none
+    }
+    .ruleBox-close{
+        width: 0.88rem;
+        right: 0.573333rem;
+        position: absolute;
+        top: 50%;
+        margin-top: -5.7rem;
+    }
+    .ruleBox-close img{
+        width:100%;
+    }
+    .module1{
+
+    }
+    .moudle2{
+
+    }
+    .moudle3{
+
+    }
+    .inner-click{
+        padding: 0 0.2rem 0.2rem 0.2rem;
+        position: relative;
+        top:-3.3rem;
+        width: 100%;
+        box-sizing: border-box;
+    }
+    .item-module{
+        margin-top: 0.2rem
+    }
+    .item-goods{
+        display: inline-block;
+        position: relative;
+    }
+    .module1 .item-goods{
+        width:100%;
+        height: 2.4rem;
+    }
+    .module2 .item-goods{
+        width:calc(50% - 0.1rem);
+        height: 2.4rem;
+    }
+    .module2 .item-goods:nth-of-type(1){
+        margin-right: 0.2rem
+    }
+    .module3 .item-goods{
+        width:calc(33.33333% - 0.133333rem);
+        height: 3.733333rem;
+    }
+    .module3 .item-goods:nth-of-type(1){
+        margin-right: 0.2rem
+    }
+    .module3 .item-goods:nth-of-type(2){
+        margin-right: 0.2rem
+    }
+    .module1 .button{
+        width: 2.133333rem;
+        height: 0.64rem;
+        border-radius:0.32rem;
+        position: absolute;
+        right:0.25rem;
+        bottom:0.25rem;
+        background: #299090;
+        font-size: 0.346667rem;
+        text-align: center;
+        line-height: 0.64rem;
+        color:#fff;
+    }
+    .module2 .button{
+        width: 1.6rem;
+        height: 0.48rem;
+        border-radius:0.24rem;
+        position: absolute;
+        right:0.213333rem;
+        bottom:0.266667rem;
+        background: #eee;
+        font-size: 0.293333rem;
+        text-align: center;
+        line-height: 0.48rem;
+        color:#000;
+    }
+    .module3 .button{
+        width: 1.6rem;
+        height: 0.48rem;
+        border-radius:0.24rem;
+        position: absolute;
+        bottom:0.186667rem;
+        background: #eee;
+        font-size: 0.293333rem;
+        left: 50%;
+        margin-left: -0.8rem;
+        text-align: center;
+        line-height: 0.48rem;
+        color:#000;
+    }
+    .share{
+        width: 0.493333rem;
+        position: absolute;
+        height: 100%;
+        top: 0.1rem;
+        right: 0.3rem;
+    }
+    .inner-banner img{
+        width: 100%;
+    }
+    .item-goods img{width: 100%}
+    .navbar a.back img {
+        width: 0.266667rem;
+    }
+    .share img{
+        width: 100%
+    }
+    .ruleBox-content{
+        padding:0.4rem;
+        overflow-y:scroll;
+        height:6.3rem; 
+    }
+    .finishBtn .button{
+        background: grey;
+        color:#eee;
+    }
+    .waitBtn .button{
+        background: grey;
+        color:#eee;
+    }
+    .topbar{
+        
+    }
+    h1{ font-weight: bold;}
+</style>
+<body>
+    <div class="navbar">
+        <a class="back"><img src="../../../static/img/activity/back_arrow.png"/></a>
+        <h1>欢乐竞拍三重礼</h1>
+       <!-- <div class="share"><img src="../../../static/img/activity/share.png"/></div>-->
+    </div>
+    <!--<div class="topbar">-->
+        <ul class="tab">
+
+        </ul>
+        <div class="tabContent" style="margin-top: 0.2rem; font-size: 0.45rem;">
+            <h1>  欢乐竞拍三重礼</h1>
+
+
+
+            <div style="margin-top: 0rem;"><br />
+                <p><br /><br /><h2>1.活动时间：</h2><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;8.23日14:00-8.27号14:00</p>
+                <p><br /><br /><h2>2.活动规则说明:</h2><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;福利1：<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;活动期间<span style="color: #f00">充值2000送2000</span>，超划算！！！赠送拍币将直接充入用户的竞拍账户中。<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;福利2：(活动期间内)<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f00"> 单日消耗拍币&gt;1000元</span>，将额外获得<span style="color: #f00">面值20元话费</span>。<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f00">单日消耗拍币&gt;=5000元</span>，将额外赠送<span style="color: #f00">面值50话费</span>。<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f00">单日消耗拍币&gt;=10000元</span>，将额外赠送<span style="color: #f00">面值500元话费或等面值的京东E卡一张</span>。<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f00">单日消耗拍币&gt;=20000元</span>，将额外赠送<span style="color: #f00">1000元话费或等面值1000京东E卡一张</span>。<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f00">累计消耗拍币&gt;=50000及以上</span>，将额外赠送<span style="color: #f00">Apple iPhone X 256GB 三网通深空灰一台</span>(超级划算有木有！！！）<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;福利3：<br />
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: #f00">充值&gt;=50的用户</span>，我们会随机抽取20名幸运用户<span style="color: #f00">赠送面值100元话费</span>。充的越多中的概率越大哦~~</p>
+                <p><br /><br /><h2>3.奖品发放:</h2><br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;实物类奖品我们将会以快递的形式，京东直达。<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;话费奖品在公布名单后客服会联系您发放奖品。<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;中奖用户名单将于8月27号下午14:30点公布在本页面。<br />
+                    &nbsp;&nbsp;&nbsp;&nbsp;(本次活动最终解释权归本公司所有)<br />
+                </p>
+            </div>
+            
+            <div style="margin:0.5rem 1rem;">
+            <h1 style="text-align:center">中奖名单公布如下</h1><br>
+
+            <table width="100%" align="center" cellpadding="0" cellspacing="0">
+  <col width="172" />
+  <col width="115" />
+  <tr>
+    <td colspan="2" align="center"><p>&nbsp;</p>
+      <p>单日消耗拍币&gt;1000元</p></td>
+    </tr>
+  <tr>
+    <td width="60%">杨生林</td>
+    <td width="40%">5051512900</td>
+  </tr>
+  <tr>
+    <td>蓝色的想念</td>
+    <td>7348923729</td>
+  </tr>
+  <tr>
+    <td>说书人</td>
+    <td>7836364448</td>
+  </tr>
+  <tr>
+    <td>缕缕清香留人间</td>
+    <td>5749834494</td>
+  </tr>
+  <tr>
+    <td>安迪Andy</td>
+    <td>4887829449</td>
+  </tr>
+  <tr>
+    <td>133****7098</td>
+    <td>2888464940</td>
+  </tr>
+  <tr>
+    <td>冲啊~~~</td>
+    <td>2247747484</td>
+  </tr>
+  <tr>
+    <td>李川He</td>
+    <td>3788978752</td>
+  </tr>
+  <tr>
+    <td>sunnnnning</td>
+    <td>8976763826</td>
+  </tr>
+  <tr>
+    <td>茉莉张</td>
+    <td>9987852334</td>
+  </tr>
+  <tr>
+    <td>酷盖girl</td>
+    <td>9366727423</td>
+  </tr>
+  <tr>
+    <td>名品私人定制***</td>
+    <td>1467378987</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><p>&nbsp;</p>
+      <p>单日消耗拍币&gt;5000元</p></td>
+    </tr>
+  <tr>
+    <td>胡梦</td>
+    <td>5213596435</td>
+  </tr>
+  <tr>
+    <td>我不是逗逼，我是女神  </td>
+    <td>5610043608</td>
+  </tr>
+  <tr>
+    <td>丹丹很爱笑 </td>
+    <td>4693000112</td>
+  </tr>
+  <tr>
+    <td>落香满弦 </td>
+    <td>6332892433</td>
+  </tr>
+  <tr>
+    <td>Ellis </td>
+    <td>3792077583</td>
+  </tr>
+  <tr>
+    <td>老匹夫</td>
+    <td>4638296494</td>
+  </tr>
+  <tr>
+    <td>游客1025715139</td>
+    <td>1025715139</td>
+  </tr>
+  <tr>
+    <td>等蛙回</td>
+    <td>2197440211</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><p>&nbsp;</p>
+      <p>单日消耗拍币&gt;10000元</p></td>
+    </tr>
+  <tr>
+    <td>醉不可颜半仙Dan</td>
+    <td>7327464729</td>
+  </tr>
+  <tr>
+    <td>该吃药了骚年</td>
+    <td>3727924433</td>
+  </tr>
+  <tr>
+    <td>雅ceiya</td>
+    <td>6237322211</td>
+  </tr>
+  <tr>
+    <td>罗旭</td>
+    <td>6359207250</td>
+  </tr>
+  <tr>
+    <td>花卷豆豆泥</td>
+    <td>7382388163</td>
+  </tr>
+  <tr>
+    <td>第五人格吐槽大会</td>
+    <td>3782373190</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><p>&nbsp;</p>
+      <p>单日消耗拍币&gt;20000元</p></td>
+    </tr>
+  <tr>
+    <td>4954492580</td>
+    <td>4954492580</td>
+  </tr>
+  <tr>
+    <td>天天睡懒觉~</td>
+    <td>4588223041</td>
+  </tr>
+  <tr>
+    <td>在西直门桥上</td>
+    <td>2235570335</td>
+  </tr>
+  <tr>
+    <td>云浅同学</td>
+    <td>3977054483</td>
+  </tr>
+  <tr>
+    <td>怼什么怼</td>
+    <td>7379635599</td>
+  </tr>
+  <tr>
+    <td>说的就是你</td>
+    <td>1004917735</td>
+  </tr>
+  <tr>
+    <td>感谢杨超越</td>
+    <td>9994487706</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><p>&nbsp;</p>
+      <p>单日消耗拍币&gt;50000元</p></td>
+    </tr>
+  <tr>
+    <td>嘟嘟爸爸</td>
+    <td>5310079794</td>
+  </tr>
+  <tr>
+    <td>一伦又一伦</td>
+    <td>4856447042</td>
+  </tr>
+  <tr>
+    <td>村口的</td>
+    <td>1015035356</td>
+  </tr>
+  <tr>
+    <td colspan="2" align="center"><p>&nbsp;</p>
+      <p>充值&gt;=50的用户</p></td>
+    </tr>
+  <tr>
+    <td>可可千汀</td>
+    <td>9767886140</td>
+  </tr>
+  <tr>
+    <td>我要iphone</td>
+    <td>1014832125</td>
+  </tr>
+  <tr>
+    <td>A村夫烤鱼加盟</td>
+    <td>4857091687</td>
+  </tr>
+  <tr>
+    <td>柒妹子</td>
+    <td>5544782921</td>
+  </tr>
+  <tr>
+    <td>让让我</td>
+    <td>5052588422</td>
+  </tr>
+  <tr>
+    <td>吾皇猫</td>
+    <td>5151459937</td>
+  </tr>
+  <tr>
+    <td>我是锤子</td>
+    <td>5397515904</td>
+  </tr>
+  <tr>
+    <td>易瑞人才Vivi</td>
+    <td>5557131016</td>
+  </tr>
+  <tr>
+    <td>让我拍中，安排一下呗</td>
+    <td>5902646502</td>
+  </tr>
+  <tr>
+    <td>芝士就是力量</td>
+    <td>1099684418</td>
+  </tr>
+  <tr>
+    <td>油菜花、有才华</td>
+    <td>9134914556</td>
+  </tr>
+  <tr>
+    <td>西南客发陈平</td>
+    <td>3688999411</td>
+  </tr>
+  <tr>
+    <td>A长城宽带</td>
+    <td>1094192354</td>
+  </tr>
+  <tr>
+    <td>阿勋家花店</td>
+    <td>7942972111</td>
+  </tr>
+  <tr>
+    <td>153****4483</td>
+    <td>5127890333</td>
+  </tr>
+  <tr>
+    <td>我真的很生气</td>
+    <td>4368682699</td>
+  </tr>
+  <tr>
+    <td>大眼仔</td>
+    <td>4972086710</td>
+  </tr>
+  <tr>
+    <td>高怀见物理</td>
+    <td>5599559589</td>
+  </tr>
+  <tr>
+    <td>杨生林</td>
+    <td>5051512900</td>
+  </tr>
+</table>
+</div>
+        </div>
+        <div class="ruleBox">
+            <div class="ruleBox-close">
+                <img src="../../../static/img/activity/close.png"/>
+            </div>
+            <div class="ruleBox-inner">
+                <h1>活动规则</h1>
+                <div class="ruleBox-content">
+
+
+                </div>
+            </div>
+        </div>    
+    <!--</div>-->
+    <script type="text/javascript" src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script> 
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js"></script>
+    <script type="text/javascript">
+        
+
+        var myObject=myObject;
+        var host=myObject.host;
+        var chanel=AppHelper.YzAppGetChannel();
+        var verCode=AppHelper.YzAppGetVerCode();
+        var openid=store.get('openid');
+        var base = new Base64();  
+        var url=window.location.href;
+        if(url.indexOf("source=web")>=0){
+            $(".share").hide();
+            $(".back").hide();
+        }
+        myObject.commonAjax(host+'/index.php/index/Prefecture/index','GET',{
+            'chanel':chanel,
+            'verCode':verCode
+        }, function(data){
+            console.log(data);
+            if(data.status=="1"){
+                var tabStr="";
+                var tabContentStr="";
+                
+                var goodStr="";
+                for(var i=0;i<data.prefecture.length;i++){
+                    var tabStatus=data.prefecture[i].p_status;
+                    var buttonStatus=data.prefecture[i].p_status;
+                    if(tabStatus==1){
+                        tabStatus="going";
+                    }else{
+                        tabStatus="";
+                    }
+                    if(buttonStatus==2){
+                        buttonStatus="finishBtn";
+                    }else if(buttonStatus==1){
+                        buttonStatus="goingBtn";
+                    }else{
+                        buttonStatus="waitBtn";
+                    }
+                    tabStr+='<li class="tab-li '+tabStatus+'" data-rule="'+data.prefecture[i].p_rule+'"><table><tr><td class="time">'+data.prefecture[i].p_time+'</td><td class="title">'+data.prefecture[i].p_title+'</td></tr></table></li>';
+                    var clickStr="";
+                    for(var j=0;j<data.prefecture[i].p_list.length;j++){
+                        var goodStr=""
+                        for(var k=0;k<data.prefecture[i].p_list[j].list_data.length;k++){
+                            var buttonUrl="";
+                            if(url.indexOf("source=web")<0){
+                                if(data.prefecture[i].p_status!=1){
+                                    buttonUrl="javascript:void(0)";
+                                }else{
+                                    buttonUrl=data.prefecture[i].p_list[j].list_data[k].p_list_url;
+                                }
+                                console.log(buttonUrl);
+                            }else{
+                                buttonUrl="javascript:void(0)";
+                            }
+
+
+                            goodStr+='<div class="item-goods" onclick="" data-name="'+data.prefecture[i].p_list[j].list_data[k].p_list_desc+'"><img src="'+data.prefecture[i].p_list[j].list_data[k].p_list_img+'"/><div class="button" data-btnUrl="'+buttonUrl+'" onclick="">'+data.prefecture[i].p_list[j].list_data[k].p_list_button+'</div></div>'
+
+                            
+                        }
+                        var classType=data.prefecture[i].p_list[j].list_type;
+                        if(classType==1){
+                            classType="module1";
+                        }else if(classType==2){
+                            classType="module2";
+                        }else if(classType==3){
+                            classType="module3";
+                        }
+                        clickStr+='<div class="item-module '+classType+'" >'+goodStr+'</div>' 
+                        
+                    }
+                    
+                    tabContentStr ='<div class="inner '+buttonStatus+'" style="background:'+data.prefecture[i].p_colour+'" >'
+                               +   '<a class="gotoRule" onclick="">查看活动规则' 
+                               +   '</a>'
+                               +   '<div class="inner-banner">'
+                               +      '<img src="'+data.prefecture[i].p_img+'">'
+                               +   '</div>'
+                               +   '<div class="inner-click">' 
+                               +     clickStr
+                               +   '</div>'  
+                               + '</div>' 
+                    $(".tabContent").append(tabContentStr);           
+                }
+                $(".tab").html(tabStr);
+
+                var list = document.getElementsByClassName("tab-li");
+                for(var i = 0; i < list.length; i++) {
+                    if(list[i].className.indexOf("going")>=0){
+                        if(i!=0){
+                            $(".tab li").eq(i).siblings().removeClass("active");
+                            $(".tabContent .inner").eq(i).siblings().removeClass("active");
+                        }
+                        $(".tab li").eq(i).addClass("active");
+                        $(".tabContent .inner").eq(i).addClass("active");
+                        var rule=$(".tab li").eq(i).data('rule');
+                        var result = base.decode(rule);
+                        $(".ruleBox-content").html(result);
+                        var title= $(".tab li").eq(i).find(".title").html();
+                        break;
+                    }else{
+                        $(".tab li").eq(0).addClass("active");
+                        $(".tabContent .inner").eq(0).addClass("active");
+                        var rule=$(".tab li").eq(0).data('rule');
+                        var result = base.decode(rule);
+                        $(".ruleBox-content").html(result);
+                        var title= $(".tab li").eq(0).find(".title").html();
+                    }
+                }
+                $(".navbar h1").html(title);
+            }else{
+                myObject.alert(data.msg)
+            }
+            
+            
+            
+        },function(){
+        
+        });
+
+        $(".tab").on("click","li",function(){
+            var index=$(this).index();
+            $(this).addClass("active");
+            $(this).siblings().removeClass("active");
+            $(".tabContent .inner").eq(index).addClass("active");
+            $(".tabContent .inner").eq(index).siblings().removeClass("active");
+            var title=$(this).find(".title").html();
+            $(".navbar h1").html(title);  
+            var rule=$(this).data('rule');
+            var result = base.decode(rule);  
+            $(".ruleBox-content").html(result);
+            var btnName=$(this).find(".title").html();
+            var extra={
+                "btnName":btnName
+            }
+            console.log(extra);
+            console.log(btnName);
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100220",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"活动专区顶部活动安排点击数",
+                "extra":JSON.stringify(extra)
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+        });
+
+        $("body").on("click",".gotoRule",function(){
+            $("body").css("overflow","hidden");
+            $(".ruleBox").show();
+        })
+        
+        $(".ruleBox-close").click(function(){
+            $("body").css("overflow","auto");
+            $(".ruleBox").hide();
+        })
+
+        
+        $(".back").click(function(){
+            if(url.indexOf("source=web")>=0){
+              window.history.go(-1);
+            }else{
+                window.Auction.back();
+            }
+            
+        })
+
+
+        $(".share").click(function(){
+            
+            var shareUrls;
+            var host=myObject.host;
+            if(host=="http://10.20.40.230:8089"||host=="http://61.152.66.114:8089"){
+                shareUrls=host;
+            }else{
+                shareUrls="http://pm.yz314.com";
+            }
+
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":5,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100231",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"活动专区点击分享",
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+
+            var shareData = {
+                "title":"轻轻告诉TA",
+                "content":"分享赚外快，省钱大比拼。",
+                "actionUrl":shareUrls+"/front/view/app/activity/activity.html?aid=tyd001&source=web",
+                "imgUrl":shareUrls+"/front/static/img/share-icon.png",
+                "ruleUrl":shareUrls+"/front/view/app/index/shituRule.html"
+            };
+            window.Auction.share(JSON.stringify(shareData))
+        })
+        $("body").on("click",".item-goods",function(){
+           
+            if(url.indexOf("source=web")>=0){
+                if(browser.versions.ios){
+                    window.location.href="https://itunes.apple.com/cn/app/%E5%B0%8F%E6%98%93%E7%AB%9E%E6%8B%8D/id1300440000?mt=8"
+                }else{
+                    window.location.href="http://droimarket.droicdn.com/180/apk/2017/12/08/jspm_AFenxiangbanjia1/JiSuPaiMai_V10.3.1_112__AFenxiangbanjia1.apk"
+                }
+            }
+        })
+
+        $("body").on("click",".button",function(){
+            var url=window.location.href;
+            var pageUrl=$(this).data('btnurl');
+            if(url.indexOf("source=web")>=0){
+                var Op = "",clickJson = "";
+                Op={
+                    "ot":"3"
+                };
+                clickJson={
+                    "actionId":5,
+                    "uuid":"",
+                    "openId":"",
+                    "ident":"100254",
+                    "date":parseInt(new Date().getTime() / 1000),
+                    "name":"活动专区分享接收页点击数",
+                };
+                myObject.addStatisticsEvent(Op,clickJson);
+            window.location.href="javascript:void(0)";
+            }else{
+                if(pageUrl=="javascript:void(0)"){
+                    myObject.alert("敬请期待！");
+                }else{
+                    
+                    var btnName=$(this).parent().data('name');
+                    var extra={
+                        "btnName":btnName,
+                    }
+                    console.log(extra);
+                    var Op = "",clickJson = "";
+                    Op={
+                        "ot":"3"
+                    };
+                    clickJson={
+                        "actionId":5,
+                        "uuid":AppHelper.YzAppGetUUID(),
+                        "openId":openid,
+                        "ident":"100221",
+                        "date":parseInt(new Date().getTime() / 1000),
+                        "name":"活动专区底部导航模块商品按钮点击数",
+                        "extra":JSON.stringify(extra)
+                    };
+                    myObject.addStatisticsEvent(Op,clickJson);
+                    window.Auction.openUrl(pageUrl);
+                }
+            }
+            
+        })
+        var locUrl=window.location.href;
+        if(locUrl.indexOf("source=web")>=0){
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":3,
+                "uuid":"",
+                "openId":"",
+                "ident":"100253",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"活动专区分享接收页到达"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+        }else{
+            var Op = "",clickJson = "";
+            Op={
+                "ot":"3"
+            };
+            clickJson={
+                "actionId":3,
+                "uuid":AppHelper.YzAppGetUUID(),
+                "openId":openid,
+                "ident":"100219",
+                "date":parseInt(new Date().getTime() / 1000),
+                "name":"活动专区页面到达"
+            };
+            myObject.addStatisticsEvent(Op,clickJson);
+        }
+        
+        function Base64() {  
+       
+        // private property  
+        _keyStr = "ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/=";  
+       
+        // public method for encoding  
+        this.encode = function (input) {  
+            var output = "";  
+            var chr1, chr2, chr3, enc1, enc2, enc3, enc4;  
+            var i = 0;  
+            input = _utf8_encode(input);  
+            while (i < input.length) {  
+                chr1 = input.charCodeAt(i++);  
+                chr2 = input.charCodeAt(i++);  
+                chr3 = input.charCodeAt(i++);  
+                enc1 = chr1 >> 2;  
+                enc2 = ((chr1 & 3) << 4) | (chr2 >> 4);  
+                enc3 = ((chr2 & 15) << 2) | (chr3 >> 6);  
+                enc4 = chr3 & 63;  
+                if (isNaN(chr2)) {  
+                    enc3 = enc4 = 64;  
+                } else if (isNaN(chr3)) {  
+                    enc4 = 64;  
+                }  
+                output = output +  
+                _keyStr.charAt(enc1) + _keyStr.charAt(enc2) +  
+                _keyStr.charAt(enc3) + _keyStr.charAt(enc4);  
+            }  
+            return output;  
+        }  
+       
+        // public method for decoding  
+        this.decode = function (input) {  
+            var output = "";  
+            var chr1, chr2, chr3;  
+            var enc1, enc2, enc3, enc4;  
+            var i = 0;  
+            input = input.replace(/[^A-Za-z0-9\+\/\=]/g, "");  
+            while (i < input.length) {  
+                enc1 = _keyStr.indexOf(input.charAt(i++));  
+                enc2 = _keyStr.indexOf(input.charAt(i++));  
+                enc3 = _keyStr.indexOf(input.charAt(i++));  
+                enc4 = _keyStr.indexOf(input.charAt(i++));  
+                chr1 = (enc1 << 2) | (enc2 >> 4);  
+                chr2 = ((enc2 & 15) << 4) | (enc3 >> 2);  
+                chr3 = ((enc3 & 3) << 6) | enc4;  
+                output = output + String.fromCharCode(chr1);  
+                if (enc3 != 64) {  
+                    output = output + String.fromCharCode(chr2);  
+                }  
+                if (enc4 != 64) {  
+                    output = output + String.fromCharCode(chr3);  
+                }  
+            }  
+            output = _utf8_decode(output);  
+            return output;  
+        }  
+       
+        // private method for UTF-8 encoding  
+        _utf8_encode = function (string) {  
+            string = string.replace(/\r\n/g,"\n");  
+            var utftext = "";  
+            for (var n = 0; n < string.length; n++) {  
+                var c = string.charCodeAt(n);  
+                if (c < 128) {  
+                    utftext += String.fromCharCode(c);  
+                } else if((c > 127) && (c < 2048)) {  
+                    utftext += String.fromCharCode((c >> 6) | 192);  
+                    utftext += String.fromCharCode((c & 63) | 128);  
+                } else {  
+                    utftext += String.fromCharCode((c >> 12) | 224);  
+                    utftext += String.fromCharCode(((c >> 6) & 63) | 128);  
+                    utftext += String.fromCharCode((c & 63) | 128);  
+                }  
+       
+            }  
+            return utftext;  
+        }  
+       
+        // private method for UTF-8 decoding  
+        _utf8_decode = function (utftext) {  
+            var string = "";  
+            var i = 0;  
+            var c = c1 = c2 = 0;  
+            while ( i < utftext.length ) {  
+                c = utftext.charCodeAt(i);  
+                if (c < 128) {  
+                    string += String.fromCharCode(c);  
+                    i++;  
+                } else if((c > 191) && (c < 224)) {  
+                    c2 = utftext.charCodeAt(i+1);  
+                    string += String.fromCharCode(((c & 31) << 6) | (c2 & 63));  
+                    i += 2;  
+                } else {  
+                    c2 = utftext.charCodeAt(i+1);  
+                    c3 = utftext.charCodeAt(i+2);  
+                    string += String.fromCharCode(((c & 15) << 12) | ((c2 & 63) << 6) | (c3 & 63));  
+                    i += 3;  
+                }  
+            }  
+            return string;  
+        }  
+    } 
+    </script>
+    
+</body>
+</html>
+
+    

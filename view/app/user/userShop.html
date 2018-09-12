@@ -1,0 +1,144 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta content="yes" name="apple-mobile-web-app-capable">
+    <meta content="yes" name="apple-touch-fullscreen">
+    <meta content="telephone=no,email=no" name="format-detection">
+    <meta name="Cache-Type" content='image/gif,image/png,image/jpg'/>
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <title>拍卖</title>
+    <meta name="description" content="">
+    <meta name="keywords" content="index">
+    <meta name="renderer" content="webkit">
+    <meta http-equiv="Cache-Control" content="no-siteapp"/>
+    <meta name="apple-mobile-web-app-title" content=""/>
+    <script type="text/javascript" src="../../../static/js/flexible.js"></script>
+    <script type="text/javascript" src="../../../static/js/flexible_css.js"></script>
+    <link rel="stylesheet" type="text/css" href="../../../static/css/main.css?0.100">
+</head>
+<body>
+    <div class="navbar">
+        <h1>我的</h1>
+    </div>
+    <div class="mainContent">
+    <div class="portrait_and_recharge">
+        <div class="protrait pull-left" >
+            <img src="../../../static/img/usercenter/photo.png"/>
+        </div>
+        <div class="username pull-left">
+            <dl>
+                <dd class="usernickname" style="margin-top:0.4rem"></dd>
+                <dd class="vip"><span>会员ID:</span><span class="memberno"></span></dd>
+                
+            </dl>
+        </div>
+    </div>
+    <div class="line"></div> 
+    <div class="mycenterList">
+        <ul>
+            <li>
+                <a  id="address">
+                    <div class="icon pull-left">
+                        <span><img src="../../../static/img/usercenter/icon_address.png"/></span>
+                    </div>
+                    <div class="mycenterList_label pull-left">
+                        收货地址
+                    </div>
+                    <div class="goto pull-right">
+                        <span><img src="../../../static/img/usercenter/icon_goto.png"/></span>
+                    </div>
+                </a>
+            </li>
+            <li class="helpcenter">
+                <a >
+                    <div class="icon pull-left">
+                        <span><img src="../../../static/img/usercenter/icon_help.png"/></span>
+                    </div>
+                    <div class="mycenterList_label pull-left ">
+                        隐私政策
+                    </div>
+                    <div class="goto pull-right">
+                        <span><img src="../../../static/img/usercenter/icon_goto.png"/></span>
+                    </div>
+                </a>
+            </li>
+        </ul>
+    </div>
+    <div class="line"></div> 
+    <div class="logout" onclick="">
+        <a>安全退出</a>
+    </div>
+    <div style="font-size:0.3rem;color:#999;text-align:center;line-height:0.8rem;display:none;background:#f2f2f2" class="hints">本平台抢购活动均与苹果公司（Apple Inc.）无关</div>
+    <!--<script type="text/javascript" src="../../../static/js/jquery-1.12.3.min.js"></script>-->
+    <script src="https://cdn.bootcss.com/jquery/3.0.0/jquery.js"></script>
+    <script type="text/javascript" src="../../../static/js/store-json2.min.js"></script> 
+    <script type="text/javascript" src="../../../static/js/AppHelper.js?0.100"></script> 
+    <script type="text/javascript" src="../../../static/js/MobileDetect.js"></script>
+    <script src="../../../src/js/util.js"></script>
+    <script type="text/javascript" src="../../../src/js/main.js?0.201"></script>
+    <script type="text/javascript">
+        var myObject=myObject;
+        var host=myObject.host;
+
+        var AppHelper=AppHelper;
+        myObject.init();
+        /*var isNew=store.get('isNew');
+        alert(isNew);*/
+        var openid=store.get('openid');
+        var channel=AppHelper.YzAppGetChannel();
+        var verCode=AppHelper.YzAppGetVerCode(); 
+        var nickname=store.get('nickName');
+        var picurl=store.get('picUrl');
+        var memberno=store.get('memberno');
+        
+        
+        
+        $(".usernickname").html(nickname);
+        $(".protrait img").attr("src",picurl);
+        $(".memberno").html(memberno);
+        //$(".protrait img").attr("src","http://101.95.97.178:8089/front/static/img/usercenter/icon_money.png");
+        
+        //退出接口
+        $(".logout").click(function(){
+            myObject.loadShow();
+            myObject.commonJsonpAjax(host+'/index.php/index/Frame/LoginOut','', function(data){
+                myObject.alert("退出成功");
+                store.clear();
+                if(verCode!=108){
+                    window.Auction.logout(0); 
+                    
+                }else if(verCode==108){
+                    window.Auction.logout(); 
+                    window.location.href=host+'/front/view/app/login/index.html?from=mycenter';
+                }
+                
+            },function(){
+            
+            });
+            
+        })
+        
+
+        
+        $("#address").click(function(){
+            pageUrl=host+'/front/view/app/user/address.html';
+            window.Auction.openUrl(pageUrl);
+        })
+        $(".helpcenter").click(function(){
+            pageUrl=host+'/front/view/app/login/agreement1.html';
+            window.Auction.openUrl(pageUrl);
+        })
+        
+        $(".mycenterList li").on("touchstart",function(){
+            $(this).css("background","#eee");
+        })
+        $(".mycenterList li").on("touchend",function(){
+            $(this).css("background","none");
+        })
+
+    </script>
+</body>
+</html>
+
+    

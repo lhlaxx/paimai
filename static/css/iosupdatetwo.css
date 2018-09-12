@@ -1,0 +1,119 @@
+header{
+    background-color:#1c9adb
+}
+.price-wrap .price-wrap-l{
+    background-color:#1c9adb
+}
+footer {
+    background-color: #1c9adb;
+}
+footer .footer-r{
+    background-color:#1c9adb
+}
+.refund .refund-details .refund-start-btn {
+    background-color:#1c9adb
+}
+.price-wrap .price-wrap-r {
+    color: #1c9adb;
+}
+.navbar {
+    background: #1c9adb;
+}
+.discount .discountRate {
+    color: #1c9adb;
+}
+.discount .joinNext {
+    color: #1c9adb;
+    border-radius: .2rem;
+    border: 1px solid #1c9adb;
+    background: none;
+    margin-bottom: 0.1rem;
+}
+
+.tabs-underline ul li a.tab-active{
+    color: #1c9adb;
+    border-bottom: .053333rem solid #1c9adb;
+}
+.goodsAuction .goodsAuction_details .goodsAuction_bidding {
+    font-size: .4rem;
+    color: #1c9adb;
+    background: none;
+    border-radius: .2rem;
+    border: 1px solid #1c9adb;
+    padding: .16rem .426667rem;
+    margin-bottom: 0.1rem;
+}
+
+.recharge {
+    width: 1.8rem;
+
+    background: #1c9adb;
+    border-radius: .206667rem;
+    border: 1px solid #1c9adb;
+}
+#recharge {
+    color: #FFFFFF;
+}
+.logButton {
+    background: #1c9adb;
+}
+.regNow {
+    color: #1c9adb;
+}
+
+.recordOperation .recordGoto {
+    background: #1c9adb;
+}
+.fix-content .share-btn {
+    background: #1c9adb;
+}
+
+.container .refund-goods ul .goods-item .join-btn {
+    background-color: #1c9adb;
+}
+.container .refund-main .refund-btn {
+    background-color: #1c9adb;
+}
+.container-title .share-btn {
+    background-color: #1c9adb;
+}
+.goods-details .goods-details-bottom ul .goods-item:nth-child(2n) span:nth-child(2) {
+    color: #1c9adb;
+}
+.container .earning .code .copy-code {
+    background-color: #1c9adb;
+}
+button.sendCode {
+    border: 1px solid #1c9adb;
+    color: #1c9adb;
+}
+.confirm button {
+    background: #1c9adb;
+}
+.select-cash-bg .select-cash .confirm-btn {
+
+    background-color: #1c9adb;
+    color: #FFFFFF;
+}
+.select-cash-bg .select-cash .confirm-btn-no{
+    background-color: #dddddd;
+    color: #666666;
+}
+.bind {
+    background: #1c9adb;
+}
+.recharge-warpper ul .recharge-active{
+    border: 1px solid #1c9adb;
+    color: #1c9adb;
+}
+.price-wrap .price-wrap-r {
+    border-bottom: 1px solid #1c9adb;
+    border-top: 1px solid #1c9adb;
+}
+.strategy-wrap .strategy-enter {
+    background-color: #1c9adb;
+}
+.price-wrap .price-wrap-r {
+    border-bottom: 1px solid #1c9adb;
+    border-top: 1px solid #1c9adb;
+}
